@@ -1,11 +1,4 @@
-export type LegacyRoute = {
-  path: string;
-  title: string;
-  description: string;
-  type: "resource" | "audience" | "product" | "service";
-};
-
-export const legacyRoutes: LegacyRoute[] = [
+export const legacyRoutes = [
   {
     path: "Fundraising-Resources",
     title: "Fundraising Resources",
