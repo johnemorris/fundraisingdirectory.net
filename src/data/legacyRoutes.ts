@@ -185,4 +185,102 @@ export const legacyRoutes: LegacyRoute[] = [
       "Resources for fundraising software, online fundraising tools, donor management, and campaign technology.",
     type: "service",
   },
+  {
+    path: "Educational-Resources",
+    title: "Educational Fundraising Resources",
+    description:
+      "Fundraising resources, guides, and ideas for schools, educators, student groups, and educational organizations.",
+    type: "resource",
+  },
+  {
+    path: "Catholic-School-Fundraising",
+    title: "Catholic School Fundraising",
+    description:
+      "Fundraising ideas and resources for Catholic schools, parent organizations, student groups, and school communities.",
+    type: "audience",
+  },
+  {
+    path: "Girl-Scout-Fundraising",
+    title: "Girl Scout Fundraising",
+    description:
+      "Fundraising ideas and resources for Girl Scout troops, councils, activities, trips, and community projects.",
+    type: "audience",
+  },
+  {
+    path: "FBLA-Fundraising",
+    title: "FBLA Fundraising",
+    description:
+      "Fundraising ideas and resources for FBLA chapters, student organizations, competitions, travel, and school programs.",
+    type: "audience",
+  },
+  {
+    path: "FCCLA-Fundraising",
+    title: "FCCLA Fundraising",
+    description:
+      "Fundraising ideas and resources for FCCLA chapters, student programs, competitions, travel, and community projects.",
+    type: "audience",
+  },
+  {
+    path: "Fire-Department-Fundraising",
+    title: "Fire Department Fundraising",
+    description:
+      "Fundraising ideas and resources for fire departments, volunteer fire companies, firefighter associations, and community programs.",
+    type: "audience",
+  },
+  {
+    path: "Band-Fundraising",
+    title: "Band Fundraising",
+    description:
+      "Fundraising ideas and resources for school bands, marching bands, music programs, booster clubs, trips, and competitions.",
+    type: "audience",
+  },
+  {
+    path: "Field-Hockey-Fundraising",
+    title: "Field Hockey Fundraising",
+    description:
+      "Fundraising ideas and resources for field hockey teams, clubs, schools, booster organizations, and youth programs.",
+    type: "audience",
+  },
+  {
+    path: "Gymnastics-Fundraising",
+    title: "Gymnastics Fundraising",
+    description:
+      "Fundraising ideas and resources for gymnastics teams, clubs, gyms, competitive programs, and youth organizations.",
+    type: "audience",
+  },
+  {
+    path: "Capital-Campaigns",
+    title: "Capital Campaign Fundraising",
+    description:
+      "Resources and fundraising options for organizations planning capital campaigns, major projects, facility improvements, and long-term fundraising goals.",
+    type: "service",
+  },
+  {
+    path: "Bottled-Water",
+    title: "Bottled Water Fundraising",
+    description:
+      "Explore bottled water fundraising programs and ideas for schools, teams, nonprofits, events, and community organizations.",
+    type: "product",
+  },
+  {
+    path: "Chocolate-Bars",
+    title: "Chocolate Bar Fundraising",
+    description:
+      "Explore chocolate bar fundraising programs and ideas for schools, teams, clubs, nonprofits, and community organizations.",
+    type: "product",
+  },
+  {
+    path: "Fruit",
+    title: "Fruit Fundraising",
+    description:
+      "Explore fruit fundraising programs and seasonal fundraising ideas for schools, teams, churches, nonprofits, and community groups.",
+    type: "product",
+  },
+  {
+    path: "Eco-Friendly",
+    title: "Eco-Friendly Fundraising",
+    description:
+      "Explore environmentally conscious fundraising ideas, products, and programs for schools, nonprofits, teams, and community organizations.",
+    type: "product",
+  },
 ];
