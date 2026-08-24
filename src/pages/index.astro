@@ -1,7 +1,9 @@
 ---
-const pageTitle = "FundraisingDirectory.net — We're Rebuilding";
+import "../styles/index.css";
+
+const pageTitle = "FundraisingDirectory.net — Find Better Ways to Fundraise";
 const pageDescription =
-  "FundraisingDirectory.net is coming back. We're rebuilding a better way to discover fundraising companies, programs, and ideas.";
+  "FundraisingDirectory.net is being rebuilt as a modern directory of fundraising companies, ideas, programs, resources, and opportunities for schools, teams, churches, nonprofits, clubs, and community organizations.";
 ---
 
 <!doctype html>
@@ -10,7 +12,7 @@ const pageDescription =
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
 
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} />
@@ -19,11 +21,15 @@ const pageDescription =
 
     <meta name="robots" content="index, follow" />
 
-    <meta name="theme-color" content="#f7faf8" />
+    <meta name="theme-color" content="#edf5ef" />
   </head>
 
   <body>
     <main class="page-shell">
+      <div class="background-shape shape-one" aria-hidden="true"></div>
+      <div class="background-shape shape-two" aria-hidden="true"></div>
+      <div class="background-shape shape-three" aria-hidden="true"></div>
+
       <section class="hero">
         <div class="hero-content">
           <div class="status">
@@ -39,15 +45,19 @@ const pageDescription =
           </h1>
 
           <p class="intro">
-            We're rebuilding FundraisingDirectory.net into a simple, useful
-            directory for discovering fundraising companies, programs, and
-            ideas.
+            We're rebuilding FundraisingDirectory.net into a modern place to
+            discover fundraising companies, ideas, programs, resources, and
+            new ways to raise money for your organization.
           </p>
 
           <div class="coming-soon">
             <div>
-              <strong>We're rebuilding the directory.</strong>
-              <span>A new FundraisingDirectory.net is on the way.</span>
+              <strong>We're bringing the directory back.</strong>
+
+              <span>
+                The original FundraisingDirectory.net is being rebuilt and
+                modernized for today's fundraising landscape.
+              </span>
             </div>
 
             <div class="construction-mark" aria-hidden="true">
@@ -60,42 +70,69 @@ const pageDescription =
           <div class="preview-header">
             <div class="preview-search">
               <span class="search-icon"></span>
-              Search fundraising options...
+              <span>Search fundraising options...</span>
             </div>
           </div>
 
           <div class="preview-body">
-            <div class="preview-card">
-              <span class="preview-icon">01</span>
-              <div>
-                <strong>Product Fundraisers</strong>
-                <span>Food, gifts, apparel & more</span>
+            <div class="preview-card company-card">
+              <div class="preview-icon">
+                <span>01</span>
               </div>
+
+              <div class="preview-copy">
+                <strong>Fundraising Companies</strong>
+                <span>Find programs, providers & services</span>
+              </div>
+
+              <span class="preview-arrow">→</span>
             </div>
 
-            <div class="preview-card">
-              <span class="preview-icon">02</span>
-              <div>
-                <strong>Event Fundraisers</strong>
-                <span>Runs, auctions, events & more</span>
+            <div class="preview-card ideas-card">
+              <div class="preview-icon">
+                <span>02</span>
               </div>
+
+              <div class="preview-copy">
+                <strong>Fundraising Ideas</strong>
+                <span>Events, challenges, DIY ideas & more</span>
+              </div>
+
+              <span class="preview-arrow">→</span>
             </div>
 
-            <div class="preview-card">
-              <span class="preview-icon">03</span>
-              <div>
-                <strong>Online Fundraising</strong>
-                <span>Digital campaigns & giving</span>
+            <div class="preview-card organization-card">
+              <div class="preview-icon">
+                <span>03</span>
               </div>
+
+              <div class="preview-copy">
+                <strong>Fundraising by Organization</strong>
+                <span>Schools, teams, churches & nonprofits</span>
+              </div>
+
+              <span class="preview-arrow">→</span>
             </div>
 
-            <div class="preview-card faded">
-              <span class="preview-icon">04</span>
-              <div>
-                <strong>And much more...</strong>
-                <span>We're organizing the options.</span>
+            <div class="preview-card trends-card">
+              <div class="preview-icon">
+                <span>04</span>
               </div>
+
+              <div class="preview-copy">
+                <strong>What's New in Fundraising</strong>
+                <span>New approaches, tools & trends</span>
+              </div>
+
+              <span class="preview-arrow">→</span>
             </div>
+          </div>
+
+          <div class="preview-note">
+            <strong>Old favorites. New possibilities.</strong>
+            <span>
+              Classic fundraisers plus modern ways to raise money.
+            </span>
           </div>
 
           <div class="tape tape-one"></div>
@@ -111,363 +148,3 @@ const pageDescription =
     </main>
   </body>
 </html>
-
-<style>
-  :global(*) {
-    box-sizing: border-box;
-  }
-
-  :global(html) {
-    font-family:
-      Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-      "Segoe UI", sans-serif;
-    background: #f7faf8;
-    color: #16221b;
-  }
-
-  :global(body) {
-    margin: 0;
-    min-width: 320px;
-  }
-
-  .page-shell {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    background:
-      radial-gradient(
-        circle at 80% 18%,
-        rgba(62, 147, 99, 0.1),
-        transparent 32rem
-      ),
-      linear-gradient(180deg, #fbfdfb 0%, #f4f8f5 100%);
-  }
-
-  .hero {
-    width: min(1180px, calc(100% - 48px));
-    margin: auto;
-    padding: 72px 0 56px;
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
-    gap: 80px;
-    align-items: center;
-  }
-
-  .hero-content {
-    max-width: 640px;
-  }
-
-  .status {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    margin-bottom: 34px;
-    padding: 9px 14px;
-    border: 1px solid #dce9df;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.72);
-    color: #496052;
-    font-size: 0.82rem;
-    font-weight: 650;
-    letter-spacing: 0.01em;
-    box-shadow: 0 5px 20px rgba(35, 67, 46, 0.04);
-  }
-
-  .status-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #36a261;
-    box-shadow: 0 0 0 5px rgba(54, 162, 97, 0.12);
-  }
-
-  .eyebrow {
-    margin: 0 0 16px;
-    color: #34734a;
-    font-size: 0.96rem;
-    font-weight: 750;
-    letter-spacing: 0.02em;
-  }
-
-  h1 {
-    max-width: 650px;
-    margin: 0;
-    font-size: clamp(3rem, 5.2vw, 5rem);
-    line-height: 0.99;
-    letter-spacing: -0.055em;
-    font-weight: 780;
-  }
-
-  h1 span {
-    display: block;
-    color: #377a50;
-  }
-
-  .intro {
-    max-width: 590px;
-    margin: 28px 0 0;
-    color: #58655d;
-    font-size: 1.14rem;
-    line-height: 1.72;
-  }
-
-  .coming-soon {
-    max-width: 570px;
-    margin-top: 38px;
-    padding: 19px 21px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    border-left: 4px solid #3d8558;
-    border-radius: 0 13px 13px 0;
-    background: #edf5ef;
-  }
-
-  .coming-soon strong,
-  .coming-soon span {
-    display: block;
-  }
-
-  .coming-soon strong {
-    margin-bottom: 3px;
-    font-size: 0.98rem;
-  }
-
-  .coming-soon span {
-    color: #657168;
-    font-size: 0.88rem;
-    line-height: 1.5;
-  }
-
-  .construction-mark {
-    flex: 0 0 auto;
-    width: 44px;
-    height: 44px;
-    display: grid;
-    place-items: center;
-    border-radius: 11px;
-    background: #3b7f53;
-    color: white;
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    transform: rotate(3deg);
-  }
-
-  .directory-preview {
-    position: relative;
-    width: 100%;
-    max-width: 470px;
-    justify-self: end;
-    padding: 17px;
-    border: 1px solid #dce5de;
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.82);
-    box-shadow:
-      0 35px 75px rgba(32, 60, 42, 0.1),
-      0 5px 20px rgba(32, 60, 42, 0.05);
-    transform: rotate(1.2deg);
-  }
-
-  .preview-header {
-    padding: 7px 4px 16px;
-  }
-
-  .preview-search {
-    height: 47px;
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    padding: 0 15px;
-    border: 1px solid #e1e8e3;
-    border-radius: 12px;
-    background: #f7f9f7;
-    color: #9ba49e;
-    font-size: 0.84rem;
-  }
-
-  .search-icon {
-    width: 14px;
-    height: 14px;
-    border: 2px solid #8e9a92;
-    border-radius: 50%;
-    position: relative;
-  }
-
-  .search-icon::after {
-    content: "";
-    position: absolute;
-    width: 6px;
-    height: 2px;
-    right: -5px;
-    bottom: -2px;
-    border-radius: 2px;
-    background: #8e9a92;
-    transform: rotate(45deg);
-  }
-
-  .preview-body {
-    display: grid;
-    gap: 10px;
-  }
-
-  .preview-card {
-    min-height: 78px;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    border: 1px solid #e7ece8;
-    border-radius: 14px;
-    background: white;
-  }
-
-  .preview-icon {
-    width: 43px;
-    height: 43px;
-    flex: 0 0 auto;
-    display: grid;
-    place-items: center;
-    border-radius: 11px;
-    background: #eaf4ed;
-    color: #47805a;
-    font-size: 0.7rem;
-    font-weight: 800;
-  }
-
-  .preview-card strong,
-  .preview-card span {
-    display: block;
-  }
-
-  .preview-card strong {
-    margin-bottom: 4px;
-    color: #26372c;
-    font-size: 0.9rem;
-  }
-
-  .preview-card div > span {
-    color: #88938b;
-    font-size: 0.76rem;
-  }
-
-  .preview-card.faded {
-    opacity: 0.52;
-  }
-
-  .tape {
-    position: absolute;
-    width: 88px;
-    height: 27px;
-    background: rgba(103, 151, 196, 0.36);
-    backdrop-filter: blur(2px);
-  }
-
-  .tape-one {
-    top: -10px;
-    right: 28px;
-    transform: rotate(7deg);
-  }
-
-  .tape-two {
-    bottom: 12px;
-    left: -35px;
-    transform: rotate(-13deg);
-  }
-
-  footer {
-    width: min(1180px, calc(100% - 48px));
-    margin: 0 auto;
-    padding: 24px 0 30px;
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    color: #8a958d;
-    font-size: 0.76rem;
-  }
-
-  .footer-divider {
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: #aab3ad;
-  }
-
-  @media (max-width: 860px) {
-    .hero {
-      width: min(680px, calc(100% - 36px));
-      padding: 52px 0 44px;
-      grid-template-columns: 1fr;
-      gap: 52px;
-    }
-
-    .hero-content {
-      max-width: none;
-    }
-
-    h1 {
-      font-size: clamp(2.8rem, 11vw, 4.6rem);
-    }
-
-    .directory-preview {
-      width: min(100%, 500px);
-      justify-self: center;
-      transform: rotate(0.7deg);
-    }
-
-    footer {
-      width: min(680px, calc(100% - 36px));
-    }
-  }
-
-  @media (max-width: 520px) {
-    .hero {
-      width: calc(100% - 28px);
-      padding-top: 34px;
-      gap: 42px;
-    }
-
-    .status {
-      margin-bottom: 29px;
-    }
-
-    h1 {
-      font-size: clamp(2.65rem, 13vw, 3.55rem);
-    }
-
-    .intro {
-      margin-top: 23px;
-      font-size: 1rem;
-    }
-
-    .coming-soon {
-      margin-top: 30px;
-      padding: 16px;
-    }
-
-    .construction-mark {
-      display: none;
-    }
-
-    .directory-preview {
-      padding: 13px;
-      border-radius: 19px;
-    }
-
-    .preview-card {
-      min-height: 72px;
-      padding: 13px;
-    }
-
-    .tape-two {
-      left: -19px;
-    }
-
-    footer {
-      width: calc(100% - 28px);
-      padding-bottom: 22px;
-    }
-  }
-</style>
