@@ -104,7 +104,19 @@ programs:
     upfront_cost: "none"
     ease_to_raise: "easy"
     summary: "Fundraising.com creates a shareable group storefront, processes supporter payments, and ships orders either to buyers or to a central group location."
-
+  - id: "prog_000004"
+    name: "Online Donation Campaign"
+    method: "direct-donations"
+    products_services:
+      - "donation-platform"
+    channels:
+      - "online"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+    inventory_model: "not-applicable"
+    upfront_cost: "varies"
+    ease_to_raise: "easy"
 geography:
   scope:
     - "us-nationwide"
