@@ -1,0 +1,181 @@
+meta:
+  id: "prov_000001"
+  schema_version: 1
+  created_at: "2026-08-24"
+  created_by: "user_000001"
+  modified_at: "2026-08-24"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+
+identity:
+  name: "Fundraising.com"
+  slug: "fundraising-com"
+  legal_name: null
+  website: "https://fundraising.com/"
+  fundraising_url: "https://fundraising.com/programs"
+  logo: null
+
+classification:
+  methods:
+    - "product-sales"
+    - "direct-donations"
+  products_services:
+    - "candy-chocolate"
+    - "cookie-dough-cookies"
+    - "popcorn"
+    - "snacks"
+    - "apparel-spirit-wear"
+    - "candles"
+    - "gifts-seasonal"
+    - "merchandise-online-store"
+    - "donation-platform"
+  organizations:
+    - "schools"
+    - "pto-pta"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+
+programs:
+  - id: "prog_000001"
+    name: "Direct Sale Fundraising"
+    slug: "direct-sale-fundraising"
+    method: "product-sales"
+    products_services:
+      - "candy-chocolate"
+      - "snacks"
+      - "gifts-seasonal"
+    channels:
+      - "in-person"
+    online_ordering: false
+    fulfillment:
+      - "group-distribution"
+    inventory_model: "upfront-inventory"
+    upfront_cost: "none"
+    ease_to_raise: "hands-on"
+    summary: "Groups purchase ready-to-sell products and make immediate, in-person sales to supporters."
+
+  - id: "prog_000002"
+    name: "Order-Taker Fundraising"
+    slug: "order-taker-fundraising"
+    method: "product-sales"
+    products_services:
+      - "cookie-dough-cookies"
+      - "popcorn"
+      - "candles"
+      - "snacks"
+      - "gifts-seasonal"
+    channels:
+      - "hybrid"
+    online_ordering: null
+    fulfillment:
+      - "group-distribution"
+    inventory_model: "preorder"
+    upfront_cost: "none"
+    ease_to_raise: "moderate"
+    summary: "Participants collect product orders during a campaign window, then the group submits the orders and coordinates delivery after fulfillment."
+
+  - id: "prog_000003"
+    name: "Online Fundraiser Store"
+    slug: "online-fundraiser-store"
+    method: "product-sales"
+    products_services:
+      - "candy-chocolate"
+      - "cookie-dough-cookies"
+      - "popcorn"
+      - "snacks"
+      - "apparel-spirit-wear"
+      - "gifts-seasonal"
+      - "merchandise-online-store"
+    channels:
+      - "online"
+    online_ordering: true
+    fulfillment:
+      - "direct-to-supporter"
+      - "group-distribution"
+    inventory_model: "no-inventory"
+    upfront_cost: "none"
+    ease_to_raise: "easy"
+    summary: "Fundraising.com creates a shareable group storefront, processes supporter payments, and ships orders either to buyers or to a central group location."
+
+geography:
+  scope:
+    - "us-nationwide"
+    - "canada"
+  countries:
+    - "US"
+    - "CA"
+  states: []
+  regions: []
+  notes: "Official program pages state that Fundraising.com serves groups and ships online-store orders across the United States and Canada."
+
+content:
+  summary: "Fundraising.com provides product-sale and online fundraising programs for schools, teams, faith communities, nonprofits, and other community groups in the United States and Canada."
+  how_it_works: "Organizers select a program format, choose products, set a campaign timeline, and invite participants to sell in person, collect preorders, or share an online store. Ordering, inventory, and delivery responsibilities depend on the selected program."
+  best_for:
+    - "Groups that want a choice between direct-sale, preorder, and online-store formats."
+    - "Schools, teams, and community organizations running product-based campaigns."
+    - "Organizations with supporters in the United States or Canada."
+  considerations:
+    - "Direct-sale campaigns require more inventory handling than preorder or online-store programs."
+    - "Order-taker campaigns require the group to coordinate a campaign window and post-campaign distribution."
+    - "Product selection and shipping options vary by program and location."
+
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-08-24"
+  last_verified_at: "2026-08-24"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+
+verification:
+  level: "verified"
+  sources:
+    - type: "official-website"
+      url: "https://fundraising.com/"
+      checked_at: "2026-08-24"
+      notes: "Active site offering current fundraising programs and enrollment calls to action."
+    - type: "official-program-page"
+      url: "https://fundraising.com/direct-sale"
+      checked_at: "2026-08-24"
+      notes: "Documents in-hand direct selling, supported audiences, hands-on product handling, and no upfront cost."
+    - type: "official-program-page"
+      url: "https://fundraising.com/order-taker-program"
+      checked_at: "2026-08-24"
+      notes: "Documents preorder workflow, product categories, audiences, delivery sequence, and no-upfront-inventory model."
+    - type: "official-program-page"
+      url: "https://fundraising.com/online-fundraiser-store"
+      checked_at: "2026-08-24"
+      notes: "Documents online checkout, US and Canada reach, no upfront cost, and direct-to-buyer or central-location fulfillment."
+    - type: "official-program-page"
+      url: "https://fundraising.com/online-fundraising-platform"
+      checked_at: "2026-08-24"
+      notes: "Documents supported organization audiences, online campaign tools, products, and US and Canada availability."
+    - type: "official-program-page"
+      url: "https://fundraising.com/online-fundraising/products"
+      checked_at: "2026-08-24"
+      notes: "Documents donation-only and hybrid campaigns, built-in donation pages, product storefronts, and online checkout."
+
+provenance:
+  discovered_via:
+    - "web-research"
+    - "editorial-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+
+affiliation:
+  type: "none"
+  disclosure_required: false
+
+editorial:
+  featured: false
