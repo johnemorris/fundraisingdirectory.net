@@ -1,0 +1,35 @@
+---
+import SiteHeader from "../components/SiteHeader.astro";
+import "../styles/providers.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = "Find and compare fundraising providers, programs, and fundraising options.",
+  noindex = true,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+
+  <body>
+    <SiteHeader />
+
+    <slot />
+  </body>
+</html>

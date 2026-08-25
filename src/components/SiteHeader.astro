@@ -1,0 +1,28 @@
+---
+const currentPath = Astro.url.pathname;
+
+const isProviders =
+  currentPath === "/providers/" ||
+  currentPath.startsWith("/providers/");
+---
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-brand" href="/" aria-label="FundraisingDirectory.net home">
+      <span class="site-brand-main">FundraisingDirectory</span>
+      <span class="site-brand-domain">.net</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a
+        href="/providers/"
+        class:list={[
+          "site-nav-link",
+          { active: isProviders },
+        ]}
+      >
+        Providers
+      </a>
+    </nav>
+  </div>
+</header>

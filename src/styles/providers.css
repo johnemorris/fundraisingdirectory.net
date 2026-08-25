@@ -484,6 +484,80 @@ a {
   text-align: center;
 }
 
+/* =========================================================
+   Global site header
+   ========================================================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(1180px, calc(100% - 32px));
+  min-height: 68px;
+  margin: 0 auto;
+}
+
+.site-brand {
+  display: inline-flex;
+  align-items: baseline;
+  color: var(--text);
+  font-size: 1.12rem;
+  font-weight: 850;
+  letter-spacing: -0.035em;
+  text-decoration: none;
+}
+
+.site-brand-main {
+  color: var(--text);
+}
+
+.site-brand-domain {
+  color: var(--accent);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.site-nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: 9px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+.site-nav-link:hover {
+  background: var(--surface-soft);
+  color: var(--text);
+}
+
+.site-nav-link.active {
+  background: #edf2ec;
+  color: var(--accent);
+}
+
 @media (max-width: 780px) {
   .directory-shell {
     width: min(100% - 22px, 1180px);
@@ -518,5 +592,19 @@ a {
 
   .hero-actions .button {
     width: auto;
+  }
+
+  .site-header-inner {
+    width: min(100% - 22px, 1180px);
+    min-height: 60px;
+  }
+
+  .site-brand {
+    font-size: 1rem;
+  }
+
+  .site-nav-link {
+    padding: 0 9px;
+    font-size: 0.85rem;
   }
 }

@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import "../../styles/providers.css";
+import SiteLayout from "../../layouts/SiteLayout.astro";
 
 const providers = (await getCollection("providers"))
   .filter(
@@ -39,22 +39,11 @@ const easeLabel = {
 } as const;
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="robots" content="noindex, nofollow" />
-
-    <title>Fundraising Providers | FundraisingDirectory.net</title>
-
-    <meta
-      name="description"
-      content="Browse verified fundraising providers and compare fundraising methods, programs, organization fit, and Ease to Raise."
-    />
-  </head>
-
-  <body>
+<SiteLayout
+  title="Fundraising Providers | FundraisingDirectory.net"
+  description="Browse verified fundraising providers and compare fundraising methods, programs, organization fit, and Ease to Raise."
+>
+  <main class="directory-shell">
     <main class="directory-shell">
       <header class="directory-header">
         <p class="eyebrow">FundraisingDirectory.net</p>
@@ -148,5 +137,5 @@ const easeLabel = {
         )
       }
     </main>
-  </body>
-</html>
+  </main>
+</SiteLayout>

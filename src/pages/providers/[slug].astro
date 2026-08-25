@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import "../../styles/providers.css";
+import SiteLayout from "../../layouts/SiteLayout.astro";
 
 export async function getStaticPaths() {
   const providers = (await getCollection("providers")).filter(
@@ -57,19 +57,10 @@ const statusLabel = {
 } as const;
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="robots" content="noindex, nofollow" />
-
-    <title>{identity.name} Fundraising | FundraisingDirectory.net</title>
-
-    <meta name="description" content={content.summary} />
-  </head>
-
-  <body>
+<SiteLayout
+  title={`${identity.name} Fundraising | FundraisingDirectory.net`}
+  description={content.summary}
+>
     <main class="directory-shell">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="/providers/">Providers</a>
@@ -333,5 +324,4 @@ const statusLabel = {
         </footer>
       </article>
     </main>
-  </body>
-</html>
+</SiteLayout>
