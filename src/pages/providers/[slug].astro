@@ -1,0 +1,337 @@
+---
+import { getCollection } from "astro:content";
+import "../../styles/providers.css";
+
+export async function getStaticPaths() {
+  const providers = (await getCollection("providers")).filter(
+    (provider) => !provider.data.meta.deleted,
+  );
+
+  return providers.map((provider) => ({
+    params: {
+      slug: provider.data.identity.slug,
+    },
+    props: {
+      provider,
+    },
+  }));
+}
+
+const { provider } = Astro.props;
+const {
+  identity,
+  classification,
+  programs,
+  geography,
+  content,
+  status,
+  verification,
+  affiliation,
+} = provider.data;
+
+const formatLabel = (value: string) =>
+  value
+    .split("-")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+
+const formatDate = (value: string) =>
+  new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${value.slice(0, 10)}T12:00:00Z`));
+
+const easeLabel = {
+  easy: "Easy",
+  moderate: "Moderate",
+  "hands-on": "Hands-On",
+} as const;
+
+const statusLabel = {
+  active: "Active",
+  inactive: "Inactive",
+  uncertain: "Status uncertain",
+  historical: "Historical",
+} as const;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <title>{identity.name} Fundraising | FundraisingDirectory.net</title>
+
+    <meta name="description" content={content.summary} />
+  </head>
+
+  <body>
+    <main class="directory-shell">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/providers/">Providers</a>
+        <span aria-hidden="true">›</span>
+        <span>{identity.name}</span>
+      </nav>
+
+      <article class="provider-page">
+        <header class="provider-hero">
+          <div class="provider-hero-main">
+            <div class="provider-title-row">
+              <div>
+                <p class="eyebrow">Fundraising provider</p>
+                <h1>{identity.name}</h1>
+              </div>
+
+              <span class={`status-badge status-${status.lifecycle}`}>
+                {statusLabel[status.lifecycle]}
+              </span>
+            </div>
+
+            <p class="hero-summary">{content.summary}</p>
+
+            <div class="hero-actions">
+              <a
+                class="button button-primary"
+                href={identity.fundraising_url ?? identity.website}
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+              >
+                Visit {identity.name}
+              </a>
+
+              <span class="verified-date">
+                Last verified {formatDate(status.last_verified_at)}
+              </span>
+            </div>
+
+            {
+              affiliation.disclosure_required && (
+                <p class="affiliate-disclosure">
+                  FundraisingDirectory.net may receive compensation if you
+                  visit or use this provider through certain links.
+                </p>
+              )
+            }
+          </div>
+
+          <aside class="quick-facts">
+            <h2>Quick facts</h2>
+
+            <dl>
+              <div>
+                <dt>Fundraising methods</dt>
+                <dd>
+                  {classification.methods.map(formatLabel).join(", ")}
+                </dd>
+              </div>
+
+              <div>
+                <dt>Programs listed</dt>
+                <dd>{programs.length}</dd>
+              </div>
+
+              <div>
+                <dt>Availability</dt>
+                <dd>{geography.scope.map(formatLabel).join(", ")}</dd>
+              </div>
+
+              <div>
+                <dt>Verification</dt>
+                <dd>{formatLabel(verification.level)}</dd>
+              </div>
+            </dl>
+          </aside>
+        </header>
+
+        <section class="content-section">
+          <h2>Who it may work for</h2>
+
+          <div class="tags">
+            {
+              classification.organizations.map((organization) => (
+                <span class="tag">{formatLabel(organization)}</span>
+              ))
+            }
+          </div>
+        </section>
+
+        <section class="content-section">
+          <h2>How it works</h2>
+          <p>{content.how_it_works}</p>
+        </section>
+
+        <section class="content-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Fundraising options</p>
+              <h2>Programs</h2>
+            </div>
+
+            <div class="ease-legend" aria-label="Ease to Raise legend">
+              <span>
+                <span class="legend-dot ease-easy" />
+                Easy
+              </span>
+
+              <span>
+                <span class="legend-dot ease-moderate" />
+                Moderate
+              </span>
+
+              <span>
+                <span class="legend-dot ease-hands-on" />
+                Hands-On
+              </span>
+            </div>
+          </div>
+
+          <div class="program-grid">
+            {
+              programs.map((program) => (
+                <article class="program-card">
+                  <div class="program-title-row">
+                    <h3>{program.name}</h3>
+
+                    <span
+                      class={`ease-badge ease-${program.ease_to_raise}`}
+                    >
+                      <span class="ease-dot" aria-hidden="true" />
+                      {easeLabel[program.ease_to_raise]}
+                    </span>
+                  </div>
+
+                  <p>{program.summary}</p>
+
+                  <dl class="program-details">
+                    <div>
+                      <dt>Method</dt>
+                      <dd>{formatLabel(program.method)}</dd>
+                    </div>
+
+                    <div>
+                      <dt>Channel</dt>
+                      <dd>{program.channels.map(formatLabel).join(", ")}</dd>
+                    </div>
+
+                    <div>
+                      <dt>Inventory</dt>
+                      <dd>{formatLabel(program.inventory_model)}</dd>
+                    </div>
+
+                    <div>
+                      <dt>Upfront cost</dt>
+                      <dd>{formatLabel(program.upfront_cost)}</dd>
+                    </div>
+
+                    <div>
+                      <dt>Fulfillment</dt>
+                      <dd>
+                        {program.fulfillment.map(formatLabel).join(", ")}
+                      </dd>
+                    </div>
+
+                    <div>
+                      <dt>Online ordering</dt>
+                      <dd>
+                        {program.online_ordering === true
+                          ? "Yes"
+                          : program.online_ordering === false
+                            ? "No"
+                            : "Not applicable / not verified"}
+                      </dd>
+                    </div>
+                  </dl>
+
+                  {
+                    program.products_services.length > 0 && (
+                      <div class="program-products">
+                        <strong>Products / services</strong>
+
+                        <div class="tags">
+                          {program.products_services.map((item) => (
+                            <span class="tag tag-muted">
+                              {formatLabel(item)}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )
+                  }
+                </article>
+              ))
+            }
+          </div>
+        </section>
+
+        <div class="two-column">
+          <section class="content-section">
+            <h2>Best for</h2>
+
+            <ul class="clean-list">
+              {content.best_for.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
+
+          <section class="content-section">
+            <h2>Things to consider</h2>
+
+            <ul class="clean-list">
+              {content.considerations.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
+        </div>
+
+        <section class="content-section">
+          <h2>Availability</h2>
+
+          <p>
+            {geography.countries
+              .map((country) =>
+                country === "US"
+                  ? "United States"
+                  : country === "CA"
+                    ? "Canada"
+                    : country,
+              )
+              .join(" and ")}
+          </p>
+
+          {geography.notes && <p class="muted-copy">{geography.notes}</p>}
+        </section>
+
+        <section class="verification-box">
+          <div>
+            <p class="eyebrow">Provider verification</p>
+            <h2>Last checked {formatDate(status.last_verified_at)}</h2>
+
+            <p>
+              FundraisingDirectory.net researches provider information using
+              current sources. Organizations should always confirm current
+              pricing, terms, availability, and requirements directly with
+              the provider before starting a fundraiser.
+            </p>
+          </div>
+
+          <span class="verification-count">
+            {verification.sources.length} source{
+              verification.sources.length === 1 ? "" : "s"
+            } checked
+          </span>
+        </section>
+
+        <footer class="provider-disclaimer">
+          <strong>Independent directory notice:</strong>
+          FundraisingDirectory.net is an information and discovery resource.
+          Unless explicitly disclosed, it is not affiliated with, endorsed
+          by, or responsible for listed fundraising providers. Organizations
+          are responsible for evaluating providers and conducting their own
+          transactions.
+        </footer>
+      </article>
+    </main>
+  </body>
+</html>
