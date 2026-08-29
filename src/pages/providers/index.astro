@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import SiteLayout from "../../layouts/SiteLayout.astro";
+import "../../styles/providers.css";
 
 const providers = (await getCollection("providers"))
   .filter(
@@ -44,98 +45,94 @@ const easeLabel = {
   description="Browse verified fundraising providers and compare fundraising methods, programs, organization fit, and Ease to Raise."
 >
   <main class="directory-shell">
-    <main class="directory-shell">
-      <header class="directory-header">
-        <p class="eyebrow">FundraisingDirectory.net</p>
-        <h1>Fundraising Providers</h1>
+    <header class="directory-header">
+      <p class="eyebrow">FundraisingDirectory.net</p>
+      <h1>Fundraising Providers</h1>
 
-        <p class="directory-intro">
-          Explore fundraising companies and platforms by the groups they
-          serve, the fundraising methods they support, and how much work
-          their programs require.
-        </p>
+      <p class="directory-intro">
+        Explore fundraising companies and platforms by the groups they serve,
+        the fundraising methods they support, and how much work their programs
+        require.
+      </p>
 
-        <div class="development-notice">
-          Directory preview — provider data is still being researched and
-          expanded.
-        </div>
-      </header>
+      <div class="development-notice">
+        Directory preview — provider data is still being researched and
+        expanded.
+      </div>
+    </header>
 
-      <section class="provider-grid" aria-label="Fundraising providers">
-        {
-          providers.map((provider) => {
-            const { identity, classification, content, programs, geography } =
-              provider.data;
+    <section class="provider-grid" aria-label="Fundraising providers">
+      {
+        providers.map((provider) => {
+          const { identity, classification, content, programs, geography } =
+            provider.data;
 
-            const ease = providerEase(programs);
+          const ease = providerEase(programs);
 
-            return (
-              <article class="provider-card">
-                <div class="provider-card-top">
-                  <div>
-                    <p class="provider-status">Verified provider</p>
-                    <h2>{identity.name}</h2>
-                  </div>
+          return (
+            <article class="provider-card">
+              <div class="provider-card-top">
+                <div>
+                  <p class="provider-status">Verified provider</p>
+                  <h2>{identity.name}</h2>
+                </div>
 
-                  {ease && (
-                    <span class={`ease-badge ease-${ease}`}>
-                      <span class="ease-dot" aria-hidden="true" />
-                      {easeLabel[ease]}
+                {ease && (
+                  <span class={`ease-badge ease-${ease}`}>
+                    <span class="ease-dot" aria-hidden="true" />
+                    {easeLabel[ease]}
+                  </span>
+                )}
+              </div>
+
+              <p class="provider-summary">{content.summary}</p>
+
+              <div class="tag-group">
+                <strong>Methods</strong>
+                <div class="tags">
+                  {classification.methods.map((method) => (
+                    <span class="tag">{formatLabel(method)}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div class="tag-group">
+                <strong>Best suited for</strong>
+                <div class="tags">
+                  {classification.organizations.slice(0, 5).map((org) => (
+                    <span class="tag tag-muted">{formatLabel(org)}</span>
+                  ))}
+
+                  {classification.organizations.length > 5 && (
+                    <span class="tag tag-muted">
+                      +{classification.organizations.length - 5} more
                     </span>
                   )}
                 </div>
+              </div>
 
-                <p class="provider-summary">{content.summary}</p>
+              <div class="provider-card-footer">
+                <span>{geography.scope.map(formatLabel).join(" · ")}</span>
 
-                <div class="tag-group">
-                  <strong>Methods</strong>
-                  <div class="tags">
-                    {classification.methods.map((method) => (
-                      <span class="tag">{formatLabel(method)}</span>
-                    ))}
-                  </div>
-                </div>
-
-                <div class="tag-group">
-                  <strong>Best suited for</strong>
-                  <div class="tags">
-                    {classification.organizations.slice(0, 5).map((org) => (
-                      <span class="tag tag-muted">{formatLabel(org)}</span>
-                    ))}
-
-                    {classification.organizations.length > 5 && (
-                      <span class="tag tag-muted">
-                        +{classification.organizations.length - 5} more
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <div class="provider-card-footer">
-                  <span>
-                    {geography.scope.map(formatLabel).join(" · ")}
-                  </span>
-
-                  <a
-                    class="button button-primary"
-                    href={`/providers/${identity.slug}/`}
-                  >
-                    View provider
-                  </a>
-                </div>
-              </article>
-            );
-          })
-        }
-      </section>
-
-      {
-        providers.length === 0 && (
-          <p class="empty-state">
-            No active fundraising providers are currently available.
-          </p>
-        )
+                <a
+                  class="button button-primary"
+                  href={`/providers/${identity.slug}/`}
+                >
+                  View provider
+                </a>
+              </div>
+            </article>
+          );
+        })
       }
-    </main>
+    </section>
+
+    {
+      providers.length === 0 && (
+        <p class="empty-state">
+          No active fundraising providers are currently available.
+        </p>
+      )
+    }
   </main>
 </SiteLayout>

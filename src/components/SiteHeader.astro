@@ -1,28 +1,79 @@
 ---
-const currentPath = Astro.url.pathname;
+import Brand from "./Brand.astro";
+import {
+  DISCOVERY_NAVIGATION,
+  PRIMARY_NAVIGATION,
+  PROVIDER_NAVIGATION,
+} from "../data/site";
 
-const isProviders =
-  currentPath === "/providers/" ||
-  currentPath.startsWith("/providers/");
+const currentPath = Astro.url.pathname;
+const isCurrent = (href: string) => {
+  const path = href.split(/[?#]/)[0];
+  return path !== "/" && currentPath.startsWith(path);
+};
 ---
 
 <header class="site-header">
-  <div class="site-header-inner">
-    <a class="site-brand" href="/" aria-label="FundraisingDirectory.net home">
-      <span class="site-brand-main">FundraisingDirectory</span>
-      <span class="site-brand-domain">.net</span>
-    </a>
+  <div class="site-header-main shell-wide">
+    <Brand />
 
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a
-        href="/providers/"
-        class:list={[
-          "site-nav-link",
-          { active: isProviders },
-        ]}
-      >
-        Providers
-      </a>
+    <nav class="desktop-primary-nav" aria-label="Primary navigation">
+      {PRIMARY_NAVIGATION.map((item) => (
+        <a class:list={["site-nav-link", { active: isCurrent(item.href) }]} href={item.href}>
+          {item.label}
+        </a>
+      ))}
     </nav>
+
+    <nav class="provider-nav" aria-label="Provider navigation">
+      {PROVIDER_NAVIGATION.map((item, index) => (
+        <a class:list={["site-nav-link", { "provider-nav-cta": index === 1 }]} href={item.href}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <details class="mobile-menu">
+      <summary aria-label="Navigation menu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </summary>
+      <div class="mobile-menu-panel">
+        <nav aria-label="Mobile primary navigation">
+          {PRIMARY_NAVIGATION.map((item) => <a href={item.href}>{item.label}<span aria-hidden="true">→</span></a>)}
+        </nav>
+        <p class="mobile-menu-label">Browse by group or method</p>
+        <nav class="mobile-discovery-nav" aria-label="Mobile discovery navigation">
+          {DISCOVERY_NAVIGATION.map((item) => <a href={item.href}>{item.label}</a>)}
+        </nav>
+        <nav class="mobile-provider-nav" aria-label="Mobile provider navigation">
+          {PROVIDER_NAVIGATION.map((item) => <a href={item.href}>{item.label}</a>)}
+        </nav>
+      </div>
+    </details>
   </div>
+
+  <nav class="discovery-nav shell-wide" aria-label="Popular fundraising categories">
+    <span class="discovery-label">Explore</span>
+    {DISCOVERY_NAVIGATION.map((item) => <a href={item.href}>{item.label}</a>)}
+  </nav>
 </header>
+
+<script>
+  const mobileMenu = document.querySelector<HTMLDetailsElement>(".mobile-menu");
+
+  mobileMenu?.addEventListener("click", (event) => {
+    const link = (event.target as Element).closest("a");
+    if (!link) return;
+
+    const destination = new URL(link.href, window.location.href);
+    const isSamePage =
+      destination.origin === window.location.origin &&
+      destination.pathname === window.location.pathname &&
+      destination.search === window.location.search &&
+      Boolean(destination.hash);
+
+    if (isSamePage) mobileMenu.removeAttribute("open");
+  });
+</script>

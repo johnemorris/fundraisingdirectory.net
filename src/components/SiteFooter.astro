@@ -1,0 +1,69 @@
+---
+import Brand from "./Brand.astro";
+import { SITE_ROUTES } from "../data/site";
+
+const columns = [
+  {
+    title: "Find Fundraisers",
+    links: [
+      ["Browse Directory", SITE_ROUTES.directory],
+      ["Schools", SITE_ROUTES.schools],
+      ["Sports Teams", SITE_ROUTES.sports],
+      ["Churches", SITE_ROUTES.churches],
+      ["Nonprofits", SITE_ROUTES.nonprofits],
+    ],
+  },
+  {
+    title: "Explore",
+    links: [
+      ["Fundraising Ideas", SITE_ROUTES.ideas],
+      ["Popular Fundraisers", "/#popular-methods"],
+      ["Latest Guides", SITE_ROUTES.guides],
+    ],
+  },
+  {
+    title: "Providers",
+    links: [
+      ["Submit Your Company", "/#provider-cta"],
+      ["Provider Information", SITE_ROUTES.providerInformation],
+    ],
+  },
+  {
+    title: "About",
+    links: [
+      ["About", null],
+      ["Contact", null],
+      ["Privacy", null],
+      ["Terms", null],
+      ["Disclosures", null],
+    ],
+  },
+] as const;
+---
+
+<footer class="site-footer">
+  <div class="footer-inner shell-wide">
+    <div class="footer-intro">
+      <Brand />
+      <p>
+        A clearer way to discover fundraising ideas, programs, and providers for your group.
+      </p>
+    </div>
+
+    <div class="footer-navigation">
+      {columns.map((column) => (
+        <div class="footer-column">
+          <h2>{column.title}</h2>
+          {column.links.map(([label, href]) =>
+            href ? <a href={href}>{label}</a> : <span>{label}</span>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {new Date().getFullYear()} FundraisingDirectory.net</span>
+      <span>Independent fundraising discovery and information.</span>
+    </div>
+  </div>
+</footer>

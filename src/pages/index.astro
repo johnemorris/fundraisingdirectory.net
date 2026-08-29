@@ -1,150 +1,113 @@
 ---
+import { getCollection } from "astro:content";
+import FeaturedFundraisers from "../components/home/FeaturedFundraisers.astro";
+import FundraiserFinder from "../components/home/FundraiserFinder.astro";
+import GroupDiscovery from "../components/home/GroupDiscovery.astro";
+import Guides from "../components/home/Guides.astro";
+import PopularMethods from "../components/home/PopularMethods.astro";
+import { fundraisingIdeas } from "../data/homepage";
+import { SITE_ROUTES } from "../data/site";
+import SiteLayout from "../layouts/SiteLayout.astro";
 import "../styles/index.css";
 
-const pageTitle = "FundraisingDirectory.net — Find Better Ways to Fundraise";
+const providers = (await getCollection("providers"))
+  .filter(
+    (provider) =>
+      !provider.data.meta.deleted && provider.data.status.lifecycle === "active",
+  )
+  .sort((a, b) => a.data.identity.name.localeCompare(b.data.identity.name));
+
+const featuredProvider = providers[0];
+const pageTitle =
+  "FundraisingDirectory.net | Find Fundraising Ideas & Providers";
 const pageDescription =
-  "FundraisingDirectory.net is being rebuilt as a modern directory of fundraising companies, ideas, programs, resources, and opportunities for schools, teams, churches, nonprofits, clubs, and community organizations.";
+  "Discover fundraising ideas, programs, and providers for schools, teams, churches, nonprofits, clubs, and community groups.";
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+<SiteLayout
+  title={pageTitle}
+  description={pageDescription}
+  noindex={false}
+  canonical="https://fundraisingdirectory.net/"
+  bodyClass="homepage"
+>
+  <main>
+    <FundraiserFinder />
+    <PopularMethods />
+    {featuredProvider && <FeaturedFundraisers provider={featuredProvider} />}
+    <GroupDiscovery />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <title>{pageTitle}</title>
-    <meta name="description" content={pageDescription} />
-
-    <link rel="canonical" href="https://fundraisingdirectory.net/" />
-
-    <meta name="robots" content="index, follow" />
-
-    <meta name="theme-color" content="#edf5ef" />
-  </head>
-
-  <body>
-    <main class="page-shell">
-      <div class="background-shape shape-one" aria-hidden="true"></div>
-      <div class="background-shape shape-two" aria-hidden="true"></div>
-      <div class="background-shape shape-three" aria-hidden="true"></div>
-
-      <section class="hero">
-        <div class="hero-content">
-          <div class="status">
-            <span class="status-dot" aria-hidden="true"></span>
-            The directory is coming back
-          </div>
-
-          <p class="eyebrow">FundraisingDirectory.net</p>
-
-          <h1>
-            Finding the right fundraiser
-            <span>should be easier.</span>
-          </h1>
-
-          <p class="intro">
-            We're rebuilding FundraisingDirectory.net into a modern place to
-            discover fundraising companies, ideas, programs, resources, and
-            new ways to raise money for your organization.
+    <section class="ideas-section" aria-labelledby="ideas-title">
+      <div class="ideas-shape ideas-shape-one" aria-hidden="true"></div>
+      <div class="ideas-shape ideas-shape-two" aria-hidden="true"></div>
+      <div class="shell-wide ideas-layout">
+        <div class="ideas-copy">
+          <p class="eyebrow eyebrow-light">Think beyond the catalog</p>
+          <h2 id="ideas-title">You don't have to sell cookie dough.</h2>
+          <p>
+            There are many ways to raise money. Explore approaches that fit
+            your time, audience, and appetite for hands-on work.
           </p>
-
-          <div class="coming-soon">
-            <div>
-              <strong>We're bringing the directory back.</strong>
-
-              <span>
-                The original FundraisingDirectory.net is being rebuilt and
-                modernized for today's fundraising landscape.
-              </span>
-            </div>
-
-            <div class="construction-mark" aria-hidden="true">
-              FD
-            </div>
-          </div>
+          <a class="button button-light" href={SITE_ROUTES.ideas}>
+            Explore Fundraising Ideas <span aria-hidden="true">→</span>
+          </a>
         </div>
+        <ul class="idea-list">
+          {
+            fundraisingIdeas.map((idea, index) => (
+              <li>
+                <span>0{index + 1}</span><strong>{idea}</strong>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
 
-        <div class="directory-preview" aria-hidden="true">
-          <div class="preview-header">
-            <div class="preview-search">
-              <span class="search-icon"></span>
-              <span>Search fundraising options...</span>
-            </div>
-          </div>
-
-          <div class="preview-body">
-            <div class="preview-card company-card">
-              <div class="preview-icon">
-                <span>01</span>
-              </div>
-
-              <div class="preview-copy">
-                <strong>Fundraising Companies</strong>
-                <span>Find programs, providers & services</span>
-              </div>
-
-              <span class="preview-arrow">→</span>
-            </div>
-
-            <div class="preview-card ideas-card">
-              <div class="preview-icon">
-                <span>02</span>
-              </div>
-
-              <div class="preview-copy">
-                <strong>Fundraising Ideas</strong>
-                <span>Events, challenges, DIY ideas & more</span>
-              </div>
-
-              <span class="preview-arrow">→</span>
-            </div>
-
-            <div class="preview-card organization-card">
-              <div class="preview-icon">
-                <span>03</span>
-              </div>
-
-              <div class="preview-copy">
-                <strong>Fundraising by Organization</strong>
-                <span>Schools, teams, churches & nonprofits</span>
-              </div>
-
-              <span class="preview-arrow">→</span>
-            </div>
-
-            <div class="preview-card trends-card">
-              <div class="preview-icon">
-                <span>04</span>
-              </div>
-
-              <div class="preview-copy">
-                <strong>What's New in Fundraising</strong>
-                <span>New approaches, tools & trends</span>
-              </div>
-
-              <span class="preview-arrow">→</span>
-            </div>
-          </div>
-
-          <div class="preview-note">
-            <strong>Old favorites. New possibilities.</strong>
-            <span>
-              Classic fundraisers plus modern ways to raise money.
-            </span>
-          </div>
-
-          <div class="tape tape-one"></div>
-          <div class="tape tape-two"></div>
+    <section class="finder-reentry" aria-labelledby="reentry-title">
+      <div class="shell-wide reentry-inner">
+        <div>
+          <p class="eyebrow">A simpler next step</p>
+          <h2 id="reentry-title">Still not sure where to start?</h2>
+          <p>
+            Tell us about your group and narrow the options in two quick
+            questions.
+          </p>
         </div>
-      </section>
+        <a class="button button-primary button-large" href="#finder">
+          Help Me Find a Fundraiser <span aria-hidden="true">↑</span>
+        </a>
+      </div>
+    </section>
 
-      <footer>
-        <span>FundraisingDirectory.net</span>
-        <span class="footer-divider"></span>
-        <span>Rebuilding for 2026</span>
-      </footer>
-    </main>
-  </body>
-</html>
+    <Guides />
+
+    <section
+      class="provider-cta-section"
+      id="provider-cta"
+      aria-labelledby="provider-cta-title"
+    >
+      <div class="shell-wide provider-cta-inner">
+        <div class="provider-cta-mark" aria-hidden="true">
+          <span>F</span><span>D</span>
+        </div>
+        <div class="provider-cta-copy">
+          <p class="eyebrow eyebrow-light">For fundraising providers</p>
+          <h2 id="provider-cta-title">Offer a fundraising program?</h2>
+          <p>
+            Help schools, teams, nonprofits, and community organizations
+            discover what you offer.
+          </p>
+        </div>
+        <div class="provider-cta-actions">
+          <span class="button button-light button-unavailable" aria-disabled="true">
+            Submit Your Company <span>Coming soon</span>
+          </span>
+          <a href={SITE_ROUTES.providerInformation}>
+            Provider Information <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>

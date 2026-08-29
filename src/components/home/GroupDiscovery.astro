@@ -1,0 +1,33 @@
+---
+import { groupPaths } from "../../data/homepage";
+---
+
+<section class="section group-section" id="groups" aria-labelledby="groups-title">
+  <div class="shell-wide group-layout">
+    <div class="group-intro">
+      <p class="eyebrow">Start with who you are</p>
+      <h2 id="groups-title">Fundraising for your kind of group.</h2>
+      <p>The right approach depends on your people, your timeline, and how much hands-on work fits.</p>
+      <div class="group-illustration" aria-hidden="true">
+        <span class="group-ring group-ring-one"></span>
+        <span class="group-ring group-ring-two"></span>
+        <span class="group-dot group-dot-one"></span>
+        <span class="group-dot group-dot-two"></span>
+        <div><strong>5</strong><span>group paths</span></div>
+      </div>
+    </div>
+
+    <ol class="group-list">
+      {groupPaths.map((group) => (
+        <li>
+          <a href={group.href}>
+            <span class:list={["group-number", `group-number-${group.tone}`]}>{group.number}</span>
+            <span class="group-copy"><strong>{group.title}</strong><span>{group.description}</span></span>
+            <span class="group-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+

@@ -1,17 +1,22 @@
 ---
 import SiteHeader from "../components/SiteHeader.astro";
-import "../styles/providers.css";
+import SiteFooter from "../components/SiteFooter.astro";
+import "../styles/global.css";
 
 interface Props {
   title: string;
   description?: string;
   noindex?: boolean;
+  canonical?: string;
+  bodyClass?: string;
 }
 
 const {
   title,
   description = "Find and compare fundraising providers, programs, and fundraising options.",
   noindex = true,
+  canonical,
+  bodyClass,
 } = Astro.props;
 ---
 
@@ -21,15 +26,21 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
 
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
     {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {!noindex && <meta name="robots" content="index, follow" />}
+    {canonical && <link rel="canonical" href={canonical} />}
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#12304a" />
   </head>
 
-  <body>
+  <body class={bodyClass}>
     <SiteHeader />
 
     <slot />
+    <SiteFooter />
   </body>
 </html>

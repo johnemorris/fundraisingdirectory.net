@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import SiteLayout from "../../layouts/SiteLayout.astro";
+import "../../styles/providers.css";
 
 export async function getStaticPaths() {
   const providers = (await getCollection("providers")).filter(
