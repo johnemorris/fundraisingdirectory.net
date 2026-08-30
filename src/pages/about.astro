@@ -1,0 +1,47 @@
+---
+import InformationPage from "../components/InformationPage.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import "../styles/information.css";
+---
+
+<SiteLayout
+  title="About | FundraisingDirectory.net"
+  description="Learn how FundraisingDirectory.net helps groups independently explore fundraising ideas, methods, and providers."
+>
+  <InformationPage
+    eyebrow="About the directory"
+    title="A clearer starting point for fundraising research."
+    intro="FundraisingDirectory.net helps schools, teams, nonprofits, faith communities, clubs, and individuals discover fundraising methods, ideas, and providers."
+  >
+    <section>
+      <h2>What we do</h2>
+      <p>
+        We organize public information so visitors can compare broad fundraising
+        approaches and learn which providers may be worth evaluating. The
+        directory is an independent information and discovery resource; it does
+        not run campaigns or process fundraising transactions.
+      </p>
+    </section>
+
+    <section>
+      <h2>Carrying the directory forward</h2>
+      <p>
+        This project carries forward the FundraisingDirectory.net name while
+        rebuilding the older A-to-Z directory into a current, structured
+        resource. Useful historical addresses are being preserved while their
+        information is reviewed and modernized.
+      </p>
+    </section>
+
+    <section>
+      <h2>How listings are handled</h2>
+      <p>
+        Provider records are based on identified sources and include review
+        dates. Organic listings, future featured placement, and future sponsored
+        placement are distinct. Paid visibility will never silently imply an
+        editorial endorsement.
+      </p>
+      <a class="information-link" href="/providers/">Browse researched providers →</a>
+    </section>
+  </InformationPage>
+</SiteLayout>

@@ -1,0 +1,34 @@
+---
+import InformationPage from "../components/InformationPage.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import "../styles/information.css";
+---
+
+<SiteLayout
+  title="Contact | FundraisingDirectory.net"
+  description="Contact information and current provider-submission status for FundraisingDirectory.net."
+>
+  <InformationPage
+    eyebrow="Contact"
+    title="Contact FundraisingDirectory.net"
+    intro="A public contact channel is being finalized. We will publish it here once it is ready to use and monitor responsibly."
+  >
+    <section class="information-notice">
+      <h2>Contact method not yet published</h2>
+      <p>
+        The current repository does not contain a verified public email address
+        or working contact form, so we have not invented one. Provider
+        submissions are also still marked Coming Soon for this launch pass.
+      </p>
+    </section>
+
+    <section>
+      <h2>Looking for a fundraising provider?</h2>
+      <p>
+        The provider directory is available now and includes links to each
+        provider's official website for program-specific questions.
+      </p>
+      <a class="information-link" href="/providers/">Browse the provider directory →</a>
+    </section>
+  </InformationPage>
+</SiteLayout>

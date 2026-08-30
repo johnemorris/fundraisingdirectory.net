@@ -51,7 +51,7 @@ const programSchema = z.object({
   fulfillment: z.array(z.enum(FULFILLMENT_TYPES)).min(1),
   inventory_model: z.enum(INVENTORY_MODELS),
   upfront_cost: z.enum(UPFRONT_COSTS),
-  ease_to_raise: z.enum(EASE_TO_RAISE),
+  ease_to_raise: z.enum(EASE_TO_RAISE).nullable(),
   summary: z.string().min(1),
 });
 

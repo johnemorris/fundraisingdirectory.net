@@ -30,6 +30,30 @@
   margin-bottom: 32px;
 }
 
+.directory-results-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+  padding: 22px 24px;
+  border: 1px solid var(--provider-border);
+  border-radius: var(--provider-radius);
+  background: var(--provider-surface-soft);
+}
+
+.directory-results-header h2 {
+  margin: 4px 0 6px;
+  color: var(--provider-text);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.filter-summary {
+  margin: 0;
+  color: var(--provider-text-muted);
+  line-height: 1.5;
+}
+
 .directory-header h1,
 .provider-hero h1 {
   margin: 4px 0 14px;
@@ -192,6 +216,17 @@
 
 .directory-shell .button-primary:hover {
   background: var(--provider-accent-dark);
+}
+
+.directory-shell .button-secondary {
+  flex: 0 0 auto;
+  border: 1px solid var(--provider-border);
+  background: #fff;
+  color: var(--provider-accent-dark);
+}
+
+.directory-shell .button-secondary:hover {
+  border-color: var(--provider-accent);
 }
 
 .breadcrumb {
@@ -450,6 +485,17 @@
   text-align: center;
 }
 
+@media (max-width: 900px) {
+  .directory-results-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .directory-results-header .button {
+    width: auto;
+  }
+}
+
 @media (max-width: 780px) {
   .directory-shell {
     width: min(100% - 22px, 1180px);
@@ -485,5 +531,4 @@
   .hero-actions .button {
     width: auto;
   }
-
 }

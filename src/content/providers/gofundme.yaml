@@ -1,0 +1,79 @@
+meta:
+  id: "prov_000009"
+  schema_version: 1
+  created_at: "2026-08-29"
+  created_by: "user_000001"
+  modified_at: "2026-08-29"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "GoFundMe"
+  slug: "gofundme"
+  legal_name: null
+  website: "https://www.gofundme.com/"
+  fundraising_url: "https://www.gofundme.com/c/how-it-works"
+  logo: null
+classification:
+  methods: ["crowdfunding", "direct-donations"]
+  products_services: ["crowdfunding-platform", "donation-platform"]
+  organizations: ["schools", "sports-athletics", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance", "animal-rescue", "individuals-personal-causes"]
+programs:
+  - id: "prog_000012"
+    name: "Online Crowdfunding"
+    slug: "online-crowdfunding"
+    method: "crowdfunding"
+    products_services: ["crowdfunding-platform", "donation-platform"]
+    channels: ["online"]
+    online_ordering: null
+    fulfillment: ["digital"]
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "An organizer creates a public fundraiser, tells the story, shares the link, receives donations, posts updates, and sets up bank transfers."
+geography:
+  scope: ["international"]
+  countries: ["US", "CA"]
+  states: []
+  regions: []
+  notes: "GoFundMe supports fundraiser types in multiple countries; eligibility, transfer, and nonprofit options vary by country."
+content:
+  summary: "GoFundMe is an online crowdfunding platform for personal causes, groups, community needs, and eligible nonprofit fundraising."
+  how_it_works: "An organizer creates a fundraiser with a story and goal, shares the campaign with supporters, posts updates, thanks donors, and completes the steps required to transfer funds."
+  best_for:
+    - "Individuals and groups raising donations for a specific cause or need."
+    - "Organizers prepared to tell their story and actively share a public campaign."
+  considerations:
+    - "GoFundMe states that it does not find donors for organizers; campaign outreach remains the organizer's responsibility."
+    - "Transaction fees, eligibility, and transfer requirements vary and should be reviewed for the organizer's country and fundraiser type."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-08-29"
+  last_verified_at: "2026-08-29"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  sources:
+    - type: "official-program-page"
+      url: "https://www.gofundme.com/c/how-it-works"
+      checked_at: "2026-08-29"
+      notes: "Documents fundraiser creation, sharing, updates, donor thanks, and bank transfers."
+    - type: "official-program-page"
+      url: "https://support.gofundme.com/hc/en-us/articles/203603984-Choosing-a-fundraiser-type"
+      checked_at: "2026-08-29"
+      notes: "Documents personal and nonprofit fundraiser types and country-specific availability."
+provenance:
+  discovered_via: ["web-research", "editorial-research"]
+  legacy:
+    listed: false
+    name: null
+    url: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

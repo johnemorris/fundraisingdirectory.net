@@ -1,6 +1,11 @@
 export const SITE_ROUTES = {
+  origin: "https://fundraisingdirectory.net",
   home: "/",
   directory: "/providers/",
+  about: "/about/",
+  contact: "/contact/",
+  privacy: "/privacy/",
+  disclaimer: "/disclaimer/",
   ideas: "/Fundraising-Resources.html",
   guides: "/Fundraising-Articles.html",
   cookieDough: "/Cookie-Dough.html",

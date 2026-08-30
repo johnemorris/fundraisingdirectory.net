@@ -1,0 +1,55 @@
+---
+import InformationPage from "../components/InformationPage.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import "../styles/information.css";
+---
+
+<SiteLayout
+  title="Privacy | FundraisingDirectory.net"
+  description="Current privacy information for the minimum FundraisingDirectory.net launch site."
+>
+  <InformationPage
+    eyebrow="Privacy"
+    title="Privacy information for the current site."
+    intro="This page describes the behavior present in the minimum launch implementation as of August 29, 2026."
+  >
+    <section>
+      <h2>Current site features</h2>
+      <p>
+        The current site code does not include user accounts, a contact form,
+        payment processing, advertising technology, or an analytics script. The
+        Fundraiser Finder filters provider records in your browser from the
+        choices included in the page URL; it does not create an account or save a
+        user profile.
+      </p>
+    </section>
+
+    <section>
+      <h2>Technical request data</h2>
+      <p>
+        As with most websites, hosting and security infrastructure may process
+        technical request information needed to deliver and protect the site,
+        such as an IP address, browser details, requested URL, and request time.
+      </p>
+    </section>
+
+    <section>
+      <h2>Links to provider websites</h2>
+      <p>
+        Provider pages link to independent third-party websites. Their privacy
+        practices and transactions are governed by their own policies, not this
+        page. Review a provider's terms before submitting information or making a
+        payment.
+      </p>
+    </section>
+
+    <section>
+      <h2>Future changes</h2>
+      <p>
+        If contact forms, analytics, advertising, accounts, or other data-handling
+        features are added, this notice should be updated before those features
+        are enabled.
+      </p>
+    </section>
+  </InformationPage>
+</SiteLayout>

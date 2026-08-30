@@ -1,0 +1,27 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  intro: string;
+}
+
+const { eyebrow, title, intro } = Astro.props;
+---
+
+<main class="information-shell">
+  <nav class="information-breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span aria-hidden="true">›</span>
+    <span>{title}</span>
+  </nav>
+
+  <header class="information-header">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1>{title}</h1>
+    <p>{intro}</p>
+  </header>
+
+  <div class="information-content">
+    <slot />
+  </div>
+</main>

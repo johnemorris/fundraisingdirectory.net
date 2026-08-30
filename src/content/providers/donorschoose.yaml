@@ -1,0 +1,75 @@
+meta:
+  id: "prov_000003"
+  schema_version: 1
+  created_at: "2026-08-29"
+  created_by: "user_000001"
+  modified_at: "2026-08-29"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "DonorsChoose"
+  slug: "donorschoose"
+  legal_name: null
+  website: "https://www.donorschoose.org/"
+  fundraising_url: "https://www.donorschoose.org/teachers"
+  logo: null
+classification:
+  methods: ["crowdfunding", "direct-donations"]
+  products_services: ["crowdfunding-platform", "donation-platform", "books-educational"]
+  organizations: ["schools"]
+programs:
+  - id: "prog_000006"
+    name: "Classroom Project Funding"
+    slug: "classroom-project-funding"
+    method: "crowdfunding"
+    products_services: ["crowdfunding-platform", "donation-platform", "books-educational"]
+    channels: ["online"]
+    online_ordering: null
+    fulfillment: ["provider-delivery"]
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "Eligible public-school teachers request classroom resources, donors fund approved projects, and DonorsChoose purchases and ships the materials."
+geography:
+  scope: ["us-nationwide"]
+  countries: ["US"]
+  states: []
+  regions: []
+  notes: "DonorsChoose describes teacher participation at public schools across the United States; current teacher and school eligibility rules apply."
+content:
+  summary: "DonorsChoose connects public-school teachers seeking classroom resources with donors who can fund specific project requests."
+  how_it_works: "Teachers submit classroom project requests for review. Donors support published projects, and DonorsChoose purchases and ships funded materials to the teacher."
+  best_for:
+    - "Eligible United States public-school teachers seeking classroom materials."
+    - "Donors who want to support a specific classroom project."
+  considerations:
+    - "Teacher, school, and project eligibility requirements apply."
+    - "The platform fulfills approved classroom resources rather than providing unrestricted funds to a school group."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-08-29"
+  last_verified_at: "2026-08-29"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  sources:
+    - type: "official-website"
+      url: "https://www.donorschoose.org/about"
+      checked_at: "2026-08-29"
+      notes: "Documents the classroom request, project vetting, donor funding, purchasing, and direct-to-teacher fulfillment process."
+provenance:
+  discovered_via: ["web-research", "editorial-research"]
+  legacy:
+    listed: false
+    name: null
+    url: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

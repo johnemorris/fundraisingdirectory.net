@@ -31,11 +31,10 @@ const columns = [
   {
     title: "About",
     links: [
-      ["About", null],
-      ["Contact", null],
-      ["Privacy", null],
-      ["Terms", null],
-      ["Disclosures", null],
+      ["About", SITE_ROUTES.about],
+      ["Contact", SITE_ROUTES.contact],
+      ["Privacy", SITE_ROUTES.privacy],
+      ["Disclaimer", SITE_ROUTES.disclaimer],
     ],
   },
 ] as const;
@@ -60,6 +59,13 @@ const columns = [
         </div>
       ))}
     </div>
+
+    <p class="footer-disclaimer">
+      FundraisingDirectory.net is an independent information and discovery
+      resource. A listing is not an endorsement, sponsorship, or guarantee.
+      {" "}
+      <a href={SITE_ROUTES.disclaimer}>Read the full directory disclaimer.</a>
+    </p>
 
     <div class="footer-bottom">
       <span>© {new Date().getFullYear()} FundraisingDirectory.net</span>

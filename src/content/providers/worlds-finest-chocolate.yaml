@@ -1,0 +1,75 @@
+meta:
+  id: "prov_000008"
+  schema_version: 1
+  created_at: "2026-08-29"
+  created_by: "user_000001"
+  modified_at: "2026-08-29"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "World's Finest Chocolate"
+  slug: "worlds-finest-chocolate"
+  legal_name: null
+  website: "https://worldsfinestchocolate.com/"
+  fundraising_url: "https://worldsfinestchocolate.com/fundraising/how-it-works"
+  logo: null
+classification:
+  methods: ["product-sales"]
+  products_services: ["candy-chocolate"]
+  organizations: ["schools", "pto-pta", "sports-athletics", "booster-clubs", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance"]
+programs:
+  - id: "prog_000011"
+    name: "Chocolate Fundraiser"
+    slug: "chocolate-fundraiser"
+    method: "product-sales"
+    products_services: ["candy-chocolate"]
+    channels: ["in-person"]
+    online_ordering: null
+    fulfillment: ["group-distribution"]
+    inventory_model: "upfront-inventory"
+    upfront_cost: "unknown"
+    ease_to_raise: null
+    summary: "A group works with a fundraising specialist, plans an order and delivery date, and coordinates volunteers, storage, and participant sales."
+geography:
+  scope: ["us-regional"]
+  countries: ["US"]
+  states: []
+  regions: []
+  notes: "Groups should confirm current delivery coverage and program availability with a fundraising specialist."
+content:
+  summary: "World's Finest Chocolate provides chocolate product-sale fundraisers for schools, teams, and community groups."
+  how_it_works: "A group connects with a specialist, chooses a campaign schedule, places an order based on group size and goals, receives product, and coordinates participant sales."
+  best_for:
+    - "Schools, teams, and community groups comfortable with in-person product sales."
+    - "Groups able to coordinate volunteers, product storage, and participant distribution."
+  considerations:
+    - "The program requires planning for delivery, storage, inventory, and participant sales."
+    - "Groups should confirm current order requirements, costs, and delivery timing before starting."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-08-29"
+  last_verified_at: "2026-08-29"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  sources:
+    - type: "official-program-page"
+      url: "https://worldsfinestchocolate.com/fundraising/how-it-works"
+      checked_at: "2026-08-29"
+      notes: "Documents the specialist-led planning, product ordering, delivery timing, volunteer coordination, storage, and sales workflow."
+provenance:
+  discovered_via: ["web-research", "editorial-research"]
+  legacy:
+    listed: false
+    name: null
+    url: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

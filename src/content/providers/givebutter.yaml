@@ -1,0 +1,75 @@
+meta:
+  id: "prov_000002"
+  schema_version: 1
+  created_at: "2026-08-29"
+  created_by: "user_000001"
+  modified_at: "2026-08-29"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Givebutter"
+  slug: "givebutter"
+  legal_name: null
+  website: "https://givebutter.com/"
+  fundraising_url: "https://givebutter.com/features/fundraising-pages"
+  logo: null
+classification:
+  methods: ["direct-donations", "crowdfunding", "peer-to-peer", "events-activities", "auctions"]
+  products_services: ["donation-platform", "crowdfunding-platform", "peer-to-peer-platform", "auction-platform", "event-fundraising-platform", "text-mobile-giving"]
+  organizations: ["schools", "sports-athletics", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance", "animal-rescue"]
+programs:
+  - id: "prog_000005"
+    name: "Online Fundraising Platform"
+    slug: "online-fundraising-platform"
+    method: "direct-donations"
+    products_services: ["donation-platform", "crowdfunding-platform", "peer-to-peer-platform", "auction-platform", "event-fundraising-platform", "text-mobile-giving"]
+    channels: ["online", "hybrid"]
+    online_ordering: null
+    fulfillment: ["digital"]
+    inventory_model: "not-applicable"
+    upfront_cost: "varies"
+    ease_to_raise: null
+    summary: "Organizations can create donation forms, fundraising pages, peer-to-peer campaigns, events, and auctions in one online platform."
+geography:
+  scope: ["us-nationwide"]
+  countries: ["US"]
+  states: []
+  regions: []
+  notes: "This record covers Givebutter's United States nonprofit fundraising offering; organizations should confirm current eligibility and payment requirements."
+content:
+  summary: "Givebutter is an online fundraising platform for nonprofits and community organizations, with donation pages, events, auctions, and peer-to-peer tools."
+  how_it_works: "An organization creates a campaign or donation form, shares it with supporters, and manages donations and campaign activity through Givebutter."
+  best_for:
+    - "Nonprofits and community organizations that want several online fundraising formats in one platform."
+    - "Groups running donation campaigns, events, auctions, or peer-to-peer fundraising."
+  considerations:
+    - "Available features, payment processing, and pricing can vary by plan and campaign setup."
+    - "Organizations should confirm current eligibility and terms directly with Givebutter."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-08-29"
+  last_verified_at: "2026-08-29"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  sources:
+    - type: "official-program-page"
+      url: "https://help.givebutter.com/en/articles/1726586-what-is-givebutter-and-how-does-it-work"
+      checked_at: "2026-08-29"
+      notes: "Documents donation forms, fundraising pages, events, auctions, peer-to-peer fundraising, and the basic campaign workflow."
+provenance:
+  discovered_via: ["web-research", "editorial-research"]
+  legacy:
+    listed: false
+    name: null
+    url: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

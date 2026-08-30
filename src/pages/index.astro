@@ -17,7 +17,9 @@ const providers = (await getCollection("providers"))
   )
   .sort((a, b) => a.data.identity.name.localeCompare(b.data.identity.name));
 
-const featuredProvider = providers[0];
+const featuredProvider =
+  providers.find((provider) => provider.data.identity.slug === "fundraising-com") ??
+  providers[0];
 const pageTitle =
   "FundraisingDirectory.net | Find Fundraising Ideas & Providers";
 const pageDescription =

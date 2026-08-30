@@ -1,0 +1,75 @@
+meta:
+  id: "prov_000007"
+  schema_version: 1
+  created_at: "2026-08-29"
+  created_by: "user_000001"
+  modified_at: "2026-08-29"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Charleston Wrap"
+  slug: "charleston-wrap"
+  legal_name: null
+  website: "https://charlestonwrap.com/"
+  fundraising_url: "https://go.charlestonwrap.com/"
+  logo: null
+classification:
+  methods: ["product-sales"]
+  products_services: ["gifts-seasonal", "home-household", "merchandise-online-store"]
+  organizations: ["schools", "pto-pta", "sports-athletics", "booster-clubs", "churches-faith", "youth-organizations", "clubs-community", "arts-music-performance", "animal-rescue"]
+programs:
+  - id: "prog_000010"
+    name: "Online and Catalog Fundraiser"
+    slug: "online-catalog-fundraiser"
+    method: "product-sales"
+    products_services: ["gifts-seasonal", "home-household", "merchandise-online-store"]
+    channels: ["hybrid"]
+    online_ordering: true
+    fulfillment: ["direct-to-supporter"]
+    inventory_model: "no-inventory"
+    upfront_cost: "unknown"
+    ease_to_raise: null
+    summary: "Families shop through a group's online link or catalog, and orders can ship directly to the family that placed them."
+geography:
+  scope: ["us-nationwide"]
+  countries: ["US"]
+  states: []
+  regions: []
+  notes: "The official program describes direct-to-home shipping and service for schools and groups; organizations should confirm current shipping coverage."
+content:
+  summary: "Charleston Wrap offers online and catalog product-sale fundraisers for schools, teams, faith groups, and community organizations."
+  how_it_works: "A group launches with an online shop link and optional catalogs. Families place orders, and the direct-to-home program sends each order to the purchasing family."
+  best_for:
+    - "Schools and parent groups seeking a product catalog with online ordering."
+    - "Groups that prefer direct-to-home fulfillment instead of a school sorting night."
+  considerations:
+    - "Product selection, campaign schedule, shipping, and group terms should be confirmed directly with Charleston Wrap."
+    - "The fundraiser depends on families sharing the group link or catalog."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-08-29"
+  last_verified_at: "2026-08-29"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  sources:
+    - type: "official-program-page"
+      url: "https://charlestonwrap.com/groups/school-student-groups/"
+      checked_at: "2026-08-29"
+      notes: "Documents online sharing, online payments, direct-to-home shipping, and supported school, team, faith, youth, arts, and community groups."
+provenance:
+  discovered_via: ["web-research", "editorial-research"]
+  legacy:
+    listed: false
+    name: null
+    url: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

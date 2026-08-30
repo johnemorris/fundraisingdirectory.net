@@ -1,0 +1,75 @@
+meta:
+  id: "prov_000004"
+  schema_version: 1
+  created_at: "2026-08-29"
+  created_by: "user_000001"
+  modified_at: "2026-08-29"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Double Good"
+  slug: "double-good"
+  legal_name: null
+  website: "https://www.doublegood.com/"
+  fundraising_url: "https://www.doublegood.com/"
+  logo: null
+classification:
+  methods: ["product-sales"]
+  products_services: ["popcorn", "merchandise-online-store"]
+  organizations: ["schools", "pto-pta", "sports-athletics", "booster-clubs", "youth-organizations", "clubs-community", "arts-music-performance"]
+programs:
+  - id: "prog_000007"
+    name: "Virtual Popcorn Fundraiser"
+    slug: "virtual-popcorn-fundraiser"
+    method: "product-sales"
+    products_services: ["popcorn", "merchandise-online-store"]
+    channels: ["online"]
+    online_ordering: true
+    fulfillment: ["direct-to-supporter"]
+    inventory_model: "no-inventory"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "Participants create and share online Pop-Up Stores while Double Good handles payments, popcorn fulfillment, and direct shipping."
+geography:
+  scope: ["us-nationwide"]
+  countries: ["US"]
+  states: []
+  regions: []
+  notes: "Official program information states that Pop-Up Stores can be shared with supporters nationwide."
+content:
+  summary: "Double Good offers online popcorn fundraisers for schools, teams, and youth-focused organizations through participant Pop-Up Stores."
+  how_it_works: "An organizer sets up a fundraiser in the app, invites participants, and participants share individual online stores. Double Good processes orders and ships popcorn to supporters."
+  best_for:
+    - "Schools, teams, clubs, and youth organizations seeking an online product-sale fundraiser."
+    - "Groups that prefer direct-to-supporter shipping instead of handling inventory."
+  considerations:
+    - "The program centers on popcorn sales and requires participants to share their stores with supporters."
+    - "Groups should confirm current campaign timing, eligibility, and terms directly with Double Good."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-08-29"
+  last_verified_at: "2026-08-29"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  sources:
+    - type: "official-program-page"
+      url: "https://www.doublegood.com/youth-organizations"
+      checked_at: "2026-08-29"
+      notes: "Documents online Pop-Up Stores, schools and youth groups, nationwide sharing, no inventory handling, and direct shipping."
+provenance:
+  discovered_via: ["web-research", "editorial-research"]
+  legacy:
+    listed: false
+    name: null
+    url: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

@@ -1,43 +1,32 @@
-# Astro Starter Kit: Minimal
+# FundraisingDirectory.net
+
+Astro static site with a Cloudflare Worker for canonicalizing known historical
+routes before serving the generated assets.
+
+## Local development
+
+Install dependencies with `npm ci`, then start the project in background mode:
 
 ```sh
-npm create astro@latest -- --template minimal
+npm run astro -- dev --background
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Use `npm run astro -- dev status`, `npm run astro -- dev logs`, and
+`npm run astro -- dev stop` to manage the background server.
 
-## 🚀 Project Structure
+## Validation
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+npm test
+npm run build
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Provider records live in `src/content/providers/` and are validated by the
+schema in `src/content.config.ts`. Records should use current public sources,
+stable taxonomy identifiers, honest unknown/null values, and a current review
+date. The static directory renders every active record and applies Finder query
+filters in the browser.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Known historical routes are defined once in `src/data/legacyRoutes.js`. The
+Worker accepts safe case, trailing-slash, and extensionless variants of those
+known paths only; unrelated URLs continue to the normal 404 response.

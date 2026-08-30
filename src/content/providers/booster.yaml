@@ -1,0 +1,75 @@
+meta:
+  id: "prov_000006"
+  schema_version: 1
+  created_at: "2026-08-29"
+  created_by: "user_000001"
+  modified_at: "2026-08-29"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Booster"
+  slug: "booster"
+  legal_name: null
+  website: "https://www.choosebooster.com/"
+  fundraising_url: "https://www.choosebooster.com/elementary-school-fundraising"
+  logo: null
+classification:
+  methods: ["events-activities", "pledge-athon", "direct-donations", "product-sales"]
+  products_services: ["event-fundraising-platform", "donation-platform", "apparel-spirit-wear", "merchandise-online-store"]
+  organizations: ["schools", "pto-pta", "booster-clubs"]
+programs:
+  - id: "prog_000009"
+    name: "Boosterthon Fitness Fundraiser"
+    slug: "boosterthon-fitness-fundraiser"
+    method: "pledge-athon"
+    products_services: ["event-fundraising-platform", "donation-platform"]
+    channels: ["hybrid"]
+    online_ordering: null
+    fulfillment: ["digital", "on-site"]
+    inventory_model: "not-applicable"
+    upfront_cost: "unknown"
+    ease_to_raise: null
+    summary: "Schools combine online pledge collection with an activity event such as a fun run, glow run, color run, or DanceFit."
+geography:
+  scope: ["us-regional"]
+  countries: ["US"]
+  states: []
+  regions: []
+  notes: "Booster publishes school fundraising programs in multiple United States markets; schools should confirm current service availability for their location."
+content:
+  summary: "Booster provides school fundraising programs including fitness events, online fundraising tools, and custom gear."
+  how_it_works: "A school chooses a program and support level, shares its fundraiser with families and supporters, and hosts the selected activity or campaign."
+  best_for:
+    - "Elementary schools and parent groups interested in activity-based fundraising."
+    - "Schools considering fun runs, glow runs, color runs, or related fitness events."
+  considerations:
+    - "Program availability and the level of on-site support vary by location and selected service."
+    - "Schools should confirm current pricing, schedule, and responsibilities directly with Booster."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-08-29"
+  last_verified_at: "2026-08-29"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  sources:
+    - type: "official-program-page"
+      url: "https://www.choosebooster.com/elementary-school-fundraising"
+      checked_at: "2026-08-29"
+      notes: "Documents school fitness fundraisers, online tools, custom gear, and programs including fun runs, glow runs, color runs, and DanceFit."
+provenance:
+  discovered_via: ["web-research", "editorial-research"]
+  legacy:
+    listed: false
+    name: null
+    url: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

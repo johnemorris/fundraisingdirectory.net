@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { formatProviderLabel } from "../../data/providerLabels";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import "../../styles/providers.css";
 
@@ -30,12 +31,6 @@ const {
   affiliation,
 } = provider.data;
 
-const formatLabel = (value: string) =>
-  value
-    .split("-")
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ");
-
 const formatDate = (value: string) =>
   new Intl.DateTimeFormat("en-US", {
     month: "short",
@@ -56,11 +51,14 @@ const statusLabel = {
   uncertain: "Status uncertain",
   historical: "Historical",
 } as const;
+
+const hasEaseRatings = programs.some((program) => program.ease_to_raise !== null);
 ---
 
 <SiteLayout
   title={`${identity.name} Fundraising | FundraisingDirectory.net`}
   description={content.summary}
+  socialImage={false}
 >
     <main class="directory-shell">
       <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -90,7 +88,11 @@ const statusLabel = {
                 class="button button-primary"
                 href={identity.fundraising_url ?? identity.website}
                 target="_blank"
-                rel="noopener noreferrer sponsored"
+                rel={`noopener noreferrer${
+                  affiliation.type === "affiliate" || affiliation.type === "sponsor"
+                    ? " sponsored"
+                    : ""
+                }`}
               >
                 Visit {identity.name}
               </a>
@@ -117,7 +119,7 @@ const statusLabel = {
               <div>
                 <dt>Fundraising methods</dt>
                 <dd>
-                  {classification.methods.map(formatLabel).join(", ")}
+                  {classification.methods.map(formatProviderLabel).join(", ")}
                 </dd>
               </div>
 
@@ -128,12 +130,14 @@ const statusLabel = {
 
               <div>
                 <dt>Availability</dt>
-                <dd>{geography.scope.map(formatLabel).join(", ")}</dd>
+                <dd>
+                  {geography.scope.map(formatProviderLabel).join(", ")}
+                </dd>
               </div>
 
               <div>
                 <dt>Verification</dt>
-                <dd>{formatLabel(verification.level)}</dd>
+                <dd>{formatProviderLabel(verification.level)}</dd>
               </div>
             </dl>
           </aside>
@@ -145,7 +149,7 @@ const statusLabel = {
           <div class="tags">
             {
               classification.organizations.map((organization) => (
-                <span class="tag">{formatLabel(organization)}</span>
+                <span class="tag">{formatProviderLabel(organization)}</span>
               ))
             }
           </div>
@@ -163,22 +167,24 @@ const statusLabel = {
               <h2>Programs</h2>
             </div>
 
-            <div class="ease-legend" aria-label="Ease to Raise legend">
-              <span>
-                <span class="legend-dot ease-easy" />
-                Easy
-              </span>
+            {hasEaseRatings && (
+              <div class="ease-legend" aria-label="Ease to Raise legend">
+                <span>
+                  <span class="legend-dot ease-easy" />
+                  Easy
+                </span>
 
-              <span>
-                <span class="legend-dot ease-moderate" />
-                Moderate
-              </span>
+                <span>
+                  <span class="legend-dot ease-moderate" />
+                  Moderate
+                </span>
 
-              <span>
-                <span class="legend-dot ease-hands-on" />
-                Hands-On
-              </span>
-            </div>
+                <span>
+                  <span class="legend-dot ease-hands-on" />
+                  Hands-On
+                </span>
+              </div>
+            )}
           </div>
 
           <div class="program-grid">
@@ -188,12 +194,14 @@ const statusLabel = {
                   <div class="program-title-row">
                     <h3>{program.name}</h3>
 
-                    <span
-                      class={`ease-badge ease-${program.ease_to_raise}`}
-                    >
-                      <span class="ease-dot" aria-hidden="true" />
-                      {easeLabel[program.ease_to_raise]}
-                    </span>
+                    {program.ease_to_raise && (
+                      <span
+                        class={`ease-badge ease-${program.ease_to_raise}`}
+                      >
+                        <span class="ease-dot" aria-hidden="true" />
+                        {easeLabel[program.ease_to_raise]}
+                      </span>
+                    )}
                   </div>
 
                   <p>{program.summary}</p>
@@ -201,28 +209,30 @@ const statusLabel = {
                   <dl class="program-details">
                     <div>
                       <dt>Method</dt>
-                      <dd>{formatLabel(program.method)}</dd>
+                      <dd>{formatProviderLabel(program.method)}</dd>
                     </div>
 
                     <div>
                       <dt>Channel</dt>
-                      <dd>{program.channels.map(formatLabel).join(", ")}</dd>
+                      <dd>
+                        {program.channels.map(formatProviderLabel).join(", ")}
+                      </dd>
                     </div>
 
                     <div>
                       <dt>Inventory</dt>
-                      <dd>{formatLabel(program.inventory_model)}</dd>
+                      <dd>{formatProviderLabel(program.inventory_model)}</dd>
                     </div>
 
                     <div>
                       <dt>Upfront cost</dt>
-                      <dd>{formatLabel(program.upfront_cost)}</dd>
+                      <dd>{formatProviderLabel(program.upfront_cost)}</dd>
                     </div>
 
                     <div>
                       <dt>Fulfillment</dt>
                       <dd>
-                        {program.fulfillment.map(formatLabel).join(", ")}
+                        {program.fulfillment.map(formatProviderLabel).join(", ")}
                       </dd>
                     </div>
 
@@ -246,7 +256,7 @@ const statusLabel = {
                         <div class="tags">
                           {program.products_services.map((item) => (
                             <span class="tag tag-muted">
-                              {formatLabel(item)}
+                              {formatProviderLabel(item)}
                             </span>
                           ))}
                         </div>

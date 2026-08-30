@@ -1,0 +1,75 @@
+meta:
+  id: "prov_000005"
+  schema_version: 1
+  created_at: "2026-08-29"
+  created_by: "user_000001"
+  modified_at: "2026-08-29"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Snap! Raise"
+  slug: "snap-raise"
+  legal_name: null
+  website: "https://www.snapraise.com/"
+  fundraising_url: "https://www.snapraise.com/engage/team-club-fundraising/"
+  logo: null
+classification:
+  methods: ["crowdfunding", "direct-donations"]
+  products_services: ["crowdfunding-platform", "donation-platform"]
+  organizations: ["schools", "sports-athletics", "booster-clubs", "youth-organizations", "clubs-community", "arts-music-performance"]
+programs:
+  - id: "prog_000008"
+    name: "Team and Club Fundraising"
+    slug: "team-club-fundraising"
+    method: "crowdfunding"
+    products_services: ["crowdfunding-platform", "donation-platform"]
+    channels: ["online"]
+    online_ordering: null
+    fulfillment: ["digital"]
+    inventory_model: "not-applicable"
+    upfront_cost: "unknown"
+    ease_to_raise: null
+    summary: "School groups, teams, clubs, and programs launch an online campaign, invite supporters, and track progress in one place."
+geography:
+  scope: ["us-nationwide"]
+  countries: ["US"]
+  states: []
+  regions: []
+  notes: "Snap! Raise describes serving schools, groups, and teams across the United States; groups should confirm current local support and eligibility."
+content:
+  summary: "Snap! Raise is an online fundraising solution for school groups, teams, clubs, booster organizations, and activity programs."
+  how_it_works: "A group works through campaign setup, launches a shareable online fundraiser, invites supporters, and follows campaign progress through the platform."
+  best_for:
+    - "School teams, clubs, booster groups, classrooms, and arts programs."
+    - "Groups that want an online donation campaign with guided setup."
+  considerations:
+    - "Groups should review current participation requirements, fees, and campaign terms directly with Snap! Raise."
+    - "Results depend on participant outreach and supporter engagement."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-08-29"
+  last_verified_at: "2026-08-29"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  sources:
+    - type: "official-program-page"
+      url: "https://www.snapraise.com/engage/team-club-fundraising/"
+      checked_at: "2026-08-29"
+      notes: "Documents the online campaign workflow and supported school, team, club, booster, classroom, and fine-arts groups."
+provenance:
+  discovered_via: ["web-research", "editorial-research"]
+  legacy:
+    listed: false
+    name: null
+    url: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

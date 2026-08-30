@@ -16,6 +16,8 @@ const { route } = Astro.props;
 
 const canonicalUrl =
   `https://fundraisingdirectory.net/${route.path}.html`;
+const socialImage = "https://fundraisingdirectory.net/og.png";
+const metaDescription = `${route.description} This section of FundraisingDirectory.net is currently being updated.`;
 ---
 
 <!doctype html>
@@ -28,10 +30,20 @@ const canonicalUrl =
 
   <meta
     name="description"
-    content={`${route.description} This section of FundraisingDirectory.net is currently being updated.`}
+    content={metaDescription}
   />
 
   <link rel="canonical" href={canonicalUrl} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="FundraisingDirectory.net" />
+  <meta property="og:title" content={`${route.title} | FundraisingDirectory.net`} />
+  <meta property="og:description" content={metaDescription} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={socialImage} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={`${route.title} | FundraisingDirectory.net`} />
+  <meta name="twitter:description" content={metaDescription} />
+  <meta name="twitter:image" content={socialImage} />
 </head>
 
 <body>
