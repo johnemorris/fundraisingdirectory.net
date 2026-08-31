@@ -1,6 +1,6 @@
 export interface FundraisingVisual {
   key: string;
-  type: "representative-method";
+  type: "provider-specific" | "representative-method";
   src: string;
   alt: string;
   caption: string;
@@ -16,7 +16,7 @@ export const FUNDRAISING_VISUALS: Record<string, FundraisingVisual> = {
     type: "representative-method",
     src: "/images/home/community-fun-run.jpg",
     alt: "An organizer greeting a participant at a community fun run",
-    caption: "Representative image of an activity-based fundraiser; it does not depict this provider.",
+    caption: "Activity-based fundraising",
     source: "Existing FundraisingDirectory.net project asset",
     attribution: null,
     usageStatus: "existing-project-asset",
@@ -27,7 +27,7 @@ export const FUNDRAISING_VISUALS: Record<string, FundraisingVisual> = {
     type: "representative-method",
     src: "/images/home/spirit-wear-fundraiser.jpg",
     alt: "A coordinated selection of fundraising spirit wear",
-    caption: "Representative image of a product-sale fundraiser; it does not depict this provider.",
+    caption: "Product-sale fundraising",
     source: "Existing FundraisingDirectory.net project asset",
     attribution: null,
     usageStatus: "existing-project-asset",

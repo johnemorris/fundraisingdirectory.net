@@ -45,7 +45,7 @@ const filterTones = Object.fromEntries([
   <main class="directory-shell directory-index">
     <DiscoveryHero eyebrow="Fundraising provider directory" title="Find fundraising providers that fit your group" description="Compare independently researched fundraising companies and platforms by who they serve and how their programs work." tone="navy" visualLabel="Provider discovery" visualKey="provider-directory" dynamic compact />
 
-    <section class="directory-results" aria-labelledby="provider-results-title">
+    <section class="directory-results" id="directory-results" aria-labelledby="provider-results-title">
       <div class="directory-results-heading">
         <div>
           <p class="eyebrow">Directory results</p>
@@ -56,14 +56,18 @@ const filterTones = Object.fromEntries([
         <details class="filter-panel" data-filter-panel>
           <summary><span aria-hidden="true">+</span> Filter <span class="filter-chevron" aria-hidden="true">⌄</span></summary>
           <form class="filter-fields" action="/providers/" method="get" data-filter-form>
-            <ProviderFilterFields showCancel />
+            <div class="filter-options"><ProviderFilterFields /></div>
+            <div class="filter-actions">
+              <button class="button button-primary" type="submit">Apply filters</button>
+              <button class="filter-close" type="button" data-filter-close>Cancel</button>
+            </div>
           </form>
         </details>
       </div>
 
       <div class="active-filter-row" data-active-filter-row hidden>
         <div class="active-filters" data-active-filters aria-label="Active filters"></div>
-        <a href="/providers/" data-filter-reset hidden>Clear all</a>
+        <a href="/providers/" data-filter-reset hidden>Clear refinements</a>
       </div>
     </section>
 
@@ -72,10 +76,13 @@ const filterTones = Object.fromEntries([
         <div class="facet-heading">
           <p class="eyebrow">Refine the directory</p>
           <h2 id="facet-title">Filter providers</h2>
-          <p>Choose one group and any relevant methods.</p>
+          <p data-facet-guidance>Choose one group and any relevant methods.</p>
         </div>
         <form class="filter-fields facet-form" action="/providers/" method="get" data-filter-form>
-          <ProviderFilterFields />
+          <div class="filter-options"><ProviderFilterFields /></div>
+          <div class="filter-actions">
+            <button class="button button-primary" type="submit">Apply filters</button>
+          </div>
         </form>
       </aside>
 
@@ -138,18 +145,22 @@ const filterTones = Object.fromEntries([
   const methods = [...new Set(methodValues.filter((value) => validMethods.includes(value)))];
   const products = [...new Set(productValues.filter((value) => validProducts.includes(value)))];
   const hasUnknownFilters = groupValues.some((value) => !validGroups.includes(value)) || methodValues.some((value) => !validMethods.includes(value)) || productValues.some((value) => !validProducts.includes(value));
+  const hasCategoryContext = Boolean(group && discoveryContexts[group]);
   const hasFilters = Boolean(group || methods.length || products.length);
+  const hasRefinements = Boolean(methods.length || products.length || (group && !hasCategoryContext));
 
-  const navigateWith = ({ nextGroup = group, nextMethods = methods, nextProducts = products } = {}) => {
+  const navigateWith = ({ nextGroup = group, nextMethods = methods, nextProducts = products, returnToResults = true } = {}) => {
     const url = new URL("/providers/", window.location.origin);
     if (nextGroup) url.searchParams.set("group", nextGroup);
     nextMethods.forEach((value) => url.searchParams.append("method", value));
     nextProducts.forEach((value) => url.searchParams.append("product", value));
-    window.location.assign(`${url.pathname}${url.search}`);
+    if (returnToResults) url.hash = "directory-results";
+    window.location.assign(`${url.pathname}${url.search}${url.hash}`);
   };
 
-  const labels = [group ? filterLabels[group] : null, ...methods.map((value) => filterLabels[value]), ...products.map((value) => filterLabels[value])].filter(Boolean);
-  const context = labels.join(" + ");
+  const refinementLabels = [...methods.map((value) => filterLabels[value]), ...products.map((value) => filterLabels[value])].filter(Boolean);
+  const refinementContext = refinementLabels.join(" + ");
+  const generalContext = [group && !hasCategoryContext ? filterLabels[group] : null, ...refinementLabels].filter(Boolean).join(" + ");
   const matches = cards.filter((card) => {
     const organizations = card.dataset.organizations?.split(",") ?? [];
     const providerMethods = card.dataset.methods?.split(",") ?? [];
@@ -160,15 +171,18 @@ const filterTones = Object.fromEntries([
   cards.forEach((card) => { card.hidden = !showAll && !matches.includes(card); });
 
   if (heading && summary) {
+    const groupLabel = group ? filterLabels[group] : null;
     if (!hasFilters && hasUnknownFilters) { heading.textContent = "All providers"; summary.textContent = `Unknown filters were ignored. Showing all ${cards.length} researched providers.`; }
     else if (!hasFilters) { heading.textContent = "All providers"; summary.textContent = `Showing all ${cards.length} researched providers.`; }
-    else if (matches.length === 0) { heading.textContent = `No exact matches for ${context}`; summary.textContent = `Showing all ${cards.length} providers so you can compare broader options.`; }
-    else { heading.textContent = `Matches for ${context}`; summary.textContent = `Showing ${matches.length} of ${cards.length} providers.${group === "other" ? " “Any Group Type” uses a broad match." : ""}${hasUnknownFilters ? " Unknown filters were ignored." : ""}`; }
+    else if (matches.length === 0) { heading.textContent = hasCategoryContext ? `No exact provider matches for ${groupLabel}` : `No exact matches for ${generalContext}`; summary.textContent = `Showing all ${cards.length} providers so you can compare broader options.`; }
+    else if (hasCategoryContext && !refinementLabels.length) { heading.textContent = `Fundraising providers for ${groupLabel}`; summary.textContent = `Showing ${matches.length} providers for ${groupLabel.toLowerCase()}.${hasUnknownFilters ? " Unknown filters were ignored." : ""}`; }
+    else if (hasCategoryContext) { heading.textContent = `Fundraising providers for ${groupLabel}`; summary.textContent = `Showing ${matches.length} providers matching ${refinementContext}.${hasUnknownFilters ? " Unknown filters were ignored." : ""}`; }
+    else { heading.textContent = `Matches for ${generalContext}`; summary.textContent = `Showing ${matches.length} of ${cards.length} providers.${group === "other" ? " “Any Group Type” uses a broad match." : ""}${hasUnknownFilters ? " Unknown filters were ignored." : ""}`; }
   }
 
-  if (hasFilters && activeFilters && activeRow) {
+  if (hasRefinements && activeFilters && activeRow) {
     activeRow.hidden = false;
-    const selections = [...(group ? [{ kind: "group", value: group }] : []), ...methods.map((value) => ({ kind: "method", value })), ...products.map((value) => ({ kind: "product", value }))];
+    const selections = [...(group && !hasCategoryContext ? [{ kind: "group", value: group }] : []), ...methods.map((value) => ({ kind: "method", value })), ...products.map((value) => ({ kind: "product", value }))];
     selections.forEach(({ kind, value }) => {
       const button = document.createElement("button");
       button.type = "button";
@@ -178,24 +192,29 @@ const filterTones = Object.fromEntries([
       button.addEventListener("click", () => navigateWith({ nextGroup: kind === "group" ? null : group, nextMethods: kind === "method" ? methods.filter((item) => item !== value) : methods, nextProducts: kind === "product" ? products.filter((item) => item !== value) : products }));
       activeFilters.append(button);
     });
-    if (reset) reset.hidden = false;
+    if (reset) { reset.hidden = false; reset.textContent = hasCategoryContext ? "Clear refinements" : "Clear all"; reset.href = `${hasCategoryContext ? `/providers/?group=${group}` : "/providers/"}#directory-results`; }
   }
 
   filterForms.forEach((filterForm) => {
+    const groupFieldset = filterForm.querySelector("[data-group-fieldset]");
+    if (groupFieldset) groupFieldset.hidden = hasCategoryContext;
     const groupControl = filterForm.querySelector(`input[name="group"][value="${group ?? ""}"]`);
     if (groupControl) groupControl.checked = true;
     methods.forEach((value) => { const control = filterForm.querySelector(`input[name="method"][value="${value}"]`); if (control) control.checked = true; });
-    filterForm.addEventListener("submit", (event) => { event.preventDefault(); const data = new FormData(filterForm); navigateWith({ nextGroup: data.get("group") || null, nextMethods: data.getAll("method"), nextProducts: products }); });
+    filterForm.addEventListener("submit", (event) => { event.preventDefault(); const data = new FormData(filterForm); navigateWith({ nextGroup: hasCategoryContext ? group : data.get("group") || null, nextMethods: data.getAll("method"), nextProducts: products }); });
   });
+  const facetGuidance = document.querySelector("[data-facet-guidance]");
+  if (hasCategoryContext && facetGuidance) facetGuidance.textContent = "Choose any relevant fundraising methods.";
   document.querySelector("[data-filter-close]")?.addEventListener("click", () => filterPanel?.removeAttribute("open"));
 
   document.querySelectorAll("[data-filter-kind]").forEach((control) => {
     const kind = control.dataset.filterKind;
     const value = control.dataset.filterValue;
-    const isActive = (kind === "group" && value === group) || (kind === "method" && methods.includes(value));
+    const isActive = kind === "method" && methods.includes(value);
+    if (kind === "group" && hasCategoryContext) { control.setAttribute("disabled", ""); control.setAttribute("title", "Group category shown for reference"); }
     control.classList.toggle("is-active", isActive);
-    control.setAttribute("aria-pressed", String(isActive));
-    control.addEventListener("click", () => { if (!isActive) navigateWith({ nextGroup: kind === "group" ? value : group, nextMethods: kind === "method" ? [...methods, value] : methods, nextProducts: products }); });
+    if (!(kind === "group" && hasCategoryContext)) control.setAttribute("aria-pressed", String(isActive));
+    control.addEventListener("click", () => { if (!isActive && !(kind === "group" && hasCategoryContext)) navigateWith({ nextGroup: kind === "group" ? value : group, nextMethods: kind === "method" ? [...methods, value] : methods, nextProducts: products }); });
   });
   document.querySelectorAll("[data-metadata-more]").forEach((button) => button.addEventListener("click", () => {
     const expanded = button.getAttribute("aria-expanded") === "true";

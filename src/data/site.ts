@@ -19,7 +19,6 @@ export const SITE_ROUTES = {
   community: "/providers/?group=clubs-community",
   productSales: "/providers/?method=product-sales",
   onlineFundraising: "/providers/?method=crowdfunding",
-  providerInformation: "/providers/",
 } as const;
 
 export const PRIMARY_NAVIGATION = [
