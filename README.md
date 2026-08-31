@@ -27,6 +27,13 @@ stable taxonomy identifiers, honest unknown/null values, and a current review
 date. The static directory renders every active record and applies Finder query
 filters in the browser.
 
+Every provider entry point uses the single canonical profile at
+`/providers/{slug}/`. Organic, featured, sponsored, affiliate, search,
+category, and editorial placements may change labeling or visibility, but must
+not create parallel provider pages or duplicate factual records. Build internal
+profile URLs with `providerProfilePath()` from `src/data/providerLinks.ts`;
+external destinations remain centralized in each provider record.
+
 Shared discovery presentation lives in `src/data/discovery.ts` and semantic
 method/group treatments live in `src/data/semanticTaxonomy.ts`. Provider and
 method imagery is registered centrally in `src/data/visuals.ts`; entries record

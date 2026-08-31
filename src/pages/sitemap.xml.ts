@@ -2,6 +2,7 @@ import { getCollection } from "astro:content";
 import { legacyRoutes } from "../data/legacyRoutes";
 import { isLegacySitemapEligible } from "../data/discovery";
 import { SITE_ROUTES } from "../data/site";
+import { providerProfilePath } from "../data/providerLinks";
 
 export async function GET() {
   const providers = (await getCollection("providers")).filter(
@@ -16,7 +17,7 @@ export async function GET() {
     "/contact/",
     "/privacy/",
     "/disclaimer/",
-    ...providers.map((provider) => `/providers/${provider.data.identity.slug}/`),
+    ...providers.map((provider) => providerProfilePath(provider.data.identity.slug)),
     ...legacyRoutes
       .filter(isLegacySitemapEligible)
       .map((route) => `/${route.path}.html`),

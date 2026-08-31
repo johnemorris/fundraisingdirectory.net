@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import ProviderVisual from "../../components/ProviderVisual.astro";
 import { formatProviderLabel } from "../../data/providerLabels";
+import { providerOutboundRel } from "../../data/providerLinks";
 import { semanticClass } from "../../data/semanticTaxonomy";
 import { getProviderVisual } from "../../data/visuals";
 import SiteLayout from "../../layouts/SiteLayout.astro";
@@ -22,6 +23,8 @@ const statusLabel = { active: "Active", inactive: "Inactive", uncertain: "Status
 const hasEaseRatings = programs.some((program) => program.ease_to_raise !== null);
 const channels = [...new Set(programs.flatMap((program) => program.channels))];
 const fulfillment = [...new Set(programs.flatMap((program) => program.fulfillment))];
+const outboundUrl = identity.fundraising_url ?? identity.website;
+const outboundRel = providerOutboundRel(affiliation.type);
 ---
 
 <SiteLayout title={`${identity.name} Fundraising | FundraisingDirectory.net`} description={content.summary} socialImage={false}>
@@ -34,7 +37,7 @@ const fulfillment = [...new Set(programs.flatMap((program) => program.fulfillmen
           <div class="provider-title-row">
             <div>
               <p class="eyebrow">Fundraising provider</p>
-              <h1>{identity.name}</h1>
+              <h1 class:list={{ "provider-name-compact": identity.name.length > 14 }}>{identity.name}</h1>
             </div>
             <span class={`status-badge status-${status.lifecycle}`}>{statusLabel[status.lifecycle]}</span>
           </div>
@@ -43,7 +46,10 @@ const fulfillment = [...new Set(programs.flatMap((program) => program.fulfillmen
             {classification.methods.map((method) => <a class={semanticClass("method", method)} href={`/providers/?method=${method}`}>{formatProviderLabel(method)}</a>)}
           </div>
           <div class="hero-actions">
-            <a class="button button-primary" href={identity.fundraising_url ?? identity.website} target="_blank" rel={`noopener noreferrer${affiliation.type === "affiliate" || affiliation.type === "sponsor" ? " sponsored" : ""}`}>Visit {identity.name}</a>
+            <div class="external-cta-group">
+              <a class="button button-primary provider-visit-link" href={outboundUrl} target="_blank" rel={outboundRel} aria-label={`Visit ${identity.name} website (opens in a new tab)`}>Visit {identity.name} <span aria-hidden="true">↗</span></a>
+              <span class="external-note">Opens the provider's website. FundraisingDirectory.net is independent and is not the provider.</span>
+            </div>
             <span class="verified-date">Last verified {formatDate(status.last_verified_at)}</span>
           </div>
           {affiliation.disclosure_required && <p class="affiliate-disclosure">FundraisingDirectory.net may receive compensation if you visit or use this provider through certain links.</p>}
@@ -52,8 +58,10 @@ const fulfillment = [...new Set(programs.flatMap((program) => program.fulfillmen
         <ProviderVisual providerName={identity.name} visual={visual} />
 
         <aside class="quick-facts">
-          <p class="eyebrow">At a glance</p>
-          <h2>Quick facts</h2>
+          <div class="quick-facts-heading">
+            <p class="eyebrow">At a glance</p>
+            <h2>Quick facts</h2>
+          </div>
           <dl>
             <div><dt>Programs listed</dt><dd>{programs.length}</dd></div>
             <div><dt>Availability</dt><dd>{geography.scope.map(formatProviderLabel).join(", ")}</dd></div>
@@ -86,23 +94,20 @@ const fulfillment = [...new Set(programs.flatMap((program) => program.fulfillmen
         </ol>
       </section>
 
-      {visual && (
-        <section class="action-band" aria-labelledby="action-title">
-          <div><p class="eyebrow">Fundraising in action</p><h2 id="action-title">A representative look at {formatProviderLabel(visual.relatedMethod)}</h2><p>{visual.caption}</p></div>
-          <a href={`/providers/?method=${visual.relatedMethod}`}>Explore this fundraising method <span aria-hidden="true">→</span></a>
-        </section>
-      )}
-
       <section class="programs-section" aria-labelledby="programs-title">
         <div class="section-heading">
           <div><p class="eyebrow">Fundraising options</p><h2 id="programs-title">Programs</h2></div>
           {hasEaseRatings && <div class="ease-legend" aria-label="Ease to Raise legend"><span><span class="legend-dot ease-easy" />Easy</span><span><span class="legend-dot ease-moderate" />Moderate</span><span><span class="legend-dot ease-hands-on" />Hands-On</span></div>}
         </div>
-        <div class="program-grid">
-          {programs.map((program) => (
+        <div class:list={["program-grid", { "program-grid-single": programs.length === 1 }]}>
+          {programs.map((program, index) => (
             <article class="program-card">
-              <div class="program-title-row"><h3>{program.name}</h3>{program.ease_to_raise && <span class={`ease-badge ease-${program.ease_to_raise}`}><span class="ease-dot" aria-hidden="true" />{easeLabel[program.ease_to_raise]}</span>}</div>
-              <p>{program.summary}</p>
+              <div class="program-overview">
+                <span class="program-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                <div class="program-title-row"><h3>{program.name}</h3>{program.ease_to_raise && <span class={`ease-badge ease-${program.ease_to_raise}`}><span class="ease-dot" aria-hidden="true" />{easeLabel[program.ease_to_raise]}</span>}</div>
+                <p>{program.summary}</p>
+                {program.products_services.length > 0 && <div class="program-products"><strong>Products / services</strong><div class="tags">{program.products_services.map((item) => <a class="product-link" href={`/providers/?product=${item}`}>{formatProviderLabel(item)}</a>)}</div></div>}
+              </div>
               <dl class="program-details">
                 <div><dt>Method</dt><dd><a class={semanticClass("method", program.method)} href={`/providers/?method=${program.method}`}>{formatProviderLabel(program.method)}</a></dd></div>
                 <div><dt>Channel</dt><dd>{program.channels.map(formatProviderLabel).join(", ")}</dd></div>
@@ -111,7 +116,6 @@ const fulfillment = [...new Set(programs.flatMap((program) => program.fulfillmen
                 <div><dt>Fulfillment</dt><dd>{program.fulfillment.map(formatProviderLabel).join(", ")}</dd></div>
                 <div><dt>Online ordering</dt><dd>{program.online_ordering === true ? "Yes" : program.online_ordering === false ? "No" : "Not applicable / not verified"}</dd></div>
               </dl>
-              {program.products_services.length > 0 && <div class="program-products"><strong>Products / services</strong><div class="tags">{program.products_services.map((item) => <a class="product-link" href={`/providers/?product=${item}`}>{formatProviderLabel(item)}</a>)}</div></div>}
             </article>
           ))}
         </div>

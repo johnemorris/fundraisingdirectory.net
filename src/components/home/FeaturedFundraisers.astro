@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import type { PlacementType } from "../../data/homepage";
 import { formatProviderLabel } from "../../data/providerLabels";
+import { providerProfilePath } from "../../data/providerLinks";
 
 interface Props {
   provider: CollectionEntry<"providers">;
@@ -17,7 +18,7 @@ const placement: PlacementType = affiliation.type === "sponsor"
     : "organic";
 
 const placementLabel = placement === "organic" ? null : placement === "featured" ? "Featured" : "Sponsored";
-const providerHref = `/providers/${identity.slug}/`;
+const providerHref = providerProfilePath(identity.slug);
 
 ---
 

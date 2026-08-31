@@ -6,6 +6,7 @@ import ProviderFilterFields from "../../components/ProviderFilterFields.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import { DISCOVERY_GROUP_CONTEXTS } from "../../data/discovery";
 import { formatProviderLabel } from "../../data/providerLabels";
+import { providerProfilePath } from "../../data/providerLinks";
 import { GROUP_OPTIONS, METHOD_OPTIONS, semanticClass } from "../../data/semanticTaxonomy";
 import { PRODUCTS_SERVICES } from "../../data/taxonomies/products-services";
 import "../../styles/providers.css";
@@ -97,7 +98,7 @@ const filterTones = Object.fromEntries([
             <div class="provider-card-top">
               <div>
                 <p class="provider-research"><span aria-hidden="true">✓</span> {verificationLabel[provider.data.verification.level]}</p>
-                <h2>{identity.name}</h2>
+                <h2><a class="provider-name-link" href={providerProfilePath(identity.slug)}>{identity.name}</a></h2>
               </div>
               {ease && <span class={`ease-badge ease-${ease}`}><span class="ease-dot" aria-hidden="true" />{easeLabel[ease]}</span>}
             </div>
@@ -118,7 +119,7 @@ const filterTones = Object.fromEntries([
             </div>
             <div class="provider-card-footer">
               <span>{geography.scope.map(formatProviderLabel).join(" · ")}</span>
-              <a class="button button-primary" href={`/providers/${identity.slug}/`}>View provider</a>
+              <a class="button button-primary" href={providerProfilePath(identity.slug)}>Explore provider <span aria-hidden="true">→</span></a>
             </div>
           </article>
         );
