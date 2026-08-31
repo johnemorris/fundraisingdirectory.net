@@ -14,6 +14,14 @@ export function getStaticPaths() {
 const { route } = Astro.props;
 const context = getLegacyDiscoveryContext(route);
 const canonicalPath = `/${route.path}.html`;
+const isIdeasLanding = route.path === "Fundraising-Resources";
+const isIdeasEditorial = (route.type === "resource" && !context.group) || route.type === "product";
+const displayTitle = isIdeasLanding ? "Fundraising Ideas" : route.title;
+const breadcrumbs = isIdeasLanding
+  ? [{ label: "Home", href: "/" }, { label: "Fundraising Ideas" }]
+  : isIdeasEditorial
+    ? [{ label: "Home", href: "/" }, { label: "Fundraising Ideas", href: SITE_ROUTES.ideas }, { label: route.title }]
+    : [{ label: "Home", href: "/" }, { label: context.parentLabel, href: context.providerHref }, { label: route.title }];
 const actions = [
   { label: `Find providers${context.group ? ` for ${context.parentLabel}` : ""}`, href: context.providerHref, primary: true },
   { label: "Explore fundraising ideas", href: SITE_ROUTES.ideas },
@@ -23,13 +31,13 @@ const actions = [
 ].filter((action, index, list) => action.href !== canonicalPath && list.findIndex((candidate) => candidate.href === action.href) === index);
 ---
 
-<SiteLayout title={`${route.title} | FundraisingDirectory.net`} description={route.description} canonical={new URL(canonicalPath, SITE_ROUTES.origin).href}>
-  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: context.parentLabel, href: context.providerHref }, { label: route.title }]} />
+<SiteLayout title={`${displayTitle} | FundraisingDirectory.net`} description={route.description} canonical={new URL(canonicalPath, SITE_ROUTES.origin).href}>
+  <Breadcrumbs items={breadcrumbs} />
 
   <main class="historical-shell">
-    <DiscoveryHero eyebrow={context.parentLabel} title={route.title} description={route.description} tone={context.tone} visualLabel={route.title.replace(" Fundraising", "")} visualKey={context.visualKey} compact>
+    <DiscoveryHero eyebrow={context.parentLabel} title={displayTitle} description={route.description} tone={context.tone} visualLabel={displayTitle.replace(" Fundraising", "")} visualKey={context.visualKey} compact>
       <a class="button button-primary" href={context.providerHref}>Find matching providers <span aria-hidden="true">→</span></a>
-      <a class="text-link" href={SITE_ROUTES.ideas}>Explore fundraising ideas</a>
+      {!isIdeasLanding && <a class="text-link" href={SITE_ROUTES.ideas}>Explore fundraising ideas</a>}
     </DiscoveryHero>
 
     <section class="historical-intro" aria-labelledby="start-title">

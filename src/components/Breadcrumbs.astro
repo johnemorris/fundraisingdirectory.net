@@ -2,7 +2,7 @@
 interface BreadcrumbItem {
   label: string;
   href?: string;
-  dynamic?: "group";
+  dynamic?: "group" | "group-parent";
 }
 
 interface Props {
@@ -16,7 +16,11 @@ const { items } = Astro.props;
   <ol>
     {
       items.map((item) => (
-        <li data-breadcrumb-group={item.dynamic === "group" ? "" : undefined} hidden={item.dynamic === "group"}>
+        <li
+          data-breadcrumb-group={item.dynamic === "group" ? "" : undefined}
+          data-breadcrumb-group-parent={item.dynamic === "group-parent" ? "" : undefined}
+          hidden={item.dynamic === "group"}
+        >
           {item.href ? <a href={item.href}>{item.label}</a> : <span aria-current="page">{item.label}</span>}
         </li>
       ))

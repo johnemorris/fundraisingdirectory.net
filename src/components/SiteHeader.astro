@@ -1,15 +1,32 @@
 ---
 import Brand from "./Brand.astro";
+import { getLegacyDiscoveryContext } from "../data/discovery";
+import { legacyRoutes } from "../data/legacyRoutes";
 import {
-  DISCOVERY_NAVIGATION,
+  MORE_NAVIGATION,
   PRIMARY_NAVIGATION,
+  SITE_ROUTES,
 } from "../data/site";
 
 const currentPath = Astro.url.pathname;
-const isCurrent = (href: string) => {
-  const path = href.split(/[?#]/)[0];
-  return path !== "/" && currentPath.startsWith(path);
-};
+const currentGroup = Astro.url.searchParams.get("group");
+const currentMethods = Astro.url.searchParams.getAll("method");
+const directItems = [...PRIMARY_NAVIGATION, ...MORE_NAVIGATION];
+const groupItem = directItems.find((item) => "group" in item && item.group === currentGroup);
+const methodItem = directItems.find((item) => "method" in item && currentMethods.includes(item.method));
+const exactItem = directItems.find((item) => item.href.split(/[?#]/)[0] === currentPath);
+const legacyRoute = legacyRoutes.find((route) => `/${route.path}.html` === currentPath);
+const legacyContext = legacyRoute ? getLegacyDiscoveryContext(legacyRoute) : null;
+const legacyGroupItem = directItems.find((item) => "group" in item && item.group === legacyContext?.group);
+const currentKey = groupItem?.key
+  ?? methodItem?.key
+  ?? legacyGroupItem?.key
+  ?? (legacyRoute && (legacyRoute.type === "resource" || legacyRoute.type === "product") ? "ideas" : null)
+  ?? (currentPath.startsWith(SITE_ROUTES.directory) ? "providers" : null)
+  ?? exactItem?.key
+  ?? null;
+const providerContextActive = currentPath.startsWith(SITE_ROUTES.directory) && currentKey !== "providers";
+const moreCurrent = MORE_NAVIGATION.some((item) => item.key === currentKey);
 ---
 
 <header class="site-header">
@@ -18,10 +35,16 @@ const isCurrent = (href: string) => {
 
     <nav class="desktop-primary-nav" aria-label="Primary navigation">
       {PRIMARY_NAVIGATION.map((item) => (
-        <a class:list={["site-nav-link", { active: isCurrent(item.href) }]} href={item.href}>
+        <a class:list={["site-nav-link", { "context-active": item.key === "providers" && providerContextActive }]} href={item.href} aria-current={item.key === currentKey ? "page" : undefined} data-nav-key={item.key} data-nav-group={"group" in item ? item.group : undefined}>
           {item.label}
         </a>
       ))}
+      <details class:list={["desktop-more-menu", { "has-current": moreCurrent }]}>
+        <summary>More <span aria-hidden="true">⌄</span></summary>
+        <nav aria-label="More destinations">
+          {MORE_NAVIGATION.map((item) => <a href={item.href} aria-current={item.key === currentKey ? "page" : undefined} data-nav-key={item.key} data-nav-group={"group" in item ? item.group : undefined} data-nav-method={"method" in item ? item.method : undefined}>{item.label}</a>)}
+        </nav>
+      </details>
     </nav>
 
     <div class="provider-nav" aria-label="For fundraising providers">
@@ -36,12 +59,12 @@ const isCurrent = (href: string) => {
         <span aria-hidden="true"></span>
       </summary>
       <div class="mobile-menu-panel">
-        <nav aria-label="Mobile primary navigation">
-          {PRIMARY_NAVIGATION.map((item) => <a href={item.href}>{item.label}<span aria-hidden="true">→</span></a>)}
+        <nav class="mobile-primary-nav" aria-label="Mobile primary navigation">
+          {PRIMARY_NAVIGATION.map((item) => <a href={item.href} aria-current={item.key === currentKey ? "page" : undefined} data-nav-key={item.key} data-nav-group={"group" in item ? item.group : undefined}>{item.label}<span aria-hidden="true">→</span></a>)}
         </nav>
-        <p class="mobile-menu-label">Browse by group or method</p>
-        <nav class="mobile-discovery-nav" aria-label="Mobile discovery navigation">
-          {DISCOVERY_NAVIGATION.map((item) => <a href={item.href}>{item.label}</a>)}
+        <p class="mobile-menu-label">More destinations</p>
+        <nav class="mobile-secondary-nav" aria-label="More mobile destinations">
+          {MORE_NAVIGATION.map((item) => <a href={item.href} aria-current={item.key === currentKey ? "page" : undefined} data-nav-key={item.key} data-nav-group={"group" in item ? item.group : undefined} data-nav-method={"method" in item ? item.method : undefined}>{item.label}</a>)}
         </nav>
         <div class="mobile-provider-nav" aria-label="For fundraising providers">
           <p>For Fundraising Providers</p>
@@ -51,28 +74,41 @@ const isCurrent = (href: string) => {
     </details>
   </div>
 
-  <div class="discovery-rail">
-    <nav class="discovery-nav shell-wide" aria-label="Popular fundraising categories">
-      <span class="discovery-label">Explore</span>
-      {DISCOVERY_NAVIGATION.map((item) => <a href={item.href}>{item.label}</a>)}
-    </nav>
-  </div>
 </header>
 
 <script>
   const mobileMenu = document.querySelector<HTMLDetailsElement>(".mobile-menu");
+  const navigationParams = new URLSearchParams(window.location.search);
+  const navigationGroup = navigationParams.get("group");
+  const navigationMethods = navigationParams.getAll("method");
+  const navigationMethod = Array.from(document.querySelectorAll<HTMLElement>("[data-nav-method]"))
+    .map((link) => link.dataset.navMethod)
+    .find((method) => method && navigationMethods.includes(method));
+
+  if (window.location.pathname === "/providers/") {
+    const contextLinks = navigationGroup
+      ? Array.from(document.querySelectorAll<HTMLElement>("[data-nav-group]"))
+          .filter((link) => link.dataset.navGroup === navigationGroup)
+      : Array.from(document.querySelectorAll<HTMLElement>("[data-nav-method]"))
+          .filter((link) => link.dataset.navMethod === navigationMethod);
+
+    if (contextLinks.length > 0) {
+      document.querySelectorAll<HTMLElement>("[data-nav-key='providers']").forEach((link) => {
+        link.removeAttribute("aria-current");
+        link.classList.add("context-active");
+      });
+      contextLinks.forEach((link) => link.setAttribute("aria-current", "page"));
+      if (contextLinks.some((link) => link.closest(".desktop-more-menu"))) {
+        document.querySelector(".desktop-more-menu")?.classList.add("has-current");
+      }
+    }
+  }
 
   mobileMenu?.addEventListener("click", (event) => {
     const link = (event.target as Element).closest("a");
     if (!link) return;
 
     const destination = new URL(link.href, window.location.href);
-    const isSamePage =
-      destination.origin === window.location.origin &&
-      destination.pathname === window.location.pathname &&
-      destination.search === window.location.search &&
-      Boolean(destination.hash);
-
-    if (isSamePage) mobileMenu.removeAttribute("open");
+    if (destination.origin === window.location.origin) mobileMenu.removeAttribute("open");
   });
 </script>

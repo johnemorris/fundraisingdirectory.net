@@ -41,7 +41,7 @@ const filterTones = Object.fromEntries([
 ---
 
 <SiteLayout title="Fundraising Providers | FundraisingDirectory.net" description="Browse researched fundraising providers and filter by group and fundraising method.">
-  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Category", dynamic: "group" }, { label: "Fundraising Providers" }]} />
+  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Fundraising Providers", dynamic: "group-parent" }, { label: "Category", dynamic: "group" }]} />
 
   <main class="directory-shell directory-index">
     <DiscoveryHero eyebrow="Fundraising provider directory" title="Find fundraising providers that fit your group" description="Compare independently researched fundraising companies and platforms by who they serve and how their programs work." tone="navy" visualLabel="Provider discovery" visualKey="provider-directory" dynamic compact />
@@ -233,6 +233,8 @@ const filterTones = Object.fromEntries([
     document.querySelector("[data-discovery-visual]").dataset.artworkKey = discovery.visualKey;
     document.querySelector("[data-discovery-hero]").className = `discovery-hero discovery-${discovery.tone} discovery-compact`;
     const crumb = document.querySelector("[data-breadcrumb-group]");
-    if (crumb) { crumb.hidden = false; const link = document.createElement("a"); link.href = `/providers/?group=${group}`; link.textContent = discovery.label; crumb.replaceChildren(link); }
+    const parentCrumb = document.querySelector("[data-breadcrumb-group-parent]");
+    if (parentCrumb) { const link = document.createElement("a"); link.href = "/providers/"; link.textContent = "Fundraising Providers"; parentCrumb.replaceChildren(link); }
+    if (crumb) { crumb.hidden = false; const current = document.createElement("span"); current.setAttribute("aria-current", "page"); current.textContent = discovery.label; crumb.replaceChildren(current); }
   }
 </script>
