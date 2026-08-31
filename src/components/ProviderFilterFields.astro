@@ -1,0 +1,26 @@
+---
+import { GROUP_OPTIONS, METHOD_OPTIONS } from "../data/semanticTaxonomy";
+
+interface Props {
+  showCancel?: boolean;
+}
+
+const { showCancel = false } = Astro.props;
+---
+
+<fieldset>
+  <legend>Group type</legend>
+  <label><input type="radio" name="group" value="" /> <span>All group types</span></label>
+  {GROUP_OPTIONS.map((option) => <label class={`semantic-${option.tone}`}><input type="radio" name="group" value={option.value} /> <span>{option.label}</span></label>)}
+  <label><input type="radio" name="group" value="other" /> <span>Any other group type</span></label>
+</fieldset>
+
+<fieldset>
+  <legend>Fundraising methods</legend>
+  {METHOD_OPTIONS.map((option) => <label class={`semantic-${option.tone}`}><input type="checkbox" name="method" value={option.value} /> <span>{option.label}</span></label>)}
+</fieldset>
+
+<div class="filter-actions">
+  <button class="button button-primary" type="submit">Apply filters</button>
+  {showCancel && <button class="filter-close" type="button" data-filter-close>Cancel</button>}
+</div>

@@ -1,266 +1,218 @@
 ---
 import { getCollection } from "astro:content";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import DiscoveryHero from "../../components/DiscoveryHero.astro";
+import ProviderFilterFields from "../../components/ProviderFilterFields.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
+import { DISCOVERY_GROUP_CONTEXTS } from "../../data/discovery";
 import { formatProviderLabel } from "../../data/providerLabels";
-import { FUNDRAISING_METHODS } from "../../data/taxonomies/methods";
-import { ORGANIZATION_TYPES } from "../../data/taxonomies/organizations";
+import { GROUP_OPTIONS, METHOD_OPTIONS, semanticClass } from "../../data/semanticTaxonomy";
 import { PRODUCTS_SERVICES } from "../../data/taxonomies/products-services";
 import "../../styles/providers.css";
 
 const providers = (await getCollection("providers"))
-  .filter(
-    (provider) =>
-      !provider.data.meta.deleted &&
-      provider.data.status.lifecycle === "active",
-  )
-  .sort((a, b) =>
-    a.data.identity.name.localeCompare(b.data.identity.name),
-  );
+  .filter((provider) => !provider.data.meta.deleted && provider.data.status.lifecycle === "active")
+  .sort((a, b) => a.data.identity.name.localeCompare(b.data.identity.name));
 
-const easeRank = {
-  easy: 1,
-  moderate: 2,
-  "hands-on": 3,
-} as const;
-
-const providerEase = (
-  programs: (typeof providers)[number]["data"]["programs"],
-) => {
-  const ratedPrograms = programs.filter(
-    (
-      program,
-    ): program is typeof program & {
-      ease_to_raise: keyof typeof easeRank;
-    } =>
-      program.ease_to_raise !== null,
-  );
-  const easiest = [...ratedPrograms].sort(
-    (a, b) => easeRank[a.ease_to_raise] - easeRank[b.ease_to_raise],
-  )[0];
-
-  return easiest?.ease_to_raise ?? null;
+const easeRank = { easy: 1, moderate: 2, "hands-on": 3 } as const;
+const easeLabel = { easy: "Easy", moderate: "Moderate", "hands-on": "Hands-On" } as const;
+const verificationLabel = { verified: "Sources checked", "partially-verified": "Research in progress", unverified: "Research pending" } as const;
+const providerEase = (programs: (typeof providers)[number]["data"]["programs"]) => {
+  const rated = programs.filter((program): program is typeof program & { ease_to_raise: keyof typeof easeRank } => program.ease_to_raise !== null);
+  return [...rated].sort((a, b) => easeRank[a.ease_to_raise] - easeRank[b.ease_to_raise])[0]?.ease_to_raise ?? null;
 };
 
-const easeLabel = {
-  easy: "Easy",
-  moderate: "Moderate",
-  "hands-on": "Hands-On",
-} as const;
-
-const verificationLabel = {
-  verified: "Official sources checked",
-  "partially-verified": "Partially researched",
-  unverified: "Research pending",
-} as const;
-
-const filterLabels = Object.fromEntries(
-  [...ORGANIZATION_TYPES, ...FUNDRAISING_METHODS, ...PRODUCTS_SERVICES, "other"].map(
-    (value) => [
-      value,
-      value === "other" ? "Any group type" : formatProviderLabel(value),
-    ],
-  ),
-);
-
-const validGroups = [...ORGANIZATION_TYPES, "other"];
-const validMethods = [...FUNDRAISING_METHODS];
+const filterLabels = Object.fromEntries([
+  ...GROUP_OPTIONS.map(({ value, label }) => [value, label]),
+  ...METHOD_OPTIONS.map(({ value, label }) => [value, label]),
+  ...PRODUCTS_SERVICES.map((value) => [value, formatProviderLabel(value)]),
+  ["other", "Any Group Type"],
+]);
+const validGroups = [...GROUP_OPTIONS.map(({ value }) => value), "other"];
+const validMethods = METHOD_OPTIONS.map(({ value }) => value);
 const validProducts = [...PRODUCTS_SERVICES];
+const filterTones = Object.fromEntries([
+  ...GROUP_OPTIONS.map(({ value, tone }) => [value, tone]),
+  ...METHOD_OPTIONS.map(({ value, tone }) => [value, tone]),
+  ...PRODUCTS_SERVICES.map((value) => [value, "warm"]),
+  ["other", "navy"],
+]);
 ---
 
-<SiteLayout
-  title="Fundraising Providers | FundraisingDirectory.net"
-  description="Browse verified fundraising providers and compare fundraising methods, programs, organization fit, and Ease to Raise."
->
-  <main class="directory-shell">
-    <header class="directory-header">
-      <p class="eyebrow">FundraisingDirectory.net</p>
-      <h1>Fundraising Providers</h1>
+<SiteLayout title="Fundraising Providers | FundraisingDirectory.net" description="Browse researched fundraising providers and filter by group and fundraising method.">
+  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Category", dynamic: "group" }, { label: "Fundraising Providers" }]} />
 
-      <p class="directory-intro">
-        Explore independently researched fundraising companies and platforms by
-        the groups they serve and the fundraising methods they support.
-      </p>
-    </header>
+  <main class="directory-shell directory-index">
+    <DiscoveryHero eyebrow="Fundraising provider directory" title="Find fundraising providers that fit your group" description="Compare independently researched fundraising companies and platforms by who they serve and how their programs work." tone="navy" visualLabel="Provider discovery" visualKey="provider-directory" dynamic compact />
 
-    <section
-      class="directory-results-header"
-      aria-labelledby="provider-results-title"
-    >
-      <div>
-        <p class="eyebrow">Directory results</p>
-        <h2 id="provider-results-title">All providers</h2>
-        <p class="filter-summary" data-filter-summary aria-live="polite">
-          Showing all {providers.length} researched providers.
-        </p>
+    <section class="directory-results" aria-labelledby="provider-results-title">
+      <div class="directory-results-heading">
+        <div>
+          <p class="eyebrow">Directory results</p>
+          <h2 id="provider-results-title">All providers</h2>
+          <p class="filter-summary" data-filter-summary aria-live="polite">Showing all {providers.length} researched providers.</p>
+        </div>
+
+        <details class="filter-panel" data-filter-panel>
+          <summary><span aria-hidden="true">+</span> Filter <span class="filter-chevron" aria-hidden="true">⌄</span></summary>
+          <form class="filter-fields" action="/providers/" method="get" data-filter-form>
+            <ProviderFilterFields showCancel />
+          </form>
+        </details>
       </div>
-      <a
-        class="button button-secondary"
-        href="/providers/"
-        data-filter-reset
-        hidden
-      >
-        Clear filters
-      </a>
+
+      <div class="active-filter-row" data-active-filter-row hidden>
+        <div class="active-filters" data-active-filters aria-label="Active filters"></div>
+        <a href="/providers/" data-filter-reset hidden>Clear all</a>
+      </div>
     </section>
 
-    <section
-      class="provider-grid"
-      aria-label="Fundraising providers"
-      data-provider-grid
-    >
-      {
-        providers.map((provider) => {
-          const { identity, classification, content, programs, geography } =
-            provider.data;
+    <div class="directory-browser">
+      <aside class="facet-rail" aria-labelledby="facet-title">
+        <div class="facet-heading">
+          <p class="eyebrow">Refine the directory</p>
+          <h2 id="facet-title">Filter providers</h2>
+          <p>Choose one group and any relevant methods.</p>
+        </div>
+        <form class="filter-fields facet-form" action="/providers/" method="get" data-filter-form>
+          <ProviderFilterFields />
+        </form>
+      </aside>
 
-          const ease = providerEase(programs);
-
-          return (
-            <article
-              class="provider-card"
-              data-organizations={classification.organizations.join(",")}
-              data-methods={classification.methods.join(",")}
-              data-products={classification.products_services.join(",")}
-            >
-              <div class="provider-card-top">
-                <div>
-                  <p class="provider-status">
-                    {verificationLabel[provider.data.verification.level]}
-                  </p>
-                  <h2>{identity.name}</h2>
-                </div>
-
-                {ease && (
-                  <span class={`ease-badge ease-${ease}`}>
-                    <span class="ease-dot" aria-hidden="true" />
-                    {easeLabel[ease]}
-                  </span>
-                )}
+      <section class="provider-grid" aria-label="Fundraising providers" data-provider-grid>
+      {providers.map((provider) => {
+        const { identity, classification, content, programs, geography } = provider.data;
+        const ease = providerEase(programs);
+        const visibleOrganizations = classification.organizations.slice(0, 5);
+        const extraOrganizations = classification.organizations.slice(5);
+        return (
+          <article class="provider-card" data-organizations={classification.organizations.join(",")} data-methods={classification.methods.join(",")} data-products={classification.products_services.join(",")}>
+            <div class="provider-card-top">
+              <div>
+                <p class="provider-research"><span aria-hidden="true">✓</span> {verificationLabel[provider.data.verification.level]}</p>
+                <h2>{identity.name}</h2>
               </div>
-
-              <p class="provider-summary">{content.summary}</p>
-
+              {ease && <span class={`ease-badge ease-${ease}`}><span class="ease-dot" aria-hidden="true" />{easeLabel[ease]}</span>}
+            </div>
+            <p class="provider-summary">{content.summary}</p>
+            <div class="provider-metadata">
               <div class="tag-group">
                 <strong>Methods</strong>
-                <div class="tags">
-                  {classification.methods.map((method) => (
-                    <span class="tag">{formatProviderLabel(method)}</span>
-                  ))}
-                </div>
+                <div class="tags">{classification.methods.map((method) => <button class={semanticClass("method", method)} type="button" data-filter-kind="method" data-filter-value={method}>{formatProviderLabel(method)}</button>)}</div>
               </div>
-
               <div class="tag-group">
                 <strong>Best suited for</strong>
                 <div class="tags">
-                  {classification.organizations.slice(0, 5).map((org) => (
-                    <span class="tag tag-muted">{formatProviderLabel(org)}</span>
-                  ))}
-
-                  {classification.organizations.length > 5 && (
-                    <span class="tag tag-muted">
-                      +{classification.organizations.length - 5} more
-                    </span>
-                  )}
+                  {visibleOrganizations.map((org) => <button class={semanticClass("group", org)} type="button" data-filter-kind="group" data-filter-value={org}>{formatProviderLabel(org)}</button>)}
+                  {extraOrganizations.map((org) => <button class:list={[semanticClass("group", org), "metadata-extra"]} type="button" data-filter-kind="group" data-filter-value={org} hidden>{formatProviderLabel(org)}</button>)}
+                  {extraOrganizations.length > 0 && <button class="metadata-more" type="button" aria-expanded="false" data-metadata-more data-more-count={extraOrganizations.length}>+{extraOrganizations.length} more</button>}
                 </div>
               </div>
-
-              <div class="provider-card-footer">
-                <span>
-                  {geography.scope.map(formatProviderLabel).join(" · ")}
-                </span>
-
-                <a
-                  class="button button-primary"
-                  href={`/providers/${identity.slug}/`}
-                >
-                  View provider
-                </a>
-              </div>
-            </article>
-          );
-        })
-      }
-    </section>
-
-    {
-      providers.length === 0 && (
-        <p class="empty-state">
-          No active fundraising providers are currently available.
-        </p>
-      )
-    }
+            </div>
+            <div class="provider-card-footer">
+              <span>{geography.scope.map(formatProviderLabel).join(" · ")}</span>
+              <a class="button button-primary" href={`/providers/${identity.slug}/`}>View provider</a>
+            </div>
+          </article>
+        );
+      })}
+      </section>
+    </div>
   </main>
 </SiteLayout>
 
-<script define:vars={{ filterLabels, validGroups, validMethods, validProducts }}>
+<script define:vars={{ filterLabels, filterTones, validGroups, validMethods, validProducts, discoveryContexts: DISCOVERY_GROUP_CONTEXTS }}>
   const cards = Array.from(document.querySelectorAll(".provider-card"));
   const summary = document.querySelector("[data-filter-summary]");
   const heading = document.querySelector("#provider-results-title");
   const reset = document.querySelector("[data-filter-reset]");
+  const activeRow = document.querySelector("[data-active-filter-row]");
+  const activeFilters = document.querySelector("[data-active-filters]");
+  const filterPanel = document.querySelector("[data-filter-panel]");
+  const filterForms = Array.from(document.querySelectorAll("[data-filter-form]"));
   const params = new URLSearchParams(window.location.search);
-
   const groupValues = params.getAll("group");
   const methodValues = params.getAll("method");
   const productValues = params.getAll("product");
   const group = groupValues.find((value) => validGroups.includes(value)) ?? null;
-  const methods = [
-    ...new Set(methodValues.filter((value) => validMethods.includes(value))),
-  ];
-  const products = [
-    ...new Set(productValues.filter((value) => validProducts.includes(value))),
-  ];
-  const hasUnknownFilters =
-    groupValues.some((value) => !validGroups.includes(value)) ||
-    methodValues.some((value) => !validMethods.includes(value)) ||
-    productValues.some((value) => !validProducts.includes(value));
+  const methods = [...new Set(methodValues.filter((value) => validMethods.includes(value)))];
+  const products = [...new Set(productValues.filter((value) => validProducts.includes(value)))];
+  const hasUnknownFilters = groupValues.some((value) => !validGroups.includes(value)) || methodValues.some((value) => !validMethods.includes(value)) || productValues.some((value) => !validProducts.includes(value));
   const hasFilters = Boolean(group || methods.length || products.length);
 
-  const labels = [
-    group ? filterLabels[group] : null,
-    ...methods.map((value) => filterLabels[value]),
-    ...products.map((value) => filterLabels[value]),
-  ].filter(Boolean);
-  const context = labels.join(" + ");
+  const navigateWith = ({ nextGroup = group, nextMethods = methods, nextProducts = products } = {}) => {
+    const url = new URL("/providers/", window.location.origin);
+    if (nextGroup) url.searchParams.set("group", nextGroup);
+    nextMethods.forEach((value) => url.searchParams.append("method", value));
+    nextProducts.forEach((value) => url.searchParams.append("product", value));
+    window.location.assign(`${url.pathname}${url.search}`);
+  };
 
+  const labels = [group ? filterLabels[group] : null, ...methods.map((value) => filterLabels[value]), ...products.map((value) => filterLabels[value])].filter(Boolean);
+  const context = labels.join(" + ");
   const matches = cards.filter((card) => {
     const organizations = card.dataset.organizations?.split(",") ?? [];
     const providerMethods = card.dataset.methods?.split(",") ?? [];
     const providerProducts = card.dataset.products?.split(",") ?? [];
-    const groupMatches =
-      !group || group === "other" || organizations.includes(group);
-    const methodMatches =
-      !methods.length ||
-      methods.some((method) => providerMethods.includes(method));
-    const productMatches =
-      !products.length ||
-      products.some((product) => providerProducts.includes(product));
-
-    return groupMatches && methodMatches && productMatches;
+    return (!group || group === "other" || organizations.includes(group)) && (!methods.length || methods.some((method) => providerMethods.includes(method))) && (!products.length || products.some((product) => providerProducts.includes(product)));
   });
-
   const showAll = !hasFilters || matches.length === 0;
-  cards.forEach((card) => {
-    card.hidden = !showAll && !matches.includes(card);
-  });
-
-  if (reset) reset.hidden = !hasFilters && !hasUnknownFilters;
+  cards.forEach((card) => { card.hidden = !showAll && !matches.includes(card); });
 
   if (heading && summary) {
-    if (!hasFilters && hasUnknownFilters) {
-      heading.textContent = "All providers";
-      summary.textContent = `Unknown filters were ignored. Showing all ${cards.length} researched providers.`;
-    } else if (!hasFilters) {
-      heading.textContent = "All providers";
-      summary.textContent = `Showing all ${cards.length} researched providers.`;
-    } else if (matches.length === 0) {
-      heading.textContent = `No exact matches for ${context}`;
-      summary.textContent = `Showing all ${cards.length} providers so you can compare broader options.`;
-    } else {
-      heading.textContent = `Matches for ${context}`;
-      const broadNote =
-        group === "other" ? " “Any group type” uses a broad match." : "";
-      const ignoredNote = hasUnknownFilters ? " Unknown filters were ignored." : "";
-      summary.textContent = `Showing ${matches.length} of ${cards.length} providers.${broadNote}${ignoredNote}`;
-    }
+    if (!hasFilters && hasUnknownFilters) { heading.textContent = "All providers"; summary.textContent = `Unknown filters were ignored. Showing all ${cards.length} researched providers.`; }
+    else if (!hasFilters) { heading.textContent = "All providers"; summary.textContent = `Showing all ${cards.length} researched providers.`; }
+    else if (matches.length === 0) { heading.textContent = `No exact matches for ${context}`; summary.textContent = `Showing all ${cards.length} providers so you can compare broader options.`; }
+    else { heading.textContent = `Matches for ${context}`; summary.textContent = `Showing ${matches.length} of ${cards.length} providers.${group === "other" ? " “Any Group Type” uses a broad match." : ""}${hasUnknownFilters ? " Unknown filters were ignored." : ""}`; }
+  }
+
+  if (hasFilters && activeFilters && activeRow) {
+    activeRow.hidden = false;
+    const selections = [...(group ? [{ kind: "group", value: group }] : []), ...methods.map((value) => ({ kind: "method", value })), ...products.map((value) => ({ kind: "product", value }))];
+    selections.forEach(({ kind, value }) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = `active-filter active-filter-${kind} semantic-${filterTones[value] ?? "teal"}`;
+      button.textContent = `${filterLabels[value]} ×`;
+      button.setAttribute("aria-label", `Remove ${filterLabels[value]} filter`);
+      button.addEventListener("click", () => navigateWith({ nextGroup: kind === "group" ? null : group, nextMethods: kind === "method" ? methods.filter((item) => item !== value) : methods, nextProducts: kind === "product" ? products.filter((item) => item !== value) : products }));
+      activeFilters.append(button);
+    });
+    if (reset) reset.hidden = false;
+  }
+
+  filterForms.forEach((filterForm) => {
+    const groupControl = filterForm.querySelector(`input[name="group"][value="${group ?? ""}"]`);
+    if (groupControl) groupControl.checked = true;
+    methods.forEach((value) => { const control = filterForm.querySelector(`input[name="method"][value="${value}"]`); if (control) control.checked = true; });
+    filterForm.addEventListener("submit", (event) => { event.preventDefault(); const data = new FormData(filterForm); navigateWith({ nextGroup: data.get("group") || null, nextMethods: data.getAll("method"), nextProducts: products }); });
+  });
+  document.querySelector("[data-filter-close]")?.addEventListener("click", () => filterPanel?.removeAttribute("open"));
+
+  document.querySelectorAll("[data-filter-kind]").forEach((control) => {
+    const kind = control.dataset.filterKind;
+    const value = control.dataset.filterValue;
+    const isActive = (kind === "group" && value === group) || (kind === "method" && methods.includes(value));
+    control.classList.toggle("is-active", isActive);
+    control.setAttribute("aria-pressed", String(isActive));
+    control.addEventListener("click", () => { if (!isActive) navigateWith({ nextGroup: kind === "group" ? value : group, nextMethods: kind === "method" ? [...methods, value] : methods, nextProducts: products }); });
+  });
+  document.querySelectorAll("[data-metadata-more]").forEach((button) => button.addEventListener("click", () => {
+    const expanded = button.getAttribute("aria-expanded") === "true";
+    button.closest(".tags")?.querySelectorAll(".metadata-extra").forEach((item) => { item.hidden = expanded; });
+    button.setAttribute("aria-expanded", String(!expanded));
+    button.textContent = expanded ? `+${button.dataset.moreCount} more` : "Show less";
+  }));
+
+  if (group && discoveryContexts[group]) {
+    const discovery = discoveryContexts[group];
+    document.querySelector("[data-discovery-eyebrow]").textContent = discovery.eyebrow;
+    document.querySelector("[data-discovery-title]").textContent = discovery.title;
+    document.querySelector("[data-discovery-description]").textContent = discovery.description;
+    document.querySelector("[data-discovery-visual-label]").textContent = discovery.label;
+    document.querySelector("[data-discovery-visual]").dataset.artworkKey = discovery.visualKey;
+    document.querySelector("[data-discovery-hero]").className = `discovery-hero discovery-${discovery.tone} discovery-compact`;
+    const crumb = document.querySelector("[data-breadcrumb-group]");
+    if (crumb) { crumb.hidden = false; const link = document.createElement("a"); link.href = `/providers/?group=${group}`; link.textContent = discovery.label; crumb.replaceChildren(link); }
   }
 </script>

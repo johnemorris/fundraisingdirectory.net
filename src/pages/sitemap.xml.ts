@@ -1,5 +1,6 @@
 import { getCollection } from "astro:content";
 import { legacyRoutes } from "../data/legacyRoutes";
+import { isLegacySitemapEligible } from "../data/discovery";
 import { SITE_ROUTES } from "../data/site";
 
 export async function GET() {
@@ -16,7 +17,9 @@ export async function GET() {
     "/privacy/",
     "/disclaimer/",
     ...providers.map((provider) => `/providers/${provider.data.identity.slug}/`),
-    ...legacyRoutes.map((route) => `/${route.path}.html`),
+    ...legacyRoutes
+      .filter(isLegacySitemapEligible)
+      .map((route) => `/${route.path}.html`),
   ];
 
   const urls = paths

@@ -1,0 +1,85 @@
+---
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+  dynamic?: "group";
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    {
+      items.map((item) => (
+        <li data-breadcrumb-group={item.dynamic === "group" ? "" : undefined} hidden={item.dynamic === "group"}>
+          {item.href ? <a href={item.href}>{item.label}</a> : <span aria-current="page">{item.label}</span>}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<style>
+  .breadcrumbs {
+    width: min(var(--interior-shell), calc(100% - var(--interior-gutter) - var(--interior-gutter)));
+    margin: 0 auto;
+    padding-top: 22px;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  li[hidden] { display: none; }
+
+  li:not(:last-child)::after {
+    content: "›";
+    color: var(--teal);
+    font-size: 1rem;
+  }
+
+  a {
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--teal-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  [aria-current="page"] {
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 620px) {
+    .breadcrumbs {
+      padding-top: 14px;
+      font-size: 0.72rem;
+    }
+  }
+</style>

@@ -1,7 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#07955a"/>
-  <path
-    d="M32 12 L52 32 L32 52 L12 32 Z"
-    fill="white"
-  />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="FundraisingDirectory.net">
+  <rect x="6" y="5" width="52" height="54" rx="15" fill="#087f78" transform="rotate(-4 32 32)"/>
+  <path d="M23 18h23v9H33v6h11v9H33v15H23z" fill="#fff"/>
+  <circle cx="48" cy="15" r="5" fill="#f2b84b"/>
 </svg>

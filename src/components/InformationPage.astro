@@ -3,18 +3,17 @@ interface Props {
   eyebrow: string;
   title: string;
   intro: string;
+  breadcrumbLabel?: string;
 }
 
-const { eyebrow, title, intro } = Astro.props;
+import Breadcrumbs from "./Breadcrumbs.astro";
+
+const { eyebrow, title, intro, breadcrumbLabel = eyebrow } = Astro.props;
 ---
 
-<main class="information-shell">
-  <nav class="information-breadcrumb" aria-label="Breadcrumb">
-    <a href="/">Home</a>
-    <span aria-hidden="true">›</span>
-    <span>{title}</span>
-  </nav>
+<Breadcrumbs items={[{ label: "Home", href: "/" }, { label: breadcrumbLabel }]} />
 
+<main class="information-shell">
   <header class="information-header">
     <p class="eyebrow">{eyebrow}</p>
     <h1>{title}</h1>

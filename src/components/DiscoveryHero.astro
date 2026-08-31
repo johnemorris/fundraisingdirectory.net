@@ -1,0 +1,78 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  tone?: string;
+  visualLabel?: string;
+  visualKey?: string;
+  dynamic?: boolean;
+  compact?: boolean;
+}
+
+const { eyebrow, title, description, tone = "navy", visualLabel = "Fundraising discovery", visualKey = "general", dynamic = false, compact = false } = Astro.props;
+---
+
+<header class:list={["discovery-hero", `discovery-${tone}`, { "discovery-compact": compact }]} data-discovery-hero={dynamic ? "" : undefined}>
+  <div class="discovery-copy">
+    <p class="eyebrow" data-discovery-eyebrow>{eyebrow}</p>
+    <h1 data-discovery-title>{title}</h1>
+    <p class="discovery-description" data-discovery-description>{description}</p>
+    <div class="discovery-actions"><slot /></div>
+  </div>
+  <div class="discovery-signal" aria-hidden="true" data-discovery-visual data-artwork-key={visualKey}>
+    <span class="signal-orbit signal-orbit-one"></span>
+    <span class="signal-orbit signal-orbit-two"></span>
+    <span class="signal-dot signal-dot-one"></span>
+    <span class="signal-dot signal-dot-two"></span>
+    <strong data-discovery-visual-label>{visualLabel}</strong>
+    <small>Find · compare · choose</small>
+  </div>
+</header>
+
+<style>
+  .discovery-hero {
+    --discovery-accent: var(--teal);
+    --discovery-soft: rgba(140, 224, 208, 0.22);
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+    align-items: center;
+    gap: clamp(30px, 6vw, 88px);
+    min-height: 360px;
+    padding: clamp(48px, 7vw, 82px) 0 clamp(58px, 8vw, 96px);
+  }
+
+  .discovery-blue { --discovery-accent: var(--blue); --discovery-soft: rgba(34, 111, 193, 0.18); }
+  .discovery-purple { --discovery-accent: var(--purple); --discovery-soft: rgba(105, 68, 173, 0.18); }
+  .discovery-warm { --discovery-accent: #b26028; --discovery-soft: rgba(242, 184, 75, 0.2); }
+  .discovery-navy { --discovery-accent: var(--ink-soft); --discovery-soft: rgba(18, 48, 74, 0.13); }
+
+  .discovery-copy { max-width: 780px; }
+  .eyebrow { color: var(--discovery-accent); }
+  h1 { margin: 8px 0 20px; color: var(--ink); font-size: clamp(3rem, 6vw, 5.4rem); line-height: 0.94; letter-spacing: -0.06em; }
+  .discovery-description { max-width: 720px; margin: 0; color: var(--text-muted); font-size: clamp(1rem, 1.6vw, 1.22rem); line-height: 1.7; }
+  .discovery-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .discovery-actions:empty { display: none; }
+
+  .discovery-signal { position: relative; display: grid; width: min(330px, 100%); aspect-ratio: 1.08; place-content: center; justify-self: end; color: var(--ink); text-align: center; }
+  .discovery-signal::before { content: ""; position: absolute; inset: 12% 4% 8% 10%; border-radius: 46% 54% 58% 42% / 42% 38% 62% 58%; background: var(--discovery-soft); transform: rotate(-6deg); }
+  .discovery-signal strong { position: relative; z-index: 2; max-width: 175px; font-size: clamp(1.3rem, 2.4vw, 2rem); line-height: 1.05; }
+  .discovery-signal small { position: relative; z-index: 2; margin-top: 8px; color: var(--discovery-accent); font-size: 0.68rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; }
+  .signal-orbit, .signal-dot { position: absolute; border-radius: 50%; }
+  .signal-orbit-one { inset: 4% 8%; border: 2px solid var(--discovery-accent); opacity: 0.35; transform: rotate(12deg); }
+  .signal-orbit-two { inset: 19% -1% 16% 16%; border: 1px solid var(--purple); opacity: 0.25; transform: rotate(-16deg); }
+  .signal-dot-one { top: 6%; right: 15%; width: 34px; height: 34px; background: var(--discovery-accent); }
+  .signal-dot-two { bottom: 9%; left: 8%; width: 48px; height: 48px; background: var(--purple); opacity: 0.8; }
+  .discovery-compact { min-height: 310px; }
+
+  @media (max-width: 760px) {
+    .discovery-hero { grid-template-columns: 1fr; min-height: auto; padding: 38px 0 50px; }
+    h1 { font-size: clamp(2.7rem, 13vw, 4.2rem); overflow-wrap: anywhere; }
+    .discovery-signal { width: min(220px, 64vw); justify-self: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .discovery-signal, .signal-orbit { transform: none; }
+  }
+</style>

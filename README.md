@@ -27,6 +27,12 @@ stable taxonomy identifiers, honest unknown/null values, and a current review
 date. The static directory renders every active record and applies Finder query
 filters in the browser.
 
+Shared discovery presentation lives in `src/data/discovery.ts` and semantic
+method/group treatments live in `src/data/semanticTaxonomy.ts`. Provider and
+method imagery is registered centrally in `src/data/visuals.ts`; entries record
+whether imagery is representative, along with its source and usage status. Do
+not scatter visual paths through page templates.
+
 Known historical routes are defined once in `src/data/legacyRoutes.js`. The
 Worker accepts safe case, trailing-slash, and extensionless variants of those
 known paths only; unrelated URLs continue to the normal 404 response.

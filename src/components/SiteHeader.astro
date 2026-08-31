@@ -3,7 +3,6 @@ import Brand from "./Brand.astro";
 import {
   DISCOVERY_NAVIGATION,
   PRIMARY_NAVIGATION,
-  PROVIDER_NAVIGATION,
 } from "../data/site";
 
 const currentPath = Astro.url.pathname;
@@ -25,13 +24,10 @@ const isCurrent = (href: string) => {
       ))}
     </nav>
 
-    <nav class="provider-nav" aria-label="Provider navigation">
-      {PROVIDER_NAVIGATION.map((item, index) => (
-        <a class:list={["site-nav-link", { "provider-nav-cta": index === 1 }]} href={item.href}>
-          {item.label}
-        </a>
-      ))}
-    </nav>
+    <div class="provider-nav" aria-label="For fundraising providers">
+      <span class="provider-audience-title">For Fundraising Providers</span>
+      <span class="provider-coming-soon">Coming soon</span>
+    </div>
 
     <details class="mobile-menu">
       <summary aria-label="Navigation menu">
@@ -47,17 +43,20 @@ const isCurrent = (href: string) => {
         <nav class="mobile-discovery-nav" aria-label="Mobile discovery navigation">
           {DISCOVERY_NAVIGATION.map((item) => <a href={item.href}>{item.label}</a>)}
         </nav>
-        <nav class="mobile-provider-nav" aria-label="Mobile provider navigation">
-          {PROVIDER_NAVIGATION.map((item) => <a href={item.href}>{item.label}</a>)}
-        </nav>
+        <div class="mobile-provider-nav" aria-label="For fundraising providers">
+          <p>For Fundraising Providers</p>
+          <span>Listing information and onboarding <strong>Coming soon</strong></span>
+        </div>
       </div>
     </details>
   </div>
 
-  <nav class="discovery-nav shell-wide" aria-label="Popular fundraising categories">
-    <span class="discovery-label">Explore</span>
-    {DISCOVERY_NAVIGATION.map((item) => <a href={item.href}>{item.label}</a>)}
-  </nav>
+  <div class="discovery-rail">
+    <nav class="discovery-nav shell-wide" aria-label="Popular fundraising categories">
+      <span class="discovery-label">Explore</span>
+      {DISCOVERY_NAVIGATION.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+  </div>
 </header>
 
 <script>

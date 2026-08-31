@@ -38,8 +38,3 @@ export const DISCOVERY_NAVIGATION = [
   { label: "Online Fundraising", href: SITE_ROUTES.onlineFundraising },
   { label: "More", href: `${SITE_ROUTES.home}#popular-methods` },
 ] as const;
-
-export const PROVIDER_NAVIGATION = [
-  { label: "For Providers", href: SITE_ROUTES.providerInformation },
-  { label: "List Your Company", href: `${SITE_ROUTES.home}#provider-cta` },
-] as const;

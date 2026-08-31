@@ -1,338 +1,137 @@
 ---
 import { getCollection } from "astro:content";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import ProviderVisual from "../../components/ProviderVisual.astro";
 import { formatProviderLabel } from "../../data/providerLabels";
+import { semanticClass } from "../../data/semanticTaxonomy";
+import { getProviderVisual } from "../../data/visuals";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import "../../styles/providers.css";
 
 export async function getStaticPaths() {
-  const providers = (await getCollection("providers")).filter(
-    (provider) => !provider.data.meta.deleted,
-  );
-
-  return providers.map((provider) => ({
-    params: {
-      slug: provider.data.identity.slug,
-    },
-    props: {
-      provider,
-    },
-  }));
+  const providers = (await getCollection("providers")).filter((provider) => !provider.data.meta.deleted);
+  return providers.map((provider) => ({ params: { slug: provider.data.identity.slug }, props: { provider } }));
 }
 
 const { provider } = Astro.props;
-const {
-  identity,
-  classification,
-  programs,
-  geography,
-  content,
-  status,
-  verification,
-  affiliation,
-} = provider.data;
-
-const formatDate = (value: string) =>
-  new Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(new Date(`${value.slice(0, 10)}T12:00:00Z`));
-
-const easeLabel = {
-  easy: "Easy",
-  moderate: "Moderate",
-  "hands-on": "Hands-On",
-} as const;
-
-const statusLabel = {
-  active: "Active",
-  inactive: "Inactive",
-  uncertain: "Status uncertain",
-  historical: "Historical",
-} as const;
-
+const { identity, classification, programs, geography, content, status, verification, affiliation } = provider.data;
+const visual = getProviderVisual(identity.slug);
+const formatDate = (value: string) => new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${value.slice(0, 10)}T12:00:00Z`));
+const easeLabel = { easy: "Easy", moderate: "Moderate", "hands-on": "Hands-On" } as const;
+const statusLabel = { active: "Active", inactive: "Inactive", uncertain: "Status uncertain", historical: "Historical" } as const;
 const hasEaseRatings = programs.some((program) => program.ease_to_raise !== null);
+const channels = [...new Set(programs.flatMap((program) => program.channels))];
+const fulfillment = [...new Set(programs.flatMap((program) => program.fulfillment))];
 ---
 
-<SiteLayout
-  title={`${identity.name} Fundraising | FundraisingDirectory.net`}
-  description={content.summary}
-  socialImage={false}
->
-    <main class="directory-shell">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="/providers/">Providers</a>
-        <span aria-hidden="true">›</span>
-        <span>{identity.name}</span>
-      </nav>
+<SiteLayout title={`${identity.name} Fundraising | FundraisingDirectory.net`} description={content.summary} socialImage={false}>
+  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Fundraising Providers", href: "/providers/" }, { label: identity.name }]} />
 
-      <article class="provider-page">
-        <header class="provider-hero">
-          <div class="provider-hero-main">
-            <div class="provider-title-row">
-              <div>
-                <p class="eyebrow">Fundraising provider</p>
-                <h1>{identity.name}</h1>
-              </div>
-
-              <span class={`status-badge status-${status.lifecycle}`}>
-                {statusLabel[status.lifecycle]}
-              </span>
-            </div>
-
-            <p class="hero-summary">{content.summary}</p>
-
-            <div class="hero-actions">
-              <a
-                class="button button-primary"
-                href={identity.fundraising_url ?? identity.website}
-                target="_blank"
-                rel={`noopener noreferrer${
-                  affiliation.type === "affiliate" || affiliation.type === "sponsor"
-                    ? " sponsored"
-                    : ""
-                }`}
-              >
-                Visit {identity.name}
-              </a>
-
-              <span class="verified-date">
-                Last verified {formatDate(status.last_verified_at)}
-              </span>
-            </div>
-
-            {
-              affiliation.disclosure_required && (
-                <p class="affiliate-disclosure">
-                  FundraisingDirectory.net may receive compensation if you
-                  visit or use this provider through certain links.
-                </p>
-              )
-            }
-          </div>
-
-          <aside class="quick-facts">
-            <h2>Quick facts</h2>
-
-            <dl>
-              <div>
-                <dt>Fundraising methods</dt>
-                <dd>
-                  {classification.methods.map(formatProviderLabel).join(", ")}
-                </dd>
-              </div>
-
-              <div>
-                <dt>Programs listed</dt>
-                <dd>{programs.length}</dd>
-              </div>
-
-              <div>
-                <dt>Availability</dt>
-                <dd>
-                  {geography.scope.map(formatProviderLabel).join(", ")}
-                </dd>
-              </div>
-
-              <div>
-                <dt>Verification</dt>
-                <dd>{formatProviderLabel(verification.level)}</dd>
-              </div>
-            </dl>
-          </aside>
-        </header>
-
-        <section class="content-section">
-          <h2>Who it may work for</h2>
-
-          <div class="tags">
-            {
-              classification.organizations.map((organization) => (
-                <span class="tag">{formatProviderLabel(organization)}</span>
-              ))
-            }
-          </div>
-        </section>
-
-        <section class="content-section">
-          <h2>How it works</h2>
-          <p>{content.how_it_works}</p>
-        </section>
-
-        <section class="content-section">
-          <div class="section-heading">
+  <main class="directory-shell provider-detail-shell">
+    <article class="provider-page">
+      <header class="provider-hero">
+        <div class="provider-hero-main">
+          <div class="provider-title-row">
             <div>
-              <p class="eyebrow">Fundraising options</p>
-              <h2>Programs</h2>
+              <p class="eyebrow">Fundraising provider</p>
+              <h1>{identity.name}</h1>
             </div>
-
-            {hasEaseRatings && (
-              <div class="ease-legend" aria-label="Ease to Raise legend">
-                <span>
-                  <span class="legend-dot ease-easy" />
-                  Easy
-                </span>
-
-                <span>
-                  <span class="legend-dot ease-moderate" />
-                  Moderate
-                </span>
-
-                <span>
-                  <span class="legend-dot ease-hands-on" />
-                  Hands-On
-                </span>
-              </div>
-            )}
+            <span class={`status-badge status-${status.lifecycle}`}>{statusLabel[status.lifecycle]}</span>
           </div>
-
-          <div class="program-grid">
-            {
-              programs.map((program) => (
-                <article class="program-card">
-                  <div class="program-title-row">
-                    <h3>{program.name}</h3>
-
-                    {program.ease_to_raise && (
-                      <span
-                        class={`ease-badge ease-${program.ease_to_raise}`}
-                      >
-                        <span class="ease-dot" aria-hidden="true" />
-                        {easeLabel[program.ease_to_raise]}
-                      </span>
-                    )}
-                  </div>
-
-                  <p>{program.summary}</p>
-
-                  <dl class="program-details">
-                    <div>
-                      <dt>Method</dt>
-                      <dd>{formatProviderLabel(program.method)}</dd>
-                    </div>
-
-                    <div>
-                      <dt>Channel</dt>
-                      <dd>
-                        {program.channels.map(formatProviderLabel).join(", ")}
-                      </dd>
-                    </div>
-
-                    <div>
-                      <dt>Inventory</dt>
-                      <dd>{formatProviderLabel(program.inventory_model)}</dd>
-                    </div>
-
-                    <div>
-                      <dt>Upfront cost</dt>
-                      <dd>{formatProviderLabel(program.upfront_cost)}</dd>
-                    </div>
-
-                    <div>
-                      <dt>Fulfillment</dt>
-                      <dd>
-                        {program.fulfillment.map(formatProviderLabel).join(", ")}
-                      </dd>
-                    </div>
-
-                    <div>
-                      <dt>Online ordering</dt>
-                      <dd>
-                        {program.online_ordering === true
-                          ? "Yes"
-                          : program.online_ordering === false
-                            ? "No"
-                            : "Not applicable / not verified"}
-                      </dd>
-                    </div>
-                  </dl>
-
-                  {
-                    program.products_services.length > 0 && (
-                      <div class="program-products">
-                        <strong>Products / services</strong>
-
-                        <div class="tags">
-                          {program.products_services.map((item) => (
-                            <span class="tag tag-muted">
-                              {formatProviderLabel(item)}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )
-                  }
-                </article>
-              ))
-            }
+          <p class="hero-summary">{content.summary}</p>
+          <div class="hero-methods" aria-label="Fundraising methods">
+            {classification.methods.map((method) => <a class={semanticClass("method", method)} href={`/providers/?method=${method}`}>{formatProviderLabel(method)}</a>)}
           </div>
-        </section>
-
-        <div class="two-column">
-          <section class="content-section">
-            <h2>Best for</h2>
-
-            <ul class="clean-list">
-              {content.best_for.map((item) => <li>{item}</li>)}
-            </ul>
-          </section>
-
-          <section class="content-section">
-            <h2>Things to consider</h2>
-
-            <ul class="clean-list">
-              {content.considerations.map((item) => <li>{item}</li>)}
-            </ul>
-          </section>
+          <div class="hero-actions">
+            <a class="button button-primary" href={identity.fundraising_url ?? identity.website} target="_blank" rel={`noopener noreferrer${affiliation.type === "affiliate" || affiliation.type === "sponsor" ? " sponsored" : ""}`}>Visit {identity.name}</a>
+            <span class="verified-date">Last verified {formatDate(status.last_verified_at)}</span>
+          </div>
+          {affiliation.disclosure_required && <p class="affiliate-disclosure">FundraisingDirectory.net may receive compensation if you visit or use this provider through certain links.</p>}
         </div>
 
-        <section class="content-section">
-          <h2>Availability</h2>
+        <ProviderVisual providerName={identity.name} visual={visual} />
 
-          <p>
-            {geography.countries
-              .map((country) =>
-                country === "US"
-                  ? "United States"
-                  : country === "CA"
-                    ? "Canada"
-                    : country,
-              )
-              .join(" and ")}
-          </p>
+        <aside class="quick-facts">
+          <p class="eyebrow">At a glance</p>
+          <h2>Quick facts</h2>
+          <dl>
+            <div><dt>Programs listed</dt><dd>{programs.length}</dd></div>
+            <div><dt>Availability</dt><dd>{geography.scope.map(formatProviderLabel).join(", ")}</dd></div>
+            <div><dt>Channels</dt><dd>{channels.map(formatProviderLabel).join(", ")}</dd></div>
+            <div><dt>Source review</dt><dd>{verification.sources.length} official source{verification.sources.length === 1 ? "" : "s"}</dd></div>
+          </dl>
+        </aside>
+      </header>
 
-          {geography.notes && <p class="muted-copy">{geography.notes}</p>}
+      <section class="audience-band" aria-labelledby="audience-title">
+        <div>
+          <p class="eyebrow">Who it may work for</p>
+          <h2 id="audience-title">Explore by organization type</h2>
+        </div>
+        <div class="tags">
+          {classification.organizations.map((organization) => <a class={semanticClass("group", organization)} href={`/providers/?group=${organization}`}>{formatProviderLabel(organization)}</a>)}
+        </div>
+      </section>
+
+      <section class="process-section" aria-labelledby="process-title">
+        <div class="process-intro">
+          <p class="eyebrow">How it works</p>
+          <h2 id="process-title">From program choice to campaign</h2>
+          <p>{content.how_it_works}</p>
+        </div>
+        <ol class="process-steps">
+          <li><span>01</span><div><strong>Choose an option</strong><p>Compare the listed program formats and the work each requires.</p></div></li>
+          <li><span>02</span><div><strong>Set up the campaign</strong><p>Available channels include {channels.map(formatProviderLabel).join(", ").toLowerCase()}.</p></div></li>
+          <li><span>03</span><div><strong>Confirm fulfillment</strong><p>Published fulfillment models include {fulfillment.map(formatProviderLabel).join(", ").toLowerCase()}; confirm current details directly.</p></div></li>
+        </ol>
+      </section>
+
+      {visual && (
+        <section class="action-band" aria-labelledby="action-title">
+          <div><p class="eyebrow">Fundraising in action</p><h2 id="action-title">A representative look at {formatProviderLabel(visual.relatedMethod)}</h2><p>{visual.caption}</p></div>
+          <a href={`/providers/?method=${visual.relatedMethod}`}>Explore this fundraising method <span aria-hidden="true">→</span></a>
         </section>
+      )}
 
-        <section class="verification-box">
-          <div>
-            <p class="eyebrow">Provider verification</p>
-            <h2>Last checked {formatDate(status.last_verified_at)}</h2>
+      <section class="programs-section" aria-labelledby="programs-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">Fundraising options</p><h2 id="programs-title">Programs</h2></div>
+          {hasEaseRatings && <div class="ease-legend" aria-label="Ease to Raise legend"><span><span class="legend-dot ease-easy" />Easy</span><span><span class="legend-dot ease-moderate" />Moderate</span><span><span class="legend-dot ease-hands-on" />Hands-On</span></div>}
+        </div>
+        <div class="program-grid">
+          {programs.map((program) => (
+            <article class="program-card">
+              <div class="program-title-row"><h3>{program.name}</h3>{program.ease_to_raise && <span class={`ease-badge ease-${program.ease_to_raise}`}><span class="ease-dot" aria-hidden="true" />{easeLabel[program.ease_to_raise]}</span>}</div>
+              <p>{program.summary}</p>
+              <dl class="program-details">
+                <div><dt>Method</dt><dd><a class={semanticClass("method", program.method)} href={`/providers/?method=${program.method}`}>{formatProviderLabel(program.method)}</a></dd></div>
+                <div><dt>Channel</dt><dd>{program.channels.map(formatProviderLabel).join(", ")}</dd></div>
+                <div><dt>Inventory</dt><dd>{formatProviderLabel(program.inventory_model)}</dd></div>
+                <div><dt>Upfront cost</dt><dd>{formatProviderLabel(program.upfront_cost)}</dd></div>
+                <div><dt>Fulfillment</dt><dd>{program.fulfillment.map(formatProviderLabel).join(", ")}</dd></div>
+                <div><dt>Online ordering</dt><dd>{program.online_ordering === true ? "Yes" : program.online_ordering === false ? "No" : "Not applicable / not verified"}</dd></div>
+              </dl>
+              {program.products_services.length > 0 && <div class="program-products"><strong>Products / services</strong><div class="tags">{program.products_services.map((item) => <a class="product-link" href={`/providers/?product=${item}`}>{formatProviderLabel(item)}</a>)}</div></div>}
+            </article>
+          ))}
+        </div>
+      </section>
 
-            <p>
-              FundraisingDirectory.net researches provider information using
-              current sources. Organizations should always confirm current
-              pricing, terms, availability, and requirements directly with
-              the provider before starting a fundraiser.
-            </p>
-          </div>
+      <section class="research-columns">
+        <div><p class="eyebrow">Potential fit</p><h2>Best for</h2><ul class="clean-list">{content.best_for.map((item) => <li>{item}</li>)}</ul></div>
+        <div><p class="eyebrow eyebrow-purple">Before you choose</p><h2>Things to consider</h2><ul class="clean-list">{content.considerations.map((item) => <li>{item}</li>)}</ul></div>
+        <div><p class="eyebrow">Availability</p><h2>Where it operates</h2><p>{geography.countries.map((country) => country === "US" ? "United States" : country === "CA" ? "Canada" : country).join(" and ")}</p>{geography.notes && <p class="muted-copy">{geography.notes}</p>}</div>
+      </section>
 
-          <span class="verification-count">
-            {verification.sources.length} source{
-              verification.sources.length === 1 ? "" : "s"
-            } checked
-          </span>
-        </section>
+      <details class="sources-disclosure">
+        <summary><span><small>Research disclosure</small><strong>{verification.sources.length} source{verification.sources.length === 1 ? "" : "s"} checked · Last reviewed {formatDate(status.last_verified_at)}</strong></span><i aria-hidden="true"></i></summary>
+        <div class="sources-content">
+          <p>Provider details are summarized from the sources below. Confirm current pricing, terms, availability, and requirements directly with the provider.</p>
+          <ol>{verification.sources.map((source) => <li><a href={source.url} target="_blank" rel="noopener noreferrer">{formatProviderLabel(source.type)}</a><span>Checked {formatDate(source.checked_at)}</span>{source.notes && <p>{source.notes}</p>}</li>)}</ol>
+        </div>
+      </details>
 
-        <footer class="provider-disclaimer">
-          <strong>Independent directory notice:</strong>
-          FundraisingDirectory.net is an information and discovery resource.
-          Unless explicitly disclosed, it is not affiliated with, endorsed
-          by, or responsible for listed fundraising providers. Organizations
-          are responsible for evaluating providers and conducting their own
-          transactions.
-        </footer>
-      </article>
-    </main>
+      <footer class="provider-disclaimer"><strong>Independent directory notice:</strong> FundraisingDirectory.net is an information and discovery resource. Unless explicitly disclosed, it is not affiliated with, endorsed by, or responsible for listed fundraising providers. Organizations are responsible for evaluating providers and conducting their own transactions.</footer>
+    </article>
+  </main>
 </SiteLayout>

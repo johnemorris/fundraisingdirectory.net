@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import FeaturedFundraisers from "../components/home/FeaturedFundraisers.astro";
 import FundraiserFinder from "../components/home/FundraiserFinder.astro";
+import HowItWorks from "../components/home/HowItWorks.astro";
 import GroupDiscovery from "../components/home/GroupDiscovery.astro";
 import Guides from "../components/home/Guides.astro";
 import PopularMethods from "../components/home/PopularMethods.astro";
@@ -35,6 +36,7 @@ const pageDescription =
 >
   <main>
     <FundraiserFinder />
+    <HowItWorks />
     <PopularMethods />
     {featuredProvider && <FeaturedFundraisers provider={featuredProvider} />}
     <GroupDiscovery />

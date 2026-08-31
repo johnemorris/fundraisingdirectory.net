@@ -1,0 +1,46 @@
+---
+import type { FundraisingVisual } from "../data/visuals";
+
+interface Props {
+  providerName: string;
+  visual: FundraisingVisual | null;
+}
+
+const { providerName, visual } = Astro.props;
+const initials = providerName.split(/\s+/).map((part) => part[0]).join("").slice(0, 2);
+---
+
+<figure class:list={["provider-visual", { "provider-visual-fallback": !visual }]}>
+  {
+    visual ? (
+      <div class="provider-visual-image">
+        <img src={visual.src} alt={visual.alt} width="900" height="700" loading="eager" />
+      </div>
+    ) : (
+      <div class="provider-identity-art" aria-hidden="true">
+        <span class="identity-orbit"></span>
+        <strong>{initials}</strong>
+        <small>Provider profile</small>
+      </div>
+    )
+  }
+  <figcaption>{visual ? visual.caption : `Independent research profile for ${providerName}.`}</figcaption>
+</figure>
+
+<style>
+  .provider-visual { margin: 0; align-self: center; }
+  .provider-visual-image { position: relative; overflow: hidden; aspect-ratio: 1.05; border: 9px solid rgba(255,255,255,.72); border-radius: 48% 52% 38% 62% / 42% 38% 62% 58%; box-shadow: var(--shadow-lg); transform: rotate(2deg); }
+  .provider-visual-image::after { content: ""; position: absolute; inset: 0; background: linear-gradient(130deg, rgba(10,34,55,.18), transparent 55%); }
+  img { width: 100%; height: 100%; object-fit: cover; }
+  figcaption { max-width: 340px; margin: 13px auto 0; color: var(--text-muted); font-size: .72rem; line-height: 1.45; text-align: center; }
+  .provider-identity-art { position: relative; display: grid; min-height: 260px; place-content: center; overflow: hidden; border-radius: 46% 54% 60% 40% / 38% 42% 58% 62%; background: linear-gradient(145deg, var(--surface-cool), var(--purple-light)); color: var(--ink); text-align: center; }
+  .provider-identity-art::before, .provider-identity-art::after { content: ""; position: absolute; border-radius: 50%; }
+  .provider-identity-art::before { width: 90px; height: 90px; top: -22px; right: 14%; background: rgba(8,127,120,.24); }
+  .provider-identity-art::after { width: 72px; height: 72px; bottom: -17px; left: 9%; background: rgba(105,68,173,.22); }
+  .identity-orbit { position: absolute; inset: 15% 8%; border: 2px solid rgba(18,48,74,.16); border-radius: 50%; transform: rotate(-12deg); }
+  strong, small { position: relative; z-index: 1; }
+  strong { font-size: clamp(3.8rem, 8vw, 6.4rem); line-height: .8; letter-spacing: -.08em; }
+  small { margin-top: 15px; color: var(--teal-dark); font-size: .68rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+  @media (max-width: 780px) { .provider-visual { width: min(320px, 88vw); justify-self: center; } }
+  @media (prefers-reduced-motion: reduce) { .provider-visual-image, .identity-orbit { transform: none; } }
+</style>
