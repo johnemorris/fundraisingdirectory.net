@@ -27,10 +27,20 @@ export default {
 
     const canonicalPath = resolveLegacyCanonicalPath(pathname);
 
-    if (canonicalPath && pathname !== canonicalPath) {
-      url.pathname = canonicalPath;
+    if (canonicalPath) {
+      if (pathname !== canonicalPath) {
+        url.pathname = canonicalPath;
 
-      return Response.redirect(url.toString(), 301);
+        return Response.redirect(url.toString(), 301);
+      }
+
+      // Astro's directory build emits legacy routes at
+      // /Legacy-Route.html/index.html. Fetch the directory form internally so
+      // Cloudflare Assets does not redirect the public canonical .html URL to
+      // a trailing slash.
+      url.pathname = `${canonicalPath}/`;
+
+      return env.ASSETS.fetch(new Request(url, request));
     }
 
     return env.ASSETS.fetch(request);

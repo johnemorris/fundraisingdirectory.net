@@ -9,6 +9,15 @@ const assets = {
   },
 };
 
+function createRenderingAssets(requests) {
+  return {
+    fetch(request) {
+      requests.push(request.url);
+      return new Response("Rendered legacy page", { status: 200 });
+    },
+  };
+}
+
 test("normalizes known legacy route variants to one canonical URL", () => {
   const cases = new Map([
     ["/Educational-Resources.html/", "/Educational-Resources.html"],
@@ -67,6 +76,54 @@ test("redirects permanently without dropping the query string", async () => {
     response.headers.get("location"),
     "https://fundraisingdirectory.net/Educational-Resources.html?source=legacy",
   );
+});
+
+test("serves canonical legacy HTML URLs through the directory-index asset without redirecting", async () => {
+  const requests = [];
+  const response = await worker.fetch(
+    new Request(
+      "https://fundraisingdirectory.net/Fundraising-Resources.html?source=test",
+    ),
+    { ASSETS: createRenderingAssets(requests) },
+  );
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(requests, [
+    "https://fundraisingdirectory.net/Fundraising-Resources.html/?source=test",
+  ]);
+});
+
+test("redirects a trailing-slash legacy HTML URL exactly once and preserves its query", async () => {
+  const requests = [];
+  const response = await worker.fetch(
+    new Request(
+      "https://fundraisingdirectory.net/Fundraising-Resources.html/?source=test",
+    ),
+    { ASSETS: createRenderingAssets(requests) },
+  );
+
+  assert.equal(response.status, 301);
+  assert.equal(
+    response.headers.get("location"),
+    "https://fundraisingdirectory.net/Fundraising-Resources.html?source=test",
+  );
+  assert.deepEqual(requests, []);
+});
+
+test("serves every canonical legacy HTML route through its directory-index asset", async () => {
+  for (const route of legacyRoutes) {
+    const canonicalPath = `/${route.path}.html`;
+    const requests = [];
+    const response = await worker.fetch(
+      new Request(`https://fundraisingdirectory.net${canonicalPath}`),
+      { ASSETS: createRenderingAssets(requests) },
+    );
+
+    assert.equal(response.status, 200, canonicalPath);
+    assert.deepEqual(requests, [
+      `https://fundraisingdirectory.net${canonicalPath}/`,
+    ]);
+  }
 });
 
 test("passes unknown paths through to asset 404 handling", async () => {
