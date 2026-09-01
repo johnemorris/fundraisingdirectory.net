@@ -154,13 +154,74 @@
 
 .resources-context { margin-top: 50px; }
 
+.guides-intro {
+  display: grid;
+  grid-template-columns: minmax(260px, .8fr) minmax(0, 1.2fr);
+  gap: clamp(36px, 8vw, 100px);
+  align-items: end;
+  padding: 48px 0 34px;
+  border-bottom: 1px solid rgba(18,48,74,.16);
+}
+
+.guides-intro h2 {
+  margin: 5px 0 0;
+  color: var(--ink);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -.055em;
+}
+
+.guides-intro > p,
+.guide-group-heading p {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.guide-group {
+  display: grid;
+  grid-template-columns: minmax(230px, .65fr) minmax(0, 1.35fr);
+  gap: clamp(34px, 7vw, 90px);
+  padding: 42px 0;
+  border-bottom: 1px solid rgba(18,48,74,.16);
+}
+
+.guide-group-heading h2 {
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-size: clamp(1.45rem, 2.7vw, 2.1rem);
+  line-height: 1.1;
+  letter-spacing: -.035em;
+}
+
+.guide-links { border-top: 1px solid rgba(18,48,74,.13); }
+
+.guide-links a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 24px;
+  min-height: 96px;
+  padding: 18px 2px;
+  border-bottom: 1px solid rgba(18,48,74,.13);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.guide-links a > span { display: grid; gap: 6px; }
+.guide-links strong { font-size: 1.06rem; transition: color 140ms ease; }
+.guide-links small { color: var(--text-muted); font-size: .8rem; line-height: 1.55; }
+.guide-links i { color: var(--teal); font-size: 1.1rem; font-style: normal; }
+.guide-links a:hover strong { color: var(--teal-dark); }
+.guides-context { margin-top: 54px; }
+
 @media (max-width: 900px) {
   .historical-actions { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .historical-actions a { border-bottom: 1px solid rgba(18,48,74,.16); }
 }
 
 @media (max-width: 680px) {
-  .historical-intro, .historical-context, .resources-intro, .resources-planning { grid-template-columns: 1fr; }
+  .historical-intro, .historical-context, .resources-intro, .resources-planning, .guides-intro, .guide-group { grid-template-columns: 1fr; }
   .historical-actions { grid-template-columns: 1fr; }
   .historical-actions a { min-height: 118px; border-right: 0; }
   .historical-context { margin-top: 42px; padding: 30px 24px; }
@@ -168,5 +229,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .historical-actions a, .resources-index strong { transition: none; }
+  .historical-actions a, .resources-index strong, .guide-links strong { transition: none; }
 }

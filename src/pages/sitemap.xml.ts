@@ -15,6 +15,7 @@ export async function GET() {
     "/providers/",
     SITE_ROUTES.ideas,
     SITE_ROUTES.resources,
+    SITE_ROUTES.guides,
     "/about/",
     "/contact/",
     "/for-providers/",

@@ -23,6 +23,8 @@ export const SITE_ROUTES = {
   onlineFundraising: "/providers/?method=crowdfunding",
 } as const;
 
+export const SITE_CONTACT_EMAIL = "contact@fundraisingdirectory.net";
+
 export const PRIMARY_NAVIGATION = [
   { key: "ideas", label: "Fundraising Ideas", href: SITE_ROUTES.ideas },
   { key: "resources", label: "Fundraising Resources", href: SITE_ROUTES.resources },

@@ -107,7 +107,7 @@ export const guides = [
     label: "For schools",
   },
   {
-    title: "Fundraising Articles",
+    title: "Fundraising Guides",
     href: SITE_ROUTES.guides,
     featured: false,
     label: "More guidance",

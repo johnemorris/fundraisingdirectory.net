@@ -58,6 +58,7 @@
 }
 
 .information-notice {
+  grid-template-columns: 1fr !important;
   margin: 8px 0 24px;
   padding: 28px !important;
   border: 1px solid var(--teal-border) !important;
@@ -73,6 +74,27 @@
   color: var(--teal-dark);
   font-weight: 800;
   text-decoration: none;
+}
+
+.information-email {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  margin-top: 14px;
+  color: var(--teal-dark);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 850;
+  overflow-wrap: anywhere;
+  text-underline-offset: 4px;
+}
+
+.information-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 20px;
+  color: var(--text-muted);
+  line-height: 1.65;
 }
 
 @media (max-width: 620px) {

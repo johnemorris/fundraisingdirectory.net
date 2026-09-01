@@ -8,9 +8,9 @@ export const legacyRoutes = [
   },
   {
     path: "Fundraising-Articles",
-    title: "Fundraising Articles",
+    title: "Fundraising Guides",
     description:
-      "Fundraising guides, ideas, planning tips, and educational resources for organizations running fundraising campaigns.",
+      "Browse practical fundraising guides organized by planning needs, fundraising approach, and group type.",
     type: "resource",
   },
   {
