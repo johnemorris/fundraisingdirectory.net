@@ -1,0 +1,42 @@
+---
+import InformationPage from "../components/InformationPage.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { SITE_ROUTES } from "../data/site";
+import "../styles/information.css";
+---
+
+<SiteLayout
+  title="Fundraising Ideas | FundraisingDirectory.net"
+  description="Explore fundraising ideas by approach and group, then compare relevant providers and practical guides."
+>
+  <InformationPage
+    eyebrow="Fundraising ideas"
+    breadcrumbLabel="Fundraising Ideas"
+    title="Find a fundraising approach that fits."
+    intro="Start with the way you want to raise money or the kind of group you support. These paths lead to current provider research and practical guidance."
+  >
+    <section>
+      <h2>Explore by approach</h2>
+      <div>
+        <p>Compare product sales, online fundraising, events, direct donations, and other established approaches.</p>
+        <a class="information-link" href={SITE_ROUTES.directory}>Browse all fundraising approaches →</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Explore by group</h2>
+      <div>
+        <p>Find provider options for schools and PTOs, sports teams, churches, nonprofits, and community groups.</p>
+        <a class="information-link" href={SITE_ROUTES.schools}>Start with school fundraising →</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Use practical resources</h2>
+      <div>
+        <p>Review available guides and research tools before choosing a program or contacting a provider.</p>
+        <a class="information-link" href={SITE_ROUTES.resources}>Open Fundraising Resources →</a>
+      </div>
+    </section>
+  </InformationPage>
+</SiteLayout>

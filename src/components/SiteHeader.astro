@@ -22,9 +22,11 @@ const isProviderSection = currentPath.startsWith(SITE_ROUTES.directory) || Boole
 const exactPrimary = PRIMARY_NAVIGATION.find((item) => item.href === currentPath);
 const currentTopKey = isProviderSection
   ? "providers"
+  : exactPrimary?.key
+    ? exactPrimary.key
   : legacyRoute && (legacyRoute.type === "resource" || legacyRoute.type === "product")
     ? "ideas"
-    : exactPrimary?.key;
+    : undefined;
 const providerParentIsPage = currentTopKey === "providers" && !currentProviderChildKey;
 ---
 

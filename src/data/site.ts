@@ -7,7 +7,8 @@ export const SITE_ROUTES = {
   forProviders: "/for-providers/",
   privacy: "/privacy/",
   disclaimer: "/disclaimer/",
-  ideas: "/Fundraising-Resources.html",
+  ideas: "/ideas/",
+  resources: "/Fundraising-Resources.html",
   guides: "/Fundraising-Articles.html",
   cookieDough: "/Cookie-Dough.html",
   candy: "/Candy.html",
@@ -24,6 +25,7 @@ export const SITE_ROUTES = {
 
 export const PRIMARY_NAVIGATION = [
   { key: "ideas", label: "Fundraising Ideas", href: SITE_ROUTES.ideas },
+  { key: "resources", label: "Fundraising Resources", href: SITE_ROUTES.resources },
   { key: "about", label: "About", href: SITE_ROUTES.about },
   { key: "contact", label: "Contact", href: SITE_ROUTES.contact },
   { key: "for-providers", label: "For Providers", href: SITE_ROUTES.forProviders },
