@@ -1,16 +1,39 @@
 ---
 import { GROUP_OPTIONS, METHOD_OPTIONS } from "../data/semanticTaxonomy";
 
+interface Props {
+  idPrefix: string;
+}
+
+const { idPrefix } = Astro.props;
 ---
 
-<fieldset data-group-fieldset>
-  <legend>Group type</legend>
-  <label><input type="radio" name="group" value="" /> <span>All group types</span></label>
-  {GROUP_OPTIONS.map((option) => <label class={`semantic-${option.tone}`}><input type="radio" name="group" value={option.value} /> <span>{option.label}</span></label>)}
-  <label><input type="radio" name="group" value="other" /> <span>Any other group type</span></label>
-</fieldset>
+<div class="filter-facet" data-filter-facet data-filter-facet-kind="group">
+  <button class="filter-facet-toggle" type="button" aria-expanded="true" aria-controls={`${idPrefix}-group-options`} data-filter-facet-toggle>
+    <span>Group type</span>
+    <small data-filter-facet-summary>All group types</small>
+    <i aria-hidden="true"></i>
+  </button>
+  <div class="filter-facet-panel" id={`${idPrefix}-group-options`} data-filter-facet-panel>
+    <fieldset data-group-fieldset>
+      <legend>Group type</legend>
+      <label><input type="radio" name="group" value="" /> <span>All group types</span></label>
+      {GROUP_OPTIONS.map((option) => <label class={`semantic-${option.tone}`}><input type="radio" name="group" value={option.value} /> <span>{option.label}</span></label>)}
+      <label><input type="radio" name="group" value="other" /> <span>Any other group type</span></label>
+    </fieldset>
+  </div>
+</div>
 
-<fieldset>
-  <legend>Fundraising methods</legend>
-  {METHOD_OPTIONS.map((option) => <label class={`semantic-${option.tone}`}><input type="checkbox" name="method" value={option.value} /> <span>{option.label}</span></label>)}
-</fieldset>
+<div class="filter-facet" data-filter-facet data-filter-facet-kind="method">
+  <button class="filter-facet-toggle" type="button" aria-expanded="false" aria-controls={`${idPrefix}-method-options`} data-filter-facet-toggle>
+    <span>Fundraising methods</span>
+    <small data-filter-facet-summary>Choose methods</small>
+    <i aria-hidden="true"></i>
+  </button>
+  <div class="filter-facet-panel" id={`${idPrefix}-method-options`} data-filter-facet-panel hidden>
+    <fieldset>
+      <legend>Fundraising methods</legend>
+      {METHOD_OPTIONS.map((option) => <label class={`semantic-${option.tone}`}><input type="checkbox" name="method" value={option.value} /> <span>{option.label}</span></label>)}
+    </fieldset>
+  </div>
+</div>

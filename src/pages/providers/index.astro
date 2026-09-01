@@ -7,7 +7,7 @@ import SiteLayout from "../../layouts/SiteLayout.astro";
 import { DISCOVERY_GROUP_CONTEXTS } from "../../data/discovery";
 import { formatProviderLabel } from "../../data/providerLabels";
 import { providerProfilePath } from "../../data/providerLinks";
-import { GROUP_OPTIONS, METHOD_OPTIONS, semanticClass } from "../../data/semanticTaxonomy";
+import { GROUP_OPTIONS, METHOD_OPTIONS, semanticClass, semanticToneClass } from "../../data/semanticTaxonomy";
 import { PRODUCTS_SERVICES } from "../../data/taxonomies/products-services";
 import "../../styles/providers.css";
 
@@ -57,7 +57,7 @@ const filterTones = Object.fromEntries([
         <details class="filter-panel" data-filter-panel>
           <summary><span aria-hidden="true">+</span> Filter <span class="filter-chevron" aria-hidden="true">⌄</span></summary>
           <form class="filter-fields" action="/providers/" method="get" data-filter-form>
-            <div class="filter-options"><ProviderFilterFields /></div>
+            <div class="filter-options"><ProviderFilterFields idPrefix="compact-filter" /></div>
             <div class="filter-actions">
               <button class="button button-primary" type="submit">Apply filters</button>
               <button class="filter-close" type="button" data-filter-close>Cancel</button>
@@ -80,7 +80,7 @@ const filterTones = Object.fromEntries([
           <p data-facet-guidance>Choose one group and any relevant methods.</p>
         </div>
         <form class="filter-fields facet-form" action="/providers/" method="get" data-filter-form>
-          <div class="filter-options"><ProviderFilterFields /></div>
+          <div class="filter-options"><ProviderFilterFields idPrefix="desktop-filter" /></div>
           <div class="filter-actions">
             <button class="button button-primary" type="submit">Apply filters</button>
           </div>
@@ -94,7 +94,7 @@ const filterTones = Object.fromEntries([
         const visibleOrganizations = classification.organizations.slice(0, 5);
         const extraOrganizations = classification.organizations.slice(5);
         return (
-          <article class="provider-card" data-organizations={classification.organizations.join(",")} data-methods={classification.methods.join(",")} data-products={classification.products_services.join(",")}>
+          <article class:list={["provider-card", "provider-card-accent", semanticToneClass("method", classification.methods[0])]} data-organizations={classification.organizations.join(",")} data-methods={classification.methods.join(",")} data-products={classification.products_services.join(",")}>
             <div class="provider-card-top">
               <div>
                 <p class="provider-research"><span aria-hidden="true">✓</span> {verificationLabel[provider.data.verification.level]}</p>
@@ -197,11 +197,38 @@ const filterTones = Object.fromEntries([
   }
 
   filterForms.forEach((filterForm) => {
-    const groupFieldset = filterForm.querySelector("[data-group-fieldset]");
-    if (groupFieldset) groupFieldset.hidden = hasCategoryContext;
+    const groupFacet = filterForm.querySelector('[data-filter-facet-kind="group"]');
+    if (groupFacet) groupFacet.hidden = hasCategoryContext;
     const groupControl = filterForm.querySelector(`input[name="group"][value="${group ?? ""}"]`);
     if (groupControl) groupControl.checked = true;
     methods.forEach((value) => { const control = filterForm.querySelector(`input[name="method"][value="${value}"]`); if (control) control.checked = true; });
+
+    filterForm.querySelectorAll("[data-filter-facet]").forEach((facet) => {
+      const kind = facet.dataset.filterFacetKind;
+      const toggle = facet.querySelector("[data-filter-facet-toggle]");
+      const panel = facet.querySelector("[data-filter-facet-panel]");
+      const facetSummary = facet.querySelector("[data-filter-facet-summary]");
+      if (!toggle || !panel || !facetSummary) return;
+
+      const updateFacetSummary = () => {
+        const checked = Array.from(facet.querySelectorAll("input:checked")).filter((input) => input.value);
+        if (kind === "group") facetSummary.textContent = checked[0] ? filterLabels[checked[0].value] : "All group types";
+        else facetSummary.textContent = checked.length ? `${checked.length} selected` : "Choose methods";
+      };
+      const selectedCount = Array.from(facet.querySelectorAll("input:checked")).filter((input) => input.value).length;
+      const isDesktopRail = filterForm.classList.contains("facet-form");
+      const shouldOpen = selectedCount > 0 || (!isDesktopRail && ((kind === "group" && !hasCategoryContext) || (kind === "method" && hasCategoryContext)));
+      toggle.setAttribute("aria-expanded", String(shouldOpen));
+      panel.hidden = !shouldOpen;
+      updateFacetSummary();
+      toggle.addEventListener("click", () => {
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!expanded));
+        panel.hidden = expanded;
+      });
+      facet.querySelectorAll("input").forEach((input) => input.addEventListener("change", updateFacetSummary));
+    });
+
     filterForm.addEventListener("submit", (event) => { event.preventDefault(); const data = new FormData(filterForm); navigateWith({ nextGroup: hasCategoryContext ? group : data.get("group") || null, nextMethods: data.getAll("method"), nextProducts: products }); });
   });
   const facetGuidance = document.querySelector("[data-facet-guidance]");
