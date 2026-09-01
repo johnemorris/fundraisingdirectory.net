@@ -46,7 +46,21 @@ const { eyebrow, title, description, tone = "navy", visualLabel = "Fundraising d
   .discovery-blue { --discovery-accent: var(--blue); --discovery-soft: rgba(34, 111, 193, 0.18); }
   .discovery-purple { --discovery-accent: var(--purple); --discovery-soft: rgba(105, 68, 173, 0.18); }
   .discovery-warm { --discovery-accent: #b26028; --discovery-soft: rgba(242, 184, 75, 0.2); }
-  .discovery-navy { --discovery-accent: var(--ink-soft); --discovery-soft: rgba(18, 48, 74, 0.13); }
+  .discovery-navy {
+    --discovery-accent: var(--teal-bright);
+    --discovery-soft: rgba(140, 224, 208, 0.14);
+    margin-top: 24px;
+    padding-inline: clamp(28px, 5vw, 64px);
+    overflow: hidden;
+    border-radius: 30px 30px 60px 30px;
+    background:
+      radial-gradient(circle at 86% 12%, rgba(105, 68, 173, 0.3), transparent 31%),
+      linear-gradient(125deg, var(--ink-deep), var(--ink) 66%, #164966);
+    color: #fff;
+  }
+  .discovery-navy h1 { color: #fff; }
+  .discovery-navy .discovery-description { color: var(--text-on-dark-muted); }
+  .discovery-navy .discovery-signal { color: #fff; }
 
   .discovery-copy { max-width: 780px; }
   .eyebrow { color: var(--discovery-accent); }
@@ -68,6 +82,7 @@ const { eyebrow, title, description, tone = "navy", visualLabel = "Fundraising d
 
   @media (max-width: 760px) {
     .discovery-hero { grid-template-columns: 1fr; min-height: auto; padding: 38px 0 50px; }
+    .discovery-navy { padding-inline: 24px; }
     h1 { font-size: clamp(2.7rem, 13vw, 4.2rem); overflow-wrap: anywhere; }
     .discovery-signal { width: min(220px, 64vw); justify-self: center; }
   }

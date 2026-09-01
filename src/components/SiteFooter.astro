@@ -23,9 +23,9 @@ const columns = [
     ],
   },
   {
-    title: "Providers",
+    title: "For Providers",
     links: [
-      ["Provider listings — Coming soon", null],
+      ["Provider Information", SITE_ROUTES.forProviders],
     ],
   },
   {
@@ -53,9 +53,7 @@ const columns = [
       {columns.map((column) => (
         <div class="footer-column">
           <h2>{column.title}</h2>
-          {column.links.map(([label, href]) =>
-            href ? <a href={href}>{label}</a> : <span>{label}</span>
-          )}
+          {column.links.map(([label, href]) => <a href={href}>{label}</a>)}
         </div>
       ))}
     </div>

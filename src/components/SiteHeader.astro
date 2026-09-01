@@ -3,112 +3,214 @@ import Brand from "./Brand.astro";
 import { getLegacyDiscoveryContext } from "../data/discovery";
 import { legacyRoutes } from "../data/legacyRoutes";
 import {
-  MORE_NAVIGATION,
   PRIMARY_NAVIGATION,
+  PROVIDER_METHOD_NAVIGATION,
+  PROVIDER_ORGANIZATION_NAVIGATION,
   SITE_ROUTES,
 } from "../data/site";
 
 const currentPath = Astro.url.pathname;
 const currentGroup = Astro.url.searchParams.get("group");
 const currentMethods = Astro.url.searchParams.getAll("method");
-const directItems = [...PRIMARY_NAVIGATION, ...MORE_NAVIGATION];
-const groupItem = directItems.find((item) => "group" in item && item.group === currentGroup);
-const methodItem = directItems.find((item) => "method" in item && currentMethods.includes(item.method));
-const exactItem = directItems.find((item) => item.href.split(/[?#]/)[0] === currentPath);
+const currentOrganization = PROVIDER_ORGANIZATION_NAVIGATION.find((item) => item.group === currentGroup);
+const currentMethod = PROVIDER_METHOD_NAVIGATION.find((item) => currentMethods.includes(item.method));
 const legacyRoute = legacyRoutes.find((route) => `/${route.path}.html` === currentPath);
 const legacyContext = legacyRoute ? getLegacyDiscoveryContext(legacyRoute) : null;
-const legacyGroupItem = directItems.find((item) => "group" in item && item.group === legacyContext?.group);
-const currentKey = groupItem?.key
-  ?? methodItem?.key
-  ?? legacyGroupItem?.key
-  ?? (legacyRoute && (legacyRoute.type === "resource" || legacyRoute.type === "product") ? "ideas" : null)
-  ?? (currentPath.startsWith(SITE_ROUTES.directory) ? "providers" : null)
-  ?? exactItem?.key
-  ?? null;
-const providerContextActive = currentPath.startsWith(SITE_ROUTES.directory) && currentKey !== "providers";
-const moreCurrent = MORE_NAVIGATION.some((item) => item.key === currentKey);
+const legacyOrganization = PROVIDER_ORGANIZATION_NAVIGATION.find((item) => item.group === legacyContext?.group);
+const currentProviderChildKey = currentOrganization?.key ?? (!currentGroup ? currentMethod?.key : undefined) ?? legacyOrganization?.key;
+const isProviderSection = currentPath.startsWith(SITE_ROUTES.directory) || Boolean(legacyContext?.group);
+const exactPrimary = PRIMARY_NAVIGATION.find((item) => item.href === currentPath);
+const currentTopKey = isProviderSection
+  ? "providers"
+  : legacyRoute && (legacyRoute.type === "resource" || legacyRoute.type === "product")
+    ? "ideas"
+    : exactPrimary?.key;
+const providerParentIsPage = currentTopKey === "providers" && !currentProviderChildKey;
 ---
 
-<header class="site-header">
+<header class="site-header" data-site-header>
   <div class="site-header-main shell-wide">
     <Brand />
 
     <nav class="desktop-primary-nav" aria-label="Primary navigation">
+      <div class:list={["provider-menu", { "is-current-section": currentTopKey === "providers" }]} data-provider-menu>
+        <div class="provider-menu-parent">
+          <a class="site-nav-link provider-parent-link" href={SITE_ROUTES.directory} aria-current={providerParentIsPage ? "page" : undefined} aria-label={currentTopKey === "providers" && !providerParentIsPage ? "Fundraising Providers, current section" : undefined}>Fundraising Providers</a>
+          <button class="provider-menu-toggle" type="button" aria-expanded="false" aria-controls="provider-discovery-menu" aria-label="Open Fundraising Providers menu" data-provider-menu-toggle><span aria-hidden="true">⌄</span></button>
+        </div>
+
+        <div class="provider-menu-panel" id="provider-discovery-menu" data-provider-menu-panel hidden>
+          <div class="provider-menu-group provider-menu-view-all">
+            <p>View all</p>
+            <a href={SITE_ROUTES.directory}><span>All Fundraising Providers</span><span aria-hidden="true">→</span></a>
+          </div>
+          <div class="provider-menu-columns">
+            <div class="provider-menu-group">
+              <p>By organization</p>
+              {PROVIDER_ORGANIZATION_NAVIGATION.map((item) => (
+                <a href={item.href} aria-current={item.key === currentProviderChildKey ? "page" : undefined} data-provider-child={item.key} data-nav-group={item.group}>{item.label}</a>
+              ))}
+            </div>
+            <div class="provider-menu-group">
+              <p>By fundraising method</p>
+              {PROVIDER_METHOD_NAVIGATION.map((item) => (
+                <a href={item.href} aria-current={item.key === currentProviderChildKey ? "page" : undefined} data-provider-child={item.key} data-nav-method={item.method}>{item.label}</a>
+              ))}
+            </div>
+          </div>
+          <a class="provider-menu-all-link" href={SITE_ROUTES.directory}>View all fundraising providers <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+
       {PRIMARY_NAVIGATION.map((item) => (
-        <a class:list={["site-nav-link", { "context-active": item.key === "providers" && providerContextActive }]} href={item.href} aria-current={item.key === currentKey ? "page" : undefined} data-nav-key={item.key} data-nav-group={"group" in item ? item.group : undefined}>
-          {item.label}
-        </a>
+        <a class="site-nav-link" href={item.href} aria-current={item.key === currentTopKey ? "page" : undefined}>{item.label}</a>
       ))}
-      <details class:list={["desktop-more-menu", { "has-current": moreCurrent }]}>
-        <summary>More <span aria-hidden="true">⌄</span></summary>
-        <nav aria-label="More destinations">
-          {MORE_NAVIGATION.map((item) => <a href={item.href} aria-current={item.key === currentKey ? "page" : undefined} data-nav-key={item.key} data-nav-group={"group" in item ? item.group : undefined} data-nav-method={"method" in item ? item.method : undefined}>{item.label}</a>)}
-        </nav>
-      </details>
     </nav>
 
-    <div class="provider-nav" aria-label="For fundraising providers">
-      <span class="provider-audience-title">For Fundraising Providers</span>
-      <span class="provider-coming-soon">Coming soon</span>
-    </div>
-
-    <details class="mobile-menu">
-      <summary aria-label="Navigation menu">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </summary>
+    <details class="mobile-menu" data-mobile-menu>
+      <summary aria-label="Navigation menu"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></summary>
       <div class="mobile-menu-panel">
-        <nav class="mobile-primary-nav" aria-label="Mobile primary navigation">
-          {PRIMARY_NAVIGATION.map((item) => <a href={item.href} aria-current={item.key === currentKey ? "page" : undefined} data-nav-key={item.key} data-nav-group={"group" in item ? item.group : undefined}>{item.label}<span aria-hidden="true">→</span></a>)}
+        <nav aria-label="Mobile primary navigation">
+          <details class:list={["mobile-provider-disclosure", { "is-current-section": currentTopKey === "providers" }]} data-mobile-provider-menu>
+            <summary aria-label={currentTopKey === "providers" ? "Fundraising Providers, current section" : undefined}>Fundraising Providers <span aria-hidden="true">⌄</span></summary>
+            <div class="mobile-provider-links">
+              <a href={SITE_ROUTES.directory} aria-current={providerParentIsPage ? "page" : undefined}>All Fundraising Providers</a>
+              <p>By organization</p>
+              {PROVIDER_ORGANIZATION_NAVIGATION.map((item) => (
+                <a href={item.href} aria-current={item.key === currentProviderChildKey ? "page" : undefined} data-nav-group={item.group}>{item.label}</a>
+              ))}
+              <p>By fundraising method</p>
+              {PROVIDER_METHOD_NAVIGATION.map((item) => (
+                <a href={item.href} aria-current={item.key === currentProviderChildKey ? "page" : undefined} data-nav-method={item.method}>{item.label}</a>
+              ))}
+            </div>
+          </details>
+          <div class="mobile-top-links">
+            {PRIMARY_NAVIGATION.map((item) => (
+              <a href={item.href} aria-current={item.key === currentTopKey ? "page" : undefined}>{item.label}<span aria-hidden="true">→</span></a>
+            ))}
+          </div>
         </nav>
-        <p class="mobile-menu-label">More destinations</p>
-        <nav class="mobile-secondary-nav" aria-label="More mobile destinations">
-          {MORE_NAVIGATION.map((item) => <a href={item.href} aria-current={item.key === currentKey ? "page" : undefined} data-nav-key={item.key} data-nav-group={"group" in item ? item.group : undefined} data-nav-method={"method" in item ? item.method : undefined}>{item.label}</a>)}
-        </nav>
-        <div class="mobile-provider-nav" aria-label="For fundraising providers">
-          <p>For Fundraising Providers</p>
-          <span>Listing information and onboarding <strong>Coming soon</strong></span>
-        </div>
       </div>
     </details>
   </div>
-
 </header>
 
 <script>
-  const mobileMenu = document.querySelector<HTMLDetailsElement>(".mobile-menu");
-  const navigationParams = new URLSearchParams(window.location.search);
-  const navigationGroup = navigationParams.get("group");
-  const navigationMethods = navigationParams.getAll("method");
-  const navigationMethod = Array.from(document.querySelectorAll<HTMLElement>("[data-nav-method]"))
-    .map((link) => link.dataset.navMethod)
-    .find((method) => method && navigationMethods.includes(method));
+  const header = document.querySelector<HTMLElement>("[data-site-header]");
+  const providerMenu = document.querySelector<HTMLElement>("[data-provider-menu]");
+  const providerToggle = document.querySelector<HTMLButtonElement>("[data-provider-menu-toggle]");
+  const providerPanel = document.querySelector<HTMLElement>("[data-provider-menu-panel]");
+  const mobileMenu = document.querySelector<HTMLDetailsElement>("[data-mobile-menu]");
+  const mobileProviderMenu = document.querySelector<HTMLDetailsElement>("[data-mobile-provider-menu]");
+  let closeTimer: number | undefined;
+  let scrollFrame = 0;
+  let menuPinned = false;
 
   if (window.location.pathname === "/providers/") {
-    const contextLinks = navigationGroup
-      ? Array.from(document.querySelectorAll<HTMLElement>("[data-nav-group]"))
-          .filter((link) => link.dataset.navGroup === navigationGroup)
+    const params = new URLSearchParams(window.location.search);
+    const group = params.get("group");
+    const methods = params.getAll("method");
+    const activeMethod = methods.find((method) => document.querySelector(`[data-nav-method="${CSS.escape(method)}"]`));
+    const childLinks = group
+      ? Array.from(document.querySelectorAll<HTMLElement>(`[data-nav-group="${CSS.escape(group)}"]`))
       : Array.from(document.querySelectorAll<HTMLElement>("[data-nav-method]"))
-          .filter((link) => link.dataset.navMethod === navigationMethod);
+          .filter((link) => link.dataset.navMethod === activeMethod);
 
-    if (contextLinks.length > 0) {
-      document.querySelectorAll<HTMLElement>("[data-nav-key='providers']").forEach((link) => {
-        link.removeAttribute("aria-current");
-        link.classList.add("context-active");
-      });
-      contextLinks.forEach((link) => link.setAttribute("aria-current", "page"));
-      if (contextLinks.some((link) => link.closest(".desktop-more-menu"))) {
-        document.querySelector(".desktop-more-menu")?.classList.add("has-current");
-      }
+    if (childLinks.length > 0) {
+      document.querySelectorAll<HTMLElement>(".provider-parent-link[aria-current], .mobile-provider-links [aria-current]")
+        .forEach((link) => link.removeAttribute("aria-current"));
+      childLinks.forEach((link) => link.setAttribute("aria-current", "page"));
+      providerMenu?.classList.add("is-current-section");
+      mobileProviderMenu?.classList.add("is-current-section");
+      document.querySelector(".provider-parent-link")?.setAttribute("aria-label", "Fundraising Providers, current section");
     }
   }
 
-  mobileMenu?.addEventListener("click", (event) => {
-    const link = (event.target as Element).closest("a");
-    if (!link) return;
+  const openProviderMenu = () => {
+    if (!providerMenu || !providerToggle || !providerPanel) return;
+    window.clearTimeout(closeTimer);
+    providerPanel.hidden = false;
+    providerMenu.classList.add("is-open");
+    providerToggle.setAttribute("aria-expanded", "true");
+    providerToggle.setAttribute("aria-label", "Close Fundraising Providers menu");
+  };
 
-    const destination = new URL(link.href, window.location.href);
-    if (destination.origin === window.location.origin) mobileMenu.removeAttribute("open");
+  const closeProviderMenu = (returnFocus = false) => {
+    if (!providerMenu || !providerToggle || !providerPanel) return;
+    window.clearTimeout(closeTimer);
+    providerPanel.hidden = true;
+    providerMenu.classList.remove("is-open");
+    providerToggle.setAttribute("aria-expanded", "false");
+    providerToggle.setAttribute("aria-label", "Open Fundraising Providers menu");
+    menuPinned = false;
+    if (returnFocus) providerToggle.focus();
+  };
+
+  const scheduleProviderClose = () => {
+    window.clearTimeout(closeTimer);
+    closeTimer = window.setTimeout(() => closeProviderMenu(), 180);
+  };
+
+  providerMenu?.addEventListener("pointerenter", openProviderMenu);
+  providerMenu?.addEventListener("pointerleave", scheduleProviderClose);
+  providerMenu?.addEventListener("focusout", (event) => {
+    if (!providerMenu.contains(event.relatedTarget as Node | null)) scheduleProviderClose();
   });
+  providerToggle?.addEventListener("click", () => {
+    if (providerPanel?.hidden) {
+      openProviderMenu();
+      menuPinned = true;
+    } else if (!menuPinned) {
+      menuPinned = true;
+    } else {
+      closeProviderMenu();
+    }
+  });
+
+  document.addEventListener("pointerdown", (event) => {
+    const target = event.target as Node;
+    if (providerMenu && !providerMenu.contains(target)) closeProviderMenu();
+    if (mobileMenu?.open && !mobileMenu.contains(target)) {
+      mobileMenu.removeAttribute("open");
+      mobileProviderMenu?.removeAttribute("open");
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    if (providerPanel && !providerPanel.hidden) {
+      event.preventDefault();
+      closeProviderMenu(true);
+      return;
+    }
+    if (mobileProviderMenu?.open) {
+      mobileProviderMenu.removeAttribute("open");
+      mobileProviderMenu.querySelector("summary")?.focus();
+      return;
+    }
+    if (mobileMenu?.open) {
+      mobileMenu.removeAttribute("open");
+      mobileProviderMenu?.removeAttribute("open");
+      mobileMenu.querySelector(":scope > summary")?.focus();
+    }
+  });
+
+  document.querySelectorAll(".site-header a").forEach((link) => {
+    link.addEventListener("click", () => {
+      closeProviderMenu();
+      mobileMenu?.removeAttribute("open");
+      mobileProviderMenu?.removeAttribute("open");
+    });
+  });
+
+  const updateScrolledHeader = () => {
+    scrollFrame = 0;
+    header?.classList.toggle("is-scrolled", window.scrollY > 72);
+  };
+  const requestHeaderUpdate = () => {
+    if (!scrollFrame) scrollFrame = window.requestAnimationFrame(updateScrolledHeader);
+  };
+  updateScrolledHeader();
+  window.addEventListener("scroll", requestHeaderUpdate, { passive: true });
 </script>

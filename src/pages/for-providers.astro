@@ -1,0 +1,48 @@
+---
+import InformationPage from "../components/InformationPage.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { SITE_ROUTES } from "../data/site";
+import "../styles/information.css";
+---
+
+<SiteLayout
+  title="For Fundraising Providers | FundraisingDirectory.net"
+  description="Learn about the future provider listing and relationship options planned for FundraisingDirectory.net."
+>
+  <InformationPage
+    eyebrow="For providers"
+    breadcrumbLabel="For Providers"
+    title="A future home for provider relationships."
+    intro="FundraisingDirectory.net is an independent discovery directory that helps groups research fundraising approaches, programs, and providers."
+  >
+    <section class="information-notice">
+      <h2>Provider onboarding is not yet open</h2>
+      <p>
+        We are not currently accepting listing submissions or claim requests. This
+        page will remain the durable destination for provider information as those
+        capabilities become available.
+      </p>
+    </section>
+
+    <section>
+      <h2>What is planned</h2>
+      <p>
+        Providers may eventually be able to submit, claim, and manage factual
+        listing information. Featured or other provider opportunities may also be
+        added later, with clear labeling that preserves the directory's independent
+        role.
+      </p>
+    </section>
+
+    <section>
+      <h2>What visitors can use now</h2>
+      <div>
+        <p>
+          The public directory is available now for researching providers and
+          following verified outbound links to provider websites.
+        </p>
+        <a class="information-link" href={SITE_ROUTES.directory}>Browse fundraising providers →</a>
+      </div>
+    </section>
+  </InformationPage>
+</SiteLayout>

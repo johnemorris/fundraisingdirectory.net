@@ -15,6 +15,7 @@ export async function GET() {
     "/providers/",
     "/about/",
     "/contact/",
+    "/for-providers/",
     "/privacy/",
     "/disclaimer/",
     ...providers.map((provider) => providerProfilePath(provider.data.identity.slug)),
