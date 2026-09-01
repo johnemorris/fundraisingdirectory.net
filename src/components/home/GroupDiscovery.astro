@@ -13,21 +13,19 @@ import { groupPaths } from "../../data/homepage";
         <span class="group-ring group-ring-two"></span>
         <span class="group-dot group-dot-one"></span>
         <span class="group-dot group-dot-two"></span>
-        <div><strong>5</strong><span>group paths</span></div>
+        <div><strong>Find your fit</strong><span>Explore by group</span></div>
       </div>
     </div>
 
-    <ol class="group-list">
+    <ul class="group-list">
       {groupPaths.map((group) => (
         <li>
           <a href={group.href}>
-            <span class:list={["group-number", `group-number-${group.tone}`]}>{group.number}</span>
             <span class="group-copy"><strong>{group.title}</strong><span>{group.description}</span></span>
             <span class="group-arrow" aria-hidden="true">→</span>
           </a>
         </li>
       ))}
-    </ol>
+    </ul>
   </div>
 </section>
-

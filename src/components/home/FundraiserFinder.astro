@@ -1,7 +1,6 @@
 ---
 import { finderGroups, finderInterests } from "../../data/homepage";
 import { SITE_ROUTES } from "../../data/site";
-import { semanticToneClass } from "../../data/semanticTaxonomy";
 ---
 
 <section class="hero-section" id="finder" aria-labelledby="hero-title">
@@ -26,45 +25,35 @@ import { semanticToneClass } from "../../data/semanticTaxonomy";
         </div>
 
         <fieldset class="finder-question">
-          <legend><span>1</span> Who are you fundraising for?</legend>
-          <div class="finder-options finder-groups">
-            {finderGroups.map((group, index) => (
-              <label class:list={["finder-choice", semanticToneClass("group", group.value)]}>
-                <input type="radio" name="group" value={group.value} required checked={index === 0} />
-                <span>{group.label}</span>
-              </label>
-            ))}
-          </div>
+          <legend>Who are you fundraising for?</legend>
+          <select class="finder-select" name="group" aria-label="Choose a fundraising group">
+            <option value="">Any group</option>
+            {finderGroups.map((group) => <option value={group.value}>{group.label}</option>)}
+          </select>
         </fieldset>
 
         <fieldset class="finder-question">
-          <legend><span>2</span> What sounds interesting?</legend>
-          <p class="finder-help">Choose as many as you like, or jump straight to ideas.</p>
-          <div class="finder-options finder-interests">
-            {finderInterests.map((interest) => (
-              <label class:list={["finder-choice", "finder-choice-icon", semanticToneClass("method", interest.value)]}>
-                <input type="checkbox" name="method" value={interest.value} />
-                <span class="choice-icon" data-icon={interest.icon} aria-hidden="true"></span>
-                <span>{interest.label}</span>
-              </label>
-            ))}
-            <a
-              class="finder-choice finder-choice-icon finder-escape"
-              href={SITE_ROUTES.ideas}
-            >
-              <span class="choice-icon" data-icon="spark" aria-hidden="true"></span>
-              <span>Not Sure — Show Me Ideas</span>
-            </a>
-          </div>
+          <legend>What sounds interesting?</legend>
+          <details class="finder-multiselect">
+            <summary>
+              <span data-method-summary>Any approach</span>
+              <span class="finder-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="finder-method-options">
+              {finderInterests.map((interest) => (
+                <label>
+                  <input type="checkbox" name="method" value={interest.value} data-label={interest.label} />
+                  <span>{interest.label}</span>
+                </label>
+              ))}
+            </div>
+          </details>
         </fieldset>
 
         <div class="finder-actions">
           <button class="button button-primary button-large" type="submit">
             Find Fundraisers <span aria-hidden="true">→</span>
           </button>
-          <a class="finder-search-link" href={SITE_ROUTES.directory}>
-            Already know what you're looking for? <span>Search fundraisers →</span>
-          </a>
         </div>
       </form>
     </div>
@@ -79,11 +68,58 @@ import { semanticToneClass } from "../../data/semanticTaxonomy";
           fetchpriority="high"
         />
       </div>
-      <div class="hero-note hero-note-top"><span>07</span> ways to begin</div>
-      <div class="hero-note hero-note-bottom">
-        <strong>Made for real groups</strong>
-        <span>Schools · teams · causes · communities</span>
-      </div>
     </div>
   </div>
 </section>
+
+<script>
+  const controls = document.querySelectorAll<HTMLDetailsElement>(".finder-multiselect");
+
+  controls.forEach((control) => {
+    const summary = control.querySelector<HTMLElement>("summary");
+    const summaryText = control.querySelector<HTMLElement>("[data-method-summary]");
+    const options = Array.from(control.querySelectorAll<HTMLInputElement>('input[type="checkbox"]'));
+
+    const updateSummary = () => {
+      if (!summaryText) return;
+      const selected = options.filter((option) => option.checked);
+      const labels = selected.map((option) => option.dataset.label ?? option.value);
+      summaryText.textContent = labels.length === 0
+        ? "Any approach"
+        : labels.length <= 2
+          ? labels.join(" + ")
+          : `${labels.length} approaches selected`;
+    };
+
+    options.forEach((option) => option.addEventListener("change", updateSummary));
+    control.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && control.open) {
+        control.open = false;
+        summary?.focus();
+      }
+    });
+    updateSummary();
+  });
+
+  document.addEventListener("click", (event) => {
+    controls.forEach((control) => {
+      if (control.open && !control.contains(event.target as Node)) control.open = false;
+    });
+  });
+
+  document.querySelectorAll<HTMLFormElement>(".finder-panel").forEach((form) => {
+    const group = form.querySelector<HTMLSelectElement>('select[name="group"]');
+    const methods = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="method"]'));
+    form.addEventListener("submit", (event) => {
+      if (!group?.value && !methods.some((method) => method.checked)) {
+        event.preventDefault();
+        window.location.assign(form.action);
+        return;
+      }
+      if (group && !group.value) group.disabled = true;
+    });
+    window.addEventListener("pageshow", () => {
+      if (group) group.disabled = false;
+    });
+  });
+</script>

@@ -21,7 +21,6 @@ const compactMethods = popularMethods.filter((method) => !("image" in method));
         {visualMethods.map((method, index) => (
           <a class:list={["method-visual", `method-visual-${index + 1}`]} href={method.href}>
             <img src={method.image} alt={method.imageAlt} width="960" height="640" loading="lazy" />
-            <span class="method-index">0{index + 1}</span>
             <strong>{method.title}</strong>
             <span class="method-arrow" aria-hidden="true">↗</span>
           </a>
@@ -31,7 +30,6 @@ const compactMethods = popularMethods.filter((method) => !("image" in method));
       <div class="method-list" aria-label="More popular fundraising methods">
         {compactMethods.map((method) => (
           <a href={method.href}>
-            <span>{method.number}</span>
             <strong>{method.title}</strong>
             <span aria-hidden="true">→</span>
           </a>
@@ -40,4 +38,3 @@ const compactMethods = popularMethods.filter((method) => !("image" in method));
     </div>
   </div>
 </section>
-

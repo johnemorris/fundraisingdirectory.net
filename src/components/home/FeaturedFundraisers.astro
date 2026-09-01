@@ -1,8 +1,10 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import ProviderVisual from "../ProviderVisual.astro";
 import type { PlacementType } from "../../data/homepage";
 import { formatProviderLabel } from "../../data/providerLabels";
 import { providerProfilePath } from "../../data/providerLinks";
+import { getProviderVisual } from "../../data/visuals";
 
 interface Props {
   provider: CollectionEntry<"providers">;
@@ -19,56 +21,42 @@ const placement: PlacementType = affiliation.type === "sponsor"
 
 const placementLabel = placement === "organic" ? null : placement === "featured" ? "Featured" : "Sponsored";
 const providerHref = providerProfilePath(identity.slug);
+const visual = getProviderVisual(identity.slug);
+const methods = [...new Set(programs.map((program) => formatProviderLabel(program.method)))];
 
 ---
 
 <section class="section featured-section" aria-labelledby="featured-title">
-  <div class="shell-wide">
-    <div class="section-heading-row featured-heading">
-      <div>
-        <p class="eyebrow eyebrow-purple">Current provider programs</p>
-        <h2 id="featured-title">Fundraisers to explore</h2>
-      </div>
-      <p>Real options from a current verified provider record.</p>
+  <div class="shell-wide featured-provider-layout">
+    <div class="featured-provider-visual">
+      <ProviderVisual providerName={identity.name} visual={visual} />
     </div>
 
-    <div class="featured-layout">
-      <article class="primary-feature">
-        <div class="primary-feature-topline">
-          {placementLabel && <span class:list={["placement-badge", `placement-${placement}`]}>{placementLabel}</span>}
-          <span class="verified-mark"><span aria-hidden="true">✓</span> Provider record verified</span>
-        </div>
-        <p class="feature-category">Product sales + online fundraising</p>
-        <h3>{identity.name}</h3>
-        <p>{content.summary}</p>
-        <div class="feature-meta">
-          <span>{geography.scope.map(formatProviderLabel).join(" · ")}</span>
-          <span>{programs.length} programs listed</span>
-        </div>
-        <a class="button button-light" href={providerHref}>Explore {identity.name} <span aria-hidden="true">→</span></a>
-        <div class="primary-feature-shape" aria-hidden="true"><span>F</span></div>
-      </article>
-
-      <div class="supporting-features">
-        {programs.slice(0, 3).map((program, index) => (
-          <article>
-            <div class="supporting-number">0{index + 1}</div>
-            <div class="supporting-copy">
-              <p>
-                {formatProviderLabel(program.method)}
-                {program.ease_to_raise && ` · ${formatProviderLabel(program.ease_to_raise)}`}
-              </p>
-              <h3>{program.name}</h3>
-              <span>{program.summary}</span>
-            </div>
-            <a href={providerHref} aria-label={`Explore ${program.name}`}><span aria-hidden="true">↗</span></a>
-          </article>
-        ))}
+    <div class="featured-provider-copy">
+      <div class="featured-provider-topline">
+        <p class="eyebrow eyebrow-light">Featured provider</p>
+        {placementLabel && <span class:list={["placement-badge", `placement-${placement}`]}>{placementLabel}</span>}
       </div>
+      <h2 id="featured-title">{identity.name}</h2>
+      <p class="featured-provider-summary">{content.summary}</p>
+      <dl class="featured-provider-facts">
+        <div>
+          <dt>Programs documented</dt>
+          <dd>{programs.length}</dd>
+        </div>
+        <div>
+          <dt>Availability</dt>
+          <dd>{geography.scope.map(formatProviderLabel).join(" · ")}</dd>
+        </div>
+        <div>
+          <dt>Fundraising approaches</dt>
+          <dd>{methods.join(" · ")}</dd>
+        </div>
+      </dl>
+      <a class="button button-light" href={providerHref}>Explore {identity.name} <span aria-hidden="true">→</span></a>
+      <p class="placement-note">
+        Paid placements are always labeled <strong>Sponsored</strong>. A <strong>Featured</strong> label identifies special visibility, not an endorsement.
+      </p>
     </div>
-
-    <p class="placement-note">
-      Paid placements are always labeled <strong>Sponsored</strong>. A <strong>Featured</strong> label identifies special visibility, not an endorsement.
-    </p>
   </div>
 </section>

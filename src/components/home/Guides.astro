@@ -34,9 +34,8 @@ const supportingGuides = guides.filter((guide) => !guide.featured);
       )}
 
       <div class="guide-links">
-        {supportingGuides.map((guide, index) => (
+        {supportingGuides.map((guide) => (
           <a href={guide.href}>
-            <span class="guide-number">0{index + 1}</span>
             <span><small>{guide.label}</small><strong>{guide.title}</strong></span>
             <span aria-hidden="true">↗</span>
           </a>
@@ -45,4 +44,3 @@ const supportingGuides = guides.filter((guide) => !guide.featured);
     </div>
   </div>
 </section>
-

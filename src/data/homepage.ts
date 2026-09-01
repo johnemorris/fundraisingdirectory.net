@@ -41,49 +41,39 @@ export const popularMethods = [
     imageAlt: "Unbranded navy, teal, purple, and cream spirit wear",
     size: "medium",
   },
-  { title: "Candy & Chocolate", href: SITE_ROUTES.candy, size: "compact", number: "04" },
-  { title: "Restaurant Nights", href: "/providers/?method=restaurant-business-partnerships", size: "compact", number: "05" },
-  { title: "Online Fundraising", href: SITE_ROUTES.onlineFundraising, size: "compact", number: "06" },
-  { title: "Auctions", href: "/providers/?method=auctions", size: "compact", number: "07" },
-  { title: "Discount Cards", href: SITE_ROUTES.discountCards, size: "compact", number: "08" },
-  { title: "Sponsorships", href: "/providers/?method=sponsorships", size: "compact", number: "09" },
+  { title: "Candy & Chocolate", href: SITE_ROUTES.candy, size: "compact" },
+  { title: "Restaurant Nights", href: "/providers/?method=restaurant-business-partnerships", size: "compact" },
+  { title: "Online Fundraising", href: SITE_ROUTES.onlineFundraising, size: "compact" },
+  { title: "Auctions", href: "/providers/?method=auctions", size: "compact" },
+  { title: "Discount Cards", href: SITE_ROUTES.discountCards, size: "compact" },
+  { title: "Sponsorships", href: "/providers/?method=sponsorships", size: "compact" },
 ] as const;
 
 export const groupPaths = [
   {
-    number: "01",
     title: "Schools & PTOs",
     description: "Programs for classrooms, campuses, parent groups, and school communities.",
     href: SITE_ROUTES.schools,
-    tone: "teal",
   },
   {
-    number: "02",
     title: "Sports Teams",
     description: "Flexible options for uniforms, travel, equipment, and season expenses.",
     href: SITE_ROUTES.sports,
-    tone: "blue",
   },
   {
-    number: "03",
     title: "Churches",
     description: "Fundraisers suited to congregations, ministries, and faith communities.",
     href: SITE_ROUTES.churches,
-    tone: "purple",
   },
   {
-    number: "04",
     title: "Nonprofits",
     description: "Ways to support campaigns, programs, events, and community impact.",
     href: SITE_ROUTES.nonprofits,
-    tone: "blue",
   },
   {
-    number: "05",
     title: "Clubs & Community Groups",
     description: "Approachable ideas for local groups, causes, and shared projects.",
     href: SITE_ROUTES.community,
-    tone: "teal",
   },
 ] as const;
 
