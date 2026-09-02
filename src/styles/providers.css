@@ -211,9 +211,17 @@ button.semantic-group:disabled { cursor: default; opacity: 1; }
   .facet-form .filter-actions { display: grid; padding: 14px 16px 17px; border-color: rgba(18,48,74,.14); background: #d9ecee; }
   .facet-form .button { width: 100%; }
   .directory-results .filter-panel { display: none; }
-  .provider-card-top { min-height: 70px; align-items: flex-start; }
-  .provider-summary { min-block-size: 7.6em; }
-  .provider-metadata { grid-template-rows: minmax(126px, auto) minmax(166px, auto); }
+}
+
+@media (min-width: 1041px) {
+  .provider-card {
+    display: grid;
+    grid-template-rows: 70px 225px 142px 182px auto;
+  }
+  .provider-card-top { align-items: flex-start; }
+  .provider-summary { min-block-size: 0; }
+  .provider-metadata { display: contents; }
+  .provider-card-footer { align-self: end; margin-top: 0; }
 }
 .audience-band h2, .process-section h2, .programs-section h2, .research-columns h2 { margin: 5px 0 0; color: var(--ink); font-size: clamp(1.8rem, 3.2vw, 3rem); letter-spacing: -.045em; }
 .audience-band h2 { font-size: clamp(1.65rem, 2.35vw, 2.35rem); }

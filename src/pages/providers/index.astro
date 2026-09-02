@@ -217,14 +217,20 @@ const filterTones = Object.fromEntries([
       };
       const selectedCount = Array.from(facet.querySelectorAll("input:checked")).filter((input) => input.value).length;
       const isDesktopRail = filterForm.classList.contains("facet-form");
-      const shouldOpen = selectedCount > 0 || (!isDesktopRail && ((kind === "group" && !hasCategoryContext) || (kind === "method" && hasCategoryContext)));
-      toggle.setAttribute("aria-expanded", String(shouldOpen));
-      panel.hidden = !shouldOpen;
+      const initiallyOpen = !facet.hidden && (selectedCount > 0 || (!isDesktopRail && ((kind === "group" && !hasCategoryContext) || (kind === "method" && hasCategoryContext))));
+      let userOpen = initiallyOpen;
+      const setFacetOpen = (open) => {
+        userOpen = open;
+        toggle.setAttribute("aria-expanded", String(userOpen));
+        panel.hidden = !userOpen;
+      };
+      setFacetOpen(initiallyOpen);
       updateFacetSummary();
-      toggle.addEventListener("click", () => {
-        const expanded = toggle.getAttribute("aria-expanded") === "true";
-        toggle.setAttribute("aria-expanded", String(!expanded));
-        panel.hidden = expanded;
+      toggle.addEventListener("click", () => setFacetOpen(!userOpen));
+      toggle.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        setFacetOpen(!userOpen);
       });
       facet.querySelectorAll("input").forEach((input) => input.addEventListener("change", updateFacetSummary));
     });
