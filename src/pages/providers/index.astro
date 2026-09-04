@@ -197,8 +197,6 @@ const filterTones = Object.fromEntries([
   }
 
   filterForms.forEach((filterForm) => {
-    const groupFacet = filterForm.querySelector('[data-filter-facet-kind="group"]');
-    if (groupFacet) groupFacet.hidden = hasCategoryContext;
     const groupControl = filterForm.querySelector(`input[name="group"][value="${group ?? ""}"]`);
     if (groupControl) groupControl.checked = true;
     methods.forEach((value) => { const control = filterForm.querySelector(`input[name="method"][value="${value}"]`); if (control) control.checked = true; });
@@ -217,7 +215,7 @@ const filterTones = Object.fromEntries([
       };
       const selectedCount = Array.from(facet.querySelectorAll("input:checked")).filter((input) => input.value).length;
       const isDesktopRail = filterForm.classList.contains("facet-form");
-      const initiallyOpen = !facet.hidden && (selectedCount > 0 || (!isDesktopRail && ((kind === "group" && !hasCategoryContext) || (kind === "method" && hasCategoryContext))));
+      const initiallyOpen = !facet.hidden && ((kind === "method" && selectedCount > 0) || (!isDesktopRail && ((kind === "group" && !group) || (kind === "method" && hasCategoryContext))));
       let userOpen = initiallyOpen;
       const setFacetOpen = (open) => {
         userOpen = open;
@@ -232,13 +230,16 @@ const filterTones = Object.fromEntries([
         event.preventDefault();
         setFacetOpen(!userOpen);
       });
-      facet.querySelectorAll("input").forEach((input) => input.addEventListener("change", updateFacetSummary));
+      facet.querySelectorAll("input").forEach((input) => input.addEventListener("change", () => {
+        updateFacetSummary();
+        if (kind === "group") setFacetOpen(false);
+      }));
     });
 
-    filterForm.addEventListener("submit", (event) => { event.preventDefault(); const data = new FormData(filterForm); navigateWith({ nextGroup: hasCategoryContext ? group : data.get("group") || null, nextMethods: data.getAll("method"), nextProducts: products }); });
+    filterForm.addEventListener("submit", (event) => { event.preventDefault(); const data = new FormData(filterForm); navigateWith({ nextGroup: data.get("group") || null, nextMethods: data.getAll("method"), nextProducts: products }); });
   });
   const facetGuidance = document.querySelector("[data-facet-guidance]");
-  if (hasCategoryContext && facetGuidance) facetGuidance.textContent = "Choose any relevant fundraising methods.";
+  if (hasCategoryContext && facetGuidance) facetGuidance.textContent = "Change the group or refine by fundraising method.";
   document.querySelector("[data-filter-close]")?.addEventListener("click", () => filterPanel?.removeAttribute("open"));
 
   document.querySelectorAll("[data-filter-kind]").forEach((control) => {
