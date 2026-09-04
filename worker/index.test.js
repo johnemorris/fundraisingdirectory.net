@@ -1,5 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import {
+  HISTORICAL_DISPOSITIONS,
+  historicalUrlCorpus,
+} from "../src/data/historicalUrlCorpus.js";
 import { legacyRoutes } from "../src/data/legacyRoutes.js";
 import worker, { resolveLegacyCanonicalPath } from "./index.js";
 
@@ -63,6 +67,24 @@ test("the full legacy inventory has unique, extensionless-safe matches", () => {
   }
 });
 
+test("the recovered historical URL corpus has an intentional disposition", () => {
+  assert.equal(historicalUrlCorpus.length, legacyRoutes.length + 1);
+  assert.equal(
+    new Set(historicalUrlCorpus.map((entry) => entry.url.toLowerCase())).size,
+    historicalUrlCorpus.length,
+  );
+  assert.deepEqual(
+    historicalUrlCorpus.filter(
+      (entry) => !HISTORICAL_DISPOSITIONS.includes(entry.disposition),
+    ),
+    [],
+  );
+  assert.deepEqual(
+    historicalUrlCorpus.filter((entry) => entry.disposition === "unresolved"),
+    [],
+  );
+});
+
 test("redirects permanently without dropping the query string", async () => {
   const response = await worker.fetch(
     new Request(
@@ -123,6 +145,31 @@ test("serves every canonical legacy HTML route through its directory-index asset
     assert.deepEqual(requests, [
       `https://fundraisingdirectory.net${canonicalPath}/`,
     ]);
+  }
+});
+
+test("normalizes every legacy variant directly and preserves query strings", async () => {
+  for (const route of legacyRoutes) {
+    const canonicalPath = `/${route.path}.html`;
+    const variants = [
+      `/${route.path}`,
+      `${canonicalPath}/`,
+      canonicalPath.toLowerCase(),
+    ];
+
+    for (const variant of new Set(variants)) {
+      const response = await worker.fetch(
+        new Request(`https://fundraisingdirectory.net${variant}?source=audit`),
+        { ASSETS: assets },
+      );
+
+      assert.equal(response.status, 301, variant);
+      assert.equal(
+        response.headers.get("location"),
+        `https://fundraisingdirectory.net${canonicalPath}?source=audit`,
+        variant,
+      );
+    }
   }
 });
 
