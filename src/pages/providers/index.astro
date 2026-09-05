@@ -6,7 +6,7 @@ import ProviderFilterFields from "../../components/ProviderFilterFields.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import { DISCOVERY_GROUP_CONTEXTS } from "../../data/discovery";
 import { formatProviderLabel } from "../../data/providerLabels";
-import { providerProfilePath } from "../../data/providerLinks";
+import { providerOutboundRel, providerProfilePath } from "../../data/providerLinks";
 import { GROUP_OPTIONS, METHOD_OPTIONS, semanticClass, semanticToneClass } from "../../data/semanticTaxonomy";
 import { PRODUCTS_SERVICES } from "../../data/taxonomies/products-services";
 import "../../styles/providers.css";
@@ -89,12 +89,12 @@ const filterTones = Object.fromEntries([
 
       <section class="provider-grid" aria-label="Fundraising providers" data-provider-grid>
       {providers.map((provider) => {
-        const { identity, classification, content, programs, geography } = provider.data;
+        const { identity, classification, content, programs, geography, affiliation } = provider.data;
         const ease = providerEase(programs);
         const visibleOrganizations = classification.organizations.slice(0, 5);
         const extraOrganizations = classification.organizations.slice(5);
         return (
-          <article class:list={["provider-card", "provider-card-accent", semanticToneClass("method", classification.methods[0])]} data-organizations={classification.organizations.join(",")} data-methods={classification.methods.join(",")} data-products={classification.products_services.join(",")}>
+          <article class:list={["provider-card", semanticToneClass("method", classification.methods[0])]} data-organizations={classification.organizations.join(",")} data-methods={classification.methods.join(",")} data-products={classification.products_services.join(",")}>
             <div class="provider-card-top">
               <div>
                 <p class="provider-research"><span aria-hidden="true">✓</span> {verificationLabel[provider.data.verification.level]}</p>
@@ -119,7 +119,15 @@ const filterTones = Object.fromEntries([
             </div>
             <div class="provider-card-footer">
               <span>{geography.scope.map(formatProviderLabel).join(" · ")}</span>
-              <a class="button button-primary" href={providerProfilePath(identity.slug)}>Explore provider <span aria-hidden="true">→</span></a>
+              <a
+                class="button button-primary"
+                href={identity.fundraising_url ?? identity.website}
+                target="_blank"
+                rel={providerOutboundRel(affiliation.type)}
+                aria-label={`Visit ${identity.name} website`}
+              >
+                Visit Provider <span aria-hidden="true">↗</span>
+              </a>
             </div>
           </article>
         );
