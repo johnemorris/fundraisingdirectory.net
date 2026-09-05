@@ -1,6 +1,5 @@
 ---
 import { getCollection } from "astro:content";
-import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import ProviderVisual from "../../components/ProviderVisual.astro";
 import { formatProviderLabel } from "../../data/providerLabels";
 import { providerOutboundRel } from "../../data/providerLinks";
@@ -11,10 +10,14 @@ import "../../styles/providers.css";
 
 export async function getStaticPaths() {
   const providers = (await getCollection("providers")).filter((provider) => !provider.data.meta.deleted);
-  return providers.map((provider) => ({ params: { slug: provider.data.identity.slug }, props: { provider } }));
+  const providerOptions = providers
+    .map(({ data }) => ({ name: data.identity.name, slug: data.identity.slug }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  return providers.map((provider) => ({ params: { slug: provider.data.identity.slug }, props: { provider, providerOptions } }));
 }
 
-const { provider } = Astro.props;
+const { provider, providerOptions } = Astro.props;
 const { identity, classification, programs, geography, content, status, verification, affiliation } = provider.data;
 const visual = getProviderVisual(identity.slug);
 const formatDate = (value: string) => new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${value.slice(0, 10)}T12:00:00Z`));
@@ -22,24 +25,61 @@ const easeLabel = { easy: "Easy", moderate: "Moderate", "hands-on": "Hands-On" }
 const statusLabel = { active: "Active", inactive: "Inactive", uncertain: "Status uncertain", historical: "Historical" } as const;
 const hasEaseRatings = programs.some((program) => program.ease_to_raise !== null);
 const channels = [...new Set(programs.flatMap((program) => program.channels))];
-const fulfillment = [...new Set(programs.flatMap((program) => program.fulfillment))];
+const fulfillment = [...new Set(programs.flatMap((program) => program.fulfillment))].filter((value) => value !== "unknown");
+const upfrontCosts = [...new Set(programs.map((program) => program.upfront_cost))].filter((value) => value !== "unknown");
+const onlineOrdering = programs.map((program) => program.online_ordering).filter((value): value is boolean => value !== null);
+const onlineOrderingSummary = onlineOrdering.includes(true)
+  ? onlineOrdering.length === programs.length && onlineOrdering.every(Boolean)
+    ? "Available across listed programs"
+    : "Available for some programs"
+  : onlineOrdering.length === programs.length
+    ? "Not available across listed programs"
+    : null;
+const formatList = (values: string[]) => new Intl.ListFormat("en-US", { style: "long", type: "conjunction" }).format(values);
+const countryNames = geography.countries.map((country) => country === "US" ? "United States" : country === "CA" ? "Canada" : country);
+const availabilityAreas = [...countryNames, ...geography.states, ...geography.regions];
+const availabilitySummary = availabilityAreas.length > 0
+  ? formatList(availabilityAreas)
+  : formatList(geography.scope.map(formatProviderLabel));
+const researchColumnCount = Number(content.best_for.length > 0) + Number(content.considerations.length > 0) + 1;
 const outboundUrl = identity.fundraising_url ?? identity.website;
 const outboundRel = providerOutboundRel(affiliation.type);
 ---
 
-<SiteLayout title={`${identity.name} Fundraising | FundraisingDirectory.net`} description={content.summary} socialImage={false}>
-  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Fundraising Providers", href: "/providers/" }, { label: identity.name }]} />
+<SiteLayout title={`${identity.name} Fundraising | FundraisingDirectory.net`} description={content.summary} socialImage={false} bodyClass="provider-profile">
+  <nav class="provider-breadcrumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/providers/">Fundraising Providers</a></li>
+      <li>
+        <details class="provider-switcher" data-provider-switcher>
+          <summary aria-label={`Current provider: ${identity.name}. Choose another provider`}>
+            <span aria-current="page">{identity.name}</span>
+            <i aria-hidden="true"></i>
+          </summary>
+          <div class="provider-switcher-menu">
+            <p>Choose a provider</p>
+            <ul>
+              {providerOptions.filter((entry) => entry.slug !== identity.slug).map((entry) => (
+                <li><a href={`/providers/${entry.slug}/`}>{entry.name}</a></li>
+              ))}
+            </ul>
+          </div>
+        </details>
+      </li>
+    </ol>
+  </nav>
 
   <main class="directory-shell provider-detail-shell">
     <article class="provider-page">
       <header class="provider-hero">
         <div class="provider-hero-main">
-          <div class="provider-title-row">
-            <div>
-              <p class="eyebrow">Fundraising provider</p>
-              <h1 class:list={{ "provider-name-compact": identity.name.length > 14 }}>{identity.name}</h1>
+          <div class="provider-heading">
+            <p class="eyebrow">Fundraising provider</p>
+            <h1 class:list={{ "provider-name-compact": identity.name.length > 14 }}>{identity.name}</h1>
+            <div class="provider-status-line">
+              <span class={`status-badge status-${status.lifecycle}`}>{statusLabel[status.lifecycle]}</span>
             </div>
-            <span class={`status-badge status-${status.lifecycle}`}>{statusLabel[status.lifecycle]}</span>
           </div>
           <p class="hero-summary">{content.summary}</p>
           <div class="hero-methods" aria-label="Fundraising methods">
@@ -47,7 +87,7 @@ const outboundRel = providerOutboundRel(affiliation.type);
           </div>
           <div class="hero-actions">
             <div class="external-cta-group">
-              <a class="button button-primary provider-visit-link" href={outboundUrl} target="_blank" rel={outboundRel} aria-label={`Visit ${identity.name} website (opens in a new tab)`}>Visit {identity.name} <span aria-hidden="true">↗</span></a>
+              <a class="button button-primary provider-visit-link" href={outboundUrl} target="_blank" rel={outboundRel} aria-label={`Visit ${identity.name} website (opens in a new tab)`}>Visit Provider <span aria-hidden="true">↗</span></a>
               <span class="external-note">Opens the provider's website. FundraisingDirectory.net is independent and is not the provider.</span>
             </div>
             <span class="verified-date">Last verified {formatDate(status.last_verified_at)}</span>
@@ -84,47 +124,52 @@ const outboundRel = providerOutboundRel(affiliation.type);
       <section class="process-section" aria-labelledby="process-title">
         <div class="process-intro">
           <p class="eyebrow">How it works</p>
-          <h2 id="process-title">From program choice to campaign</h2>
+          <h2 id="process-title">What to know before you choose</h2>
           <p>{content.how_it_works}</p>
         </div>
-        <ol class="process-steps">
-          <li><span>01</span><div><strong>Choose an option</strong><p>Compare the listed program formats and the work each requires.</p></div></li>
-          <li><span>02</span><div><strong>Set up the campaign</strong><p>Available channels include {channels.map(formatProviderLabel).join(", ").toLowerCase()}.</p></div></li>
-          <li><span>03</span><div><strong>Confirm fulfillment</strong><p>Published fulfillment models include {fulfillment.map(formatProviderLabel).join(", ").toLowerCase()}; confirm current details directly.</p></div></li>
-        </ol>
+        <dl class="decision-grid">
+          <div><dt>Program format</dt><dd>{formatList(channels.map(formatProviderLabel))}</dd></div>
+          {fulfillment.length > 0 && <div><dt>Fulfillment</dt><dd>{formatList(fulfillment.map(formatProviderLabel))}</dd></div>}
+          {upfrontCosts.length > 0 && <div><dt>Known upfront cost</dt><dd>{formatList(upfrontCosts.map(formatProviderLabel))}</dd></div>}
+          {onlineOrderingSummary && <div><dt>Online ordering</dt><dd>{onlineOrderingSummary}</dd></div>}
+        </dl>
       </section>
 
       <section class="programs-section" aria-labelledby="programs-title">
         <div class="section-heading">
-          <div><p class="eyebrow">Fundraising options</p><h2 id="programs-title">Programs</h2></div>
+          <div><p class="eyebrow">Fundraising options</p><h2 id="programs-title">Programs in this profile</h2></div>
           {hasEaseRatings && <div class="ease-legend" aria-label="Ease to Raise legend"><span><span class="legend-dot ease-easy" />Easy</span><span><span class="legend-dot ease-moderate" />Moderate</span><span><span class="legend-dot ease-hands-on" />Hands-On</span></div>}
         </div>
         <div class:list={["program-grid", { "program-grid-single": programs.length === 1 }]}>
-          {programs.map((program, index) => (
-            <article class="program-card">
-              <div class="program-overview">
-                <span class="program-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-                <div class="program-title-row"><h3>{program.name}</h3>{program.ease_to_raise && <span class={`ease-badge ease-${program.ease_to_raise}`}><span class="ease-dot" aria-hidden="true" />{easeLabel[program.ease_to_raise]}</span>}</div>
-                <p>{program.summary}</p>
-                {program.products_services.length > 0 && <div class="program-products"><strong>Products / services</strong><div class="tags">{program.products_services.map((item) => <a class="product-link" href={`/providers/?product=${item}`}>{formatProviderLabel(item)}</a>)}</div></div>}
-              </div>
-              <dl class="program-details">
-                <div><dt>Method</dt><dd><a class={semanticClass("method", program.method)} href={`/providers/?method=${program.method}`}>{formatProviderLabel(program.method)}</a></dd></div>
-                <div><dt>Channel</dt><dd>{program.channels.map(formatProviderLabel).join(", ")}</dd></div>
-                <div><dt>Inventory</dt><dd>{formatProviderLabel(program.inventory_model)}</dd></div>
-                <div><dt>Upfront cost</dt><dd>{formatProviderLabel(program.upfront_cost)}</dd></div>
-                <div><dt>Fulfillment</dt><dd>{program.fulfillment.map(formatProviderLabel).join(", ")}</dd></div>
-                <div><dt>Online ordering</dt><dd>{program.online_ordering === true ? "Yes" : program.online_ordering === false ? "No" : "Not applicable / not verified"}</dd></div>
-              </dl>
-            </article>
-          ))}
+          {programs.map((program) => {
+            const programFulfillment = program.fulfillment.filter((value) => value !== "unknown");
+            const hasInventory = program.inventory_model !== "unknown";
+            const hasUpfrontCost = program.upfront_cost !== "unknown";
+            return (
+              <article class="program-card">
+                <div class="program-overview">
+                  <div class="program-title-row"><h3>{program.name}</h3>{program.ease_to_raise && <span class={`ease-badge ease-${program.ease_to_raise}`}><span class="ease-dot" aria-hidden="true" />{easeLabel[program.ease_to_raise]}</span>}</div>
+                  <p>{program.summary}</p>
+                  {program.products_services.length > 0 && <div class="program-products"><strong>Products / services</strong><div class="tags">{program.products_services.map((item) => <a class="product-link" href={`/providers/?product=${item}`}>{formatProviderLabel(item)}</a>)}</div></div>}
+                </div>
+                <dl class="program-details">
+                  <div><dt>Method</dt><dd><a class={semanticClass("method", program.method)} href={`/providers/?method=${program.method}`}>{formatProviderLabel(program.method)}</a></dd></div>
+                  <div><dt>Format</dt><dd>{formatList(program.channels.map(formatProviderLabel))}</dd></div>
+                  {hasInventory && <div><dt>Inventory</dt><dd>{formatProviderLabel(program.inventory_model)}</dd></div>}
+                  {hasUpfrontCost && <div><dt>Upfront cost</dt><dd>{formatProviderLabel(program.upfront_cost)}</dd></div>}
+                  {programFulfillment.length > 0 && <div><dt>Fulfillment</dt><dd>{formatList(programFulfillment.map(formatProviderLabel))}</dd></div>}
+                  {program.online_ordering !== null && <div><dt>Online ordering</dt><dd>{program.online_ordering ? "Yes" : "No"}</dd></div>}
+                </dl>
+              </article>
+            );
+          })}
         </div>
       </section>
 
-      <section class="research-columns">
-        <div><p class="eyebrow">Potential fit</p><h2>Best for</h2><ul class="clean-list">{content.best_for.map((item) => <li>{item}</li>)}</ul></div>
-        <div><p class="eyebrow eyebrow-purple">Before you choose</p><h2>Things to consider</h2><ul class="clean-list">{content.considerations.map((item) => <li>{item}</li>)}</ul></div>
-        <div><p class="eyebrow">Availability</p><h2>Where it operates</h2><p>{geography.countries.map((country) => country === "US" ? "United States" : country === "CA" ? "Canada" : country).join(" and ")}</p>{geography.notes && <p class="muted-copy">{geography.notes}</p>}</div>
+      <section class:list={["research-columns", `research-columns-${researchColumnCount}`]} aria-label="Provider decision details">
+        {content.best_for.length > 0 && <div><p class="eyebrow">Potential fit</p><h2>Best for</h2><ul class="clean-list">{content.best_for.map((item) => <li>{item}</li>)}</ul></div>}
+        {content.considerations.length > 0 && <div><p class="eyebrow eyebrow-purple">Before you choose</p><h2>Requirements &amp; considerations</h2><ul class="clean-list">{content.considerations.map((item) => <li>{item}</li>)}</ul></div>}
+        <div><p class="eyebrow">Availability</p><h2>Where it operates</h2><p>{availabilitySummary}</p>{geography.notes && <p class="muted-copy">{geography.notes}</p>}</div>
       </section>
 
       <details class="sources-disclosure">
@@ -138,4 +183,22 @@ const outboundRel = providerOutboundRel(affiliation.type);
       <footer class="provider-disclaimer"><strong>Independent directory notice:</strong> FundraisingDirectory.net is an information and discovery resource. Unless explicitly disclosed, it is not affiliated with, endorsed by, or responsible for listed fundraising providers. Organizations are responsible for evaluating providers and conducting their own transactions.</footer>
     </article>
   </main>
+
+  <script>
+    const providerSwitcher = document.querySelector<HTMLDetailsElement>("[data-provider-switcher]");
+    const providerSwitcherSummary = providerSwitcher?.querySelector<HTMLElement>("summary");
+
+    document.addEventListener("click", (event) => {
+      if (providerSwitcher?.open && event.target instanceof Node && !providerSwitcher.contains(event.target)) {
+        providerSwitcher.open = false;
+      }
+    });
+
+    providerSwitcher?.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && providerSwitcher.open) {
+        providerSwitcher.open = false;
+        providerSwitcherSummary?.focus();
+      }
+    });
+  </script>
 </SiteLayout>

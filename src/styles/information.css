@@ -1,5 +1,8 @@
 .information-shell {
-  width: min(var(--interior-shell), calc(100% - var(--interior-gutter) - var(--interior-gutter)));
+  width: min(
+    var(--interior-shell),
+    calc(100% - var(--interior-gutter) - var(--interior-gutter))
+  );
   margin-inline: auto;
   padding: 34px 0 90px;
 }
@@ -11,9 +14,8 @@
 
 .information-header {
   max-width: 820px;
-  margin-bottom: 42px;
   padding: 24px 0 38px;
-  border-bottom: 1px solid rgba(18,48,74,.16);
+  border-bottom: 1px solid rgba(18, 48, 74, 0.16);
 }
 
 .information-header h1 {
@@ -39,10 +41,10 @@
 
 .information-content section {
   display: grid;
-  grid-template-columns: minmax(210px,.55fr) minmax(0,1.45fr);
+  grid-template-columns: minmax(210px, 0.55fr) minmax(0, 1.45fr);
   gap: 34px;
   padding: 30px 0;
-  border-bottom: 1px solid rgba(18,48,74,.14);
+  border-bottom: 1px solid rgba(18, 48, 74, 0.14);
 }
 
 .information-content h2 {
@@ -81,6 +83,7 @@
   min-height: 44px;
   align-items: center;
   margin-top: 14px;
+  margin-bottom: 20px;
   color: var(--teal-dark);
   font-size: clamp(1rem, 2.5vw, 1.25rem);
   font-weight: 850;
@@ -108,5 +111,7 @@
     padding: 24px 0;
   }
 
-  .information-notice { padding: 22px !important; }
+  .information-notice {
+    padding: 22px !important;
+  }
 }

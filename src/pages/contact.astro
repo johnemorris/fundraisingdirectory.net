@@ -12,28 +12,31 @@ const contactHref = `mailto:${SITE_CONTACT_EMAIL}`;
   description="Contact FundraisingDirectory.net with general questions, listing inquiries, corrections, resource suggestions, and website feedback."
 >
   <InformationPage
-    eyebrow="Contact"
+    eyebrow=""
     breadcrumbLabel="Contact"
-    title="Contact the directory."
-    intro="Questions about the directory, a listing, or a factual correction are welcome. FundraisingDirectory.net is an independent information and discovery site."
+    title="Get in touch with us."
+    intro="Questions about the site, a listing, or a factual correction are always welcome. We’re an independent fundraising information and discovery site and don’t operate fundraising campaigns or process donations."
   >
-    <section class="information-notice">
-      <div>
-        <h2>Email the directory</h2>
-        <p>Use this address for questions and feedback about FundraisingDirectory.net.</p>
-        <a class="information-email" href={contactHref}>{SITE_CONTACT_EMAIL}</a>
-      </div>
-    </section>
-
     <section>
-      <h2>Reasons to contact us</h2>
+      <h2>Contact us for</h2>
       <div>
+        <a class="information-email" href={contactHref}>
+          {SITE_CONTACT_EMAIL}
+        </a>
+
         <ul class="information-list">
-          <li>Ask a general question about FundraisingDirectory.net</li>
-          <li>Suggest a correction or report a factual issue</li>
-          <li>Send a provider or listing-related inquiry</li>
-          <li>Suggest a fundraising resource</li>
-          <li>Share website feedback</li>
+          <li>
+            <b>General questions & feedback</b> — Questions about the site or
+            suggestions for improving it.
+          </li>
+          <li>
+            <b>Corrections</b> — Let us know about outdated pricing, broken
+            links, changed program details, or other factual errors.
+          </li>
+          <li>
+            <b>Providers</b> — Suggest a provider, request an update to an
+            existing listing, or contact us about your provider profile.
+          </li>
         </ul>
       </div>
     </section>
@@ -42,12 +45,14 @@ const contactHref = `mailto:${SITE_CONTACT_EMAIL}`;
       <h2>Campaign and order support</h2>
       <div>
         <p>
-          Questions about an active fundraiser, donation, order, payment, or a
-          provider's service should be directed to that fundraising provider.
-          FundraisingDirectory.net does not operate campaigns, process
-          transactions, or provide customer support on behalf of listed companies.
+          Need help with a fundraiser, donation, order, payment, or a provider's
+          service? Please contact the fundraising provider directly. We don't
+          operate campaigns, process transactions, or provide customer support
+          for listed companies.
         </p>
-        <a class="information-link" href={SITE_ROUTES.directory}>Find a provider's profile →</a>
+        <a class="information-link" href={SITE_ROUTES.directory}>
+          Find the provider →
+        </a>
       </div>
     </section>
 
@@ -55,10 +60,13 @@ const contactHref = `mailto:${SITE_CONTACT_EMAIL}`;
       <h2>Provider information</h2>
       <div>
         <p>
-          Provider onboarding, listing submissions, and profile claims are not
-          currently open. Listing-related questions may use the email address above.
+          Are you listed in the directory? You can contact us about incorrect
+          or outdated information using the email address above. New listing
+          submissions and profile claims are not currently open.
         </p>
-        <a class="information-link" href={SITE_ROUTES.forProviders}>Read provider information →</a>
+        <a class="information-link" href={SITE_ROUTES.forProviders}>
+          Read provider information →
+        </a>
       </div>
     </section>
   </InformationPage>
