@@ -162,7 +162,6 @@
   font-weight: 850;
 }
 
-.finder-select,
 .finder-multiselect > summary {
   position: relative;
   width: 100%;
@@ -177,25 +176,10 @@
   cursor: pointer;
 }
 
-.finder-select {
-  appearance: none;
-  padding: 0 44px 0 14px;
-  background-image:
-    linear-gradient(45deg, transparent 50%, var(--teal-dark) 50%),
-    linear-gradient(135deg, var(--teal-dark) 50%, transparent 50%);
-  background-position:
-    calc(100% - 18px) 20px,
-    calc(100% - 13px) 20px;
-  background-repeat: no-repeat;
-  background-size: 5px 5px, 5px 5px;
-}
-
-.finder-select:hover,
 .finder-multiselect > summary:hover {
   border-color: var(--teal-border);
 }
 
-.finder-select:focus-visible,
 .finder-multiselect > summary:focus-visible,
 .finder-method-options input:focus-visible + span {
   outline: 3px solid var(--focus);
@@ -220,7 +204,7 @@
   display: none;
 }
 
-.finder-multiselect [data-method-summary] {
+.finder-multiselect [data-finder-summary] {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
