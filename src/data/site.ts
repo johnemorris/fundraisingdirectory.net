@@ -1,6 +1,7 @@
 export const SITE_ROUTES = {
   origin: "https://fundraisingdirectory.net",
   home: "/",
+  finder: "/finder/",
   directory: "/providers/",
   about: "/about/",
   contact: "/contact/",

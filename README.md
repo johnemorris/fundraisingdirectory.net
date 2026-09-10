@@ -21,11 +21,18 @@ npm test
 npm run build
 ```
 
+The canonical product sequence and current V1 status are tracked in
+[`docs/v1-backlog.html`](docs/v1-backlog.html).
+
 Provider records live in `src/content/providers/` and are validated by the
 schema in `src/content.config.ts`. Records should use current public sources,
 stable taxonomy identifiers, honest unknown/null values, and a current review
 date. The static directory renders every active record and applies Finder query
 filters in the browser.
+
+Fundraising method and supporting taxonomy IDs live in `src/data/taxonomies/`.
+See [`docs/taxonomy-schema.md`](docs/taxonomy-schema.md) for the additive,
+Landscape-informed provider/program dimensions and enrichment conventions.
 
 Every provider entry point uses the single canonical profile at
 `/providers/{slug}/`. Organic, featured, sponsored, affiliate, search,

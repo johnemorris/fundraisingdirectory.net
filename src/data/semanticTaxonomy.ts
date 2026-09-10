@@ -1,11 +1,11 @@
 import { formatProviderLabel } from "./providerLabels";
-import { FUNDRAISING_METHODS, type FundraisingMethod } from "./taxonomies/methods";
+import { DISCOVERY_METHODS, type DiscoveryMethod } from "./taxonomies/methods";
 import { ORGANIZATION_TYPES, type OrganizationType } from "./taxonomies/organizations";
 
 export type SemanticKind = "method" | "group";
 export type SemanticTone = "teal" | "blue" | "purple" | "navy" | "warm";
 
-const METHOD_TONES: Record<FundraisingMethod, SemanticTone> = {
+const METHOD_TONES: Record<DiscoveryMethod, SemanticTone> = {
   "product-sales": "warm",
   "direct-donations": "teal",
   crowdfunding: "blue",
@@ -32,7 +32,7 @@ const GROUP_TONES: Record<OrganizationType, SemanticTone> = {
   "individuals-personal-causes": "blue",
 };
 
-export const METHOD_OPTIONS = FUNDRAISING_METHODS.map((value) => ({
+export const METHOD_OPTIONS = DISCOVERY_METHODS.map((value) => ({
   value,
   label: formatProviderLabel(value),
   tone: METHOD_TONES[value],
@@ -46,7 +46,7 @@ export const GROUP_OPTIONS = ORGANIZATION_TYPES.map((value) => ({
 
 export function semanticClass(kind: SemanticKind, value: string) {
   const tone = kind === "method"
-    ? METHOD_TONES[value as FundraisingMethod] ?? "teal"
+    ? METHOD_TONES[value as DiscoveryMethod] ?? "teal"
     : GROUP_TONES[value as OrganizationType] ?? "navy";
 
   return `semantic-pill semantic-${kind} semantic-${tone}`;
@@ -54,7 +54,7 @@ export function semanticClass(kind: SemanticKind, value: string) {
 
 export function semanticToneClass(kind: SemanticKind, value: string) {
   const tone = kind === "method"
-    ? METHOD_TONES[value as FundraisingMethod] ?? "teal"
+    ? METHOD_TONES[value as DiscoveryMethod] ?? "teal"
     : GROUP_TONES[value as OrganizationType] ?? "navy";
 
   return `semantic-${tone}`;

@@ -12,6 +12,7 @@ export async function GET() {
 
   const paths = [
     "/",
+    SITE_ROUTES.finder,
     "/providers/",
     SITE_ROUTES.ideas,
     SITE_ROUTES.resources,

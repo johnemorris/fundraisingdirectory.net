@@ -85,7 +85,7 @@
   align-items: center;
   margin-top: 18px;
   color: var(--teal-dark);
-  font-weight: 800;
+  font-weight: 650;
   text-decoration: none;
 }
 
@@ -97,7 +97,7 @@
   margin-bottom: 20px;
   color: var(--teal-dark);
   font-size: clamp(1rem, 2.5vw, 1.25rem);
-  font-weight: 850;
+  font-weight: 650;
   overflow-wrap: anywhere;
   text-underline-offset: 4px;
 }

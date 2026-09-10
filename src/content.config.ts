@@ -1,7 +1,6 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 import { GEOGRAPHY_SCOPES } from "./data/taxonomies/geography";
-import { FUNDRAISING_METHODS } from "./data/taxonomies/methods";
 import { ORGANIZATION_TYPES } from "./data/taxonomies/organizations";
 import {
   CHANNELS,
@@ -11,6 +10,10 @@ import {
   UPFRONT_COSTS,
 } from "./data/taxonomies/operations";
 import { PRODUCTS_SERVICES } from "./data/taxonomies/products-services";
+import {
+  fundraisingMethodSchema,
+  OPTIONAL_FUNDRAISING_DIMENSION_SCHEMAS,
+} from "./data/taxonomies/validation";
 
 const publicDate = z.string().regex(
   /^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?(?:Z|[+-]\d{2}:\d{2}))?$/,
@@ -44,7 +47,7 @@ const programSchema = z.object({
   id: z.string().regex(/^prog_\d{6}$/),
   name: z.string().min(1),
   slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
-  method: z.enum(FUNDRAISING_METHODS),
+  method: fundraisingMethodSchema,
   products_services: z.array(z.enum(PRODUCTS_SERVICES)),
   channels: z.array(z.enum(CHANNELS)).min(1),
   online_ordering: z.boolean().nullable(),
@@ -53,6 +56,7 @@ const programSchema = z.object({
   upfront_cost: z.enum(UPFRONT_COSTS),
   ease_to_raise: z.enum(EASE_TO_RAISE).nullable(),
   summary: z.string().min(1),
+  ...OPTIONAL_FUNDRAISING_DIMENSION_SCHEMAS,
 });
 
 const providers = defineCollection({
@@ -93,9 +97,10 @@ const providers = defineCollection({
       logo: z.string().url().nullable(),
     }),
     classification: z.object({
-      methods: z.array(z.enum(FUNDRAISING_METHODS)).min(1),
+      methods: z.array(fundraisingMethodSchema).min(1),
       products_services: z.array(z.enum(PRODUCTS_SERVICES)),
       organizations: z.array(z.enum(ORGANIZATION_TYPES)).min(1),
+      ...OPTIONAL_FUNDRAISING_DIMENSION_SCHEMAS,
     }),
     programs: z.array(programSchema).min(1),
     geography: z.object({

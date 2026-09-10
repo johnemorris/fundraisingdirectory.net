@@ -137,7 +137,7 @@
   color: var(--teal);
 
   font-size: 0.68rem;
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
@@ -162,7 +162,7 @@
   color: var(--teal-dark);
 
   font-size: 0.68rem;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .finder-question {
@@ -189,7 +189,7 @@
   color: var(--ink);
 
   font-size: 0.88rem;
-  font-weight: 850;
+  font-weight: 600;
 }
 
 .finder-multiselect {
@@ -222,7 +222,7 @@
 
   font: inherit;
   font-size: 0.8rem;
-  font-weight: 750;
+  font-weight: 550;
 
   cursor: pointer;
   list-style: none;
@@ -301,7 +301,7 @@
   color: var(--ink);
 
   font-size: 0.78rem;
-  font-weight: 750;
+  font-weight: 550;
 
   cursor: pointer;
 }
@@ -600,7 +600,7 @@
   background: #fff;
   color: var(--purple-dark);
   font-size: 0.68rem;
-  font-weight: 850;
+  font-weight: 600;
 }
 
 .placement-sponsored {
@@ -640,7 +640,7 @@
   margin-bottom: 7px;
   color: var(--teal-bright);
   font-size: 0.64rem;
-  font-weight: 850;
+  font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -649,7 +649,7 @@
   margin: 0;
   color: #fff;
   font-size: 0.78rem;
-  font-weight: 750;
+  font-weight: 600;
   line-height: 1.45;
 }
 
@@ -724,7 +724,7 @@
   margin-top: 7px;
   color: var(--teal-bright);
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
@@ -1043,14 +1043,14 @@
   background: var(--focus);
   color: var(--ink);
   font-size: 1.4rem;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .guide-label,
 .guide-links small {
   color: var(--teal-bright);
   font-size: 0.68rem;
-  font-weight: 850;
+  font-weight: 800;
   letter-spacing: 0.09em;
   text-transform: uppercase;
 }
@@ -1155,7 +1155,7 @@
   border: 1px solid rgba(255, 255, 255, 0.36);
   border-radius: 21px 21px 30px 21px;
   font-size: 1.5rem;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .provider-cta-mark span:first-child {
@@ -1217,7 +1217,7 @@
   align-items: center;
   color: var(--purple-bright);
   font-size: 0.77rem;
-  font-weight: 750;
+  font-weight: 650;
   text-decoration: none;
 }
 
