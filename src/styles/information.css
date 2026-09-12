@@ -13,14 +13,21 @@
 }
 
 .information-header {
-  max-width: 820px;
-  padding: 24px 0 38px;
-  border-bottom: 1px solid rgba(18, 48, 74, 0.16);
+  position: relative;
+  max-width: 920px;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  overflow: hidden;
+  border-radius: 2rem 1rem 3.5rem 1.25rem;
+  background:
+    linear-gradient(145deg, transparent 56%, rgba(105, 68, 173, 0.28) 56%, rgba(105, 68, 173, 0.06) 92%),
+    linear-gradient(125deg, var(--ink-deep), var(--ink) 64%, var(--ink-teal));
+  box-shadow: var(--shadow-lg);
+  color: #fff;
 }
 
 .information-header h1 {
   margin: 8px 0 18px;
-  color: var(--ink);
+  color: #fff;
   font-size: clamp(2.6rem, 7vw, 4.8rem);
   line-height: 0.98;
   letter-spacing: -0.055em;
@@ -29,7 +36,7 @@
 
 .information-header > p:last-child {
   max-width: 760px;
-  color: var(--text-muted);
+  color: var(--text-on-dark);
   font-size: 1.12rem;
   line-height: 1.75;
 }
@@ -37,6 +44,7 @@
 .information-content {
   display: grid;
   gap: 0;
+  margin-top: 1.5rem;
 }
 
 .information-content section {
@@ -65,8 +73,11 @@
   padding: 28px !important;
   border: 1px solid var(--teal-border) !important;
   border-radius: 18px 18px 34px 18px;
-  background: var(--surface-cool);
+  background: var(--surface-teal);
+  box-shadow: var(--shadow-sm);
 }
+
+.information-header .eyebrow { color: var(--teal-bright); }
 
 .information-link {
   display: inline-flex;
@@ -74,7 +85,7 @@
   align-items: center;
   margin-top: 18px;
   color: var(--teal-dark);
-  font-weight: 800;
+  font-weight: 650;
   text-decoration: none;
 }
 
@@ -86,7 +97,7 @@
   margin-bottom: 20px;
   color: var(--teal-dark);
   font-size: clamp(1rem, 2.5vw, 1.25rem);
-  font-weight: 850;
+  font-weight: 650;
   overflow-wrap: anywhere;
   text-underline-offset: 4px;
 }

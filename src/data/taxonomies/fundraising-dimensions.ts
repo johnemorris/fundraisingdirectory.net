@@ -1,0 +1,106 @@
+export const FUNDRAISING_OUTCOMES = [
+  "cash",
+  "supplies",
+  "technology",
+  "grants",
+  "sponsorship",
+  "equipment",
+  "food",
+  "services",
+  "volunteer-support",
+  "donated-goods",
+] as const;
+
+export const FUNDRAISING_CAPABILITIES = [
+  "donation-forms",
+  "recurring-giving",
+  "crowdfunding-pages",
+  "peer-to-peer-pages",
+  "participant-pages",
+  "leaderboards",
+  "ticketing-registration",
+  "auctions-mobile-bidding",
+  "raffles-prize-drawings",
+  "text-to-give",
+  "qr-giving",
+  "tap-to-pay",
+  "digital-wallets",
+  "online-store",
+  "print-on-demand",
+  "donor-crm",
+  "email-marketing",
+  "matching-gifts",
+  "workplace-giving",
+  "grant-search",
+  "grant-management",
+  "sponsorship-management",
+  "livestream-integrations",
+  "gaming-integrations",
+  "reporting-analytics",
+  "fulfillment",
+  "collection-logistics",
+] as const;
+
+export const BENEFICIARY_TYPES = [
+  "own-organization",
+  "own-project-or-program",
+  "individual-or-family",
+  "local-nonprofit-or-charity",
+  "national-nonprofit-or-charity",
+  "local-chapter-or-affiliate",
+  "community-cause",
+  "open-or-unspecified-cause",
+] as const;
+
+export const CAUSE_AREAS = [
+  "animals-pets",
+  "children-families",
+  "health-medical",
+  "medical-research",
+  "education-literacy",
+  "hunger-food-security",
+  "homelessness-housing",
+  "disability-support",
+  "mental-health",
+  "veterans-military",
+  "disaster-emergency-relief",
+  "environment-conservation",
+  "community-neighborhood",
+  "youth-development-prevention",
+  "organ-donation-transplant",
+  "road-safety-impaired-driving-prevention",
+  "arts-culture",
+  "faith-missions",
+  "other-cause",
+] as const;
+
+export const ACTIVITY_SUBTYPES = [
+  "fun-run",
+  "walkathon",
+  "readathon",
+  "bike-ride",
+  "fitness-challenge",
+  "gaming-livestream",
+  "creator-livestream",
+  "giving-day",
+  "gala",
+  "golf-event",
+  "raffle",
+  "prize-drawing",
+  "silent-auction",
+  "live-auction",
+  "restaurant-night",
+  "shoe-drive",
+  "clothing-drive",
+  "electronics-drive",
+  "recycling-drive",
+  "supply-drive",
+  "food-drive",
+  "peer-fundraising-challenge",
+] as const;
+
+export type FundraisingOutcome = (typeof FUNDRAISING_OUTCOMES)[number];
+export type FundraisingCapability = (typeof FUNDRAISING_CAPABILITIES)[number];
+export type BeneficiaryType = (typeof BENEFICIARY_TYPES)[number];
+export type CauseArea = (typeof CAUSE_AREAS)[number];
+export type ActivitySubtype = (typeof ACTIVITY_SUBTYPES)[number];

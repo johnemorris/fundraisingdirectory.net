@@ -54,7 +54,7 @@ const { eyebrow, title, description, tone = "navy", visualLabel = "Fundraising d
     overflow: hidden;
     border-radius: 30px 30px 60px 30px;
     background:
-      radial-gradient(circle at 86% 12%, rgba(105, 68, 173, 0.3), transparent 31%),
+      linear-gradient(142deg, transparent 58%, rgba(105, 68, 173, 0.3) 58%, rgba(105, 68, 173, 0.08) 86%),
       linear-gradient(125deg, var(--ink-deep), var(--ink) 66%, #164966);
     color: #fff;
   }
@@ -70,14 +70,13 @@ const { eyebrow, title, description, tone = "navy", visualLabel = "Fundraising d
   .discovery-actions:empty { display: none; }
 
   .discovery-signal { position: relative; display: grid; width: min(330px, 100%); aspect-ratio: 1.08; place-content: center; justify-self: end; color: var(--ink); text-align: center; }
-  .discovery-signal::before { content: ""; position: absolute; inset: 12% 4% 8% 10%; border-radius: 46% 54% 58% 42% / 42% 38% 62% 58%; background: var(--discovery-soft); transform: rotate(-6deg); }
+  .discovery-signal::before { content: ""; position: absolute; inset: 8% 0 5% 4%; background: linear-gradient(145deg, var(--discovery-soft), rgba(255,255,255,.04)); clip-path: polygon(7% 18%, 85% 0, 100% 68%, 63% 100%, 0 78%); transform: rotate(-4deg); }
   .discovery-signal strong { position: relative; z-index: 2; max-width: 175px; font-size: clamp(1.3rem, 2.4vw, 2rem); line-height: 1.05; }
-  .discovery-signal small { position: relative; z-index: 2; margin-top: 8px; color: var(--discovery-accent); font-size: 0.68rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; }
-  .signal-orbit, .signal-dot { position: absolute; border-radius: 50%; }
-  .signal-orbit-one { inset: 4% 8%; border: 2px solid var(--discovery-accent); opacity: 0.35; transform: rotate(12deg); }
-  .signal-orbit-two { inset: 19% -1% 16% 16%; border: 1px solid var(--purple); opacity: 0.25; transform: rotate(-16deg); }
-  .signal-dot-one { top: 6%; right: 15%; width: 34px; height: 34px; background: var(--discovery-accent); }
-  .signal-dot-two { bottom: 9%; left: 8%; width: 48px; height: 48px; background: var(--purple); opacity: 0.8; }
+  .discovery-signal small { position: relative; z-index: 2; margin-top: 8px; color: var(--discovery-accent); font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+  .signal-orbit { position: absolute; pointer-events: none; }
+  .signal-orbit-one { inset: -5% 7% 50% -7%; background: linear-gradient(110deg, transparent, var(--discovery-accent)); clip-path: polygon(0 55%, 100% 0, 82% 100%, 10% 88%); opacity: 0.3; transform: rotate(7deg); }
+  .signal-orbit-two { inset: 57% -8% -4% 18%; background: linear-gradient(120deg, var(--purple), transparent); clip-path: polygon(0 8%, 100% 36%, 72% 100%, 8% 72%); opacity: 0.32; transform: rotate(-7deg); }
+  .signal-dot { display: none; }
   .discovery-compact { min-height: 310px; }
 
   @media (max-width: 760px) {

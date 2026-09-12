@@ -1,0 +1,70 @@
+{
+  "record_type": "provider",
+  "origin": "internal-research",
+  "identity": {
+    "name": "Acorn Fundraising Labs",
+    "website": "https://acorn-fundraising.example/",
+    "fundraising_url": "https://acorn-fundraising.example/programs"
+  },
+  "classification": {
+    "methods": ["direct-donations"],
+    "products_services": ["donation-platform"],
+    "organizations": ["schools", "nonprofits-charities"],
+    "capabilities": ["donation-forms", "reporting-analytics"],
+    "outcomes": ["cash"]
+  },
+  "programs": [
+    {
+      "name": "Acorn Giving Pages",
+      "url": "https://acorn-fundraising.example/programs/giving-pages",
+      "method": "direct-donations",
+      "products_services": ["donation-platform"],
+      "channels": ["online"],
+      "online_ordering": null,
+      "fulfillment": ["digital"],
+      "inventory_model": "not-applicable",
+      "upfront_cost": "unknown",
+      "ease_to_raise": null,
+      "summary": "A fictional online donation-page program for fixture and workflow testing."
+    }
+  ],
+  "geography": {
+    "scope": ["us-nationwide"],
+    "countries": ["US"],
+    "states": [],
+    "regions": [],
+    "notes": "Fictional fixture data."
+  },
+  "economics": {
+    "platform_fee_percent": 2.5,
+    "notes": "Fictional fixture value; not published automatically."
+  },
+  "requirements": ["Confirm current fictional program terms."],
+  "logistics": ["Online setup only."],
+  "content": {
+    "summary": "Acorn Fundraising Labs is a fictional provider used to test internal intake workflows.",
+    "how_it_works": "An editor prepares and reviews the fictional record before any explicit write action.",
+    "best_for": ["Testing the provider intake engine."],
+    "considerations": ["This company and its program are fictional."]
+  },
+  "sources": [
+    {
+      "url": "https://acorn-fundraising.example/programs",
+      "source_type": "official-provider",
+      "title": "Acorn programs",
+      "supports": ["identity.website", "classification.methods", "geography.countries"],
+      "checked_at": "2026-09-12"
+    }
+  ],
+  "verification": {
+    "status": "partially-verified",
+    "first_researched_at": "2026-09-12",
+    "first_verified_at": "2026-09-12",
+    "last_verified_at": "2026-09-12",
+    "reviewer": "Fixture Author"
+  },
+  "completeness": "standard",
+  "commercial_research": {
+    "affiliate_status": "unknown"
+  }
+}

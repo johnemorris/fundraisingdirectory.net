@@ -8,11 +8,18 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "test": "node --test worker/*.test.js",
+    "test": "node --test worker/*.test.js tests/*.test.js",
+    "intake:validate": "node scripts/provider-intake.ts validate",
+    "intake:review": "node scripts/provider-intake.ts review",
+    "intake:publish": "node scripts/provider-intake.ts publish",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.2.4"
+    "astro": "^7.2.4",
+    "js-yaml": "^4.3.2"
+  },
+  "devDependencies": {
+    "sass": "^1.104.0"
   }
 }

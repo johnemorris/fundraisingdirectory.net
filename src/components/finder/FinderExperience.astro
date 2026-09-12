@@ -1,0 +1,534 @@
+---
+import {
+  FINDER_CONSTRAINT_OPTIONS,
+  FINDER_COUNTRY_OPTIONS,
+  FINDER_EFFORT_OPTIONS,
+  FINDER_FORMAT_OPTIONS,
+  FINDER_GROUP_OPTIONS,
+  FINDER_METHOD_OPTIONS,
+  FINDER_OUTCOME_OPTIONS,
+  FINDER_SIZE_OPTIONS,
+  FINDER_TIME_OPTIONS,
+} from "../../data/finder";
+import "../../styles/finder.scss";
+
+interface Props {
+  providers: unknown[];
+}
+
+const { providers } = Astro.props;
+const providerJson = JSON.stringify(providers).replaceAll("<", "\\u003c");
+---
+
+<main class="finder-experience">
+  <header class="finder-page-header interior-shell">
+    <p class="eyebrow eyebrow-light">Fundraiser Finder</p>
+    <h1>Build a shortlist around what actually fits.</h1>
+    <p>Share as much or as little as you know. Recommendations use documented program fit—not sponsorship or affiliate status.</p>
+  </header>
+
+  <div class="finder-workspace interior-shell">
+    <form class="finder-refiner" data-finder-form>
+      <div class="finder-refiner-heading">
+        <div>
+          <p class="eyebrow">Your priorities</p>
+          <h2>Let’s narrow the options.</h2>
+        </div>
+        <button type="reset" class="finder-reset">Clear answers</button>
+      </div>
+
+      <section class="finder-answer-summary" aria-labelledby="finder-answer-summary-title">
+        <div>
+          <h3 id="finder-answer-summary-title">What you’ve told us</h3>
+          <p data-answer-count aria-live="polite">No questions answered yet.</p>
+        </div>
+        <ul class="finder-answer-list" data-answer-summary></ul>
+      </section>
+
+      <div class="finder-guided-layout">
+        <aside class="finder-action-rail" aria-label="Finder progress and recommendation controls">
+          <div class="finder-progress-copy">
+            <span data-question-progress aria-live="polite">Question 1 of 10</span>
+            <progress data-question-progress-bar value="1" max="10" aria-label="Questionnaire progress"></progress>
+          </div>
+          <button class="button button-primary" type="submit">Update recommendations <span aria-hidden="true">→</span></button>
+          <p>Use every answer supplied so far. You can update now or keep refining.</p>
+        </aside>
+
+        <div class="finder-stage" data-finder-stage>
+          <div class="finder-question-frame" data-finder-question-frame>
+            <fieldset class="finder-field" data-finder-step data-fields="group" data-summary-label="Group" data-auto-advance>
+              <legend tabindex="-1">Who are you fundraising for?</legend>
+              <p class="finder-help">Choose the closest fit. You can change it from your answer summary.</p>
+              <div class="finder-choices finder-choices-wrap">
+                {FINDER_GROUP_OPTIONS.map((option) => (
+                  <label><input type="radio" name="group" value={option.value} /><span>{option.label}</span></label>
+                ))}
+              </div>
+            </fieldset>
+
+            <fieldset class="finder-field" data-finder-step data-fields="method" data-summary-label="Methods" data-empty-summary="Open to any method">
+              <legend tabindex="-1">Do any fundraising approaches appeal to you?</legend>
+              <p class="finder-help">Choose as many as you like, or continue without selecting one.</p>
+              <div class="finder-choices finder-choices-wrap">
+                {FINDER_METHOD_OPTIONS.map((option) => (
+                  <label><input type="checkbox" name="method" value={option.value} /><span>{option.label}</span></label>
+                ))}
+              </div>
+            </fieldset>
+
+            <fieldset class="finder-field" data-finder-step data-fields="outcome" data-summary-label="Outcome" data-empty-summary="Open to ideas">
+              <legend tabindex="-1">What would a successful fundraiser provide?</legend>
+              <p class="finder-help">Select all that apply. Provider matches appear only when current data supports an outcome.</p>
+              <div class="finder-choices finder-choices-wrap">
+                {FINDER_OUTCOME_OPTIONS.map((option) => (
+                  <label><input type="checkbox" name="outcome" value={option.value} /><span>{option.label}</span></label>
+                ))}
+              </div>
+            </fieldset>
+
+            <fieldset class="finder-field" data-finder-step data-fields="format" data-summary-label="Format" data-auto-advance>
+              <legend tabindex="-1">Where should the fundraiser happen?</legend>
+              <div class="finder-choices finder-choices-wrap">
+                {FINDER_FORMAT_OPTIONS.map((option) => (
+                  <label><input type="radio" name="format" value={option.value} /><span>{option.label}</span></label>
+                ))}
+              </div>
+            </fieldset>
+
+            <fieldset class="finder-field" data-finder-step data-fields="products,events" data-summary-label="Fundraiser style" data-auto-advance-all>
+              <legend tabindex="-1">Would products or an event work for your group?</legend>
+              <div class="finder-subquestion-grid">
+                <div class="finder-subquestion">
+                  <p>Product selling</p>
+                  <div class="finder-choices finder-choices-compact">
+                    <label><input type="radio" name="products" value="any" /><span>Either</span></label>
+                    <label><input type="radio" name="products" value="yes" /><span>Yes</span></label>
+                    <label><input type="radio" name="products" value="no" /><span>No</span></label>
+                  </div>
+                </div>
+                <div class="finder-subquestion">
+                  <p>Event or activity</p>
+                  <div class="finder-choices finder-choices-compact">
+                    <label><input type="radio" name="events" value="any" /><span>Either</span></label>
+                    <label><input type="radio" name="events" value="yes" /><span>Yes</span></label>
+                    <label><input type="radio" name="events" value="no" /><span>No</span></label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="finder-field" data-finder-step data-fields="budget" data-summary-label="Upfront budget" data-auto-advance>
+              <legend tabindex="-1">What upfront budget is comfortable?</legend>
+              <div class="finder-choices finder-choices-wrap">
+                <label><input type="radio" name="budget" value="any" /><span>Flexible / unknown</span></label>
+                <label><input type="radio" name="budget" value="none" /><span>No upfront budget</span></label>
+                <label><input type="radio" name="budget" value="available" /><span>Some budget available</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="finder-field" data-finder-step data-fields="groupSize" data-summary-label="Group size" data-auto-advance>
+              <legend tabindex="-1">About how many people could participate?</legend>
+              <p class="finder-help">Current provider records do not fully structure size fit, so this may lower confidence rather than change rank.</p>
+              <div class="finder-choices finder-choices-wrap">
+                {FINDER_SIZE_OPTIONS.map((option) => (
+                  <label><input type="radio" name="groupSize" value={option.value} /><span>{option.label}</span></label>
+                ))}
+              </div>
+            </fieldset>
+
+            <fieldset class="finder-field" data-finder-step data-fields="effort,time" data-summary-label="Effort and timing" data-auto-advance-all>
+              <legend tabindex="-1">What can your group realistically take on?</legend>
+              <div class="finder-subquestion-grid">
+                <div class="finder-subquestion">
+                  <p>Preferred effort</p>
+                  <div class="finder-choices">
+                    {FINDER_EFFORT_OPTIONS.map((option) => (
+                      <label><input type="radio" name="effort" value={option.value} /><span>{option.label}</span></label>
+                    ))}
+                  </div>
+                </div>
+                <div class="finder-subquestion">
+                  <p>Time available</p>
+                  <div class="finder-choices">
+                    {FINDER_TIME_OPTIONS.map((option) => (
+                      <label><input type="radio" name="time" value={option.value} /><span>{option.label}</span></label>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="finder-field" data-finder-step data-fields="country,zip" data-summary-label="Location">
+              <legend tabindex="-1">Where will you fundraise?</legend>
+              <div class="finder-choices finder-choices-wrap">
+                {FINDER_COUNTRY_OPTIONS.map((option) => (
+                  <label><input type="radio" name="country" value={option.value} /><span>{option.label}</span></label>
+                ))}
+              </div>
+              <label class="finder-zip">ZIP / postal code <input name="zip" autocomplete="postal-code" maxlength="10" /></label>
+              <p class="finder-help">ZIP-level fit is used only when a provider documents a relevant service area.</p>
+            </fieldset>
+
+            <fieldset class="finder-field" data-finder-step data-fields="constraint" data-summary-label="Must-haves" data-empty-summary="No additional must-haves">
+              <legend tabindex="-1">Are any of these requirements non-negotiable?</legend>
+              <p class="finder-help">Known conflicts are excluded. Unknown provider details lower recommendation confidence.</p>
+              <div class="finder-choices finder-choices-wrap finder-constraints">
+                {FINDER_CONSTRAINT_OPTIONS.map((option) => (
+                  <label><input type="checkbox" name="constraint" value={option.value} /><span>{option.label}</span></label>
+                ))}
+              </div>
+            </fieldset>
+          </div>
+
+          <section class="finder-review" data-finder-review hidden aria-labelledby="finder-review-title">
+            <p class="eyebrow">Review your priorities</p>
+            <h3 id="finder-review-title" tabindex="-1">Your answers so far</h3>
+            <p>Change any answer below, keep refining, or update your recommendations with what you have now.</p>
+            <ol class="finder-review-list" data-finder-review-list></ol>
+            <button type="button" class="finder-nav-button" data-resume-questions>Continue questionnaire</button>
+          </section>
+
+          <nav class="finder-question-navigation" aria-label="Question navigation">
+            <button type="button" class="finder-nav-button" data-previous-question>← Previous</button>
+            <button type="button" class="finder-skip-button" data-skip-question>Skip for now</button>
+            <button type="button" class="finder-nav-button finder-nav-button-next" data-next-question>Continue →</button>
+          </nav>
+        </div>
+      </div>
+    </form>
+
+    <section class="finder-results" aria-labelledby="finder-results-title">
+      <div class="finder-results-heading">
+        <p class="eyebrow">Ranked shortlist</p>
+        <h2 id="finder-results-title" tabindex="-1">Your recommendations</h2>
+        <p data-results-summary aria-live="polite"></p>
+      </div>
+
+      <section class="finder-result-section" aria-labelledby="method-results-title">
+        <div>
+          <p class="finder-result-kicker">Start with an approach</p>
+          <h3 id="method-results-title">Best-fit methods</h3>
+        </div>
+        <ol class="finder-method-results" data-method-results></ol>
+      </section>
+
+      <section class="finder-result-section" aria-labelledby="provider-results-title">
+        <div>
+          <p class="finder-result-kicker">Compare documented programs</p>
+          <h3 id="provider-results-title">Matching providers</h3>
+        </div>
+        <div class="finder-data-note" data-provider-empty></div>
+        <ol class="finder-provider-results" data-provider-results></ol>
+      </section>
+    </section>
+  </div>
+
+  <script type="application/json" data-finder-provider-data set:html={providerJson}></script>
+</main>
+
+<script>
+  import { rankMethodMatches, rankProviderMatches } from "../../lib/finderScoring.js";
+
+  const form = document.querySelector<HTMLFormElement>("[data-finder-form]");
+  const steps = Array.from(document.querySelectorAll<HTMLFieldSetElement>("[data-finder-step]"));
+  const providerData = document.querySelector<HTMLScriptElement>("[data-finder-provider-data]");
+  const methodList = document.querySelector<HTMLOListElement>("[data-method-results]");
+  const providerList = document.querySelector<HTMLOListElement>("[data-provider-results]");
+  const providerEmpty = document.querySelector<HTMLElement>("[data-provider-empty]");
+  const resultsSummary = document.querySelector<HTMLElement>("[data-results-summary]");
+  const resultsHeading = document.querySelector<HTMLElement>("#finder-results-title");
+  const answerSummary = document.querySelector<HTMLUListElement>("[data-answer-summary]");
+  const answerCount = document.querySelector<HTMLElement>("[data-answer-count]");
+  const questionProgress = document.querySelector<HTMLElement>("[data-question-progress]");
+  const progressBar = document.querySelector<HTMLProgressElement>("[data-question-progress-bar]");
+  const reviewPanel = document.querySelector<HTMLElement>("[data-finder-review]");
+  const questionFrame = document.querySelector<HTMLElement>("[data-finder-question-frame]");
+  const reviewHeading = document.querySelector<HTMLElement>("#finder-review-title");
+  const reviewList = document.querySelector<HTMLOListElement>("[data-finder-review-list]");
+  const questionNavigation = document.querySelector<HTMLElement>(".finder-question-navigation");
+  const previousButton = document.querySelector<HTMLButtonElement>("[data-previous-question]");
+  const skipButton = document.querySelector<HTMLButtonElement>("[data-skip-question]");
+  const nextButton = document.querySelector<HTMLButtonElement>("[data-next-question]");
+  const resumeButton = document.querySelector<HTMLButtonElement>("[data-resume-questions]");
+  const answeredSteps = new Set<number>();
+  const touchedSteps = new Set<number>();
+  let currentStep = 0;
+  let returnToReview = false;
+
+  const label = (value: string | null | undefined) => value ? value.replaceAll("-", " ").replace(/\b\w/g, (letter) => letter.toUpperCase()) : "Not documented";
+  const confidenceLabel = (confidence: number) => confidence >= 85 ? "Higher data confidence" : confidence >= 65 ? "Moderate data confidence" : "Limited data confidence";
+  const fieldsForStep = (step: HTMLFieldSetElement) => (step.dataset.fields ?? "").split(",").filter(Boolean);
+  const summaryPrefixes: Record<string, string> = { products: "Products", events: "Events", effort: "Effort", time: "Timing", country: "Country" };
+
+  const answersFromForm = () => {
+    const data = new FormData(form!);
+    return {
+      group: data.get("group") ?? "", outcomes: data.getAll("outcome"), methods: data.getAll("method"), format: data.get("format") ?? "",
+      products: data.get("products") ?? "any", events: data.get("events") ?? "any", budget: data.get("budget") ?? "any", groupSize: data.get("groupSize") ?? "",
+      effort: data.get("effort") ?? "", time: data.get("time") ?? "", country: data.get("country") ?? "", zip: data.get("zip") ?? "", constraints: data.getAll("constraint"),
+    };
+  };
+
+  const hydrateFromUrl = () => {
+    if (!form) return new URLSearchParams();
+    const params = new URLSearchParams(window.location.search);
+    ["group", "format", "products", "events", "budget", "groupSize", "effort", "time", "country"].forEach((name) => {
+      const value = params.get(name);
+      if (value === null) return;
+      const control = form.querySelector<HTMLInputElement>(`input[name="${name}"][value="${CSS.escape(value)}"]`);
+      if (control) control.checked = true;
+    });
+    ["method", "outcome", "constraint"].forEach((name) => params.getAll(name).forEach((value) => {
+      const control = form.querySelector<HTMLInputElement>(`input[name="${name}"][value="${CSS.escape(value)}"]`);
+      if (control) control.checked = true;
+    }));
+    const zip = form.querySelector<HTMLInputElement>('input[name="zip"]');
+    if (zip) zip.value = params.get("zip") ?? "";
+    return params;
+  };
+
+  const controlLabel = (control: HTMLInputElement) => control.closest("label")?.querySelector("span")?.textContent?.trim() ?? control.value;
+  const summaryForStep = (step: HTMLFieldSetElement) => {
+    const fields = fieldsForStep(step);
+    const values = fields.flatMap((field) => {
+      const controls = Array.from(step.querySelectorAll<HTMLInputElement>(`input[name="${field}"]`));
+      if (controls.length === 0) return [];
+      if (controls[0].type === "text") return controls[0].value.trim() ? [`ZIP ${controls[0].value.trim()}`] : [];
+      return controls.filter((control) => control.checked).map((control) => {
+        const value = controlLabel(control);
+        return fields.length > 1 && summaryPrefixes[field] ? `${summaryPrefixes[field]}: ${value}` : value;
+      });
+    });
+    return values.length ? values.join(" · ") : step.dataset.emptySummary ?? "No preference";
+  };
+
+  const element = <K extends keyof HTMLElementTagNameMap>(tag: K, className?: string, text?: string) => {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text) node.textContent = text;
+    return node;
+  };
+
+  const renderAnswerSummary = () => {
+    if (!answerSummary || !answerCount) return;
+    answerSummary.replaceChildren();
+    [...answeredSteps].sort((a, b) => a - b).forEach((index) => {
+      const step = steps[index];
+      const summary = summaryForStep(step);
+      const item = element("li");
+      const button = element("button", undefined, `${step.dataset.summaryLabel}: ${summary}`);
+      button.type = "button";
+      button.setAttribute("aria-label", `Edit ${step.dataset.summaryLabel}: ${summary}`);
+      button.addEventListener("click", () => showStep(index, true));
+      item.append(button);
+      answerSummary.append(item);
+    });
+    const complete = answeredSteps.size;
+    answerCount.textContent = complete === 0 ? "No questions answered yet." : `${complete} of ${steps.length} answered. Select an answer to edit it.`;
+  };
+
+  const renderReviewList = () => {
+    if (!reviewList) return;
+    reviewList.replaceChildren();
+    steps.forEach((step, index) => {
+      const item = element("li", answeredSteps.has(index) ? "is-answered" : "is-unanswered");
+      const copy = element("div");
+      copy.append(
+        element("span", "finder-review-question", `${index + 1}. ${step.dataset.summaryLabel}`),
+        element("strong", undefined, answeredSteps.has(index) ? summaryForStep(step) : "Not answered"),
+      );
+      const button = element("button", undefined, answeredSteps.has(index) ? "Edit" : "Answer");
+      button.type = "button";
+      button.setAttribute("aria-label", `${answeredSteps.has(index) ? "Edit" : "Answer"} ${step.dataset.summaryLabel}`);
+      button.addEventListener("click", () => showStep(index, true, true));
+      item.append(copy, button);
+      reviewList.append(item);
+    });
+  };
+
+  const firstUnanswered = () => steps.findIndex((_, index) => !answeredSteps.has(index));
+
+  function showStep(index: number, moveFocus = false, returnAfterEdit = false) {
+    returnToReview = returnAfterEdit;
+    currentStep = Math.max(0, Math.min(index, steps.length - 1));
+    steps.forEach((step, stepIndex) => { step.hidden = stepIndex !== currentStep; });
+    if (questionFrame) questionFrame.hidden = false;
+    if (reviewPanel) reviewPanel.hidden = true;
+    if (questionNavigation) questionNavigation.hidden = false;
+    if (questionProgress) questionProgress.textContent = `Question ${currentStep + 1} of ${steps.length}`;
+    if (progressBar) { progressBar.max = steps.length; progressBar.value = currentStep + 1; }
+    if (previousButton) previousButton.disabled = currentStep === 0;
+    if (skipButton) skipButton.textContent = currentStep === steps.length - 1 ? "Finish later" : "Skip for now";
+    if (nextButton) nextButton.textContent = currentStep === steps.length - 1 ? "Review answers" : "Continue →";
+    const currentIsAnswered = answeredSteps.has(currentStep);
+    if (nextButton) nextButton.hidden = !currentIsAnswered && (steps[currentStep].hasAttribute("data-auto-advance") || steps[currentStep].hasAttribute("data-auto-advance-all"));
+    renderAnswerSummary();
+    if (moveFocus) steps[currentStep].querySelector<HTMLElement>("legend")?.focus({ preventScroll: true });
+  }
+
+  const showReview = (moveFocus = false) => {
+    returnToReview = false;
+    steps.forEach((step) => { step.hidden = true; });
+    if (questionFrame) questionFrame.hidden = true;
+    if (reviewPanel) reviewPanel.hidden = false;
+    if (questionNavigation) questionNavigation.hidden = true;
+    if (questionProgress) questionProgress.textContent = `Reviewing ${answeredSteps.size} of ${steps.length} answers`;
+    if (progressBar) { progressBar.max = steps.length; progressBar.value = answeredSteps.size; }
+    renderAnswerSummary();
+    renderReviewList();
+    if (moveFocus) reviewHeading?.focus({ preventScroll: true });
+  };
+
+  const completeCurrentAndContinue = () => {
+    answeredSteps.add(currentStep);
+    if (returnToReview || currentStep === steps.length - 1) showReview(true);
+    else showStep(currentStep + 1, true);
+  };
+
+  const skipCurrent = () => {
+    if (returnToReview || currentStep === steps.length - 1) showReview(true);
+    else showStep(currentStep + 1, true);
+  };
+
+  const allRequiredChoicesAnswered = (step: HTMLFieldSetElement) => fieldsForStep(step).every((field) =>
+    Boolean(step.querySelector<HTMLInputElement>(`input[name="${field}"]:checked`)),
+  );
+
+  const hydratedParams = hydrateFromUrl();
+  steps.forEach((step, index) => {
+    if (fieldsForStep(step).some((field) => hydratedParams.getAll(field).some(Boolean))) answeredSteps.add(index);
+  });
+  const initialStep = firstUnanswered();
+  form?.setAttribute("data-guided", "");
+  showStep(initialStep === -1 ? steps.length - 1 : initialStep);
+
+  steps.forEach((step, index) => {
+    step.addEventListener("input", () => {
+      touchedSteps.add(index);
+      if (answeredSteps.has(index)) renderAnswerSummary();
+    });
+    step.addEventListener("change", (event) => {
+      touchedSteps.add(index);
+      if (event.target instanceof HTMLInputElement && event.target.name === "outcome" && event.target.type === "checkbox") {
+        const outcomeControls = Array.from(step.querySelectorAll<HTMLInputElement>('input[name="outcome"]'));
+        const neutral = outcomeControls.find((control) => control.value === "open-to-ideas");
+        if (event.target === neutral && neutral.checked) {
+          outcomeControls.forEach((control) => { if (control !== neutral) control.checked = false; });
+        } else if (event.target.checked && neutral) neutral.checked = false;
+      }
+      if (answeredSteps.has(index)) renderAnswerSummary();
+      if (step.hasAttribute("data-auto-advance") && event.target instanceof HTMLInputElement && event.target.type === "radio") {
+        answeredSteps.add(index);
+        window.setTimeout(() => returnToReview ? showReview(true) : showStep(index + 1, true), 180);
+      } else if (step.hasAttribute("data-auto-advance-all") && allRequiredChoicesAnswered(step)) {
+        answeredSteps.add(index);
+        window.setTimeout(() => returnToReview ? showReview(true) : showStep(index + 1, true), 180);
+      }
+    });
+  });
+
+  previousButton?.addEventListener("click", () => showStep(currentStep - 1, true));
+  skipButton?.addEventListener("click", skipCurrent);
+  nextButton?.addEventListener("click", completeCurrentAndContinue);
+  resumeButton?.addEventListener("click", () => {
+    const next = firstUnanswered();
+    showStep(next === -1 ? 0 : next, true);
+  });
+
+  const renderMethods = (answers: ReturnType<typeof answersFromForm>) => {
+    if (!methodList) return;
+    methodList.replaceChildren();
+    rankMethodMatches(answers).slice(0, 4).forEach((method, index) => {
+      const item = element("li", "finder-method-result");
+      const rank = element("span", "finder-result-rank", String(index + 1).padStart(2, "0"));
+      const copy = element("div", "finder-result-copy");
+      copy.append(element("h4", undefined, method.label), element("p", undefined, method.description));
+      const reasons = element("ul", "finder-reasons");
+      (method.reasons.length ? method.reasons : ["A flexible place to begin while you add more preferences."]).forEach((reason) => reasons.append(element("li", undefined, reason)));
+      copy.append(reasons);
+      const link = element("a", "finder-result-link", method.id === "grant-seeking" ? "Explore fundraising ideas →" : "See matching providers →");
+      link.href = method.id === "grant-seeking" ? "/ideas/" : `/providers/?method=${encodeURIComponent(method.id)}`;
+      item.append(rank, copy, link);
+      methodList.append(item);
+    });
+  };
+
+  const renderProviders = (answers: ReturnType<typeof answersFromForm>, providers: any[]) => {
+    if (!providerList || !providerEmpty) return;
+    providerList.replaceChildren();
+    const hasSupportedSignal = Boolean(answers.group || answers.outcomes.some((value) => value !== "open-to-ideas") || answers.methods.length || answers.format || answers.products !== "any" || answers.events !== "any" || answers.budget !== "any" || answers.effort || answers.country || answers.constraints.some((value) => !["passive", "fast"].includes(value)));
+    const matches = hasSupportedSignal ? rankProviderMatches(providers, answers).filter((match) => match.score > 0).slice(0, 5) : [];
+    providerEmpty.hidden = matches.length > 0;
+    providerEmpty.textContent = hasSupportedSignal
+      ? "No provider has a supported match for those requirements. Review the method guidance above or loosen one constraint."
+      : "Add a group, method, format, or documented constraint to create a provider shortlist. Method guidance remains available now.";
+
+    const fitLabel = (score: number) => score >= 60 ? "Strong fit" : score >= 35 ? "Good fit" : "Possible fit";
+    const showFitLabels = matches.some((match) => fitLabel(match.score) !== "Strong fit");
+
+    matches.forEach((match) => {
+      const item = element("li", "finder-provider-result");
+      const cardLink = element("a", "finder-provider-card-link");
+      cardLink.href = match.profilePath;
+      cardLink.setAttribute("aria-label", `View ${match.providerName} profile`);
+      const top = element("div", "finder-provider-top");
+      const title = element("h4");
+      title.textContent = match.providerName;
+      top.append(title);
+      if (showFitLabels) top.append(element("span", "finder-fit", fitLabel(match.score)));
+      const program = element("p", "finder-provider-program", `${match.programName} · ${label(match.method)}`);
+      const reasons = element("ul", "finder-reasons");
+      match.reasons.forEach((reason) => reasons.append(element("li", undefined, reason)));
+      const facts = element("dl", "finder-provider-facts");
+      [["Format", match.channels.map(label).join(" · ")], ["Effort", label(match.effort)], ["Upfront cost", label(match.upfrontCost)], ["Availability", match.geography.scope.map(label).join(" · ")]].forEach(([term, value]) => {
+        const wrap = element("div");
+        wrap.append(element("dt", undefined, term), element("dd", undefined, value));
+        facts.append(wrap);
+      });
+      cardLink.append(top, program, reasons, facts);
+      if (match.matchedConstraints.length) {
+        const constraints = element("div", "finder-matched-constraints");
+        match.matchedConstraints.forEach((value) => constraints.append(element("span", undefined, value)));
+        cardLink.append(constraints);
+      }
+      if (match.gaps.length) cardLink.append(element("p", "finder-confidence", `${confidenceLabel(match.confidence)} · ${match.gaps.slice(0, 2).join(" · ")}`));
+      item.append(cardLink);
+      providerList.append(item);
+    });
+  };
+
+  const render = () => {
+    if (!form || !providerData) return;
+    const providers = JSON.parse(providerData.textContent ?? "[]");
+    const answers = answersFromForm();
+    renderMethods(answers);
+    renderProviders(answers, providers);
+    const suppliedAnswers = Array.from(new FormData(form).entries()).filter(([name, value]) => Boolean(value) && !(["products", "events", "budget"].includes(name) && value === "any")).length;
+    if (resultsSummary) resultsSummary.textContent = suppliedAnswers
+      ? `Recommendations updated from ${suppliedAnswers} selected ${suppliedAnswers === 1 ? "priority" : "priorities"}.`
+      : "Start broad, then add priorities to make this shortlist more specific.";
+  };
+
+  render();
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (touchedSteps.has(currentStep)) answeredSteps.add(currentStep);
+    renderAnswerSummary();
+    const params = new URLSearchParams();
+    new FormData(form).forEach((value, key) => {
+      if (value && !(["products", "events", "budget"].includes(key) && value === "any")) params.append(key, String(value));
+    });
+    window.history.replaceState({}, "", `${window.location.pathname}${params.size ? `?${params}` : ""}`);
+    render();
+    resultsHeading?.focus({ preventScroll: true });
+    resultsHeading?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+  });
+  form?.addEventListener("reset", () => window.setTimeout(() => {
+    answeredSteps.clear();
+    touchedSteps.clear();
+    window.history.replaceState({}, "", window.location.pathname);
+    showStep(0, true);
+    render();
+  }));
+</script>

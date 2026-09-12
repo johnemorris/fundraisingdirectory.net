@@ -15,7 +15,7 @@ import { SITE_ROUTES } from "../../data/site";
         Explore fundraising ideas, programs, and providers without spending hours figuring out what is available.
       </p>
 
-      <form class="finder-panel" action={SITE_ROUTES.directory} method="get">
+      <form class="finder-panel" action={SITE_ROUTES.finder} method="get">
         <div class="finder-heading">
           <div>
             <span class="finder-kicker">Fundraiser Finder</span>
@@ -26,17 +26,31 @@ import { SITE_ROUTES } from "../../data/site";
 
         <fieldset class="finder-question">
           <legend>Who are you fundraising for?</legend>
-          <select class="finder-select" name="group" aria-label="Choose a fundraising group">
-            <option value="">Any group</option>
-            {finderGroups.map((group) => <option value={group.value}>{group.label}</option>)}
-          </select>
+          <details class="finder-multiselect" data-finder-disclosure>
+            <summary>
+              <span data-finder-summary>Any group</span>
+              <span class="finder-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="finder-method-options">
+              <label>
+                <input type="radio" name="group" value="" data-label="Any group" checked />
+                <span>Any group</span>
+              </label>
+              {finderGroups.map((group) => (
+                <label>
+                  <input type="radio" name="group" value={group.value} data-label={group.label} />
+                  <span>{group.label}</span>
+                </label>
+              ))}
+            </div>
+          </details>
         </fieldset>
 
         <fieldset class="finder-question">
           <legend>What sounds interesting?</legend>
-          <details class="finder-multiselect">
+          <details class="finder-multiselect" data-finder-disclosure>
             <summary>
-              <span data-method-summary>Any approach</span>
+              <span data-finder-summary>Any approach</span>
               <span class="finder-chevron" aria-hidden="true"></span>
             </summary>
             <div class="finder-method-options">
@@ -73,25 +87,32 @@ import { SITE_ROUTES } from "../../data/site";
 </section>
 
 <script>
-  const controls = document.querySelectorAll<HTMLDetailsElement>(".finder-multiselect");
+  const controls = document.querySelectorAll<HTMLDetailsElement>("[data-finder-disclosure]");
 
   controls.forEach((control) => {
     const summary = control.querySelector<HTMLElement>("summary");
-    const summaryText = control.querySelector<HTMLElement>("[data-method-summary]");
-    const options = Array.from(control.querySelectorAll<HTMLInputElement>('input[type="checkbox"]'));
+    const summaryText = control.querySelector<HTMLElement>("[data-finder-summary]");
+    const options = Array.from(control.querySelectorAll<HTMLInputElement>("input"));
+    const isSingleSelect = options.some((option) => option.type === "radio");
 
     const updateSummary = () => {
       if (!summaryText) return;
-      const selected = options.filter((option) => option.checked);
+      const selected = options.filter((option) => option.checked && (!isSingleSelect || option.value));
       const labels = selected.map((option) => option.dataset.label ?? option.value);
       summaryText.textContent = labels.length === 0
-        ? "Any approach"
+        ? isSingleSelect ? "Any group" : "Any approach"
         : labels.length <= 2
           ? labels.join(" + ")
           : `${labels.length} approaches selected`;
     };
 
-    options.forEach((option) => option.addEventListener("change", updateSummary));
+    options.forEach((option) => option.addEventListener("change", () => {
+      updateSummary();
+      if (isSingleSelect) {
+        control.open = false;
+        summary?.focus();
+      }
+    }));
     control.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && control.open) {
         control.open = false;
@@ -108,18 +129,20 @@ import { SITE_ROUTES } from "../../data/site";
   });
 
   document.querySelectorAll<HTMLFormElement>(".finder-panel").forEach((form) => {
-    const group = form.querySelector<HTMLSelectElement>('select[name="group"]');
+    const groupOptions = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="group"]'));
     const methods = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="method"]'));
     form.addEventListener("submit", (event) => {
-      if (!group?.value && !methods.some((method) => method.checked)) {
+      const selectedGroup = groupOptions.find((group) => group.checked)?.value;
+      if (!selectedGroup && !methods.some((method) => method.checked)) {
         event.preventDefault();
         window.location.assign(form.action);
         return;
       }
-      if (group && !group.value) group.disabled = true;
+      const anyGroup = groupOptions.find((group) => !group.value);
+      if (!selectedGroup && anyGroup) anyGroup.disabled = true;
     });
     window.addEventListener("pageshow", () => {
-      if (group) group.disabled = false;
+      groupOptions.forEach((group) => { group.disabled = false; });
     });
   });
 </script>

@@ -53,7 +53,7 @@
 .historical-actions a:hover { background: var(--surface-cool); }
 .historical-actions a.historical-action-primary { background: var(--ink); color: #fff; }
 .historical-actions a.historical-action-primary:hover { background: var(--teal-dark); }
-.historical-actions span { color: var(--teal); font-size: .7rem; font-weight: 900; }
+.historical-actions span { color: var(--teal); font-size: .7rem; font-weight: 700; }
 .historical-action-primary span { color: var(--teal-bright); }
 .historical-actions strong { font-size: 1rem; line-height: 1.35; }
 .historical-actions i { justify-self: end; font-style: normal; }
@@ -66,11 +66,14 @@
   margin-top: 70px;
   padding: 42px 46px;
   border-radius: 26px 26px 54px 26px;
-  background: linear-gradient(125deg, var(--purple-light), var(--surface-cool));
+  background:
+    linear-gradient(132deg, transparent 64%, var(--surface-purple) 64%, var(--surface-strong) 100%),
+    var(--surface-elevated);
+  box-shadow: var(--shadow-sm);
 }
 
 .historical-context h2 { max-width: 660px; font-size: clamp(2rem, 3.4vw, 3.1rem); }
-.historical-context > a { grid-column: 2; min-height: 44px; display: inline-flex; align-items: center; color: var(--purple-dark); font-weight: 850; text-decoration: none; }
+.historical-context > a { grid-column: 2; min-height: 44px; display: inline-flex; align-items: center; color: var(--purple-dark); font-weight: 650; text-decoration: none; }
 
 .resources-intro {
   display: grid;
@@ -149,7 +152,7 @@
   top: 0;
   left: 0;
   color: var(--teal);
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .resources-context { margin-top: 50px; }

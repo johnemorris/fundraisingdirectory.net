@@ -1,0 +1,11 @@
+{
+  "record_type": "provider",
+  "origin": "bulk-import",
+  "identity": { "name": "Invalid Taxonomy Fixture", "website": "https://invalid-taxonomy.example/" },
+  "classification": {
+    "methods": ["shoe-drive"],
+    "products_services": [],
+    "organizations": ["schools"]
+  },
+  "commercial_research": { "affiliate_status": "unknown" }
+}

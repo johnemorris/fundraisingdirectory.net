@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import FinderExperience from "../components/finder/FinderExperience.astro";
+import { providerProfilePath } from "../data/providerLinks";
+import SiteLayout from "../layouts/SiteLayout.astro";
+
+const providers = (await getCollection("providers"))
+  .filter((provider) => !provider.data.meta.deleted && provider.data.status.lifecycle === "active")
+  .map(({ data }) => ({
+    identity: {
+      name: data.identity.name,
+      slug: data.identity.slug,
+      profilePath: providerProfilePath(data.identity.slug),
+    },
+    classification: data.classification,
+    programs: data.programs.map((program) => ({
+      name: program.name,
+      method: program.method,
+      products_services: program.products_services,
+      channels: program.channels,
+      inventory_model: program.inventory_model,
+      upfront_cost: program.upfront_cost,
+      ease_to_raise: program.ease_to_raise,
+    })),
+    geography: data.geography,
+  }));
+---
+
+<SiteLayout
+  title="Fundraiser Finder | FundraisingDirectory.net"
+  description="Build a fit-based shortlist of fundraising methods and researched providers for your group."
+>
+  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Fundraiser Finder" }]} />
+  <FinderExperience providers={providers} />
+</SiteLayout>
