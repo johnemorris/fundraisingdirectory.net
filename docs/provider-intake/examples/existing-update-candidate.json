@@ -1,0 +1,24 @@
+{
+  "record_type": "provider",
+  "origin": "claim-update",
+  "identity": {
+    "name": "GoFundMe",
+    "slug": "gofundme",
+    "website": "https://www.gofundme.com/"
+  },
+  "programs": [{
+    "name": "Online Crowdfunding",
+    "slug": "online-crowdfunding",
+    "summary": "Sample proposed wording used to demonstrate an update diff; not an asserted live fact."
+  }],
+  "sources": [{
+    "url": "https://www.gofundme.com/c/how-it-works",
+    "source_type": "official-program",
+    "title": "How it works",
+    "supports": ["programs.online-crowdfunding.summary"],
+    "checked_at": "2026-09-12"
+  }],
+  "verification": { "status": "partially-verified", "last_verified_at": "2026-09-12", "reviewer": "Fixture Author" },
+  "completeness": "minimal",
+  "commercial_research": { "affiliate_status": "unknown" }
+}

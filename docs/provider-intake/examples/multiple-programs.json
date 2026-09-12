@@ -1,0 +1,57 @@
+{
+  "record_type": "provider",
+  "origin": "bulk-import",
+  "identity": {
+    "name": "Blue Lantern Fundraising",
+    "website": "https://blue-lantern.example/"
+  },
+  "classification": {
+    "methods": ["product-sales"],
+    "products_services": ["apparel-spirit-wear"],
+    "organizations": ["sports-athletics"]
+  },
+  "programs": [
+    {
+      "name": "Lantern Spirit Store",
+      "method": "product-sales",
+      "products_services": ["apparel-spirit-wear", "merchandise-online-store"],
+      "channels": ["online"],
+      "online_ordering": true,
+      "fulfillment": ["direct-to-supporter"],
+      "inventory_model": "no-inventory",
+      "upfront_cost": "none",
+      "ease_to_raise": "easy",
+      "summary": "A fictional online spirit-wear program."
+    },
+    {
+      "name": "Lantern Team Event",
+      "method": "events-activities",
+      "products_services": [],
+      "channels": ["hybrid"],
+      "online_ordering": null,
+      "fulfillment": ["on-site"],
+      "inventory_model": "not-applicable",
+      "upfront_cost": "varies",
+      "ease_to_raise": "hands-on",
+      "summary": "A fictional team event program.",
+      "activity_subtypes": ["fun-run"]
+    }
+  ],
+  "geography": { "scope": ["us-regional"], "countries": ["US"], "states": [], "regions": [], "notes": null },
+  "content": {
+    "summary": "Blue Lantern Fundraising is a fictional multi-program provider.",
+    "how_it_works": "Teams select one of two fictional fundraising formats.",
+    "best_for": ["Fixture coverage for multiple programs."],
+    "considerations": ["Fictional data only."]
+  },
+  "sources": [{
+    "url": "https://blue-lantern.example/programs",
+    "source_type": "official-program",
+    "title": "Fictional program list",
+    "supports": ["programs"],
+    "checked_at": "2026-09-12"
+  }],
+  "verification": { "status": "unverified", "first_researched_at": "2026-09-12", "first_verified_at": "2026-09-12", "last_verified_at": "2026-09-12" },
+  "completeness": "minimal",
+  "commercial_research": { "affiliate_status": "none-found", "checked_at": "2026-09-12" }
+}

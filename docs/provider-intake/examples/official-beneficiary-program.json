@@ -1,0 +1,52 @@
+{
+  "record_type": "official-beneficiary-program",
+  "origin": "internal-research",
+  "identity": {
+    "name": "Kind Harbor Foundation",
+    "website": "https://kind-harbor.example/"
+  },
+  "beneficiary": {
+    "type": "national-nonprofit-or-charity",
+    "name": "Kind Harbor Foundation",
+    "slug": "kind-harbor-foundation",
+    "official": true
+  },
+  "classification": {
+    "methods": ["peer-to-peer"],
+    "products_services": ["peer-to-peer-platform"],
+    "organizations": ["individuals-personal-causes"],
+    "beneficiary_types": ["national-nonprofit-or-charity"],
+    "cause_areas": ["children-families"],
+    "outcomes": ["cash"]
+  },
+  "programs": [{
+    "name": "Harbor Helpers",
+    "url": "https://kind-harbor.example/fundraise",
+    "method": "peer-to-peer",
+    "products_services": ["peer-to-peer-platform"],
+    "channels": ["online"],
+    "online_ordering": null,
+    "fulfillment": ["digital"],
+    "inventory_model": "not-applicable",
+    "upfront_cost": "none",
+    "ease_to_raise": null,
+    "summary": "A fictional official program through which supporters fundraise for the named charity."
+  }],
+  "geography": { "scope": ["us-nationwide"], "countries": ["US"], "states": [], "regions": [], "notes": null },
+  "content": {
+    "summary": "A fictional national charity with an official supporter fundraising program.",
+    "how_it_works": "Supporters create approved campaign pages benefiting the named fictional charity.",
+    "best_for": ["Testing named-beneficiary representation."],
+    "considerations": ["Fictional data only."]
+  },
+  "sources": [{
+    "url": "https://kind-harbor.example/fundraise",
+    "source_type": "official-charity",
+    "title": "Harbor Helpers",
+    "supports": ["programs", "programs.beneficiary", "classification.cause_areas"],
+    "checked_at": "2026-09-12"
+  }],
+  "verification": { "status": "partially-verified", "first_researched_at": "2026-09-12", "first_verified_at": "2026-09-12", "last_verified_at": "2026-09-12" },
+  "completeness": "standard",
+  "commercial_research": { "affiliate_status": "unknown" }
+}
