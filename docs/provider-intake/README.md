@@ -6,7 +6,27 @@ The pipeline is:
 
 `JSON input → normalize → draft validation → taxonomy validation → duplicate check → review draft → canonical preview/diff → explicit write`
 
-No command commits, pushes, deploys, or changes Finder ordering. There is no public form, CMS, database, authentication layer, or automatic publication.
+No command commits, pushes, deploys, or changes Finder ordering. There is no public intake-to-content integration, CMS, database, authentication layer, or automatic publication.
+
+The public `/for-providers/` wizard is a separate, friendly listing inquiry. It uses the site's existing email contact channel and does not expose or invoke this intake engine, create provider content, persist approval, or publish a listing. Editors must still review any inquiry and deliberately prepare intake data through the internal workflow.
+
+## Internal editorial workbench
+
+The thin browser workbench lives at `/internal/provider-intake/`. It is deliberately absent from public navigation and the sitemap, and the route emits `noindex`. It is a static, client-side drafting aid: it cannot read repository provider files, run duplicate detection, produce authoritative diffs, write content, or publish.
+
+The workbench covers identity and publication state, beneficiary/audience data, canonical provider taxonomy, repeatable programs with additive taxonomy, economics, logistics, geography, requirements, repeatable sources, verification/completeness, and isolated affiliate research. Taxonomy controls import the same canonical modules used by provider content and the Finder; submitted JSON retains canonical IDs while the UI displays readable labels.
+
+Drafts are stored only in the current browser's `localStorage`. **Clear draft** explicitly removes that state. Workflow approval is never stored by the browser. Review uses the engine's browser-safe draft validation and normalization, keeps errors near the relevant section, shows the normalized record and inherited program taxonomy, and provides Copy JSON and Download JSON actions. The exported file has the exact intake shape accepted by the commands below.
+
+After download, continue in the terminal:
+
+```sh
+npm run intake:validate -- provider.json
+npm run intake:review -- provider.json
+npm run intake:publish -- provider.json
+```
+
+The workbench never suggests or invokes `--write`. Duplicate/update classification, comparison with current provider YAML, publish-ready validation, approval, and any explicit write remain repository-aware CLI responsibilities.
 
 ## Commands
 
@@ -150,3 +170,5 @@ Ambiguous or weak matches are never merged. Likely duplicates are blocked from p
 Commercial research is internal operational metadata, not provider taxonomy. It supports affiliate status (`unknown`, `none-found`, `available`, `applied`, `approved`, `rejected`), program and approved destination URLs, network, commission notes, cookie duration, eligibility notes, checked date, and internal notes.
 
 `unknown` produces a visible **Affiliate research needed** flag. Provider and organization submissions cannot set these fields: supplied commercial metadata is discarded to `unknown` with a review warning. Commercial research is excluded from canonical YAML, Finder serialization, scoring inputs, editorial quality, verification, and recommendations. It does not modify canonical affiliate, sponsor, partner, featured, disclosure, or outbound-link behavior; those remain separately administered.
+
+The browser workbench preserves the same firewall. It displays affiliate data as internal research metadata and never converts it into taxonomy, approval, verification, ranking, or outbound-link behavior.

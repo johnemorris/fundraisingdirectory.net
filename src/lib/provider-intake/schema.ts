@@ -36,6 +36,13 @@ export const intakeBeneficiarySchema = z.object({
   official: z.boolean(),
 });
 
+const intakeBeneficiaryDraftSchema = z.object({
+  type: beneficiaryTypeSchema.optional(),
+  name: z.string().min(1).optional(),
+  slug: slugSchema.optional(),
+  official: z.boolean().optional(),
+});
+
 export const intakeProgramSchema = z.object({
   id: z.string().regex(/^prog_\d{6}$/).optional(),
   name: z.string().min(1).optional(),
@@ -50,7 +57,7 @@ export const intakeProgramSchema = z.object({
   upfront_cost: z.enum(UPFRONT_COSTS).optional(),
   ease_to_raise: z.enum(EASE_TO_RAISE).nullable().optional(),
   summary: z.string().min(1).optional(),
-  beneficiary: intakeBeneficiarySchema.optional(),
+  beneficiary: intakeBeneficiaryDraftSchema.optional(),
   ...OPTIONAL_FUNDRAISING_DIMENSION_SCHEMAS,
 });
 
@@ -82,7 +89,7 @@ export const intakeRecordSchema = z.object({
     ...OPTIONAL_FUNDRAISING_DIMENSION_SCHEMAS,
   }).optional(),
   programs: z.array(intakeProgramSchema).optional(),
-  beneficiary: intakeBeneficiarySchema.optional(),
+  beneficiary: intakeBeneficiaryDraftSchema.optional(),
   geography: z.object({
     scope: z.array(z.enum(GEOGRAPHY_SCOPES)).min(1).optional(),
     countries: z.array(z.string().length(2)).optional(),

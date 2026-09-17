@@ -1,0 +1,564 @@
+---
+import IntakeTaxonomyChoices from "./IntakeTaxonomyChoices.astro";
+import IntakeTaxonomyOptions from "./IntakeTaxonomyOptions.astro";
+import {
+  ACTIVITY_SUBTYPES,
+  BENEFICIARY_TYPES,
+  CAUSE_AREAS,
+  FUNDRAISING_CAPABILITIES,
+  FUNDRAISING_OUTCOMES,
+} from "../../data/taxonomies/fundraising-dimensions";
+import { GEOGRAPHY_SCOPES } from "../../data/taxonomies/geography";
+import { FUNDRAISING_METHODS } from "../../data/taxonomies/methods";
+import { ORGANIZATION_TYPES } from "../../data/taxonomies/organizations";
+import {
+  CHANNELS,
+  EASE_TO_RAISE,
+  FULFILLMENT_TYPES,
+  INVENTORY_MODELS,
+  UPFRONT_COSTS,
+} from "../../data/taxonomies/operations";
+import { PRODUCTS_SERVICES } from "../../data/taxonomies/products-services";
+import {
+  AFFILIATE_NETWORKS,
+  AFFILIATE_STATUSES,
+  COMPLETENESS_STATES,
+  DRAFT_ORIGINS,
+  SOURCE_TYPES,
+  VERIFICATION_STATES,
+} from "../../lib/provider-intake/types";
+
+---
+
+<main class="intake-shell">
+  <header class="intake-header">
+    <div>
+      <p class="eyebrow">Internal editorial tool</p>
+      <h1>Provider intake workbench</h1>
+      <p>Prepare and review structured intake JSON. This page cannot access provider files or publish content.</p>
+    </div>
+    <div class="draft-status" role="status" aria-live="polite" data-draft-status>Draft stored locally in this browser.</div>
+  </header>
+
+  <div class="boundary-note" role="note">
+    <strong>Editorial boundary:</strong> repository-aware duplicate checks, canonical diffs, and all filesystem writes remain in the CLI. This browser only validates and exports intake JSON.
+  </div>
+
+  <section class="editor-view" data-editor-view>
+    <div class="validation-summary" data-validation-summary tabindex="-1" hidden></div>
+
+    <form data-intake-form novalidate>
+      <details class="workbench-section" data-section="identity" open>
+        <summary><span><b>1</b> Identity</span><small>Type, provider, lifecycle, and editorial summary</small></summary>
+        <div class="section-body">
+          <div class="section-issues" data-issues-for="identity" hidden></div>
+          <div class="form-grid form-grid-3">
+            <label>Record type<select name="record_type"><option value="provider">Provider</option><option value="official-beneficiary-program">Official beneficiary program</option></select></label>
+            <label>Draft origin<select name="origin"><IntakeTaxonomyOptions values={DRAFT_ORIGINS} /></select></label>
+            <label>Lifecycle<select name="publication.lifecycle"><option value="active">Active</option><option value="inactive">Inactive</option><option value="uncertain">Uncertain</option><option value="historical">Historical</option></select></label>
+            <label>Provider name<input name="identity.name" autocomplete="organization" /></label>
+            <label>Slug <small>Optional; derived from name when blank</small><input name="identity.slug" pattern="[a-z0-9]+(?:-[a-z0-9]+)*" /></label>
+            <label>Legal name<input name="identity.legal_name" /></label>
+            <label>Official website<input name="identity.website" type="url" inputmode="url" /></label>
+            <label>Fundraising URL<input name="identity.fundraising_url" type="url" inputmode="url" /></label>
+            <label>Logo URL<input name="identity.logo" type="url" inputmode="url" /></label>
+            <label>Known aliases <small>One per line</small><textarea name="identity.aliases" rows="2"></textarea></label>
+            <label>Next review date<input name="publication.next_review_at" type="date" /></label>
+            <label>Inactive since<input name="publication.inactive_since" type="date" /></label>
+            <label>Inactive reason<input name="publication.inactive_reason" /></label>
+          </div>
+          <div class="form-grid form-grid-2">
+            <label>Provider summary<textarea name="content.summary" rows="3"></textarea></label>
+            <label>How it works<textarea name="content.how_it_works" rows="3"></textarea></label>
+            <label>Best for <small>One item per line</small><textarea name="content.best_for" rows="3"></textarea></label>
+            <label>Considerations <small>One item per line</small><textarea name="content.considerations" rows="3"></textarea></label>
+          </div>
+        </div>
+      </details>
+
+      <details class="workbench-section" data-section="audience" open>
+        <summary><span><b>2</b> Who it serves</span><small>Organizers, beneficiaries, and causes</small></summary>
+        <div class="section-body">
+          <div class="section-issues" data-issues-for="audience" hidden></div>
+          <fieldset><legend>Organizer types</legend><div class="choice-grid"><IntakeTaxonomyChoices name="classification.organizations" values={ORGANIZATION_TYPES} /></div></fieldset>
+          <div class="form-grid form-grid-2">
+            <fieldset><legend>Beneficiary types</legend><div class="choice-grid"><IntakeTaxonomyChoices name="classification.beneficiary_types" values={BENEFICIARY_TYPES} /></div></fieldset>
+            <fieldset><legend>Cause areas</legend><div class="choice-grid"><IntakeTaxonomyChoices name="classification.cause_areas" values={CAUSE_AREAS} /></div></fieldset>
+          </div>
+          <fieldset class="beneficiary-fields" data-beneficiary-fields hidden>
+            <legend>Named official beneficiary</legend>
+            <p>Required for an official beneficiary program and applied to each program unless later represented more specifically.</p>
+            <div class="form-grid form-grid-3">
+              <label>Beneficiary type<select name="beneficiary.type"><option value="">Choose a type</option><IntakeTaxonomyOptions values={BENEFICIARY_TYPES} /></select></label>
+              <label>Beneficiary name<input name="beneficiary.name" /></label>
+              <label>Beneficiary slug<input name="beneficiary.slug" /></label>
+              <label class="inline-choice"><input type="checkbox" name="beneficiary.official" /><span>Official relationship confirmed</span></label>
+            </div>
+          </fieldset>
+        </div>
+      </details>
+
+      <details class="workbench-section" data-section="taxonomy" open>
+        <summary><span><b>3</b> Fundraising model</span><small>Provider-wide taxonomy</small></summary>
+        <div class="section-body">
+          <div class="section-issues" data-issues-for="taxonomy" hidden></div>
+          <p class="section-guidance">Select only provider-wide values. Program-specific choices are added below and inherited additively in review.</p>
+          <div class="form-grid form-grid-2">
+            <fieldset><legend>Methods</legend><div class="choice-grid"><IntakeTaxonomyChoices name="classification.methods" values={FUNDRAISING_METHODS} /></div></fieldset>
+            <fieldset><legend>Activity subtypes</legend><div class="choice-grid"><IntakeTaxonomyChoices name="classification.activity_subtypes" values={ACTIVITY_SUBTYPES} /></div></fieldset>
+            <label>Physical products / services <small>Use Command/Ctrl to select multiple</small><select multiple size="8" name="classification.products_services"><IntakeTaxonomyOptions values={PRODUCTS_SERVICES} /></select></label>
+            <label>Capabilities <small>Use Command/Ctrl to select multiple</small><select multiple size="8" name="classification.capabilities"><IntakeTaxonomyOptions values={FUNDRAISING_CAPABILITIES} /></select></label>
+            <fieldset><legend>Outcomes</legend><div class="choice-grid"><IntakeTaxonomyChoices name="classification.outcomes" values={FUNDRAISING_OUTCOMES} /></div></fieldset>
+          </div>
+        </div>
+      </details>
+
+      <details class="workbench-section" data-section="programs" open>
+        <summary><span><b>4</b> Programs</span><small>Repeatable program details and additive taxonomy</small></summary>
+        <div class="section-body">
+          <div class="section-issues" data-issues-for="programs" hidden></div>
+          <p class="section-guidance">Programs inherit provider taxonomy. Add only values that are specific to the program; review shows the de-duplicated effective result.</p>
+          <div class="repeat-list" data-program-list></div>
+          <button class="secondary-button" type="button" data-add-program>+ Add program</button>
+        </div>
+      </details>
+
+      <details class="workbench-section" data-section="economics">
+        <summary><span><b>5</b> Economics</span><small>Research-only supported percentages and notes</small></summary>
+        <div class="section-body">
+          <div class="section-issues" data-issues-for="economics" hidden></div>
+          <div class="form-grid form-grid-3">
+            <label>Platform fee (%)<input name="economics.platform_fee_percent" type="number" min="0" max="100" step="0.01" /></label>
+            <label>Transaction fee (%)<input name="economics.transaction_fee_percent" type="number" min="0" max="100" step="0.01" /></label>
+            <label>Proceeds (%)<input name="economics.proceeds_percent" type="number" min="0" max="100" step="0.01" /></label>
+          </div>
+          <label>Economics notes<textarea name="economics.notes" rows="3"></textarea></label>
+        </div>
+      </details>
+
+      <details class="workbench-section" data-section="logistics">
+        <summary><span><b>6</b> Logistics and effort</span><small>Operational notes; effort lives on programs</small></summary>
+        <div class="section-body">
+          <div class="section-issues" data-issues-for="logistics" hidden></div>
+          <p class="section-guidance">The current intake schema has no timing field. Do not encode timing into another taxonomy; capture sourced context in logistics or program summary until the canonical field exists.</p>
+          <label>Logistics <small>One item per line</small><textarea name="logistics" rows="4"></textarea></label>
+        </div>
+      </details>
+
+      <details class="workbench-section" data-section="geography">
+        <summary><span><b>7</b> Geography</span><small>Documented availability only</small></summary>
+        <div class="section-body">
+          <div class="section-issues" data-issues-for="geography" hidden></div>
+          <fieldset><legend>Availability scopes</legend><div class="choice-grid"><IntakeTaxonomyChoices name="geography.scope" values={GEOGRAPHY_SCOPES} /></div></fieldset>
+          <div class="form-grid form-grid-3">
+            <label>Countries <small>Two-letter codes, comma-separated</small><input name="geography.countries" placeholder="US, CA" /></label>
+            <label>States <small>Comma-separated</small><input name="geography.states" /></label>
+            <label>Regions <small>Comma-separated</small><input name="geography.regions" /></label>
+          </div>
+          <label>Availability notes<textarea name="geography.notes" rows="3"></textarea></label>
+        </div>
+      </details>
+
+      <details class="workbench-section" data-section="requirements">
+        <summary><span><b>8</b> Eligibility and requirements</span><small>Operational constraints</small></summary>
+        <div class="section-body">
+          <div class="section-issues" data-issues-for="requirements" hidden></div>
+          <label>Requirements <small>One item per line</small><textarea name="requirements" rows="5"></textarea></label>
+        </div>
+      </details>
+
+      <details class="workbench-section" data-section="sources" open>
+        <summary><span><b>9</b> Sources and provenance</span><small>Repeatable evidence records</small></summary>
+        <div class="section-body">
+          <div class="section-issues" data-issues-for="sources" hidden></div>
+          <div class="repeat-list" data-source-list></div>
+          <button class="secondary-button" type="button" data-add-source>+ Add source</button>
+        </div>
+      </details>
+
+      <details class="workbench-section" data-section="verification">
+        <summary><span><b>10</b> Verification and completeness</span><small>Independent operational states</small></summary>
+        <div class="section-body">
+          <div class="section-issues" data-issues-for="verification" hidden></div>
+          <div class="form-grid form-grid-3">
+            <label>Verification status<select name="verification.status"><IntakeTaxonomyOptions values={VERIFICATION_STATES} /></select></label>
+            <label>Completeness<select name="completeness"><IntakeTaxonomyOptions values={COMPLETENESS_STATES} /></select></label>
+            <label>First researched<input name="verification.first_researched_at" type="date" /></label>
+            <label>First verified<input name="verification.first_verified_at" type="date" /></label>
+            <label>Last verified<input name="verification.last_verified_at" type="date" /></label>
+            <label>Reviewer<input name="verification.reviewer" /></label>
+            <label>Verifier<input name="verification.verifier" /></label>
+            <label class="inline-choice"><input name="verification.record_level_recheck" type="checkbox" /><span>This update rechecked the whole record</span></label>
+          </div>
+        </div>
+      </details>
+
+      <details class="workbench-section commercial-section" data-section="commercial">
+        <summary><span><b>11</b> Affiliate research</span><small>Internal commercial metadata; editorially isolated</small></summary>
+        <div class="section-body">
+          <div class="section-issues" data-issues-for="commercial" hidden></div>
+          <div class="affiliate-alert" data-affiliate-alert>Affiliate research needed</div>
+          <p class="section-guidance">These fields never change taxonomy, verification quality, Finder ranking, featured status, sponsorship, or outbound-link behavior.</p>
+          <div class="form-grid form-grid-3">
+            <label>Affiliate status<select name="commercial_research.affiliate_status"><IntakeTaxonomyOptions values={AFFILIATE_STATUSES} /></select></label>
+            <label>Program URL<input name="commercial_research.affiliate_program_url" type="url" /></label>
+            <label>Network<select name="commercial_research.affiliate_network"><option value="">Not recorded</option><IntakeTaxonomyOptions values={AFFILIATE_NETWORKS} /></select></label>
+            <label>Cookie duration (days)<input name="commercial_research.cookie_duration_days" type="number" min="0" step="1" /></label>
+            <label>Checked date<input name="commercial_research.checked_at" type="date" /></label>
+            <label>Approved destination URL<input name="commercial_research.approved_destination_url" type="url" /></label>
+          </div>
+          <div class="form-grid form-grid-2">
+            <label>Commission structure / notes<textarea name="commercial_research.commission_structure" rows="3"></textarea></label>
+            <label>Eligibility requirements<textarea name="commercial_research.eligibility_requirements" rows="3"></textarea></label>
+          </div>
+          <label>Internal commercial notes<textarea name="commercial_research.internal_notes" rows="3"></textarea></label>
+        </div>
+      </details>
+
+      <div class="form-actions">
+        <button class="danger-button" type="button" data-clear-draft>Clear draft</button>
+        <button class="primary-button" type="submit">Review intake</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="review-view" data-review-view hidden aria-labelledby="review-title" tabindex="-1">
+    <header class="review-header">
+      <div><p class="eyebrow">Browser validation complete</p><h2 id="review-title">Review intake JSON</h2></div>
+      <button class="secondary-button" type="button" data-return-editing>← Return to editing</button>
+    </header>
+    <div class="review-status" data-review-status></div>
+    <div class="review-grid">
+      <section><h3>Identity and type</h3><pre data-review-identity></pre></section>
+      <section><h3>Taxonomy and inheritance</h3><pre data-review-taxonomy></pre></section>
+      <section><h3>Programs and beneficiary</h3><pre data-review-programs></pre></section>
+      <section><h3>Research and operations</h3><pre data-review-operations></pre></section>
+      <section><h3>Sources and verification</h3><pre data-review-sources></pre></section>
+      <section class="commercial-review"><h3>Affiliate research</h3><pre data-review-commercial></pre></section>
+    </div>
+    <section class="cli-boundary">
+      <h3>Repository checks and publication handoff</h3>
+      <p>Duplicate/update classification is unavailable in the static browser. Save the JSON, then run the authoritative engine and dry-run publisher:</p>
+      <pre data-cli-commands></pre>
+      <p>Review the CLI report and diff before considering any explicit write action.</p>
+    </section>
+    <section class="json-output">
+      <div><h3>Normalized intake JSON</h3><div class="output-actions"><button class="secondary-button" type="button" data-copy-json>Copy JSON</button><button class="secondary-button" type="button" data-download-json>Download JSON</button></div></div>
+      <pre data-json-preview tabindex="0"></pre>
+      <p role="status" aria-live="polite" data-output-status></p>
+    </section>
+  </section>
+
+  <template data-program-template>
+    <fieldset class="repeat-card" data-program>
+      <legend>Program <span data-repeat-number></span></legend>
+      <button class="remove-button" type="button" data-remove-program>Remove program</button>
+      <div class="form-grid form-grid-3">
+        <label>Name<input name="program.name" /></label><label>Slug<input name="program.slug" /></label><label>Program URL<input name="program.url" type="url" /></label>
+        <label>Method<select name="program.method"><option value="">Inherit / not recorded</option><IntakeTaxonomyOptions values={FUNDRAISING_METHODS} /></select></label>
+        <label>Channels<select name="program.channels" multiple size="3"><IntakeTaxonomyOptions values={CHANNELS} /></select></label>
+        <label>Online ordering<select name="program.online_ordering"><option value="">Not recorded</option><option value="true">Yes</option><option value="false">No</option><option value="null">Not applicable / unknown</option></select></label>
+        <label>Fulfillment<select name="program.fulfillment" multiple size="5"><IntakeTaxonomyOptions values={FULFILLMENT_TYPES} /></select></label>
+        <label>Inventory model<select name="program.inventory_model"><option value="">Not recorded</option><IntakeTaxonomyOptions values={INVENTORY_MODELS} /></select></label>
+        <label>Upfront cost<select name="program.upfront_cost"><option value="">Not recorded</option><IntakeTaxonomyOptions values={UPFRONT_COSTS} /></select></label>
+        <label>Effort<select name="program.ease_to_raise"><option value="">Not recorded</option><option value="null">Unknown</option><IntakeTaxonomyOptions values={EASE_TO_RAISE} /></select></label>
+      </div>
+      <label>Program summary<textarea name="program.summary" rows="3"></textarea></label>
+      <div class="form-grid form-grid-3">
+        <label>Products / services<select name="program.products_services" multiple size="6"><IntakeTaxonomyOptions values={PRODUCTS_SERVICES} /></select></label>
+        <label>Capabilities<select name="program.capabilities" multiple size="6"><IntakeTaxonomyOptions values={FUNDRAISING_CAPABILITIES} /></select></label>
+        <label>Outcomes<select name="program.outcomes" multiple size="6"><IntakeTaxonomyOptions values={FUNDRAISING_OUTCOMES} /></select></label>
+        <label>Beneficiary types<select name="program.beneficiary_types" multiple size="6"><IntakeTaxonomyOptions values={BENEFICIARY_TYPES} /></select></label>
+        <label>Cause areas<select name="program.cause_areas" multiple size="6"><IntakeTaxonomyOptions values={CAUSE_AREAS} /></select></label>
+        <label>Activity subtypes<select name="program.activity_subtypes" multiple size="6"><IntakeTaxonomyOptions values={ACTIVITY_SUBTYPES} /></select></label>
+      </div>
+    </fieldset>
+  </template>
+
+  <template data-source-template>
+    <fieldset class="repeat-card" data-source>
+      <legend>Source <span data-repeat-number></span></legend>
+      <button class="remove-button" type="button" data-remove-source>Remove source</button>
+      <div class="form-grid form-grid-3">
+        <label>URL<input name="source.url" type="url" /></label>
+        <label>Source type<select name="source.source_type"><option value="">Choose a type</option><IntakeTaxonomyOptions values={SOURCE_TYPES} /></select></label>
+        <label>Title<input name="source.title" /></label>
+        <label>Checked date<input name="source.checked_at" type="date" /></label>
+        <label>Supports <small>Comma-separated field paths</small><input name="source.supports" placeholder="identity.website, geography.countries" /></label>
+      </div>
+      <label>Notes<textarea name="source.notes" rows="2"></textarea></label>
+    </fieldset>
+  </template>
+</main>
+
+<script>
+  import {
+    clearDraft,
+    createEmptyIntakeDraft,
+    loadDraft,
+    reviewBrowserDraft,
+    saveDraft,
+  } from "../../lib/provider-intake/browser.ts";
+
+  const form = document.querySelector<HTMLFormElement>("[data-intake-form]")!;
+  const editorView = document.querySelector<HTMLElement>("[data-editor-view]")!;
+  const reviewView = document.querySelector<HTMLElement>("[data-review-view]")!;
+  const programList = document.querySelector<HTMLElement>("[data-program-list]")!;
+  const sourceList = document.querySelector<HTMLElement>("[data-source-list]")!;
+  const programTemplate = document.querySelector<HTMLTemplateElement>("[data-program-template]")!;
+  const sourceTemplate = document.querySelector<HTMLTemplateElement>("[data-source-template]")!;
+  const draftStatus = document.querySelector<HTMLElement>("[data-draft-status]")!;
+  const affiliateAlert = document.querySelector<HTMLElement>("[data-affiliate-alert]")!;
+  const beneficiaryFields = document.querySelector<HTMLElement>("[data-beneficiary-fields]")!;
+  let reviewedJson = "";
+
+  const control = (name: string, root: ParentNode = form) => root.querySelector<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>(`[name="${name}"]`);
+  const value = (name: string, root: ParentNode = form) => control(name, root)?.value ?? "";
+  const values = (name: string, root: ParentNode = form) => {
+    const elements = [...root.querySelectorAll<HTMLInputElement | HTMLOptionElement>(`[name="${name}"]:checked, select[name="${name}"] option:checked`)];
+    return elements.map((entry) => entry.value).filter(Boolean);
+  };
+  const checked = (name: string, root: ParentNode = form) => root.querySelector<HTMLInputElement>(`[name="${name}"]`)?.checked ?? false;
+
+  function setControl(name: string, next: unknown, root: ParentNode = form) {
+    const element = control(name, root);
+    if (element) element.value = next == null ? "" : String(next);
+  }
+
+  function setValues(name: string, next: unknown, root: ParentNode = form) {
+    const selected = new Set(Array.isArray(next) ? next.map(String) : []);
+    root.querySelectorAll<HTMLInputElement>(`input[name="${name}"]`).forEach((entry) => { entry.checked = selected.has(entry.value); });
+    root.querySelectorAll<HTMLOptionElement>(`select[name="${name}"] option`).forEach((entry) => { entry.selected = selected.has(entry.value); });
+  }
+
+  function readProgram(root: HTMLElement) {
+    return {
+      name: value("program.name", root), slug: value("program.slug", root), url: value("program.url", root),
+      method: value("program.method", root), channels: values("program.channels", root), online_ordering: value("program.online_ordering", root),
+      fulfillment: values("program.fulfillment", root), inventory_model: value("program.inventory_model", root), upfront_cost: value("program.upfront_cost", root),
+      ease_to_raise: value("program.ease_to_raise", root), summary: value("program.summary", root), products_services: values("program.products_services", root),
+      capabilities: values("program.capabilities", root), outcomes: values("program.outcomes", root), beneficiary_types: values("program.beneficiary_types", root),
+      cause_areas: values("program.cause_areas", root), activity_subtypes: values("program.activity_subtypes", root),
+    };
+  }
+
+  function readSource(root: HTMLElement) {
+    return { url: value("source.url", root), source_type: value("source.source_type", root), title: value("source.title", root), checked_at: value("source.checked_at", root), supports: value("source.supports", root), notes: value("source.notes", root) };
+  }
+
+  function formToDraft() {
+    return {
+      record_type: value("record_type"), origin: value("origin"),
+      identity: { name: value("identity.name"), slug: value("identity.slug"), legal_name: value("identity.legal_name"), website: value("identity.website"), fundraising_url: value("identity.fundraising_url"), logo: value("identity.logo"), aliases: value("identity.aliases") },
+      publication: { lifecycle: value("publication.lifecycle"), next_review_at: value("publication.next_review_at"), inactive_since: value("publication.inactive_since"), inactive_reason: value("publication.inactive_reason") },
+      content: { summary: value("content.summary"), how_it_works: value("content.how_it_works"), best_for: value("content.best_for"), considerations: value("content.considerations") },
+      classification: { organizations: values("classification.organizations"), beneficiary_types: values("classification.beneficiary_types"), cause_areas: values("classification.cause_areas"), methods: values("classification.methods"), activity_subtypes: values("classification.activity_subtypes"), products_services: values("classification.products_services"), capabilities: values("classification.capabilities"), outcomes: values("classification.outcomes") },
+      beneficiary: { type: value("beneficiary.type"), name: value("beneficiary.name"), slug: value("beneficiary.slug"), official: checked("beneficiary.official") },
+      programs: [...programList.querySelectorAll<HTMLElement>("[data-program]")].map(readProgram),
+      economics: { platform_fee_percent: value("economics.platform_fee_percent"), transaction_fee_percent: value("economics.transaction_fee_percent"), proceeds_percent: value("economics.proceeds_percent"), notes: value("economics.notes") },
+      logistics: value("logistics"), geography: { scope: values("geography.scope"), countries: value("geography.countries"), states: value("geography.states"), regions: value("geography.regions"), notes: value("geography.notes") }, requirements: value("requirements"),
+      sources: [...sourceList.querySelectorAll<HTMLElement>("[data-source]")].map(readSource),
+      verification: { status: value("verification.status"), first_researched_at: value("verification.first_researched_at"), first_verified_at: value("verification.first_verified_at"), last_verified_at: value("verification.last_verified_at"), reviewer: value("verification.reviewer"), verifier: value("verification.verifier"), record_level_recheck: checked("verification.record_level_recheck") },
+      completeness: value("completeness"),
+      commercial_research: { affiliate_status: value("commercial_research.affiliate_status"), affiliate_program_url: value("commercial_research.affiliate_program_url"), affiliate_network: value("commercial_research.affiliate_network"), commission_structure: value("commercial_research.commission_structure"), cookie_duration_days: value("commercial_research.cookie_duration_days"), eligibility_requirements: value("commercial_research.eligibility_requirements"), checked_at: value("commercial_research.checked_at"), approved_destination_url: value("commercial_research.approved_destination_url"), internal_notes: value("commercial_research.internal_notes") },
+    };
+  }
+
+  function populateRepeat(template: HTMLTemplateElement, container: HTMLElement, items: Record<string, any>[], kind: "program" | "source") {
+    container.replaceChildren();
+    const entries = items.length ? items : [{}];
+    entries.forEach((item, index) => {
+      const fragment = template.content.cloneNode(true) as DocumentFragment;
+      const root = fragment.querySelector<HTMLElement>(`[data-${kind}]`)!;
+      root.querySelector<HTMLElement>("[data-repeat-number]")!.textContent = String(index + 1);
+      Object.entries(item).forEach(([key, entry]) => {
+        const name = `${kind}.${key}`;
+        Array.isArray(entry) ? setValues(name, entry, root) : setControl(name, entry, root);
+      });
+      container.append(fragment);
+    });
+  }
+
+  function populateForm(draft: Record<string, any>) {
+    const scalarPaths = ["record_type", "origin", "publication.lifecycle", "publication.next_review_at", "publication.inactive_since", "publication.inactive_reason", "identity.name", "identity.slug", "identity.legal_name", "identity.website", "identity.fundraising_url", "identity.logo", "identity.aliases", "content.summary", "content.how_it_works", "content.best_for", "content.considerations", "beneficiary.type", "beneficiary.name", "beneficiary.slug", "economics.platform_fee_percent", "economics.transaction_fee_percent", "economics.proceeds_percent", "economics.notes", "logistics", "geography.countries", "geography.states", "geography.regions", "geography.notes", "requirements", "verification.status", "verification.first_researched_at", "verification.first_verified_at", "verification.last_verified_at", "verification.reviewer", "verification.verifier", "completeness", "commercial_research.affiliate_status", "commercial_research.affiliate_program_url", "commercial_research.affiliate_network", "commercial_research.commission_structure", "commercial_research.cookie_duration_days", "commercial_research.eligibility_requirements", "commercial_research.checked_at", "commercial_research.approved_destination_url", "commercial_research.internal_notes"];
+    scalarPaths.forEach((name) => setControl(name, name.split(".").reduce<any>((current, key) => current?.[key], draft)));
+    ["organizations", "beneficiary_types", "cause_areas", "methods", "activity_subtypes", "products_services", "capabilities", "outcomes"].forEach((key) => setValues(`classification.${key}`, draft.classification?.[key]));
+    setValues("geography.scope", draft.geography?.scope);
+    const official = control("beneficiary.official") as HTMLInputElement | null; if (official) official.checked = draft.beneficiary?.official === true;
+    const recheck = control("verification.record_level_recheck") as HTMLInputElement | null; if (recheck) recheck.checked = draft.verification?.record_level_recheck === true;
+    populateRepeat(programTemplate, programList, draft.programs ?? [], "program");
+    populateRepeat(sourceTemplate, sourceList, draft.sources ?? [], "source");
+    updateConditionalUi();
+  }
+
+  function updateConditionalUi() {
+    beneficiaryFields.hidden = value("record_type") !== "official-beneficiary-program";
+    const needsResearch = value("commercial_research.affiliate_status") === "unknown";
+    affiliateAlert.hidden = !needsResearch;
+  }
+
+  function storeDraft() {
+    saveDraft(localStorage, formToDraft());
+    draftStatus.textContent = `Draft saved locally at ${new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit" }).format(new Date())}.`;
+  }
+
+  function sectionForPath(path: string) {
+    if (path.startsWith("identity") || path.startsWith("publication") || path === "$" ) return "identity";
+    if (path.startsWith("beneficiary")) return "audience";
+    if (path.startsWith("classification")) return "taxonomy";
+    if (path.startsWith("programs")) return "programs";
+    if (path.startsWith("economics")) return "economics";
+    if (path.startsWith("logistics")) return "logistics";
+    if (path.startsWith("geography")) return "geography";
+    if (path.startsWith("requirements")) return "requirements";
+    if (path.startsWith("sources")) return "sources";
+    if (path.startsWith("commercial")) return "commercial";
+    return "verification";
+  }
+
+  function showIssues(issues: Array<{ path: string; severity: string; message: string }>) {
+    document.querySelectorAll<HTMLElement>("[data-issues-for]").forEach((element) => { element.hidden = true; element.replaceChildren(); });
+    issues.forEach((issue) => {
+      const target = document.querySelector<HTMLElement>(`[data-issues-for="${sectionForPath(issue.path)}"]`)!;
+      const message = document.createElement("p");
+      message.className = `issue issue-${issue.severity}`;
+      message.textContent = `${issue.severity === "error" ? "Error" : "Warning"}: ${issue.message}`;
+      target.append(message); target.hidden = false;
+      target.closest("details")?.setAttribute("open", "");
+    });
+  }
+
+  function renderReview(result: ReturnType<typeof reviewBrowserDraft>) {
+    const normalized = result.normalized!;
+    reviewedJson = `${JSON.stringify(normalized, null, 2)}\n`;
+    const write = (selector: string, data: unknown) => { document.querySelector<HTMLElement>(selector)!.textContent = JSON.stringify(data ?? null, null, 2); };
+    write("[data-review-identity]", { record_type: normalized.record_type, identity: normalized.identity, origin: normalized.origin, proposed_path: `src/content/providers/${normalized.identity?.slug ?? "unresolved"}.yaml` });
+    write("[data-review-taxonomy]", { provider: normalized.classification, effective_program_taxonomy: result.effectiveTaxonomy });
+    write("[data-review-programs]", { beneficiary: normalized.beneficiary, programs: normalized.programs });
+    write("[data-review-operations]", { economics: normalized.economics, geography: normalized.geography, logistics: normalized.logistics, requirements: normalized.requirements });
+    write("[data-review-sources]", { sources: normalized.sources, verification: normalized.verification, completeness: normalized.completeness, duplicate_update_result: "Run intake:review in the CLI" });
+    write("[data-review-commercial]", { ...normalized.commercial_research, affiliate_research_needed: normalized.commercial_research?.affiliate_status === "unknown", editorial_firewall: "Excluded from canonical provider output and Finder scoring" });
+    document.querySelector<HTMLElement>("[data-json-preview]")!.textContent = reviewedJson;
+    const filename = `${normalized.identity?.slug ?? "provider-intake"}.json`;
+    document.querySelector<HTMLElement>("[data-cli-commands]")!.textContent = `npm run intake:validate -- ${filename}\nnpm run intake:review -- ${filename}\nnpm run intake:publish -- ${filename}`;
+    const reviewStatus = document.querySelector<HTMLElement>("[data-review-status]")!;
+    reviewStatus.textContent = result.issues.length ? `${result.issues.length} warning(s) require review.` : "Draft validation passed. Repository duplicate checks and publish readiness are still pending in the CLI.";
+    editorView.hidden = true; reviewView.hidden = false; reviewView.focus();
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+  }
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const draft = formToDraft(); saveDraft(localStorage, draft);
+    const result = reviewBrowserDraft(draft); showIssues(result.issues);
+    const summary = document.querySelector<HTMLElement>("[data-validation-summary]")!;
+    if (!result.valid) {
+      summary.hidden = false; summary.textContent = `${result.issues.filter((issue) => issue.severity === "error").length} error(s) must be resolved before review.`; summary.focus(); return;
+    }
+    summary.hidden = true; renderReview(result);
+  });
+
+  form.addEventListener("input", () => { storeDraft(); updateConditionalUi(); });
+  form.addEventListener("change", () => { storeDraft(); updateConditionalUi(); });
+  document.querySelector("[data-add-program]")?.addEventListener("click", () => { populateRepeat(programTemplate, programList, [...programList.querySelectorAll<HTMLElement>("[data-program]")].map(readProgram).concat({}), "program"); storeDraft(); });
+  document.querySelector("[data-add-source]")?.addEventListener("click", () => { populateRepeat(sourceTemplate, sourceList, [...sourceList.querySelectorAll<HTMLElement>("[data-source]")].map(readSource).concat({}), "source"); storeDraft(); });
+  document.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement;
+    const programButton = target.closest<HTMLElement>("[data-remove-program]");
+    if (programButton) { programButton.closest("[data-program]")?.remove(); if (!programList.children.length) populateRepeat(programTemplate, programList, [{}], "program"); storeDraft(); }
+    const sourceButton = target.closest<HTMLElement>("[data-remove-source]");
+    if (sourceButton) { sourceButton.closest("[data-source]")?.remove(); if (!sourceList.children.length) populateRepeat(sourceTemplate, sourceList, [{}], "source"); storeDraft(); }
+  });
+  document.querySelector("[data-return-editing]")?.addEventListener("click", () => { reviewView.hidden = true; editorView.hidden = false; form.querySelector<HTMLElement>("input, select, textarea")?.focus(); });
+  document.querySelector("[data-clear-draft]")?.addEventListener("click", () => { if (!window.confirm("Clear this browser-only intake draft?")) return; clearDraft(localStorage); populateForm(createEmptyIntakeDraft()); storeDraft(); });
+  document.querySelector("[data-copy-json]")?.addEventListener("click", async () => { const status = document.querySelector<HTMLElement>("[data-output-status]")!; try { await navigator.clipboard.writeText(reviewedJson); status.textContent = "JSON copied."; } catch { status.textContent = "Copy failed. Select the JSON preview and copy it manually."; } });
+  document.querySelector("[data-download-json]")?.addEventListener("click", () => { const data = JSON.parse(reviewedJson); const blob = new Blob([reviewedJson], { type: "application/json" }); const url = URL.createObjectURL(blob); const anchor = document.createElement("a"); anchor.href = url; anchor.download = `${data.identity?.slug ?? "provider-intake"}.json`; anchor.click(); URL.revokeObjectURL(url); document.querySelector<HTMLElement>("[data-output-status]")!.textContent = "JSON downloaded."; });
+
+  populateForm(loadDraft(localStorage) ?? createEmptyIntakeDraft());
+</script>
+
+<style lang="scss">
+  .intake-shell { width: min(78rem, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
+  .intake-header { display: flex; align-items: end; justify-content: space-between; gap: 2rem; padding: 1.75rem 2rem; border-radius: 1rem; background: var(--structural); color: #fff;
+    h1 { margin-bottom: .5rem; font-size: clamp(2rem, 4vw, 3.5rem); }
+    p:last-child { max-width: 48rem; margin-bottom: 0; color: var(--text-on-dark); }
+  }
+  .draft-status { max-width: 18rem; color: var(--teal-bright); font-size: .85rem; font-weight: 700; text-align: right; }
+  .boundary-note { margin: 1rem 0; padding: .85rem 1rem; border: 1px solid var(--teal-border); border-radius: .65rem; background: var(--surface-teal); line-height: 1.5; }
+  form { display: grid; gap: .75rem; }
+  .workbench-section { border: 1px solid var(--border); border-radius: .75rem; background: var(--surface-elevated); box-shadow: var(--shadow-sm);
+    > summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem; cursor: pointer; font-weight: 750;
+      span { display: flex; align-items: center; gap: .75rem; }
+      b { display: grid; width: 1.75rem; height: 1.75rem; place-items: center; border-radius: 50%; background: var(--ink); color: #fff; font-size: .78rem; }
+      small { color: var(--text-muted); font-weight: 500; }
+    }
+    &[open] > summary { border-bottom: 1px solid var(--border); }
+  }
+  .section-body { display: grid; gap: 1rem; padding: 1.25rem; }
+  .section-guidance { margin: 0; color: var(--text-muted); font-size: .9rem; }
+  .form-grid { display: grid; gap: 1rem;
+    &.form-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    &.form-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  label { display: grid; align-content: start; gap: .35rem; color: var(--ink); font-size: .87rem; font-weight: 700;
+    small { color: var(--text-muted); font-weight: 500; }
+  }
+  input, select, textarea { width: 100%; min-height: 2.65rem; padding: .6rem .7rem; border: 1px solid var(--border-strong); border-radius: .45rem; background: #fff; color: var(--text); font: inherit; }
+  textarea { resize: vertical; line-height: 1.45; }
+  select[multiple] { min-height: 8rem; }
+  fieldset { min-width: 0; margin: 0; padding: .85rem; border: 1px solid var(--border); border-radius: .55rem;
+    legend { padding: 0 .35rem; color: var(--ink); font-weight: 750; }
+  }
+  .choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .35rem .75rem; }
+  .choice, .inline-choice { display: flex; align-items: start; gap: .5rem; font-weight: 550; line-height: 1.35;
+    input { width: 1rem; min-height: 1rem; margin-top: .12rem; }
+  }
+  .beneficiary-fields { background: var(--surface-purple); }
+  .repeat-list { display: grid; gap: 1rem; }
+  .repeat-card { position: relative; padding: 1rem; background: var(--surface-alternate);
+    .remove-button { position: absolute; top: .55rem; right: .65rem; }
+  }
+  button { font: inherit; cursor: pointer; }
+  .primary-button, .secondary-button, .danger-button, .remove-button { min-height: 2.65rem; padding: .55rem .9rem; border-radius: .45rem; font-weight: 750; }
+  .primary-button { border: 1px solid var(--teal); background: var(--teal); color: #fff; }
+  .secondary-button { justify-self: start; border: 1px solid var(--border-strong); background: #fff; color: var(--ink); }
+  .danger-button, .remove-button { border: 1px solid #a85d55; background: #fff; color: #87382f; }
+  .remove-button { min-height: 2rem; padding: .25rem .55rem; font-size: .78rem; }
+  .form-actions { display: flex; justify-content: space-between; gap: 1rem; padding-top: .5rem; }
+  .validation-summary, .section-issues { padding: .8rem 1rem; border-radius: .45rem; background: #f7dddd; color: #702820; font-weight: 700; }
+  .section-issues { display: grid; gap: .35rem; font-size: .88rem;
+    p { margin: 0; }
+    .issue-warning { color: #69400c; }
+  }
+  .affiliate-alert { justify-self: start; padding: .4rem .65rem; border-radius: 2rem; background: #f1d7a3; color: #623d08; font-weight: 800; }
+  .commercial-section { border-color: #a990ca; }
+  .review-view { display: grid; gap: 1rem; }
+  .review-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem; border-radius: .75rem; background: var(--structural); color: #fff;
+    h2 { margin: 0; }
+  }
+  .review-status, .cli-boundary, .json-output { padding: 1rem 1.25rem; border: 1px solid var(--border); border-radius: .65rem; background: var(--surface-elevated); }
+  .review-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem;
+    section { min-width: 0; padding: 1rem; border: 1px solid var(--border); border-radius: .65rem; background: var(--surface-elevated); }
+    .commercial-review { border-color: #a990ca; background: #f1edf7; }
+  }
+  h3 { margin-bottom: .65rem; font-size: 1rem; }
+  pre { overflow: auto; margin: 0; padding: .8rem; border-radius: .45rem; background: #102a3d; color: #e4edf2; font: .78rem/1.55 ui-monospace, SFMono-Regular, Consolas, monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .json-output > div:first-child { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .output-actions { display: flex; gap: .5rem; }
+  [hidden] { display: none !important; }
+
+  @media (max-width: 58rem) {
+    .intake-header { align-items: start; flex-direction: column; }
+    .draft-status { max-width: none; text-align: left; }
+    .form-grid.form-grid-3, .review-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 42rem) {
+    .intake-shell { width: min(100% - 1rem, 78rem); padding-top: 1rem; }
+    .intake-header, .section-body { padding: 1rem; }
+    .workbench-section > summary { align-items: start; flex-direction: column; }
+    .form-grid.form-grid-2, .form-grid.form-grid-3, .review-grid, .choice-grid { grid-template-columns: 1fr; }
+    .form-actions, .review-header, .json-output > div:first-child { align-items: stretch; flex-direction: column; }
+    .output-actions { flex-wrap: wrap; }
+  }
+</style>

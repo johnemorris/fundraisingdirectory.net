@@ -8,7 +8,7 @@ interface Props {
   title: string;
   description?: string;
   noindex?: boolean;
-  canonical?: string;
+  canonical?: string | false;
   socialImage?: string | false;
   bodyClass?: string;
 }
@@ -44,7 +44,7 @@ const {
     <meta property="og:site_name" content="FundraisingDirectory.net" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
+    {canonical && <meta property="og:url" content={canonical} />}
     {
       socialImage && (
         <>
