@@ -43,8 +43,8 @@ export function validateDraft(raw: unknown): { success: boolean; data?: Record<s
 
   if (data.record_type === "official-beneficiary-program") {
     const beneficiaries = [data.beneficiary, ...(data.programs ?? []).map((program: any) => program.beneficiary)].filter(Boolean);
-    if (!beneficiaries.length) {
-      issues.push(issue("draft", "error", "missing-beneficiary", "beneficiary", "Official beneficiary programs require a meaningful beneficiary identity."));
+    if (!beneficiaries.some((beneficiary) => beneficiary.type && beneficiary.name && beneficiary.slug && beneficiary.official === true)) {
+      issues.push(issue("draft", "error", "missing-beneficiary", "beneficiary", "Official beneficiary programs require a beneficiary type, name, slug, and confirmed official relationship."));
     }
     if ((data.programs ?? []).length === 0) {
       issues.push(issue("draft", "error", "missing-program", "programs", "Official beneficiary program records require at least one program."));

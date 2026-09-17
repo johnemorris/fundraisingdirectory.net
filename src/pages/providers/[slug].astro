@@ -20,6 +20,7 @@ export async function getStaticPaths() {
 const { provider, providerOptions } = Astro.props;
 const { identity, classification, programs, geography, content, status, verification, affiliation } = provider.data;
 const visual = getProviderVisual(identity.slug);
+const hasVisual = Boolean(identity.logo || visual);
 const formatDate = (value: string) => new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${value.slice(0, 10)}T12:00:00Z`));
 const easeLabel = { easy: "Easy", moderate: "Moderate", "hands-on": "Hands-On" } as const;
 const statusLabel = { active: "Active", inactive: "Inactive", uncertain: "Status uncertain", historical: "Historical" } as const;
@@ -72,15 +73,15 @@ const outboundRel = providerOutboundRel(affiliation.type);
 
   <main class="directory-shell provider-detail-shell">
     <article class="provider-page">
-      <header class="provider-hero">
-        <div class="provider-hero-main">
-          <div class="provider-heading">
-            <p class="eyebrow">Fundraising provider</p>
-            <h1 class:list={{ "provider-name-compact": identity.name.length > 14 }}>{identity.name}</h1>
-            <div class="provider-status-line">
-              <span class={`status-badge status-${status.lifecycle}`}>{statusLabel[status.lifecycle]}</span>
-            </div>
+      <header class:list={["provider-hero", { "provider-hero-with-visual": hasVisual }]}>
+        <div class="provider-identity">
+          <p class="eyebrow">Fundraising provider</p>
+          <h1 class:list={{ "provider-name-compact": identity.name.length > 14 }}>{identity.name}</h1>
+          <div class="provider-status-line">
+            <span class={`status-badge status-${status.lifecycle}`}>{statusLabel[status.lifecycle]}</span>
           </div>
+        </div>
+        <div class="provider-hero-main">
           <p class="hero-summary">{content.summary}</p>
           <div class="hero-methods" aria-label="Fundraising methods">
             {classification.methods.map((method) => <a class={semanticClass("method", method)} href={`/providers/?method=${method}`}>{formatProviderLabel(method)}</a>)}
@@ -95,7 +96,7 @@ const outboundRel = providerOutboundRel(affiliation.type);
           {affiliation.disclosure_required && <p class="affiliate-disclosure">FundraisingDirectory.net may receive compensation if you visit or use this provider through certain links.</p>}
         </div>
 
-        <ProviderVisual providerName={identity.name} visual={visual} />
+        {hasVisual && <ProviderVisual providerName={identity.name} logo={identity.logo} visual={visual} />}
 
         <aside class="quick-facts">
           <div class="quick-facts-heading">
