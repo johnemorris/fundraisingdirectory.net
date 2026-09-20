@@ -1,0 +1,1188 @@
+[
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "DonorsChoose",
+      "slug": "donorschoose",
+      "website": "https://www.donorschoose.org/",
+      "fundraising_url": "https://www.donorschoose.org/teachers"
+    },
+    "classification": {
+      "methods": ["crowdfunding", "direct-donations"],
+      "products_services": ["crowdfunding-platform", "donation-platform", "books-educational"],
+      "organizations": ["schools"],
+      "beneficiary_types": ["own-project-or-program"],
+      "cause_areas": ["education-literacy"],
+      "capabilities": ["crowdfunding-pages"],
+      "outcomes": ["supplies", "technology", "equipment"]
+    },
+    "economics": {
+      "status": "known",
+      "arrangements": [
+        {
+          "type": "upfront-cost",
+          "value": { "kind": "amount", "amount": 0, "currency": "USD" },
+          "basis": "Cost for an eligible educator to create and post a request",
+          "conditions": ["The educator meets DonorsChoose eligibility rules"],
+          "caveats": []
+        },
+        {
+          "type": "processing-fee",
+          "value": { "kind": "percentage", "percent": 1.5 },
+          "basis": "Weighted-average third-party payment processing charge included in total project cost",
+          "conditions": [],
+          "caveats": ["The published figure is a weighted average, not a guaranteed fee for every transaction"]
+        },
+        {
+          "type": "other",
+          "value": { "kind": "percentage", "percent": 15 },
+          "basis": "Suggested optional donor allocation to DonorsChoose operations",
+          "conditions": ["Shown to donors at checkout"],
+          "caveats": ["Donors may reduce or opt out of the suggested allocation"]
+        }
+      ],
+      "notes": ["The project cost also includes materials, vendor shipping, sales tax, and fulfillment labor and materials."]
+    },
+    "programs": [
+      {
+        "id": "prog_000006",
+        "name": "Classroom Project Funding",
+        "slug": "classroom-project-funding",
+        "url": "https://www.donorschoose.org/teachers",
+        "method": "crowdfunding",
+        "products_services": ["crowdfunding-platform", "donation-platform", "books-educational"],
+        "channels": ["online"],
+        "online_ordering": null,
+        "fulfillment": ["provider-delivery"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "Eligible public-school educators request classroom resources, donors fund a reviewed all-or-nothing project, and DonorsChoose purchases and ships the materials to the school.",
+        "beneficiary_types": ["own-project-or-program"],
+        "cause_areas": ["education-literacy"],
+        "capabilities": ["crowdfunding-pages"],
+        "outcomes": ["supplies", "technology", "equipment"],
+        "economics_mode": "inherit-provider",
+        "requirements": {
+          "status": "known",
+          "legal_status": ["school-or-education"],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": [
+            "Applicant is a full-time employee of a United States public or public charter school.",
+            "Applicant works directly with students at least 75% of the time.",
+            "Applicant selects materials, answers project questions, shares the project, and provides donor thank-yous and project photos after funding."
+          ],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": [
+            "Classroom Projects have a $100 minimum request value.",
+            "Projects are reviewed before publication and must comply with DonorsChoose project and materials policies."
+          ],
+          "editorial_summary": "Eligibility is educator- and school-specific; the $100 threshold is a project-request minimum, not a sales quota."
+        },
+        "timing": {
+          "status": "known",
+          "setup_lead_time": { "typical": { "value": 3, "unit": "days" } },
+          "campaign_duration": { "maximum": { "value": 4, "unit": "months" } },
+          "fulfillment_time": { "maximum": { "value": 2, "unit": "weeks" } },
+          "funds_available_time": null,
+          "payout_time": null,
+          "notes": []
+        },
+        "logistics": {
+          "status": "known",
+          "notes": [
+            "DonorsChoose reviews the request, purchases approved materials, and ships them directly to the educator's school.",
+            "The project is all-or-nothing; materials ship after full funding.",
+            "Resources become property of the classroom after use as described in the project."
+          ]
+        }
+      },
+      {
+        "name": "Classroom Essentials",
+        "slug": "classroom-essentials",
+        "url": "https://www.donorschoose.org/teachers",
+        "method": "crowdfunding",
+        "products_services": ["crowdfunding-platform", "donation-platform", "books-educational"],
+        "channels": ["online"],
+        "online_ordering": null,
+        "fulfillment": ["provider-delivery"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "Eligible educators create a curated basic-supplies list with no funding minimum; DonorsChoose ships items incrementally as donations arrive.",
+        "beneficiary_types": ["own-project-or-program"],
+        "cause_areas": ["education-literacy"],
+        "capabilities": ["crowdfunding-pages"],
+        "outcomes": ["supplies"],
+        "economics_mode": "inherit-provider",
+        "requirements": {
+          "status": "known",
+          "legal_status": ["school-or-education"],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": [
+            "Applicant is a full-time employee of a United States public or public charter school.",
+            "Applicant works directly with students at least 75% of the time."
+          ],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": ["Requests are limited to the curated Classroom Essentials catalog."],
+          "editorial_summary": "Classroom Essentials has no minimum funding goal and does not require a project essay."
+        },
+        "timing": {
+          "status": "known",
+          "setup_lead_time": { "exact": { "value": 3, "unit": "minutes" } },
+          "campaign_duration": { "open_ended": true },
+          "fulfillment_time": null,
+          "funds_available_time": null,
+          "payout_time": null,
+          "notes": []
+        },
+        "logistics": {
+          "status": "known",
+          "notes": ["DonorsChoose ships requested essentials incrementally as funding arrives; no goal must be reached first."]
+        }
+      }
+    ],
+    "geography": {
+      "scope": ["us-nationwide"],
+      "countries": ["US"],
+      "states": [],
+      "regions": [],
+      "notes": "Educator eligibility is limited to qualifying United States public and public charter schools."
+    },
+    "sources": [
+      {
+        "id": "src_000003",
+        "url": "https://www.donorschoose.org/about",
+        "source_type": "official-provider",
+        "title": "About DonorsChoose",
+        "supports": [
+          "identity.website",
+          "programs.classroom-project-funding.logistics"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current",
+        "notes": "Documents project vetting, purchasing, shipment, and donor reporting."
+      },
+      {
+        "url": "https://www.donorschoose.org/teachers",
+        "source_type": "official-program",
+        "title": "Teacher Sign-up — Get Your Students What They Need",
+        "supports": [
+          "classification.organizations",
+          "classification.outcomes",
+          "programs.classroom-project-funding.summary",
+          "programs.classroom-project-funding.requirements",
+          "programs.classroom-project-funding.timing",
+          "programs.classroom-essentials.summary",
+          "programs.classroom-essentials.requirements",
+          "programs.classroom-essentials.timing",
+          "programs.classroom-essentials.logistics",
+          "geography.countries"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      },
+      {
+        "url": "https://www.donorschoose.org/about/finance.html",
+        "source_type": "terms-or-fees",
+        "title": "Financials",
+        "supports_mode": "replace",
+        "supports": ["economics"],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      }
+    ],
+    "verification": {
+      "status": "verified",
+      "review_status": "current",
+      "first_researched_at": "2026-09-20",
+      "first_verified_at": "2026-08-29",
+      "last_verified_at": "2026-09-20",
+      "reviewer": "FRD pilot research",
+      "verifier": "FRD pilot research",
+      "record_level_recheck": true
+    },
+    "completeness": "anchor-quality",
+    "workflow": {
+      "approved": true,
+      "approved_by": "FRD pilot brief",
+      "approved_at": "2026-09-20"
+    }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "World's Finest Chocolate",
+      "slug": "worlds-finest-chocolate",
+      "website": "https://worldsfinestchocolate.com/",
+      "fundraising_url": "https://worldsfinestchocolate.com/fundraising/how-it-works"
+    },
+    "classification": {
+      "methods": ["product-sales"],
+      "products_services": ["candy-chocolate"],
+      "organizations": ["schools", "pto-pta", "sports-athletics", "booster-clubs", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance"],
+      "beneficiary_types": ["own-organization", "own-project-or-program"],
+      "outcomes": ["cash"]
+    },
+    "programs": [
+      {
+        "id": "prog_000011",
+        "name": "Chocolate Fundraiser",
+        "slug": "chocolate-fundraiser",
+        "url": "https://worldsfinestchocolate.com/fundraising",
+        "method": "product-sales",
+        "products_services": ["candy-chocolate"],
+        "channels": ["in-person"],
+        "online_ordering": true,
+        "fulfillment": ["group-distribution", "provider-delivery"],
+        "inventory_model": "upfront-inventory",
+        "upfront_cost": "varies",
+        "summary": "Groups order chocolate, distribute inventory to participants, sell it in person, collect proceeds, and retain a published share of product value.",
+        "beneficiary_types": ["own-organization", "own-project-or-program"],
+        "outcomes": ["cash"],
+        "economics_mode": "program-specific",
+        "economics": {
+          "status": "known",
+          "arrangements": [
+            {
+              "type": "product-sale-profit",
+              "value": {
+                "kind": "tiered",
+                "tiers": [
+                  { "threshold": "Fewer than 200 cases", "payout": { "kind": "percentage", "percent": 40 } },
+                  { "threshold": "More than 200 cases", "payout": { "kind": "percentage", "percent": 50 } }
+                ]
+              },
+              "basis": "Published $80 value per case",
+              "conditions": [],
+              "caveats": ["The official FAQ does not state the profit tier for exactly 200 cases; confirm with a representative before ordering."]
+            },
+            {
+              "type": "minimum-order",
+              "value": { "kind": "quantity", "amount": 8, "unit": "cases" },
+              "basis": "Total order, with mix-and-match items allowed",
+              "conditions": [],
+              "caveats": []
+            },
+            {
+              "type": "upfront-cost",
+              "value": { "kind": "variable", "description": "Website orders require upfront payment; qualifying representative-assisted groups may receive credit terms and pay after the fundraiser." },
+              "basis": "Order channel and credit qualification",
+              "conditions": ["Credit qualification is determined by World's Finest Chocolate"],
+              "caveats": ["Shipping charges and applicable sales tax vary"]
+            }
+          ],
+          "notes": ["Under the published tiers, profit is $32 per $80 case below 200 cases and $40 per $80 case above 200 cases."]
+        },
+        "requirements": {
+          "status": "known",
+          "legal_status": [],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": ["A group manages product distribution, seller collections, and safe storage."],
+          "minimum_group_size": null,
+          "minimum_order": { "kind": "quantity", "amount": 8, "unit": "cases" },
+          "minimum_sales": null,
+          "other_restrictions": [
+            "Online orders require upfront payment and are not returnable.",
+            "Credit terms, return eligibility, and no-upfront-cost qualification depend on organization type and approval.",
+            "Public and parochial schools qualify for no-upfront-cost terms only when the school is responsible for the invoice; affiliated groups do not automatically qualify."
+          ],
+          "editorial_summary": "An eight-case minimum applies; financial and return terms vary by ordering path and credit approval."
+        },
+        "timing": {
+          "status": "known",
+          "setup_lead_time": {
+            "minimum": { "value": 1, "unit": "weeks" },
+            "maximum": { "value": 2, "unit": "weeks" }
+          },
+          "campaign_duration": { "typical": { "value": 2, "unit": "weeks" } },
+          "fulfillment_time": {
+            "minimum": { "value": 5, "unit": "business-days" },
+            "maximum": { "value": 7, "unit": "business-days" }
+          },
+          "funds_available_time": null,
+          "payout_time": null,
+          "notes": ["Approved credit accounts are typically invoiced on 30-day terms."]
+        },
+        "logistics": {
+          "status": "known",
+          "notes": [
+            "Most orders ship within 5–7 business days; large-volume orders can take longer.",
+            "Warm-weather shipments use dry ice and may be delayed in extreme heat.",
+            "A recipient should inspect and store temperature-sensitive chocolate promptly in a cool, dry place without refrigeration.",
+            "Unopened, undamaged product may be returnable within 60 days only when the order and credit terms qualify; online orders are not returnable."
+          ]
+        }
+      }
+    ],
+    "geography": {
+      "scope": ["us-regional"],
+      "countries": ["US"],
+      "states": [],
+      "regions": [],
+      "notes": "The provider states that it delivers to 48 United States states, asks Alaska and Hawaii groups to call, does not ship to Puerto Rico, and directs Canadian groups to a separate Canadian site."
+    },
+    "sources": [
+      {
+        "id": "src_000015",
+        "url": "https://worldsfinestchocolate.com/fundraising/how-it-works",
+        "source_type": "official-program",
+        "title": "How Fundraising Works",
+        "supports": [
+          "programs.chocolate-fundraiser.summary",
+          "programs.chocolate-fundraiser.timing",
+          "programs.chocolate-fundraiser.logistics"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current",
+        "notes": "Documents specialist-led planning, one-to-two-week ordering lead time, volunteer coordination, storage, and the WFCentral app workflow."
+      },
+      {
+        "url": "https://worldsfinestchocolate.com/fundraising",
+        "source_type": "official-program",
+        "title": "Chocolate Fundraising Programs",
+        "supports": [
+          "classification.organizations",
+          {
+            "path": "programs.chocolate-fundraiser.economics",
+            "status": "needs-recheck",
+            "notes": "The overview says 50% applies over 200 cases; it does not resolve the exact 200-case boundary."
+          },
+          "programs.chocolate-fundraiser.summary"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      },
+      {
+        "url": "https://worldsfinestchocolate.com/faq",
+        "source_type": "official-program",
+        "title": "Chocolate Fundraising FAQs",
+        "supports": [
+          {
+            "path": "programs.chocolate-fundraiser.economics",
+            "status": "needs-recheck",
+            "notes": "The FAQ states below 200 and above 200 tiers but does not state the exact 200-case tier."
+          },
+          "programs.chocolate-fundraiser.requirements",
+          "programs.chocolate-fundraiser.timing",
+          "programs.chocolate-fundraiser.logistics",
+          "geography"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      },
+      {
+        "url": "https://worldsfinestchocolate.com/blog/fundraiser-with-no-upfront-cost",
+        "source_type": "official-program",
+        "title": "Fundraiser With No Upfront Cost: How It Works",
+        "supports": [
+          "programs.chocolate-fundraiser.economics",
+          "programs.chocolate-fundraiser.requirements",
+          "programs.chocolate-fundraiser.timing"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      }
+    ],
+    "verification": {
+      "status": "verified",
+      "review_status": "needs-recheck",
+      "first_researched_at": "2026-09-20",
+      "first_verified_at": "2026-08-29",
+      "last_verified_at": "2026-09-20",
+      "reviewer": "FRD pilot research",
+      "verifier": "FRD pilot research",
+      "record_level_recheck": true
+    },
+    "completeness": "anchor-quality",
+    "workflow": {
+      "approved": true,
+      "approved_by": "FRD pilot brief",
+      "approved_at": "2026-09-20"
+    }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "GroupRaise",
+      "slug": "groupraise",
+      "website": "https://www.groupraise.com/",
+      "fundraising_url": "https://www.groupraise.com/"
+    },
+    "classification": {
+      "methods": ["restaurant-business-partnerships"],
+      "products_services": [],
+      "organizations": ["schools", "pto-pta", "sports-athletics", "booster-clubs", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance"],
+      "beneficiary_types": ["own-organization", "own-project-or-program", "community-cause"],
+      "activity_subtypes": ["restaurant-night"],
+      "outcomes": ["cash"]
+    },
+    "programs": [
+      {
+        "name": "Restaurant Fundraising Meal",
+        "slug": "restaurant-fundraising-meal",
+        "url": "https://www.groupraise.com/",
+        "method": "restaurant-business-partnerships",
+        "products_services": [],
+        "channels": ["online", "in-person"],
+        "online_ordering": null,
+        "fulfillment": ["on-site"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "A group requests a date at a participating local restaurant, promotes a meal and gathers RSVPs, and the restaurant donates a location-specific percentage of supporter sales after the event.",
+        "beneficiary_types": ["own-organization", "own-project-or-program", "community-cause"],
+        "activity_subtypes": ["restaurant-night"],
+        "outcomes": ["cash"],
+        "economics_mode": "program-specific",
+        "economics": {
+          "status": "known",
+          "arrangements": [
+            {
+              "type": "upfront-cost",
+              "value": { "kind": "amount", "amount": 0, "currency": "USD" },
+              "basis": "Cost to the organizer to use GroupRaise for a restaurant fundraiser",
+              "conditions": [],
+              "caveats": []
+            },
+            {
+              "type": "restaurant-give-back",
+              "value": { "kind": "variable", "description": "A percentage set by the selected restaurant location for supporter sales during the scheduled event timeframe." },
+              "basis": "Qualifying supporter sales reported by the host restaurant",
+              "conditions": ["The restaurant accepts the event request", "Supporters follow the selected location's participation rules"],
+              "caveats": ["The percentage and qualifying order channels vary by restaurant location and event"]
+            }
+          ],
+          "notes": ["The host restaurant is responsible for reporting and distributing the donation; GroupRaise facilitates the event and communication but is not financially accountable for the final donation."]
+        },
+        "requirements": {
+          "status": "known",
+          "legal_status": [],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": [
+            "The restaurant location must accept the event request.",
+            "The organizer must reach at least 20 RSVPs on the event Meal Page no later than three days before the event unless the restaurant overrides the minimum.",
+            "The organizer must follow the selected location's policies, which may include a W-9, attendance minimum, or group-type restriction."
+          ],
+          "minimum_group_size": 20,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": [
+            "GroupRaise prohibits supported organizations from discriminating on specified protected grounds.",
+            "Events supporting political candidates, action organizations, or otherwise politically affiliated activity are not supported.",
+            "On-premises solicitation requires explicit written approval from the restaurant contact."
+          ],
+          "editorial_summary": "The 20-RSVP rule can be overridden by the restaurant; additional eligibility and documentation rules are location-specific."
+        },
+        "timing": {
+          "status": "known",
+          "setup_lead_time": { "minimum": { "value": 2, "unit": "weeks" }, "open_ended": true },
+          "campaign_duration": null,
+          "fulfillment_time": null,
+          "funds_available_time": null,
+          "payout_time": {
+            "minimum": { "value": 4, "unit": "weeks" },
+            "maximum": { "value": 6, "unit": "weeks" }
+          },
+          "notes": ["The restaurant has seven days to accept an event request."]
+        },
+        "logistics": {
+          "status": "known",
+          "notes": [
+            "GroupRaise supplies a unique Meal Page for RSVPs and promotional tools.",
+            "Supporters identify their participation to the restaurant as required by the selected location.",
+            "The restaurant reports qualifying sales and distributes the donation, generally by check."
+          ]
+        }
+      }
+    ],
+    "geography": {
+      "scope": ["us-nationwide"],
+      "countries": ["US"],
+      "states": [],
+      "regions": [],
+      "notes": "GroupRaise is a nationwide discovery platform, but restaurant-meal availability, dates, give-back rates, order channels, eligibility rules, and documentation requirements are determined at the individual restaurant-location level and discovered by address or ZIP code."
+    },
+    "content": {
+      "summary": "GroupRaise helps groups request and promote restaurant fundraising meals at participating local restaurant locations.",
+      "how_it_works": "An organizer searches near an address, selects a participating restaurant location, requests an available date, promotes a Meal Page, gathers RSVPs, and receives a donation based on qualifying supporter sales reported by the restaurant.",
+      "best_for": ["Groups that can mobilize at least 20 local supporters for a scheduled restaurant meal."],
+      "considerations": [
+        "Availability and program rules vary by restaurant location.",
+        "The restaurant, not GroupRaise, is financially responsible for reporting and distributing the donation."
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.groupraise.com/",
+        "source_type": "official-provider",
+        "title": "Restaurant Fundraisers — GroupRaise",
+        "supports": [
+          "identity",
+          "classification.methods",
+          "programs.restaurant-fundraising-meal.summary",
+          "programs.restaurant-fundraising-meal.economics",
+          "geography"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      },
+      {
+        "url": "https://groupraise.zendesk.com/hc/en-us/articles/230917367-What-is-a-GroupRaise-meal",
+        "source_type": "platform-documentation",
+        "title": "What is a GroupRaise meal?",
+        "supports": [
+          "programs.restaurant-fundraising-meal.summary",
+          "programs.restaurant-fundraising-meal.logistics"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      },
+      {
+        "url": "https://groupraise.zendesk.com/hc/en-us/articles/360001798208-General-Guidelines-to-Organizing-an-Event-Through-GroupRaise",
+        "source_type": "platform-documentation",
+        "title": "General Guidelines to Organizing an Event Through GroupRaise",
+        "supports": [
+          "programs.restaurant-fundraising-meal.economics",
+          "programs.restaurant-fundraising-meal.requirements",
+          "programs.restaurant-fundraising-meal.timing",
+          "programs.restaurant-fundraising-meal.logistics",
+          "geography.notes"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      }
+    ],
+    "verification": {
+      "status": "verified",
+      "review_status": "current",
+      "first_researched_at": "2026-09-20",
+      "first_verified_at": "2026-09-20",
+      "last_verified_at": "2026-09-20",
+      "reviewer": "FRD pilot research",
+      "verifier": "FRD pilot research",
+      "record_level_recheck": true
+    },
+    "completeness": "anchor-quality",
+    "workflow": {
+      "approved": true,
+      "approved_by": "FRD pilot brief",
+      "approved_at": "2026-09-20"
+    }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "Givebutter",
+      "slug": "givebutter",
+      "website": "https://givebutter.com/",
+      "fundraising_url": "https://givebutter.com/features/fundraising-pages"
+    },
+    "classification": {
+      "methods": ["direct-donations", "crowdfunding", "peer-to-peer", "events-activities", "auctions"],
+      "products_services": ["donation-platform", "crowdfunding-platform", "peer-to-peer-platform", "auction-platform", "event-fundraising-platform", "text-mobile-giving"],
+      "organizations": ["schools", "sports-athletics", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance", "animal-rescue"],
+      "beneficiary_types": ["own-organization", "own-project-or-program", "community-cause"],
+      "capabilities": ["donation-forms", "recurring-giving", "crowdfunding-pages", "peer-to-peer-pages", "participant-pages", "leaderboards", "ticketing-registration", "auctions-mobile-bidding", "text-to-give", "qr-giving", "digital-wallets", "donor-crm", "email-marketing", "livestream-integrations", "reporting-analytics"],
+      "outcomes": ["cash"]
+    },
+    "programs": [
+      {
+        "id": "prog_000005",
+        "name": "Online Fundraising Platform",
+        "slug": "online-fundraising-platform",
+        "url": "https://help.givebutter.com/en/articles/1726586-what-is-givebutter-and-how-does-it-work",
+        "method": "direct-donations",
+        "products_services": ["donation-platform", "crowdfunding-platform", "peer-to-peer-platform", "auction-platform", "event-fundraising-platform", "text-mobile-giving"],
+        "channels": ["online", "hybrid"],
+        "online_ordering": null,
+        "fulfillment": ["digital"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "Organizations and affiliated fundraisers can run donation forms, crowdfunding pages, peer-to-peer campaigns, events, ticketing, and auctions while managing payments and supporters in one platform.",
+        "beneficiary_types": ["own-organization", "own-project-or-program", "community-cause"],
+        "capabilities": ["donation-forms", "recurring-giving", "crowdfunding-pages", "peer-to-peer-pages", "participant-pages", "leaderboards", "ticketing-registration", "auctions-mobile-bidding", "text-to-give", "qr-giving", "digital-wallets", "donor-crm", "email-marketing", "livestream-integrations", "reporting-analytics"],
+        "outcomes": ["cash"],
+        "economics_mode": "program-specific",
+        "economics": {
+          "status": "known",
+          "arrangements": [
+            {
+              "type": "platform-fee",
+              "value": { "kind": "percentage", "percent": 0 },
+              "basis": "Online transactions on campaigns with optional donor tips enabled",
+              "conditions": ["Optional donor tips remain enabled"],
+              "caveats": ["The Givebutter Guarantee has stated exclusions, including payment methods that do not support tips and some imported or legacy recurring plans"]
+            },
+            {
+              "type": "platform-fee",
+              "value": { "kind": "percentage", "percent": 3 },
+              "basis": "Online transactions when optional donor tips are disabled",
+              "conditions": ["Optional donor tips are disabled"],
+              "caveats": ["The organization chooses whether donors are asked or required to cover fees or whether the organization absorbs them"]
+            },
+            {
+              "type": "processing-fee",
+              "value": { "kind": "percentage", "percent": 2.9 },
+              "basis": "Card and digital-wallet online transactions",
+              "conditions": [],
+              "caveats": ["A $0.30 per-transaction charge also applies; Givebutter absorbs uncovered processing fees when eligible tips-enabled transactions qualify for the Guarantee"]
+            },
+            {
+              "type": "transaction-fee",
+              "value": { "kind": "amount", "amount": 0.3, "currency": "USD" },
+              "basis": "Per card, digital-wallet, or ACH online transaction",
+              "conditions": [],
+              "caveats": ["Givebutter absorbs uncovered processing fees when eligible tips-enabled transactions qualify for the Guarantee"]
+            },
+            {
+              "type": "processing-fee",
+              "value": { "kind": "percentage", "percent": 1.9 },
+              "basis": "ACH online transactions for verified nonprofits",
+              "conditions": ["The account is a verified nonprofit"],
+              "caveats": ["A $0.30 per-transaction charge also applies"]
+            },
+            {
+              "type": "other",
+              "value": { "kind": "percentage", "percent": 1.75 },
+              "basis": "Optional instant-payout fee",
+              "conditions": ["The account is eligible and selects an instant payout"],
+              "caveats": ["Standard payouts are free"]
+            }
+          ],
+          "notes": ["Auction payment settings can alter whether the tips-enabled waiver is available; auto-charged auction payments incur the published platform and processing fees."]
+        },
+        "requirements": {
+          "status": "known",
+          "legal_status": [],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": [
+            "The campaign operator must connect payout information before publishing and raising funds.",
+            "The campaign operator needs a United States bank account, a United States government-issued EIN or Social Security number, and a United States phone number.",
+            "The operator must be physically located in the United States or Puerto Rico and satisfy Stripe Connect verification."
+          ],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": [
+            "Givebutter processes donations in USD; organizations without a United States presence may not be able to complete registration.",
+            "Individual personal-fundraising accounts are not supported; individuals may participate on behalf of a verified organization or as team members."
+          ],
+          "editorial_summary": "A 501(c)(3) is not stated as universally required, but United States identity, banking, phone, and payout verification requirements apply."
+        },
+        "timing": {
+          "status": "known",
+          "setup_lead_time": null,
+          "campaign_duration": null,
+          "fulfillment_time": null,
+          "funds_available_time": {
+            "minimum": { "value": 48, "unit": "hours" },
+            "maximum": { "value": 72, "unit": "hours" }
+          },
+          "payout_time": {
+            "minimum": { "value": 3, "unit": "business-days" },
+            "maximum": { "value": 5, "unit": "business-days" }
+          },
+          "notes": ["Eligible instant payouts are typically completed within 60 minutes; eligibility is dynamic."]
+        },
+        "logistics": {
+          "status": "known",
+          "notes": [
+            "Campaign operators connect a United States bank account or debit card through Stripe Connect.",
+            "Withdrawals are manually initiated and subject to approval; standard withdrawals are free.",
+            "Givebutter offers Form, Page, and Event campaign types; peer-to-peer fundraising is available on Page and Event campaigns, and auctions are available on Page and Event campaigns."
+          ]
+        }
+      }
+    ],
+    "geography": {
+      "scope": ["us-nationwide"],
+      "countries": ["US"],
+      "states": [],
+      "regions": [],
+      "notes": "Campaign operators must have a United States presence and supported United States or Puerto Rico payout information; donors can contribute from most countries, with donations processed in USD."
+    },
+    "sources": [
+      {
+        "id": "src_000011",
+        "url": "https://help.givebutter.com/en/articles/1726586-what-is-givebutter-and-how-does-it-work",
+        "source_type": "platform-documentation",
+        "title": "What is Givebutter and how does it work?",
+        "supports": [
+          "classification.methods",
+          "classification.capabilities",
+          "programs.online-fundraising-platform.summary",
+          "programs.online-fundraising-platform.logistics"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      },
+      {
+        "url": "https://help.givebutter.com/en/articles/1512762-givebutter-standard-pricing-explained",
+        "source_type": "terms-or-fees",
+        "title": "Givebutter Standard pricing explained",
+        "supports": ["programs.online-fundraising-platform.economics"],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      },
+      {
+        "url": "https://help.givebutter.com/en/articles/125627-how-to-create-a-campaign-to-start-raising-funds",
+        "source_type": "platform-documentation",
+        "title": "How to create a campaign to start raising funds",
+        "supports": [
+          "programs.online-fundraising-platform.capabilities",
+          "programs.online-fundraising-platform.requirements",
+          "programs.online-fundraising-platform.logistics"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      },
+      {
+        "url": "https://help.givebutter.com/en/articles/1761146-how-to-withdraw-funds",
+        "source_type": "platform-documentation",
+        "title": "How to withdraw funds",
+        "supports": [
+          "programs.online-fundraising-platform.economics",
+          "programs.online-fundraising-platform.timing",
+          "programs.online-fundraising-platform.logistics"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      },
+      {
+        "url": "https://help.givebutter.com/en/articles/10401823-how-to-add-your-bank-account-and-payout-information-with-stripe-connect",
+        "source_type": "platform-documentation",
+        "title": "How to add your bank account and payout information with Stripe Connect",
+        "supports": [
+          "programs.online-fundraising-platform.requirements",
+          "geography"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      },
+      {
+        "url": "https://help.givebutter.com/en/articles/1726542-supported-countries-and-currencies-on-givebutter",
+        "source_type": "platform-documentation",
+        "title": "Supported countries and currencies on Givebutter",
+        "supports": [
+          "programs.online-fundraising-platform.requirements",
+          "geography"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      },
+      {
+        "url": "https://help.givebutter.com/en/articles/1726576-who-can-use-givebutter-and-what-can-i-raise-money-for",
+        "source_type": "platform-documentation",
+        "title": "Who can use Givebutter and what can I raise money for?",
+        "supports": [
+          "classification.organizations",
+          "classification.beneficiary_types",
+          "programs.online-fundraising-platform.requirements"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      }
+    ],
+    "verification": {
+      "status": "verified",
+      "review_status": "current",
+      "first_researched_at": "2026-09-20",
+      "first_verified_at": "2026-08-29",
+      "last_verified_at": "2026-09-20",
+      "reviewer": "FRD pilot research",
+      "verifier": "FRD pilot research",
+      "record_level_recheck": true
+    },
+    "completeness": "anchor-quality",
+    "workflow": {
+      "approved": true,
+      "approved_by": "FRD pilot brief",
+      "approved_at": "2026-09-20"
+    }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "RaiseRight",
+      "slug": "raiseright",
+      "website": "https://www.raiseright.com/",
+      "fundraising_url": "https://www.raiseright.com/how-it-works/gift-card-fundraising"
+    },
+    "classification": {
+      "methods": ["everyday-passive-fundraising", "restaurant-business-partnerships"],
+      "products_services": ["gift-cards", "shopping-rewards", "card-linked-dining-rewards", "travel-booking-rewards"],
+      "organizations": ["schools", "sports-athletics", "booster-clubs", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance"],
+      "beneficiary_types": ["own-organization", "own-project-or-program"],
+      "outcomes": ["cash"]
+    },
+    "programs": [
+      {
+        "name": "Gift Card Fundraising",
+        "slug": "gift-card-fundraising",
+        "url": "https://www.raiseright.com/how-it-works/gift-card-fundraising",
+        "method": "everyday-passive-fundraising",
+        "products_services": ["gift-cards"],
+        "channels": ["online", "hybrid"],
+        "online_ordering": true,
+        "fulfillment": ["digital", "direct-to-supporter", "group-distribution"],
+        "inventory_model": "varies",
+        "upfront_cost": "required",
+        "summary": "Participants buy eGift, physical, or reloadable gift cards at face value and the participating brand returns a published percentage to the organization's program.",
+        "beneficiary_types": ["own-organization", "own-project-or-program"],
+        "outcomes": ["cash"],
+        "economics_mode": "program-specific",
+        "economics": {
+          "status": "known",
+          "arrangements": [
+            {
+              "type": "revenue-share",
+              "value": { "kind": "variable", "description": "Brand-specific earnings, with RaiseRight reporting an average of 6% back for gift card fundraising." },
+              "basis": "Face value of eligible gift-card purchases",
+              "conditions": ["The selected brand and gift-card product offer earnings"],
+              "caveats": ["Rates vary by brand and can change; bonus events may increase earnings"]
+            },
+            {
+              "type": "transaction-fee",
+              "value": { "kind": "amount", "amount": 0.29, "currency": "USD" },
+              "basis": "Per online gift-card order paid from a personal bank account when the organization has banking information on file",
+              "conditions": ["ACH payment from a personal bank account", "Organization banking information is on file"],
+              "caveats": []
+            },
+            {
+              "type": "transaction-fee",
+              "value": { "kind": "amount", "amount": 0.79, "currency": "USD" },
+              "basis": "Per online gift-card order paid from a personal bank account when the organization does not have banking information on file",
+              "conditions": ["ACH payment from a personal bank account", "Organization banking information is not on file"],
+              "caveats": []
+            },
+            {
+              "type": "transaction-fee",
+              "value": { "kind": "percentage", "percent": 1 },
+              "basis": "Online gift-card orders paid by debit card",
+              "conditions": [],
+              "caveats": []
+            },
+            {
+              "type": "transaction-fee",
+              "value": { "kind": "percentage", "percent": 3 },
+              "basis": "Online gift-card orders paid by credit card",
+              "conditions": [],
+              "caveats": []
+            }
+          ],
+          "notes": ["RaiseRight states that 100% of earnings go back to the organization; the organization determines how to allocate them."]
+        },
+        "requirements": {
+          "status": "known",
+          "legal_status": [],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": [
+            "The organization submits enrollment information and is reviewed for program approval.",
+            "The organization configures payment details and determines how earnings are allocated.",
+            "Participants join with the organization's confidential enrollment code."
+          ],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": ["Organization approval generally precedes participant enrollment and ordering."],
+          "editorial_summary": "Enrollment is free; RaiseRight states that organization approval generally takes one to two days."
+        },
+        "timing": {
+          "status": "known",
+          "setup_lead_time": {
+            "minimum": { "value": 1, "unit": "days" },
+            "maximum": { "value": 2, "unit": "days" }
+          },
+          "campaign_duration": { "open_ended": true },
+          "fulfillment_time": null,
+          "funds_available_time": null,
+          "payout_time": null,
+          "payout_schedules": [
+            {
+              "frequency": "monthly",
+              "delivery_method": "direct-deposit",
+              "anchor": null,
+              "conditions": [
+                "The organization has a linked bank account",
+                "Qualifying cumulative earnings meet the $20 minimum"
+              ],
+              "caveats": []
+            },
+            {
+              "frequency": "monthly",
+              "delivery_method": "check",
+              "anchor": null,
+              "conditions": [
+                "The organization's payment setup uses an eligible monthly check payout path",
+                "Qualifying cumulative earnings meet the $20 minimum"
+              ],
+              "caveats": ["Check frequency depends on the organization's payment setup"]
+            },
+            {
+              "frequency": "quarterly",
+              "delivery_method": "check",
+              "anchor": null,
+              "conditions": [
+                "The organization's payment setup uses an eligible quarterly check payout path",
+                "Qualifying cumulative earnings meet the $20 minimum"
+              ],
+              "caveats": ["Check frequency depends on the organization's payment setup"]
+            }
+          ],
+          "notes": []
+        },
+        "logistics": {
+          "status": "known",
+          "notes": [
+            "eGift cards are delivered to the participant's RaiseRight Wallet.",
+            "Eligible physical gift cards can ship to a participant's home or to the organization coordinator for distribution.",
+            "Organizations may optionally coordinate participant orders or maintain physical gift-card inventory."
+          ]
+        }
+      },
+      {
+        "name": "Shop Online Earnings",
+        "slug": "shop-online-earnings",
+        "url": "https://www.raiseright.com/how-it-works/shop-online",
+        "method": "everyday-passive-fundraising",
+        "products_services": ["shopping-rewards"],
+        "channels": ["online"],
+        "online_ordering": true,
+        "fulfillment": ["digital"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "Participants activate an eligible merchant offer through RaiseRight, complete a purchase on the merchant's website, and earn a brand-specific percentage for their organization.",
+        "beneficiary_types": ["own-organization", "own-project-or-program"],
+        "outcomes": ["cash"],
+        "economics_mode": "program-specific",
+        "economics": {
+          "status": "known",
+          "arrangements": [
+            {
+              "type": "revenue-share",
+              "value": { "kind": "variable", "description": "Brand-specific online-shopping earnings; RaiseRight states users who shop online earn 6% more on average in addition to gift-card earnings." },
+              "basis": "Eligible online purchase amount",
+              "conditions": ["The participant activates the offer and completes an eligible purchase through the linked merchant site"],
+              "caveats": ["Merchant exclusions and rates vary"]
+            },
+            {
+              "type": "transaction-fee",
+              "value": { "kind": "amount", "amount": 0, "currency": "USD" },
+              "basis": "RaiseRight online-shopping earnings",
+              "conditions": [],
+              "caveats": []
+            }
+          ],
+          "notes": []
+        },
+        "requirements": {
+          "status": "known",
+          "legal_status": [],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": ["Participant joins an approved organization program and activates an eligible offer before shopping."],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": ["Some products or categories are excluded by individual brands."],
+          "editorial_summary": null
+        },
+        "timing": { "status": "known", "setup_lead_time": null, "campaign_duration": { "open_ended": true }, "fulfillment_time": null, "funds_available_time": null, "payout_time": null, "notes": ["Brand offer and earnings verification timelines vary."] },
+        "logistics": { "status": "known", "notes": ["Participants start from RaiseRight, activate the merchant offer, and finish checkout on the merchant's website."] }
+      },
+      {
+        "name": "Local Dining Earnings",
+        "slug": "local-dining-earnings",
+        "url": "https://www.raiseright.com/",
+        "method": "restaurant-business-partnerships",
+        "products_services": ["card-linked-dining-rewards"],
+        "channels": ["in-person"],
+        "online_ordering": null,
+        "fulfillment": ["on-site"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "Participants link a payment card in RaiseRight and earn for their organization when they use that card at participating local restaurants.",
+        "beneficiary_types": ["own-organization", "own-project-or-program"],
+        "outcomes": ["cash"],
+        "economics_mode": "program-specific",
+        "economics": {
+          "status": "known",
+          "arrangements": [
+            {
+              "type": "restaurant-give-back",
+              "value": { "kind": "percentage", "percent": 5 },
+              "basis": "Eligible card-linked purchases at participating local restaurants",
+              "conditions": ["A participant links and uses an eligible credit or debit card at a participating restaurant"],
+              "caveats": ["Restaurant availability is local and transaction eligibility is governed by the current offer terms"]
+            }
+          ],
+          "notes": []
+        },
+        "requirements": {
+          "status": "known",
+          "legal_status": [],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": ["Participant links an eligible credit or debit card and uses it at a participating restaurant."],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": ["Gift cards cannot be used to earn through the local dining feature."],
+          "editorial_summary": null
+        },
+        "timing": { "status": "known", "setup_lead_time": null, "campaign_duration": { "open_ended": true }, "fulfillment_time": null, "funds_available_time": null, "payout_time": null, "notes": ["Availability depends on participating local restaurants."] },
+        "logistics": { "status": "known", "notes": ["Earnings are tracked from an enrolled payment card; no scheduled restaurant-night event is required."] }
+      },
+      {
+        "name": "Travel Booking Earnings",
+        "slug": "travel-booking-earnings",
+        "url": "https://www.raiseright.com/",
+        "method": "everyday-passive-fundraising",
+        "products_services": ["travel-booking-rewards"],
+        "channels": ["online"],
+        "online_ordering": true,
+        "fulfillment": ["digital"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "Participants book eligible hotels, car rentals, or attractions through RaiseRight's travel site and earn a booking-specific amount for their organization.",
+        "beneficiary_types": ["own-organization", "own-project-or-program"],
+        "outcomes": ["cash"],
+        "economics_mode": "program-specific",
+        "economics": {
+          "status": "known",
+          "arrangements": [
+            {
+              "type": "revenue-share",
+              "value": { "kind": "variable", "description": "Booking-specific travel earnings advertised as up to 30%." },
+              "basis": "Eligible hotel, car-rental, or attraction booking",
+              "conditions": ["Booking is completed through RaiseRight's travel site"],
+              "caveats": ["Rates vary by booking"]
+            }
+          ],
+          "notes": []
+        },
+        "requirements": {
+          "status": "known",
+          "legal_status": [],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": ["Participant books and pays through RaiseRight's travel site."],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": ["The travel booking site accepts credit or debit cards rather than RaiseRight gift cards."],
+          "editorial_summary": null
+        },
+        "timing": { "status": "known", "setup_lead_time": null, "campaign_duration": { "open_ended": true }, "fulfillment_time": null, "funds_available_time": null, "payout_time": null, "notes": ["Earnings verification timing varies by booking."] },
+        "logistics": { "status": "known", "notes": ["Participants book hotels, car rentals, or attractions through RaiseRight's travel site and pay by credit or debit card."] }
+      }
+    ],
+    "geography": {
+      "scope": ["us-nationwide"],
+      "countries": ["US"],
+      "states": [],
+      "regions": [],
+      "notes": "This pilot record covers RaiseRight's United States organization offering. Local dining availability is location-dependent; Canadian participation is not represented because the pilot did not establish equivalent current program terms."
+    },
+    "content": {
+      "summary": "RaiseRight lets approved organizations earn from participant gift-card purchases, online shopping, local dining, and travel bookings.",
+      "how_it_works": "An organization enrolls, receives a private enrollment code, invites participants, and decides how to allocate earnings generated through eligible purchases and bookings.",
+      "best_for": ["Schools, teams, churches, nonprofits, and activity groups seeking year-round earnings tied to routine household spending."],
+      "considerations": ["Earning rates, fees, merchant exclusions, fulfillment, and verification timing vary by earning method and brand."]
+    },
+    "sources": [
+      {
+        "url": "https://www.raiseright.com/resources/organization/starting-a-new-program/",
+        "source_type": "official-program",
+        "title": "Starting a New Program",
+        "supports": [
+          "classification.organizations",
+          "programs.gift-card-fundraising.requirements",
+          "programs.gift-card-fundraising.timing",
+          "programs.gift-card-fundraising.logistics",
+          "content.how_it_works"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      },
+      {
+        "url": "https://www.raiseright.com/how-it-works/gift-card-fundraising",
+        "source_type": "official-program",
+        "title": "Gift Card Fundraising",
+        "supports": [
+          "programs.gift-card-fundraising.summary",
+          "programs.gift-card-fundraising.economics",
+          "programs.gift-card-fundraising.logistics",
+          "programs.local-dining-earnings.requirements",
+          "programs.travel-booking-earnings.requirements"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      },
+      {
+        "url": "https://www.raiseright.com/how-it-works/shop-online",
+        "source_type": "official-program",
+        "title": "Shop Online and Earn",
+        "supports": [
+          "programs.shop-online-earnings.summary",
+          "programs.shop-online-earnings.economics",
+          "programs.shop-online-earnings.requirements",
+          "programs.shop-online-earnings.logistics"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      },
+      {
+        "url": "https://www.raiseright.com/hubfs/Flyer_RaiseRightOverview_2026.pdf",
+        "source_type": "official-program",
+        "title": "Fundraising is as simple as shopping and dining at your favorite places",
+        "supports": [
+          "programs.local-dining-earnings.summary",
+          "programs.local-dining-earnings.economics",
+          "programs.travel-booking-earnings.summary",
+          "programs.travel-booking-earnings.economics"
+        ],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      },
+      {
+        "url": "https://support.raiseright.com/hc/en-us/articles/44381442013075-Organization-earnings-payout-timelines",
+        "source_type": "platform-documentation",
+        "title": "Organization earnings payout timelines",
+        "supports_mode": "replace",
+        "supports": ["programs.gift-card-fundraising.timing"],
+        "checked_at": "2026-09-20",
+        "status": "current"
+      }
+    ],
+    "verification": {
+      "status": "verified",
+      "review_status": "current",
+      "first_researched_at": "2026-09-20",
+      "first_verified_at": "2026-09-20",
+      "last_verified_at": "2026-09-20",
+      "reviewer": "FRD pilot research",
+      "verifier": "FRD pilot research",
+      "record_level_recheck": true
+    },
+    "completeness": "anchor-quality",
+    "workflow": {
+      "approved": true,
+      "approved_by": "FRD pilot brief",
+      "approved_at": "2026-09-20"
+    }
+  }
+]

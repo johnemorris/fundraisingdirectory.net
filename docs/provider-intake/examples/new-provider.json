@@ -26,6 +26,7 @@
       "upfront_cost": "unknown",
       "ease_to_raise": null,
       "summary": "A fictional online donation-page program for fixture and workflow testing.",
+      "economics_mode": "program-specific",
       "economics": {
         "status": "known",
         "arrangements": [{
@@ -51,8 +52,12 @@
       },
       "timing": {
         "status": "researched-unknown",
-        "lead_time": null,
+        "setup_lead_time": null,
         "campaign_duration": null,
+        "fulfillment_time": null,
+        "funds_available_time": null,
+        "payout_time": null,
+        "payout_schedules": [],
         "notes": []
       },
       "logistics": {

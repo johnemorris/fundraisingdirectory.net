@@ -213,33 +213,87 @@ export const programRequirementsSchema = z.object({
   }
 });
 
+export const DURATION_UNITS = [
+  "minutes",
+  "hours",
+  "days",
+  "calendar-days",
+  "business-days",
+  "weeks",
+  "months",
+] as const;
+
 const durationSchema = z.object({
   value: positiveNumber,
-  unit: z.enum(["hours", "days", "weeks", "months"]),
+  unit: z.enum(DURATION_UNITS),
 });
 
 const durationRangeSchema = z.object({
+  exact: durationSchema.optional(),
   minimum: durationSchema.optional(),
   typical: durationSchema.optional(),
   maximum: durationSchema.optional(),
-}).refine((value) => value.minimum || value.typical || value.maximum, {
-  message: "Provide at least one duration value",
+  open_ended: z.boolean().optional(),
+}).superRefine((value, context) => {
+  if (!value.exact && !value.minimum && !value.typical && !value.maximum && value.open_ended !== true) {
+    context.addIssue({ code: "custom", message: "Provide a duration value or mark the duration open-ended" });
+  }
+  if (value.exact && (value.minimum || value.typical || value.maximum || value.open_ended)) {
+    context.addIssue({ code: "custom", message: "An exact duration cannot also be a range, typical value, or open-ended" });
+  }
+});
+
+export const PAYOUT_FREQUENCIES = ["monthly", "quarterly"] as const;
+export const PAYOUT_DELIVERY_METHODS = ["direct-deposit", "check"] as const;
+
+const payoutScheduleSchema = z.object({
+  frequency: z.enum(PAYOUT_FREQUENCIES),
+  delivery_method: z.enum(PAYOUT_DELIVERY_METHODS).nullable(),
+  anchor: nullableText,
+  conditions: z.array(z.string().min(1)),
+  caveats: z.array(z.string().min(1)),
 });
 
 export const programTimingSchema = z.object({
   status: researchStateSchema,
-  lead_time: durationRangeSchema.nullable(),
-  campaign_duration: durationRangeSchema.nullable(),
+  setup_lead_time: durationRangeSchema.nullable().optional(),
+  lead_time: durationRangeSchema.nullable().optional(),
+  campaign_duration: durationRangeSchema.nullable().optional(),
+  fulfillment_time: durationRangeSchema.nullable().optional(),
+  funds_available_time: durationRangeSchema.nullable().optional(),
+  payout_time: durationRangeSchema.nullable().optional(),
+  payout_schedules: z.array(payoutScheduleSchema).optional(),
   notes: z.array(z.string().min(1)),
 }).superRefine((value, context) => {
-  const hasDetails = value.lead_time !== null || value.campaign_duration !== null || value.notes.length > 0;
+  if (value.setup_lead_time !== undefined && value.lead_time !== undefined) {
+    context.addIssue({
+      code: "custom",
+      path: ["lead_time"],
+      message: "Use setup_lead_time; do not provide it together with the legacy lead_time field",
+    });
+  }
+  const hasDetails = (value.setup_lead_time ?? value.lead_time ?? null) !== null
+    || (value.campaign_duration ?? null) !== null
+    || (value.fulfillment_time ?? null) !== null
+    || (value.funds_available_time ?? null) !== null
+    || (value.payout_time ?? null) !== null
+    || (value.payout_schedules?.length ?? 0) > 0
+    || value.notes.length > 0;
   if (value.status === "known" && !hasDetails) {
     context.addIssue({ code: "custom", message: "Known timing requires a duration or note" });
   }
   if (value.status !== "known" && hasDetails) {
     context.addIssue({ code: "custom", message: "Only known timing may contain timing details" });
   }
-});
+}).transform(({ lead_time, ...value }) => ({
+  ...value,
+  setup_lead_time: value.setup_lead_time ?? lead_time ?? null,
+  campaign_duration: value.campaign_duration ?? null,
+  fulfillment_time: value.fulfillment_time ?? null,
+  funds_available_time: value.funds_available_time ?? null,
+  payout_time: value.payout_time ?? null,
+  payout_schedules: value.payout_schedules ?? [],
+}));
 
 export const programLogisticsSchema = z.object({
   status: researchStateSchema,
@@ -294,6 +348,8 @@ export const beneficiaryRelationshipSchema = z.object({
   official: z.boolean(),
 });
 
+export const PROGRAM_ECONOMICS_MODES = ["inherit-provider", "program-specific"] as const;
+
 export const providerProgramSchema = z.object({
   id: z.string().regex(/^prog_\d{6}$/),
   name: z.string().min(1),
@@ -309,11 +365,27 @@ export const providerProgramSchema = z.object({
   ease_to_raise: z.enum(EASE_TO_RAISE).nullable(),
   summary: z.string().min(1),
   beneficiary: beneficiaryRelationshipSchema.optional(),
-  economics: programEconomicsSchema,
+  economics_mode: z.enum(PROGRAM_ECONOMICS_MODES),
+  economics: programEconomicsSchema.optional(),
   requirements: programRequirementsSchema,
   timing: programTimingSchema,
   logistics: programLogisticsSchema,
   ...OPTIONAL_FUNDRAISING_DIMENSION_SCHEMAS,
+}).superRefine((program, context) => {
+  if (program.economics_mode === "inherit-provider" && program.economics !== undefined) {
+    context.addIssue({
+      code: "custom",
+      path: ["economics"],
+      message: "Provider-inherited economics must not duplicate a program economics object",
+    });
+  }
+  if (program.economics_mode === "program-specific" && program.economics === undefined) {
+    context.addIssue({
+      code: "custom",
+      path: ["economics"],
+      message: "Program-specific economics require a complete economics object",
+    });
+  }
 });
 
 export const providerSchema = z.object({
@@ -358,6 +430,7 @@ export const providerSchema = z.object({
     organizations: z.array(z.enum(ORGANIZATION_TYPES)).min(1),
     ...OPTIONAL_FUNDRAISING_DIMENSION_SCHEMAS,
   }),
+  economics: programEconomicsSchema.optional(),
   programs: z.array(providerProgramSchema).min(1),
   geography: z.object({
     scope: z.array(z.enum(GEOGRAPHY_SCOPES)).min(1),
@@ -428,7 +501,24 @@ export const providerSchema = z.object({
   editorial: z.object({
     featured: z.boolean(),
   }),
+}).superRefine((provider, context) => {
+  provider.programs.forEach((program, index) => {
+    if (program.economics_mode === "inherit-provider" && provider.economics === undefined) {
+      context.addIssue({
+        code: "custom",
+        path: ["programs", index, "economics_mode"],
+        message: "Programs can inherit economics only when provider-level economics is present",
+      });
+    }
+  });
 });
+
+export function resolveProgramEconomics(
+  provider: Pick<CanonicalProvider, "economics">,
+  program: Pick<CanonicalProgram, "economics_mode" | "economics">,
+) {
+  return program.economics_mode === "inherit-provider" ? provider.economics : program.economics;
+}
 
 export type CanonicalProvider = z.infer<typeof providerSchema>;
 export type CanonicalProgram = z.infer<typeof providerProgramSchema>;

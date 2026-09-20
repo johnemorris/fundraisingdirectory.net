@@ -3,7 +3,7 @@ meta:
   schema_version: 2
   created_at: "2026-08-29"
   created_by: "user_000001"
-  modified_at: "2026-08-29"
+  modified_at: "2026-09-20"
   modified_by: "user_000001"
   deleted: false
   deleted_at: null
@@ -18,51 +18,145 @@ identity:
   fundraising_url: "https://worldsfinestchocolate.com/fundraising/how-it-works"
   logo: null
 classification:
-  methods: ["product-sales"]
-  products_services: ["candy-chocolate"]
-  organizations: ["schools", "pto-pta", "sports-athletics", "booster-clubs", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance"]
+  methods:
+    - "product-sales"
+  products_services:
+    - "candy-chocolate"
+  organizations:
+    - "schools"
+    - "pto-pta"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+  outcomes:
+    - "cash"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
 programs:
   - id: "prog_000011"
     name: "Chocolate Fundraiser"
     slug: "chocolate-fundraiser"
+    url: "https://worldsfinestchocolate.com/fundraising"
     method: "product-sales"
-    products_services: ["candy-chocolate"]
-    channels: ["in-person"]
-    online_ordering: null
-    fulfillment: ["group-distribution"]
+    products_services:
+      - "candy-chocolate"
+    channels:
+      - "in-person"
+    online_ordering: true
+    fulfillment:
+      - "group-distribution"
+      - "provider-delivery"
     inventory_model: "upfront-inventory"
-    upfront_cost: "unknown"
+    upfront_cost: "varies"
     ease_to_raise: null
-    summary: "A group works with a fundraising specialist, plans an order and delivery date, and coordinates volunteers, storage, and participant sales."
+    summary: "Groups order chocolate, distribute inventory to participants, sell it in person, collect proceeds, and retain a published share of product value."
+    economics_mode: "program-specific"
     economics:
-      status: "not-researched"
-      arrangements: []
-      notes: []
+      status: "known"
+      arrangements:
+        - type: "product-sale-profit"
+          value:
+            kind: "tiered"
+            tiers:
+              - threshold: "Fewer than 200 cases"
+                payout:
+                  kind: "percentage"
+                  percent: 40
+              - threshold: "More than 200 cases"
+                payout:
+                  kind: "percentage"
+                  percent: 50
+          basis: "Published $80 value per case"
+          conditions: []
+          caveats:
+            - "The official FAQ does not state the profit tier for exactly 200 cases; confirm with a representative before ordering."
+        - type: "minimum-order"
+          value:
+            kind: "quantity"
+            amount: 8
+            unit: "cases"
+          basis: "Total order, with mix-and-match items allowed"
+          conditions: []
+          caveats: []
+        - type: "upfront-cost"
+          value:
+            kind: "variable"
+            description: "Website orders require upfront payment; qualifying representative-assisted groups may receive credit terms and pay after the fundraiser."
+          basis: "Order channel and credit qualification"
+          conditions:
+            - "Credit qualification is determined by World's Finest Chocolate"
+          caveats:
+            - "Shipping charges and applicable sales tax vary"
+      notes:
+        - "Under the published tiers, profit is $32 per $80 case below 200 cases and $40 per $80 case above 200 cases."
     requirements:
-      status: "not-researched"
+      status: "known"
       legal_status: []
       age_range: null
       grade_range: null
-      participation_requirements: []
+      participation_requirements:
+        - "A group manages product distribution, seller collections, and safe storage."
       minimum_group_size: null
-      minimum_order: null
+      minimum_order:
+        kind: "quantity"
+        amount: 8
+        unit: "cases"
       minimum_sales: null
-      other_restrictions: []
-      editorial_summary: null
+      other_restrictions:
+        - "Online orders require upfront payment and are not returnable."
+        - "Credit terms, return eligibility, and no-upfront-cost qualification depend on organization type and approval."
+        - "Public and parochial schools qualify for no-upfront-cost terms only when the school is responsible for the invoice; affiliated groups do not automatically qualify."
+      editorial_summary: "An eight-case minimum applies; financial and return terms vary by ordering path and credit approval."
     timing:
-      status: "not-researched"
-      lead_time: null
-      campaign_duration: null
-      notes: []
+      status: "known"
+      setup_lead_time:
+        minimum:
+          value: 1
+          unit: "weeks"
+        maximum:
+          value: 2
+          unit: "weeks"
+      campaign_duration:
+        typical:
+          value: 2
+          unit: "weeks"
+      fulfillment_time:
+        minimum:
+          value: 5
+          unit: "business-days"
+        maximum:
+          value: 7
+          unit: "business-days"
+      funds_available_time: null
+      payout_time: null
+      notes:
+        - "Approved credit accounts are typically invoiced on 30-day terms."
+      payout_schedules: []
     logistics:
-      status: "not-researched"
-      notes: []
+      status: "known"
+      notes:
+        - "Most orders ship within 5–7 business days; large-volume orders can take longer."
+        - "Warm-weather shipments use dry ice and may be delayed in extreme heat."
+        - "A recipient should inspect and store temperature-sensitive chocolate promptly in a cool, dry place without refrigeration."
+        - "Unopened, undamaged product may be returnable within 60 days only when the order and credit terms qualify; online orders are not returnable."
+    outcomes:
+      - "cash"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
 geography:
-  scope: ["us-regional"]
-  countries: ["US"]
+  scope:
+    - "us-regional"
+  countries:
+    - "US"
   states: []
   regions: []
-  notes: "Groups should confirm current delivery coverage and program availability with a fundraising specialist."
+  notes: "The provider states that it delivers to 48 United States states, asks Alaska and Hawaii groups to call, does not ship to Puerto Rico, and directs Canadian groups to a separate Canadian site."
 content:
   summary: "World's Finest Chocolate provides chocolate product-sale fundraisers for schools, teams, and community groups."
   how_it_works: "A group connects with a specialist, chooses a campaign schedule, places an order based on group size and goals, receives product, and coordinates participant sales."
@@ -75,29 +169,98 @@ content:
 status:
   lifecycle: "active"
   first_verified_at: "2026-08-29"
-  last_verified_at: "2026-08-29"
+  last_verified_at: "2026-09-20"
   next_review_at: null
   inactive_since: null
   inactive_reason: null
 verification:
   level: "verified"
-  review_status: "current"
-  completeness: "unassessed"
-  first_researched_at: null
-  reviewed_by: null
-  verified_by: null
+  review_status: "needs-recheck"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD pilot research"
+  verified_by: "FRD pilot research"
   sources:
     - id: "src_000015"
-      type: "official-program-page"
+      type: "official-program"
       url: "https://worldsfinestchocolate.com/fundraising/how-it-works"
-      checked_at: "2026-08-29"
-      title: null
+      title: "How Fundraising Works"
+      checked_at: "2026-09-20"
       status: "current"
-      supports: []
-      notes: "Documents the specialist-led planning, product ordering, delivery timing, volunteer coordination, storage, and sales workflow."
+      supports:
+        - path: "programs.chocolate-fundraiser.summary"
+          status: "current"
+          notes: null
+        - path: "programs.chocolate-fundraiser.timing"
+          status: "current"
+          notes: null
+        - path: "programs.chocolate-fundraiser.logistics"
+          status: "current"
+          notes: null
+      notes: "Documents specialist-led planning, one-to-two-week ordering lead time, volunteer coordination, storage, and the WFCentral app workflow."
+    - id: "src_000018"
+      type: "official-program"
+      url: "https://worldsfinestchocolate.com/fundraising"
+      title: "Chocolate Fundraising Programs"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "classification.organizations"
+          status: "current"
+          notes: null
+        - path: "programs.chocolate-fundraiser.economics"
+          status: "needs-recheck"
+          notes: "The overview says 50% applies over 200 cases; it does not resolve the exact 200-case boundary."
+        - path: "programs.chocolate-fundraiser.summary"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000019"
+      type: "official-program"
+      url: "https://worldsfinestchocolate.com/faq"
+      title: "Chocolate Fundraising FAQs"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.chocolate-fundraiser.economics"
+          status: "needs-recheck"
+          notes: "The FAQ states below 200 and above 200 tiers but does not state the exact 200-case tier."
+        - path: "programs.chocolate-fundraiser.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.chocolate-fundraiser.timing"
+          status: "current"
+          notes: null
+        - path: "programs.chocolate-fundraiser.logistics"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000020"
+      type: "official-program"
+      url: "https://worldsfinestchocolate.com/blog/fundraiser-with-no-upfront-cost"
+      title: "Fundraiser With No Upfront Cost: How It Works"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.chocolate-fundraiser.economics"
+          status: "current"
+          notes: null
+        - path: "programs.chocolate-fundraiser.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.chocolate-fundraiser.timing"
+          status: "current"
+          notes: null
+      notes: null
 provenance:
-  discovered_via: ["web-research", "editorial-research"]
-  intake_origins: []
+  discovered_via:
+    - "web-research"
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
   legacy:
     listed: false
     name: null

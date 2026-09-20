@@ -46,7 +46,7 @@ function normalizeTaxonomyContainer(value: Record<string, any> | undefined) {
 
 function legacyResearchForSingleProgram(record: IntakeRecord): Record<string, any> {
   const research: Record<string, any> = {};
-  if (record.economics) {
+  if (record.economics && !("status" in record.economics)) {
     const arrangements = [
       record.economics.platform_fee_percent === undefined ? undefined : {
         type: "platform-fee",
@@ -159,7 +159,7 @@ export function normalizeIntakeRecord(record: IntakeRecord): {
     commercial_research: commercialResearch,
   };
 
-  delete normalized.economics;
+  if (normalized.economics && !("status" in normalized.economics)) delete normalized.economics;
   delete normalized.requirements;
   delete normalized.logistics;
 

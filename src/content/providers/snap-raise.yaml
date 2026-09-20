@@ -34,6 +34,7 @@ programs:
     upfront_cost: "unknown"
     ease_to_raise: null
     summary: "School groups, teams, clubs, and programs launch an online campaign, invite supporters, and track progress in one place."
+    economics_mode: "program-specific"
     economics:
       status: "not-researched"
       arrangements: []
@@ -51,8 +52,11 @@ programs:
       editorial_summary: null
     timing:
       status: "not-researched"
-      lead_time: null
+      setup_lead_time: null
       campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
       notes: []
     logistics:
       status: "not-researched"

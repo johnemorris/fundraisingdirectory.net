@@ -1,0 +1,248 @@
+meta:
+  id: "prov_000010"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "GroupRaise"
+  slug: "groupraise"
+  legal_name: null
+  aliases: []
+  website: "https://www.groupraise.com/"
+  fundraising_url: "https://www.groupraise.com/"
+  logo: null
+classification:
+  methods:
+    - "restaurant-business-partnerships"
+  products_services: []
+  organizations:
+    - "schools"
+    - "pto-pta"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+  outcomes:
+    - "cash"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+    - "community-cause"
+  activity_subtypes:
+    - "restaurant-night"
+programs:
+  - id: "prog_000014"
+    name: "Restaurant Fundraising Meal"
+    slug: "restaurant-fundraising-meal"
+    url: "https://www.groupraise.com/"
+    method: "restaurant-business-partnerships"
+    products_services: []
+    channels:
+      - "online"
+      - "in-person"
+    online_ordering: null
+    fulfillment:
+      - "on-site"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "A group requests a date at a participating local restaurant, promotes a meal and gathers RSVPs, and the restaurant donates a location-specific percentage of supporter sales after the event."
+    economics_mode: "program-specific"
+    economics:
+      status: "known"
+      arrangements:
+        - type: "upfront-cost"
+          value:
+            kind: "amount"
+            amount: 0
+            currency: "USD"
+          basis: "Cost to the organizer to use GroupRaise for a restaurant fundraiser"
+          conditions: []
+          caveats: []
+        - type: "restaurant-give-back"
+          value:
+            kind: "variable"
+            description: "A percentage set by the selected restaurant location for supporter sales during the scheduled event timeframe."
+          basis: "Qualifying supporter sales reported by the host restaurant"
+          conditions:
+            - "The restaurant accepts the event request"
+            - "Supporters follow the selected location's participation rules"
+          caveats:
+            - "The percentage and qualifying order channels vary by restaurant location and event"
+      notes:
+        - "The host restaurant is responsible for reporting and distributing the donation; GroupRaise facilitates the event and communication but is not financially accountable for the final donation."
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The restaurant location must accept the event request."
+        - "The organizer must reach at least 20 RSVPs on the event Meal Page no later than three days before the event unless the restaurant overrides the minimum."
+        - "The organizer must follow the selected location's policies, which may include a W-9, attendance minimum, or group-type restriction."
+      minimum_group_size: 20
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "GroupRaise prohibits supported organizations from discriminating on specified protected grounds."
+        - "Events supporting political candidates, action organizations, or otherwise politically affiliated activity are not supported."
+        - "On-premises solicitation requires explicit written approval from the restaurant contact."
+      editorial_summary: "The 20-RSVP rule can be overridden by the restaurant; additional eligibility and documentation rules are location-specific."
+    timing:
+      status: "known"
+      setup_lead_time:
+        minimum:
+          value: 2
+          unit: "weeks"
+        open_ended: true
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time:
+        minimum:
+          value: 4
+          unit: "weeks"
+        maximum:
+          value: 6
+          unit: "weeks"
+      notes:
+        - "The restaurant has seven days to accept an event request."
+      payout_schedules: []
+    logistics:
+      status: "known"
+      notes:
+        - "GroupRaise supplies a unique Meal Page for RSVPs and promotional tools."
+        - "Supporters identify their participation to the restaurant as required by the selected location."
+        - "The restaurant reports qualifying sales and distributes the donation, generally by check."
+    outcomes:
+      - "cash"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+      - "community-cause"
+    activity_subtypes:
+      - "restaurant-night"
+geography:
+  scope:
+    - "us-nationwide"
+  countries:
+    - "US"
+  states: []
+  regions: []
+  notes: "GroupRaise is a nationwide discovery platform, but restaurant-meal availability, dates, give-back rates, order channels, eligibility rules, and documentation requirements are determined at the individual restaurant-location level and discovered by address or ZIP code."
+content:
+  summary: "GroupRaise helps groups request and promote restaurant fundraising meals at participating local restaurant locations."
+  how_it_works: "An organizer searches near an address, selects a participating restaurant location, requests an available date, promotes a Meal Page, gathers RSVPs, and receives a donation based on qualifying supporter sales reported by the restaurant."
+  best_for:
+    - "Groups that can mobilize at least 20 local supporters for a scheduled restaurant meal."
+  considerations:
+    - "Availability and program rules vary by restaurant location."
+    - "The restaurant, not GroupRaise, is financially responsible for reporting and distributing the donation."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD pilot research"
+  verified_by: "FRD pilot research"
+  sources:
+    - id: "src_000021"
+      type: "official-provider"
+      url: "https://www.groupraise.com/"
+      title: "Restaurant Fundraisers — GroupRaise"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification.methods"
+          status: "current"
+          notes: null
+        - path: "programs.restaurant-fundraising-meal.summary"
+          status: "current"
+          notes: null
+        - path: "programs.restaurant-fundraising-meal.economics"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000022"
+      type: "platform-documentation"
+      url: "https://groupraise.zendesk.com/hc/en-us/articles/230917367-What-is-a-GroupRaise-meal"
+      title: "What is a GroupRaise meal?"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.restaurant-fundraising-meal.summary"
+          status: "current"
+          notes: null
+        - path: "programs.restaurant-fundraising-meal.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000023"
+      type: "platform-documentation"
+      url: "https://groupraise.zendesk.com/hc/en-us/articles/360001798208-General-Guidelines-to-Organizing-an-Event-Through-GroupRaise"
+      title: "General Guidelines to Organizing an Event Through GroupRaise"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.restaurant-fundraising-meal.economics"
+          status: "current"
+          notes: null
+        - path: "programs.restaurant-fundraising-meal.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.restaurant-fundraising-meal.timing"
+          status: "current"
+          notes: null
+        - path: "programs.restaurant-fundraising-meal.logistics"
+          status: "current"
+          notes: null
+        - path: "geography.notes"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

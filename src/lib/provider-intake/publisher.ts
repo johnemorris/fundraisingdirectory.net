@@ -96,7 +96,9 @@ function mergeSources(existing: Record<string, any>[], incoming: Record<string, 
     if (index >= 0) {
       const patch = canonicalSourcePatch(source);
       if (source.supports !== undefined) {
-        patch.supports = mergeSupportedClaims(output[index].supports, source.supports);
+        patch.supports = source.supports_mode === "replace"
+          ? structuredClone(source.supports)
+          : mergeSupportedClaims(output[index].supports, source.supports);
       }
       output[index] = mergeProvided(output[index], patch);
     }
@@ -124,7 +126,16 @@ const EMPTY_REQUIREMENTS = {
   other_restrictions: [],
   editorial_summary: null,
 };
-const EMPTY_TIMING = { status: "not-researched", lead_time: null, campaign_duration: null, notes: [] };
+const EMPTY_TIMING = {
+  status: "not-researched",
+  setup_lead_time: null,
+  campaign_duration: null,
+  fulfillment_time: null,
+  funds_available_time: null,
+  payout_time: null,
+  payout_schedules: [],
+  notes: [],
+};
 const EMPTY_LOGISTICS = { status: "not-researched", notes: [] };
 const EMPTY_COMMERCIAL_RESEARCH = {
   affiliate_status: "unknown",
@@ -154,6 +165,7 @@ function canonicalProgramPatch(program: Record<string, any>): Record<string, any
     ease_to_raise: program.ease_to_raise,
     summary: program.summary,
     beneficiary: program.beneficiary,
+    economics_mode: program.economics_mode,
     economics: program.economics,
     requirements: program.requirements,
     timing: program.timing,
@@ -167,12 +179,10 @@ function canonicalProgramPatch(program: Record<string, any>): Record<string, any
 }
 
 function programMatches(existing: Record<string, any>, incoming: Record<string, any>): boolean {
-  return Boolean(
-    (incoming.id && existing.id === incoming.id)
-      || (incoming.slug && existing.slug === incoming.slug)
-      || (incoming.url && existing.url === incoming.url)
-      || (incoming.name && normalizedName(existing.name) === normalizedName(incoming.name)),
-  );
+  if (incoming.id) return existing.id === incoming.id;
+  if (incoming.slug) return existing.slug === incoming.slug;
+  if (incoming.name) return normalizedName(existing.name) === normalizedName(incoming.name);
+  return Boolean(incoming.url && existing.url === incoming.url);
 }
 
 function mergePrograms(
@@ -184,20 +194,27 @@ function mergePrograms(
   incomingPrograms.forEach((incoming) => {
     const patch = canonicalProgramPatch(incoming);
     const index = output.findIndex((existing) => programMatches(existing, incoming));
-    if (index >= 0) output[index] = mergeProvided(output[index], patch);
-    else output.push(mergeProvided({
-      id: nextProgramId(),
-      products_services: [],
-      online_ordering: null,
-      fulfillment: ["unknown"],
-      inventory_model: "unknown",
-      upfront_cost: "unknown",
-      ease_to_raise: null,
-      economics: EMPTY_ECONOMICS,
-      requirements: EMPTY_REQUIREMENTS,
-      timing: EMPTY_TIMING,
-      logistics: EMPTY_LOGISTICS,
-    }, patch));
+    if (index >= 0) {
+      output[index] = mergeProvided(output[index], patch);
+      if (incoming.economics_mode === "inherit-provider") delete output[index].economics;
+    }
+    else {
+      const economicsMode = incoming.economics_mode ?? "program-specific";
+      output.push(mergeProvided({
+        id: nextProgramId(),
+        products_services: [],
+        online_ordering: null,
+        fulfillment: ["unknown"],
+        inventory_model: "unknown",
+        upfront_cost: "unknown",
+        ease_to_raise: null,
+        economics_mode: economicsMode,
+        economics: economicsMode === "program-specific" ? EMPTY_ECONOMICS : undefined,
+        requirements: EMPTY_REQUIREMENTS,
+        timing: EMPTY_TIMING,
+        logistics: EMPTY_LOGISTICS,
+      }, patch));
+    }
   });
   return output;
 }
@@ -221,6 +238,7 @@ function buildNewCandidate(record: Record<string, any>, ids: PublicationIdAlloca
     },
     identity: mergeProvided({ legal_name: null, aliases: [], fundraising_url: null, logo: null }, compact(record.identity ?? {})),
     classification: mergeProvided({ products_services: [] }, record.classification ?? {}),
+    economics: record.economics,
     programs: mergePrograms([], record.programs ?? [], ids.program),
     geography: mergeProvided({ countries: [], states: [], regions: [], notes: null }, record.geography ?? {}),
     content: mergeProvided({ best_for: [], considerations: [] }, record.content ?? {}),
@@ -287,6 +305,7 @@ function buildUpdateCandidate(
     meta: { modified_at: date, modified_by: actor },
     identity: compact(record.identity ?? {}),
     classification: record.classification,
+    economics: record.economics,
     geography: record.geography,
     content: record.content,
     status: Object.keys(statusPatch).length ? statusPatch : undefined,

@@ -34,6 +34,7 @@ programs:
     upfront_cost: "none"
     ease_to_raise: null
     summary: "Participants create and share online Pop-Up Stores while Double Good handles payments, popcorn fulfillment, and direct shipping."
+    economics_mode: "program-specific"
     economics:
       status: "not-researched"
       arrangements: []
@@ -51,8 +52,11 @@ programs:
       editorial_summary: null
     timing:
       status: "not-researched"
-      lead_time: null
+      setup_lead_time: null
       campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
       notes: []
     logistics:
       status: "not-researched"

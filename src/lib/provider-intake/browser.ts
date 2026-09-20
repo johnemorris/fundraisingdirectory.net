@@ -115,6 +115,7 @@ export function buildIntakeRecord(draft: Record<string, any>): Record<string, un
     beneficiary_types: list(program.beneficiary_types),
     cause_areas: list(program.cause_areas),
     activity_subtypes: list(program.activity_subtypes),
+    economics_mode: text(program.economics_mode),
     economics: program.economics,
     requirements: program.requirements,
     timing: program.timing,

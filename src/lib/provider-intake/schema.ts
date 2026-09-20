@@ -4,6 +4,7 @@ import {
   programLogisticsSchema,
   programRequirementsSchema,
   programTimingSchema,
+  PROGRAM_ECONOMICS_MODES,
   publicDateSchema,
   SOURCE_REVIEW_STATES,
 } from "../../data/providerSchema.ts";
@@ -35,6 +36,12 @@ import {
 const slugSchema = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 const nullableUrl = z.string().url().nullable();
 const percentage = z.number().finite();
+const legacyRecordEconomicsSchema = z.object({
+  platform_fee_percent: percentage.optional(),
+  transaction_fee_percent: percentage.optional(),
+  proceeds_percent: percentage.optional(),
+  notes: z.string().min(1).optional(),
+});
 
 export const intakeBeneficiarySchema = z.object({
   type: beneficiaryTypeSchema,
@@ -65,6 +72,7 @@ export const intakeProgramSchema = z.object({
   ease_to_raise: z.enum(EASE_TO_RAISE).nullable().optional(),
   summary: z.string().min(1).optional(),
   beneficiary: intakeBeneficiaryDraftSchema.optional(),
+  economics_mode: z.enum(PROGRAM_ECONOMICS_MODES).optional(),
   economics: programEconomicsSchema.optional(),
   requirements: programRequirementsSchema.optional(),
   timing: programTimingSchema.optional(),
@@ -77,6 +85,7 @@ export const intakeSourceSchema = z.object({
   url: z.string().url().optional(),
   source_type: z.enum(SOURCE_TYPES).optional(),
   title: z.string().min(1).optional(),
+  supports_mode: z.enum(["merge", "replace"]).optional(),
   supports: z.array(z.union([
     z.string().regex(/^[a-z][a-z0-9_-]*(?:\.[a-z][a-z0-9_-]*)*$/),
     z.object({
@@ -119,12 +128,7 @@ export const intakeRecordSchema = z.object({
     regions: z.array(z.string().min(1)).optional(),
     notes: z.string().min(1).nullable().optional(),
   }).optional(),
-  economics: z.object({
-    platform_fee_percent: percentage.optional(),
-    transaction_fee_percent: percentage.optional(),
-    proceeds_percent: percentage.optional(),
-    notes: z.string().min(1).optional(),
-  }).optional(),
+  economics: z.union([programEconomicsSchema, legacyRecordEconomicsSchema]).optional(),
   requirements: z.array(z.string().min(1)).optional(),
   logistics: z.array(z.string().min(1)).optional(),
   content: z.object({

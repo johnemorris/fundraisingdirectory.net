@@ -63,6 +63,7 @@ programs:
     ease_to_raise: "hands-on"
     summary: "Groups purchase ready-to-sell products and make immediate, in-person sales to supporters."
 
+    economics_mode: "program-specific"
     economics:
       status: "not-researched"
       arrangements: []
@@ -80,8 +81,11 @@ programs:
       editorial_summary: null
     timing:
       status: "not-researched"
-      lead_time: null
+      setup_lead_time: null
       campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
       notes: []
     logistics:
       status: "not-researched"
@@ -106,6 +110,7 @@ programs:
     ease_to_raise: "moderate"
     summary: "Participants collect product orders during a campaign window, then the group submits the orders and coordinates delivery after fulfillment."
 
+    economics_mode: "program-specific"
     economics:
       status: "not-researched"
       arrangements: []
@@ -123,8 +128,11 @@ programs:
       editorial_summary: null
     timing:
       status: "not-researched"
-      lead_time: null
+      setup_lead_time: null
       campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
       notes: []
     logistics:
       status: "not-researched"
@@ -152,6 +160,7 @@ programs:
     ease_to_raise: "easy"
     summary: "Fundraising.com creates a shareable group storefront, processes supporter payments, and ships orders either to buyers or to a central group location."
 
+    economics_mode: "program-specific"
     economics:
       status: "not-researched"
       arrangements: []
@@ -169,8 +178,11 @@ programs:
       editorial_summary: null
     timing:
       status: "not-researched"
-      lead_time: null
+      setup_lead_time: null
       campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
       notes: []
     logistics:
       status: "not-researched"
@@ -192,6 +204,7 @@ programs:
     inventory_model: "not-applicable"
     upfront_cost: "varies"
     ease_to_raise: "easy"
+    economics_mode: "program-specific"
     economics:
       status: "not-researched"
       arrangements: []
@@ -209,8 +222,11 @@ programs:
       editorial_summary: null
     timing:
       status: "not-researched"
-      lead_time: null
+      setup_lead_time: null
       campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
       notes: []
     logistics:
       status: "not-researched"

@@ -59,7 +59,8 @@ export function validateDraft(raw: unknown): { success: boolean; data?: Record<s
     issues.push(issue("draft", "warning", "suspicious-geography-detail", "geography", "Nationwide scope includes state/region restrictions; confirm the intended availability."));
   }
 
-  for (const [key, value] of Object.entries(data.economics ?? {})) {
+  const legacyEconomics = data.economics && !("status" in data.economics) ? data.economics : {};
+  for (const [key, value] of Object.entries(legacyEconomics)) {
     if (!key.endsWith("_percent") || typeof value !== "number") continue;
     if (value < 0 || value > 100) {
       issues.push(issue("draft", "error", "invalid-percentage", `economics.${key}`, "Percentages must be between 0 and 100."));
@@ -69,7 +70,7 @@ export function validateDraft(raw: unknown): { success: boolean; data?: Record<s
   }
 
   const hasLegacyProgramResearch = Boolean(
-    data.economics
+    (data.economics && !("status" in data.economics))
     || data.requirements?.length
     || data.logistics?.length,
   );

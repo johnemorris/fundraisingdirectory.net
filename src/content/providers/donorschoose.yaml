@@ -3,7 +3,7 @@ meta:
   schema_version: 2
   created_at: "2026-08-29"
   created_by: "user_000001"
-  modified_at: "2026-08-29"
+  modified_at: "2026-09-20"
   modified_by: "user_000001"
   deleted: false
   deleted_at: null
@@ -18,51 +18,194 @@ identity:
   fundraising_url: "https://www.donorschoose.org/teachers"
   logo: null
 classification:
-  methods: ["crowdfunding", "direct-donations"]
-  products_services: ["crowdfunding-platform", "donation-platform", "books-educational"]
-  organizations: ["schools"]
+  methods:
+    - "crowdfunding"
+    - "direct-donations"
+  products_services:
+    - "crowdfunding-platform"
+    - "donation-platform"
+    - "books-educational"
+  organizations:
+    - "schools"
+  outcomes:
+    - "supplies"
+    - "technology"
+    - "equipment"
+  capabilities:
+    - "crowdfunding-pages"
+  beneficiary_types:
+    - "own-project-or-program"
+  cause_areas:
+    - "education-literacy"
+economics:
+  status: "known"
+  arrangements:
+    - type: "upfront-cost"
+      value:
+        kind: "amount"
+        amount: 0
+        currency: "USD"
+      basis: "Cost for an eligible educator to create and post a request"
+      conditions:
+        - "The educator meets DonorsChoose eligibility rules"
+      caveats: []
+    - type: "processing-fee"
+      value:
+        kind: "percentage"
+        percent: 1.5
+      basis: "Weighted-average third-party payment processing charge included in total project cost"
+      conditions: []
+      caveats:
+        - "The published figure is a weighted average, not a guaranteed fee for every transaction"
+    - type: "other"
+      value:
+        kind: "percentage"
+        percent: 15
+      basis: "Suggested optional donor allocation to DonorsChoose operations"
+      conditions:
+        - "Shown to donors at checkout"
+      caveats:
+        - "Donors may reduce or opt out of the suggested allocation"
+  notes:
+    - "The project cost also includes materials, vendor shipping, sales tax, and fulfillment labor and materials."
 programs:
   - id: "prog_000006"
     name: "Classroom Project Funding"
     slug: "classroom-project-funding"
+    url: "https://www.donorschoose.org/teachers"
     method: "crowdfunding"
-    products_services: ["crowdfunding-platform", "donation-platform", "books-educational"]
-    channels: ["online"]
+    products_services:
+      - "crowdfunding-platform"
+      - "donation-platform"
+      - "books-educational"
+    channels:
+      - "online"
     online_ordering: null
-    fulfillment: ["provider-delivery"]
+    fulfillment:
+      - "provider-delivery"
     inventory_model: "not-applicable"
     upfront_cost: "none"
     ease_to_raise: null
-    summary: "Eligible public-school teachers request classroom resources, donors fund approved projects, and DonorsChoose purchases and ships the materials."
-    economics:
-      status: "not-researched"
-      arrangements: []
-      notes: []
+    summary: "Eligible public-school educators request classroom resources, donors fund a reviewed all-or-nothing project, and DonorsChoose purchases and ships the materials to the school."
+    economics_mode: "inherit-provider"
     requirements:
-      status: "not-researched"
-      legal_status: []
+      status: "known"
+      legal_status:
+        - "school-or-education"
       age_range: null
       grade_range: null
-      participation_requirements: []
+      participation_requirements:
+        - "Applicant is a full-time employee of a United States public or public charter school."
+        - "Applicant works directly with students at least 75% of the time."
+        - "Applicant selects materials, answers project questions, shares the project, and provides donor thank-yous and project photos after funding."
       minimum_group_size: null
       minimum_order: null
       minimum_sales: null
-      other_restrictions: []
-      editorial_summary: null
+      other_restrictions:
+        - "Classroom Projects have a $100 minimum request value."
+        - "Projects are reviewed before publication and must comply with DonorsChoose project and materials policies."
+      editorial_summary: "Eligibility is educator- and school-specific; the $100 threshold is a project-request minimum, not a sales quota."
     timing:
-      status: "not-researched"
-      lead_time: null
-      campaign_duration: null
+      status: "known"
+      setup_lead_time:
+        typical:
+          value: 3
+          unit: "days"
+      campaign_duration:
+        maximum:
+          value: 4
+          unit: "months"
+      fulfillment_time:
+        maximum:
+          value: 2
+          unit: "weeks"
+      funds_available_time: null
+      payout_time: null
       notes: []
+      payout_schedules: []
     logistics:
-      status: "not-researched"
+      status: "known"
+      notes:
+        - "DonorsChoose reviews the request, purchases approved materials, and ships them directly to the educator's school."
+        - "The project is all-or-nothing; materials ship after full funding."
+        - "Resources become property of the classroom after use as described in the project."
+    outcomes:
+      - "supplies"
+      - "technology"
+      - "equipment"
+    capabilities:
+      - "crowdfunding-pages"
+    beneficiary_types:
+      - "own-project-or-program"
+    cause_areas:
+      - "education-literacy"
+  - id: "prog_000013"
+    name: "Classroom Essentials"
+    slug: "classroom-essentials"
+    url: "https://www.donorschoose.org/teachers"
+    method: "crowdfunding"
+    products_services:
+      - "crowdfunding-platform"
+      - "donation-platform"
+      - "books-educational"
+    channels:
+      - "online"
+    online_ordering: null
+    fulfillment:
+      - "provider-delivery"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "Eligible educators create a curated basic-supplies list with no funding minimum; DonorsChoose ships items incrementally as donations arrive."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status:
+        - "school-or-education"
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "Applicant is a full-time employee of a United States public or public charter school."
+        - "Applicant works directly with students at least 75% of the time."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Requests are limited to the curated Classroom Essentials catalog."
+      editorial_summary: "Classroom Essentials has no minimum funding goal and does not require a project essay."
+    timing:
+      status: "known"
+      setup_lead_time:
+        exact:
+          value: 3
+          unit: "minutes"
+      campaign_duration:
+        open_ended: true
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
       notes: []
+      payout_schedules: []
+    logistics:
+      status: "known"
+      notes:
+        - "DonorsChoose ships requested essentials incrementally as funding arrives; no goal must be reached first."
+    outcomes:
+      - "supplies"
+    capabilities:
+      - "crowdfunding-pages"
+    beneficiary_types:
+      - "own-project-or-program"
+    cause_areas:
+      - "education-literacy"
 geography:
-  scope: ["us-nationwide"]
-  countries: ["US"]
+  scope:
+    - "us-nationwide"
+  countries:
+    - "US"
   states: []
   regions: []
-  notes: "DonorsChoose describes teacher participation at public schools across the United States; current teacher and school eligibility rules apply."
+  notes: "Educator eligibility is limited to qualifying United States public and public charter schools."
 content:
   summary: "DonorsChoose connects public-school teachers seeking classroom resources with donors who can fund specific project requests."
   how_it_works: "Teachers submit classroom project requests for review. Donors support published projects, and DonorsChoose purchases and ships funded materials to the teacher."
@@ -75,29 +218,87 @@ content:
 status:
   lifecycle: "active"
   first_verified_at: "2026-08-29"
-  last_verified_at: "2026-08-29"
+  last_verified_at: "2026-09-20"
   next_review_at: null
   inactive_since: null
   inactive_reason: null
 verification:
   level: "verified"
   review_status: "current"
-  completeness: "unassessed"
-  first_researched_at: null
-  reviewed_by: null
-  verified_by: null
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD pilot research"
+  verified_by: "FRD pilot research"
   sources:
     - id: "src_000003"
-      type: "official-website"
+      type: "official-provider"
       url: "https://www.donorschoose.org/about"
-      checked_at: "2026-08-29"
-      title: null
+      title: "About DonorsChoose"
+      checked_at: "2026-09-20"
       status: "current"
-      supports: []
-      notes: "Documents the classroom request, project vetting, donor funding, purchasing, and direct-to-teacher fulfillment process."
+      supports:
+        - path: "identity.website"
+          status: "current"
+          notes: null
+        - path: "programs.classroom-project-funding.logistics"
+          status: "current"
+          notes: null
+      notes: "Documents project vetting, purchasing, shipment, and donor reporting."
+    - id: "src_000016"
+      type: "official-program"
+      url: "https://www.donorschoose.org/teachers"
+      title: "Teacher Sign-up — Get Your Students What They Need"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "classification.organizations"
+          status: "current"
+          notes: null
+        - path: "classification.outcomes"
+          status: "current"
+          notes: null
+        - path: "programs.classroom-project-funding.summary"
+          status: "current"
+          notes: null
+        - path: "programs.classroom-project-funding.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.classroom-project-funding.timing"
+          status: "current"
+          notes: null
+        - path: "programs.classroom-essentials.summary"
+          status: "current"
+          notes: null
+        - path: "programs.classroom-essentials.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.classroom-essentials.timing"
+          status: "current"
+          notes: null
+        - path: "programs.classroom-essentials.logistics"
+          status: "current"
+          notes: null
+        - path: "geography.countries"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000017"
+      type: "terms-or-fees"
+      url: "https://www.donorschoose.org/about/finance.html"
+      title: "Financials"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+      notes: null
 provenance:
-  discovered_via: ["web-research", "editorial-research"]
-  intake_origins: []
+  discovered_via:
+    - "web-research"
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
   legacy:
     listed: false
     name: null

@@ -3,7 +3,7 @@ meta:
   schema_version: 2
   created_at: "2026-08-29"
   created_by: "user_000001"
-  modified_at: "2026-08-29"
+  modified_at: "2026-09-20"
   modified_by: "user_000001"
   deleted: false
   deleted_at: null
@@ -18,51 +18,206 @@ identity:
   fundraising_url: "https://givebutter.com/features/fundraising-pages"
   logo: null
 classification:
-  methods: ["direct-donations", "crowdfunding", "peer-to-peer", "events-activities", "auctions"]
-  products_services: ["donation-platform", "crowdfunding-platform", "peer-to-peer-platform", "auction-platform", "event-fundraising-platform", "text-mobile-giving"]
-  organizations: ["schools", "sports-athletics", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance", "animal-rescue"]
+  methods:
+    - "direct-donations"
+    - "crowdfunding"
+    - "peer-to-peer"
+    - "events-activities"
+    - "auctions"
+  products_services:
+    - "donation-platform"
+    - "crowdfunding-platform"
+    - "peer-to-peer-platform"
+    - "auction-platform"
+    - "event-fundraising-platform"
+    - "text-mobile-giving"
+  organizations:
+    - "schools"
+    - "sports-athletics"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "animal-rescue"
+  outcomes:
+    - "cash"
+  capabilities:
+    - "donation-forms"
+    - "recurring-giving"
+    - "crowdfunding-pages"
+    - "peer-to-peer-pages"
+    - "participant-pages"
+    - "leaderboards"
+    - "ticketing-registration"
+    - "auctions-mobile-bidding"
+    - "text-to-give"
+    - "qr-giving"
+    - "digital-wallets"
+    - "donor-crm"
+    - "email-marketing"
+    - "livestream-integrations"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+    - "community-cause"
 programs:
   - id: "prog_000005"
     name: "Online Fundraising Platform"
     slug: "online-fundraising-platform"
+    url: "https://help.givebutter.com/en/articles/1726586-what-is-givebutter-and-how-does-it-work"
     method: "direct-donations"
-    products_services: ["donation-platform", "crowdfunding-platform", "peer-to-peer-platform", "auction-platform", "event-fundraising-platform", "text-mobile-giving"]
-    channels: ["online", "hybrid"]
+    products_services:
+      - "donation-platform"
+      - "crowdfunding-platform"
+      - "peer-to-peer-platform"
+      - "auction-platform"
+      - "event-fundraising-platform"
+      - "text-mobile-giving"
+    channels:
+      - "online"
+      - "hybrid"
     online_ordering: null
-    fulfillment: ["digital"]
+    fulfillment:
+      - "digital"
     inventory_model: "not-applicable"
-    upfront_cost: "varies"
+    upfront_cost: "none"
     ease_to_raise: null
-    summary: "Organizations can create donation forms, fundraising pages, peer-to-peer campaigns, events, and auctions in one online platform."
+    summary: "Organizations and affiliated fundraisers can run donation forms, crowdfunding pages, peer-to-peer campaigns, events, ticketing, and auctions while managing payments and supporters in one platform."
+    economics_mode: "program-specific"
     economics:
-      status: "not-researched"
-      arrangements: []
-      notes: []
+      status: "known"
+      arrangements:
+        - type: "platform-fee"
+          value:
+            kind: "percentage"
+            percent: 0
+          basis: "Online transactions on campaigns with optional donor tips enabled"
+          conditions:
+            - "Optional donor tips remain enabled"
+          caveats:
+            - "The Givebutter Guarantee has stated exclusions, including payment methods that do not support tips and some imported or legacy recurring plans"
+        - type: "platform-fee"
+          value:
+            kind: "percentage"
+            percent: 3
+          basis: "Online transactions when optional donor tips are disabled"
+          conditions:
+            - "Optional donor tips are disabled"
+          caveats:
+            - "The organization chooses whether donors are asked or required to cover fees or whether the organization absorbs them"
+        - type: "processing-fee"
+          value:
+            kind: "percentage"
+            percent: 2.9
+          basis: "Card and digital-wallet online transactions"
+          conditions: []
+          caveats:
+            - "A $0.30 per-transaction charge also applies; Givebutter absorbs uncovered processing fees when eligible tips-enabled transactions qualify for the Guarantee"
+        - type: "transaction-fee"
+          value:
+            kind: "amount"
+            amount: 0.3
+            currency: "USD"
+          basis: "Per card, digital-wallet, or ACH online transaction"
+          conditions: []
+          caveats:
+            - "Givebutter absorbs uncovered processing fees when eligible tips-enabled transactions qualify for the Guarantee"
+        - type: "processing-fee"
+          value:
+            kind: "percentage"
+            percent: 1.9
+          basis: "ACH online transactions for verified nonprofits"
+          conditions:
+            - "The account is a verified nonprofit"
+          caveats:
+            - "A $0.30 per-transaction charge also applies"
+        - type: "other"
+          value:
+            kind: "percentage"
+            percent: 1.75
+          basis: "Optional instant-payout fee"
+          conditions:
+            - "The account is eligible and selects an instant payout"
+          caveats:
+            - "Standard payouts are free"
+      notes:
+        - "Auction payment settings can alter whether the tips-enabled waiver is available; auto-charged auction payments incur the published platform and processing fees."
     requirements:
-      status: "not-researched"
+      status: "known"
       legal_status: []
       age_range: null
       grade_range: null
-      participation_requirements: []
+      participation_requirements:
+        - "The campaign operator must connect payout information before publishing and raising funds."
+        - "The campaign operator needs a United States bank account, a United States government-issued EIN or Social Security number, and a United States phone number."
+        - "The operator must be physically located in the United States or Puerto Rico and satisfy Stripe Connect verification."
       minimum_group_size: null
       minimum_order: null
       minimum_sales: null
-      other_restrictions: []
-      editorial_summary: null
+      other_restrictions:
+        - "Givebutter processes donations in USD; organizations without a United States presence may not be able to complete registration."
+        - "Individual personal-fundraising accounts are not supported; individuals may participate on behalf of a verified organization or as team members."
+      editorial_summary: "A 501(c)(3) is not stated as universally required, but United States identity, banking, phone, and payout verification requirements apply."
     timing:
-      status: "not-researched"
-      lead_time: null
+      status: "known"
+      setup_lead_time: null
       campaign_duration: null
-      notes: []
+      fulfillment_time: null
+      funds_available_time:
+        minimum:
+          value: 48
+          unit: "hours"
+        maximum:
+          value: 72
+          unit: "hours"
+      payout_time:
+        minimum:
+          value: 3
+          unit: "business-days"
+        maximum:
+          value: 5
+          unit: "business-days"
+      notes:
+        - "Eligible instant payouts are typically completed within 60 minutes; eligibility is dynamic."
+      payout_schedules: []
     logistics:
-      status: "not-researched"
-      notes: []
+      status: "known"
+      notes:
+        - "Campaign operators connect a United States bank account or debit card through Stripe Connect."
+        - "Withdrawals are manually initiated and subject to approval; standard withdrawals are free."
+        - "Givebutter offers Form, Page, and Event campaign types; peer-to-peer fundraising is available on Page and Event campaigns, and auctions are available on Page and Event campaigns."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "donation-forms"
+      - "recurring-giving"
+      - "crowdfunding-pages"
+      - "peer-to-peer-pages"
+      - "participant-pages"
+      - "leaderboards"
+      - "ticketing-registration"
+      - "auctions-mobile-bidding"
+      - "text-to-give"
+      - "qr-giving"
+      - "digital-wallets"
+      - "donor-crm"
+      - "email-marketing"
+      - "livestream-integrations"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+      - "community-cause"
 geography:
-  scope: ["us-nationwide"]
-  countries: ["US"]
+  scope:
+    - "us-nationwide"
+  countries:
+    - "US"
   states: []
   regions: []
-  notes: "This record covers Givebutter's United States nonprofit fundraising offering; organizations should confirm current eligibility and payment requirements."
+  notes: "Campaign operators must have a United States presence and supported United States or Puerto Rico payout information; donors can contribute from most countries, with donations processed in USD."
 content:
   summary: "Givebutter is an online fundraising platform for nonprofits and community organizations, with donation pages, events, auctions, and peer-to-peer tools."
   how_it_works: "An organization creates a campaign or donation form, shares it with supporters, and manages donations and campaign activity through Givebutter."
@@ -75,29 +230,134 @@ content:
 status:
   lifecycle: "active"
   first_verified_at: "2026-08-29"
-  last_verified_at: "2026-08-29"
+  last_verified_at: "2026-09-20"
   next_review_at: null
   inactive_since: null
   inactive_reason: null
 verification:
   level: "verified"
   review_status: "current"
-  completeness: "unassessed"
-  first_researched_at: null
-  reviewed_by: null
-  verified_by: null
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD pilot research"
+  verified_by: "FRD pilot research"
   sources:
     - id: "src_000011"
-      type: "official-program-page"
+      type: "platform-documentation"
       url: "https://help.givebutter.com/en/articles/1726586-what-is-givebutter-and-how-does-it-work"
-      checked_at: "2026-08-29"
-      title: null
+      title: "What is Givebutter and how does it work?"
+      checked_at: "2026-09-20"
       status: "current"
-      supports: []
+      supports:
+        - path: "classification.methods"
+          status: "current"
+          notes: null
+        - path: "classification.capabilities"
+          status: "current"
+          notes: null
+        - path: "programs.online-fundraising-platform.summary"
+          status: "current"
+          notes: null
+        - path: "programs.online-fundraising-platform.logistics"
+          status: "current"
+          notes: null
       notes: "Documents donation forms, fundraising pages, events, auctions, peer-to-peer fundraising, and the basic campaign workflow."
+    - id: "src_000024"
+      type: "terms-or-fees"
+      url: "https://help.givebutter.com/en/articles/1512762-givebutter-standard-pricing-explained"
+      title: "Givebutter Standard pricing explained"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.online-fundraising-platform.economics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000025"
+      type: "platform-documentation"
+      url: "https://help.givebutter.com/en/articles/125627-how-to-create-a-campaign-to-start-raising-funds"
+      title: "How to create a campaign to start raising funds"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.online-fundraising-platform.capabilities"
+          status: "current"
+          notes: null
+        - path: "programs.online-fundraising-platform.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.online-fundraising-platform.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000026"
+      type: "platform-documentation"
+      url: "https://help.givebutter.com/en/articles/1761146-how-to-withdraw-funds"
+      title: "How to withdraw funds"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.online-fundraising-platform.economics"
+          status: "current"
+          notes: null
+        - path: "programs.online-fundraising-platform.timing"
+          status: "current"
+          notes: null
+        - path: "programs.online-fundraising-platform.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000027"
+      type: "platform-documentation"
+      url: "https://help.givebutter.com/en/articles/10401823-how-to-add-your-bank-account-and-payout-information-with-stripe-connect"
+      title: "How to add your bank account and payout information with Stripe Connect"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.online-fundraising-platform.requirements"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000028"
+      type: "platform-documentation"
+      url: "https://help.givebutter.com/en/articles/1726542-supported-countries-and-currencies-on-givebutter"
+      title: "Supported countries and currencies on Givebutter"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.online-fundraising-platform.requirements"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000034"
+      type: "platform-documentation"
+      url: "https://help.givebutter.com/en/articles/1726576-who-can-use-givebutter-and-what-can-i-raise-money-for"
+      title: "Who can use Givebutter and what can I raise money for?"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "classification.organizations"
+          status: "current"
+          notes: null
+        - path: "classification.beneficiary_types"
+          status: "current"
+          notes: null
+        - path: "programs.online-fundraising-platform.requirements"
+          status: "current"
+          notes: null
+      notes: null
 provenance:
-  discovered_via: ["web-research", "editorial-research"]
-  intake_origins: []
+  discovered_via:
+    - "web-research"
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
   legacy:
     listed: false
     name: null

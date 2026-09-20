@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { load } from "js-yaml";
-import { providerSchema } from "../src/data/providerSchema.ts";
+import { programTimingSchema, providerSchema, resolveProgramEconomics } from "../src/data/providerSchema.ts";
 import { FUNDRAISING_METHODS } from "../src/data/taxonomies/methods.ts";
 import { rankProviderMatches } from "../src/lib/finderScoring.js";
 import {
@@ -153,6 +153,134 @@ test("publication is a dry-run preview and preserves omitted existing fields", a
   assert.equal(candidate.verification.sources.length, gofundme.data.verification.sources.length);
 });
 
+test("distinct programs may share one official landing-page URL", async () => {
+  const existing = await loadExistingProviders();
+  const donorsChoose = existing.find((entry) => entry.data.identity.slug === "donorschoose");
+  const sharedUrl = "https://www.donorschoose.org/teachers";
+  const run = processIntakeRecords([{
+    record_type: "provider",
+    origin: "internal-research",
+    identity: { name: "DonorsChoose", slug: "donorschoose" },
+    programs: [
+      {
+        id: donorsChoose.data.programs[0].id,
+        name: donorsChoose.data.programs[0].name,
+        slug: donorsChoose.data.programs[0].slug,
+        url: sharedUrl,
+      },
+      {
+        name: "Shared URL Regression Program",
+        slug: "shared-url-regression-program",
+        url: sharedUrl,
+        method: "crowdfunding",
+        channels: ["online"],
+        summary: "A second program documented on the same official landing page.",
+      },
+    ],
+  }], existing, fixedOptions);
+  const programs = run.records[0].publication.candidate.programs;
+  assert.equal(programs.length, donorsChoose.data.programs.length + 1);
+  assert.equal(programs.at(-1).slug, "shared-url-regression-program");
+});
+
+test("provider economics require explicit inheritance and program overrides replace them", async () => {
+  const inherited = await fixture("new-provider.json");
+  inherited.economics = {
+    status: "known",
+    arrangements: [{
+      type: "platform-fee",
+      value: { kind: "percentage", percent: 0 },
+      basis: "All provider programs",
+      conditions: [],
+      caveats: [],
+    }],
+    notes: ["Provider-wide terms"],
+  };
+  inherited.programs[0].economics_mode = "inherit-provider";
+  delete inherited.programs[0].economics;
+  inherited.sources[0].supports = ["economics"];
+
+  const inheritedRun = processIntakeRecords([inherited], [], fixedOptions);
+  const inheritedProvider = inheritedRun.records[0].publication.candidate;
+  assert.equal(inheritedRun.records[0].publishReady, true);
+  assert.equal(inheritedProvider.programs[0].economics, undefined);
+  assert.deepEqual(
+    resolveProgramEconomics(inheritedProvider, inheritedProvider.programs[0]),
+    inheritedProvider.economics,
+  );
+
+  const overridden = structuredClone(inherited);
+  overridden.programs[0].economics_mode = "program-specific";
+  overridden.programs[0].economics = {
+    status: "known",
+    arrangements: [{
+      type: "platform-fee",
+      value: { kind: "percentage", percent: 2.5 },
+      basis: "This program only",
+      conditions: [],
+      caveats: [],
+    }],
+    notes: ["Complete program override"],
+  };
+  const overrideRun = processIntakeRecords([overridden], [], fixedOptions);
+  const overrideProvider = overrideRun.records[0].publication.candidate;
+  assert.equal(overrideRun.records[0].publishReady, true);
+  assert.equal(resolveProgramEconomics(overrideProvider, overrideProvider.programs[0]).arrangements[0].value.percent, 2.5);
+  assert.equal(overrideProvider.economics.arrangements[0].value.percent, 0);
+
+  const conflicting = structuredClone(inherited);
+  conflicting.programs[0].economics = overridden.programs[0].economics;
+  const conflictRun = processIntakeRecords([conflicting], [], fixedOptions);
+  assert.equal(conflictRun.records[0].publishReady, false);
+  assert.ok(conflictRun.records[0].issues.some((entry) => entry.message.includes("must not duplicate")));
+});
+
+test("timing models semantic durations, open bounds, recurring payouts, and missing states", () => {
+  const timing = programTimingSchema.parse({
+    status: "known",
+    setup_lead_time: { exact: { value: 3, unit: "minutes" } },
+    campaign_duration: { minimum: { value: 2, unit: "weeks" }, open_ended: true },
+    fulfillment_time: {
+      minimum: { value: 5, unit: "business-days" },
+      maximum: { value: 7, unit: "business-days" },
+    },
+    funds_available_time: { typical: { value: 48, unit: "hours" } },
+    payout_time: { maximum: { value: 30, unit: "calendar-days" } },
+    payout_schedules: [{
+      frequency: "quarterly",
+      delivery_method: "check",
+      anchor: null,
+      conditions: ["Eligible payout path"],
+      caveats: [],
+    }],
+    notes: [],
+  });
+  assert.equal(timing.setup_lead_time.exact.unit, "minutes");
+  assert.equal(timing.campaign_duration.open_ended, true);
+  assert.equal(timing.payout_schedules[0].frequency, "quarterly");
+
+  assert.equal(programTimingSchema.safeParse({
+    status: "not-researched",
+    notes: [],
+  }).success, true);
+  assert.equal(programTimingSchema.safeParse({
+    status: "not-researched",
+    payout_time: { exact: { value: 1, unit: "weeks" } },
+    notes: [],
+  }).success, false);
+  assert.equal(programTimingSchema.safeParse({
+    status: "known",
+    setup_lead_time: { exact: { value: 1, unit: "days" } },
+    lead_time: { exact: { value: 1, unit: "days" } },
+    notes: [],
+  }).success, false);
+  assert.equal(programTimingSchema.safeParse({
+    status: "known",
+    payout_time: { exact: { value: 1, unit: "fortnights" } },
+    notes: [],
+  }).success, false);
+});
+
 test("filesystem writes require explicit embedded editorial approval", async () => {
   const run = processIntakeRecords([await fixture("new-provider.json")], [], fixedOptions);
   await assert.rejects(
@@ -229,6 +357,7 @@ test("structured provider research survives the approved publication round trip"
       ease_to_raise: "moderate",
       summary: "A fixture program for round-trip testing.",
       outcomes: ["cash"],
+      economics_mode: "program-specific",
       economics: {
         status: "known",
         arrangements: [
@@ -276,7 +405,7 @@ test("structured provider research survives the approved publication round trip"
       },
       timing: {
         status: "known",
-        lead_time: {
+        setup_lead_time: {
           minimum: { value: 2, unit: "days" },
           typical: { value: 1, unit: "weeks" },
           maximum: { value: 2, unit: "weeks" },
@@ -286,6 +415,19 @@ test("structured provider research survives the approved publication round trip"
           typical: { value: 3, unit: "weeks" },
           maximum: { value: 1, unit: "months" },
         },
+        fulfillment_time: {
+          minimum: { value: 5, unit: "business-days" },
+          maximum: { value: 7, unit: "business-days" },
+        },
+        funds_available_time: null,
+        payout_time: { maximum: { value: 30, unit: "calendar-days" } },
+        payout_schedules: [{
+          frequency: "monthly",
+          delivery_method: "direct-deposit",
+          anchor: "First business day",
+          conditions: ["Minimum balance reached"],
+          caveats: [],
+        }],
         notes: ["Fixture timing only"],
       },
       logistics: {
@@ -303,6 +445,7 @@ test("structured provider research survives the approved publication round trip"
       upfront_cost: "unknown",
       ease_to_raise: null,
       summary: "A fixture program with explicit missing-data states.",
+      economics_mode: "program-specific",
       economics: { status: "researched-unknown", arrangements: [], notes: [] },
       requirements: {
         status: "not-applicable",
@@ -316,7 +459,16 @@ test("structured provider research survives the approved publication round trip"
         other_restrictions: [],
         editorial_summary: null,
       },
-      timing: { status: "not-researched", lead_time: null, campaign_duration: null, notes: [] },
+      timing: {
+        status: "not-researched",
+        setup_lead_time: null,
+        campaign_duration: null,
+        fulfillment_time: null,
+        funds_available_time: null,
+        payout_time: null,
+        payout_schedules: [],
+        notes: [],
+      },
       logistics: { status: "researched-unknown", notes: [] },
     }],
     geography: {
@@ -389,7 +541,10 @@ test("structured provider research survives the approved publication round trip"
     assert.equal(published.commercial_research.affiliate_status, "approved");
     assert.equal(published.commercial_research.cookie_duration_days, 30);
     assert.equal(program.requirements.minimum_group_size, 10);
-    assert.deepEqual(program.timing.lead_time.typical, { value: 1, unit: "weeks" });
+    assert.deepEqual(program.timing.setup_lead_time.typical, { value: 1, unit: "weeks" });
+    assert.deepEqual(program.timing.fulfillment_time.minimum, { value: 5, unit: "business-days" });
+    assert.deepEqual(program.timing.payout_time.maximum, { value: 30, unit: "calendar-days" });
+    assert.equal(program.timing.payout_schedules[0].frequency, "monthly");
     assert.deepEqual(program.logistics.notes, ["Group distribution is required."]);
     assert.equal(published.programs[1].economics.status, "researched-unknown");
     assert.equal(published.programs[1].requirements.status, "not-applicable");
