@@ -665,10 +665,6 @@ button.semantic-group:disabled {
   margin-top: 1.25rem;
 }
 .hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  gap: 0.9375rem;
   margin-top: 1.375rem;
 }
 .external-cta-group {
@@ -692,6 +688,10 @@ button.semantic-group:disabled {
 .muted-copy {
   color: var(--text-muted);
   font-size: 0.86rem;
+}
+.verified-date {
+  font-size: 0.75rem;
+  line-height: 1.4;
 }
 .affiliate-disclosure {
   margin-top: 0.875rem;

@@ -71,20 +71,32 @@ test("wizard renders exactly one initial step and avoids provider-facing interna
   assert.doesNotMatch(visibleCopy, /taxonomy|slug|canonical|provenance|editorial boundary|repository-aware|verification|completeness|schema/i);
 });
 
-test("provider profile gives names a full-width identity row and has no letter-avatar fallback", async () => {
-  const [page, styles, visual] = await Promise.all([
+test("provider profile keeps logos secondary to its full-width identity row", async () => {
+  const [page, styles, visual, logo] = await Promise.all([
     readFile("src/pages/providers/[slug].astro", "utf8"),
     readFile("src/styles/providers.css", "utf8"),
     readFile("src/components/ProviderVisual.astro", "utf8"),
+    readFile("src/components/ProviderLogo.astro", "utf8"),
   ]);
   assert.ok(page.indexOf('class="provider-identity"') < page.indexOf('class="provider-hero-main"'));
   assert.match(page, /identity\.name\.length > 14/);
+  assert.match(page, /!identity\.name\.includes\(" "\) && identity\.name\.length > 10/);
   assert.match(styles, /\.provider-identity\s*\{[\s\S]*?grid-column:\s*1 \/ -1/);
   assert.match(styles, /word-break:\s*normal/);
   assert.match(styles, /overflow-wrap:\s*normal/);
   assert.match(styles, /hyphens:\s*none/);
   assert.doesNotMatch(visual, /initials|provider-identity-art|provider-visual-fallback/);
   assert.match(visual, /object-fit:\s*contain/);
+  assert.ok(page.indexOf("<ProviderLogo") > page.indexOf('class="hero-summary"'));
+  assert.ok(page.indexOf("<ProviderLogo") < page.indexOf('class="hero-methods"'));
+  assert.match(page, /const hasVisual = Boolean\(visual\)/);
+  assert.match(logo, /width:\s*9rem/);
+  assert.match(logo, /height:\s*3\.75rem/);
+  assert.match(logo, /object-fit:\s*contain/);
+  assert.match(logo, /object-position:\s*center/);
+  const ctaGroup = page.match(/<div class="external-cta-group">([\s\S]*?)<\/div>/)?.[1] ?? "";
+  assert.match(ctaGroup, /external-note/);
+  assert.match(ctaGroup, /verified-date/);
 });
 
 test("the shared canvas and default surface use cool neutral and white tokens", async () => {

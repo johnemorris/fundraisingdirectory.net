@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import ProviderLogo from "../../components/ProviderLogo.astro";
 import ProviderVisual from "../../components/ProviderVisual.astro";
 import { formatProviderLabel } from "../../data/providerLabels";
 import { providerOutboundRel } from "../../data/providerLinks";
@@ -20,7 +21,8 @@ export async function getStaticPaths() {
 const { provider, providerOptions } = Astro.props;
 const { identity, classification, programs, geography, content, status, verification, affiliation } = provider.data;
 const visual = getProviderVisual(identity.slug);
-const hasVisual = Boolean(identity.logo || visual);
+const hasVisual = Boolean(visual);
+const hasCompactName = identity.name.length > 14 || (!identity.name.includes(" ") && identity.name.length > 10);
 const formatDate = (value: string) => new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${value.slice(0, 10)}T12:00:00Z`));
 const easeLabel = { easy: "Easy", moderate: "Moderate", "hands-on": "Hands-On" } as const;
 const statusLabel = { active: "Active", inactive: "Inactive", uncertain: "Status uncertain", historical: "Historical" } as const;
@@ -76,13 +78,14 @@ const outboundRel = providerOutboundRel(affiliation.type);
       <header class:list={["provider-hero", { "provider-hero-with-visual": hasVisual }]}>
         <div class="provider-identity">
           <p class="eyebrow">Fundraising provider</p>
-          <h1 class:list={{ "provider-name-compact": identity.name.length > 14 }}>{identity.name}</h1>
+          <h1 class:list={{ "provider-name-compact": hasCompactName }}>{identity.name}</h1>
           <div class="provider-status-line">
             <span class={`status-badge status-${status.lifecycle}`}>{statusLabel[status.lifecycle]}</span>
           </div>
         </div>
         <div class="provider-hero-main">
           <p class="hero-summary">{content.summary}</p>
+          {identity.logo && <ProviderLogo providerName={identity.name} src={identity.logo} />}
           <div class="hero-methods" aria-label="Fundraising methods">
             {classification.methods.map((method) => <a class={semanticClass("method", method)} href={`/providers/?method=${method}`}>{formatProviderLabel(method)}</a>)}
           </div>
@@ -90,13 +93,13 @@ const outboundRel = providerOutboundRel(affiliation.type);
             <div class="external-cta-group">
               <a class="button button-primary provider-visit-link" href={outboundUrl} target="_blank" rel={outboundRel} aria-label={`Visit ${identity.name} website (opens in a new tab)`}>Visit Provider <span aria-hidden="true">↗</span></a>
               <span class="external-note">Opens the provider's website. FundraisingDirectory.net is independent and is not the provider.</span>
+              <span class="verified-date">Last verified {formatDate(status.last_verified_at)}</span>
             </div>
-            <span class="verified-date">Last verified {formatDate(status.last_verified_at)}</span>
           </div>
           {affiliation.disclosure_required && <p class="affiliate-disclosure">FundraisingDirectory.net may receive compensation if you visit or use this provider through certain links.</p>}
         </div>
 
-        {hasVisual && <ProviderVisual providerName={identity.name} logo={identity.logo} visual={visual} />}
+        {visual && <ProviderVisual providerName={identity.name} logo={null} visual={visual} />}
 
         <aside class="quick-facts">
           <div class="quick-facts-heading">
