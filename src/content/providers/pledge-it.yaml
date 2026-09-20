@@ -1,0 +1,338 @@
+meta:
+  id: "prov_000029"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Pledge It"
+  slug: "pledge-it"
+  legal_name: "PledgePlatform, Inc."
+  aliases: []
+  website: "https://www.pledgeit.org/"
+  fundraising_url: "https://www.pledgeit.org/solutions/peer-to-peer"
+  logo: null
+classification:
+  methods:
+    - "direct-donations"
+    - "crowdfunding"
+    - "peer-to-peer"
+    - "events-activities"
+    - "auctions"
+    - "pledge-athon"
+    - "sponsorships"
+    - "giving-matching"
+  products_services:
+    - "donation-platform"
+    - "crowdfunding-platform"
+    - "peer-to-peer-platform"
+    - "auction-platform"
+    - "event-fundraising-platform"
+    - "merchandise-online-store"
+  organizations:
+    - "schools"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "animal-rescue"
+    - "individuals-personal-causes"
+  outcomes:
+    - "cash"
+    - "sponsorship"
+  capabilities:
+    - "donation-forms"
+    - "recurring-giving"
+    - "crowdfunding-pages"
+    - "peer-to-peer-pages"
+    - "participant-pages"
+    - "leaderboards"
+    - "ticketing-registration"
+    - "auctions-mobile-bidding"
+    - "raffles-prize-drawings"
+    - "digital-wallets"
+    - "online-store"
+    - "matching-gifts"
+    - "sponsorship-management"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+    - "individual-or-family"
+    - "local-nonprofit-or-charity"
+    - "national-nonprofit-or-charity"
+    - "community-cause"
+  activity_subtypes:
+    - "fun-run"
+    - "walkathon"
+    - "bike-ride"
+    - "fitness-challenge"
+    - "golf-event"
+    - "peer-fundraising-challenge"
+economics:
+  status: "known"
+  arrangements:
+    - type: "platform-fee"
+      value:
+        kind: "variable"
+        description: "$150 monthly, $1,200 yearly, or custom Enterprise subscription"
+      basis: "Platform subscription"
+      conditions: []
+      caveats:
+        - "Transaction fees are additional"
+    - type: "processing-fee"
+      value:
+        kind: "variable"
+        description: "Applicable Stripe transaction fees"
+      basis: "Online donation and payment processing"
+      conditions: []
+      caveats:
+        - "The organization may enable donor-covered fees or optional tipping"
+  notes:
+    - "Monthly and yearly subscriptions include all platform features and unlimited campaigns; eligibility for a three-month sponsored trial is quote-dependent."
+programs:
+  - id: "prog_000045"
+    name: "Pledge It Fundraising Suite"
+    slug: "pledge-it-fundraising-suite"
+    url: "https://www.pledgeit.org/solutions/peer-to-peer"
+    method: "peer-to-peer"
+    products_services:
+      - "donation-platform"
+      - "crowdfunding-platform"
+      - "peer-to-peer-platform"
+      - "auction-platform"
+      - "event-fundraising-platform"
+      - "merchandise-online-store"
+    channels:
+      - "online"
+      - "in-person"
+      - "hybrid"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+      - "on-site"
+      - "not-applicable"
+    inventory_model: "not-applicable"
+    upfront_cost: "required"
+    ease_to_raise: null
+    summary: "An integrated fundraising suite for donation forms, crowdfunding, peer-to-peer and pledge challenges, events, endurance, auctions, raffles, merchandise, sponsor packages, recurring giving, and participant fundraising."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The beneficiary connects a new or existing Stripe account and an authorized representative creates the organization and campaigns."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "A charity beneficiary must maintain 501(c)(3) tax-exempt status and be registered with GuideStar."
+        - "Other permitted beneficiaries must meet user eligibility requirements and have a Social Security number or EIN and a U.S. bank account."
+        - "Campaigns and use of funds must be legal and funds must be used only for the stated purpose."
+      editorial_summary: "The terms allow individuals, entities, or organizations subject to beneficiary-specific verification and United States bank requirements."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration:
+        open_ended: true
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "Flat donations are processed immediately and Stripe settlements are described as daily. Performance pledges are invoiced after results are finalized, with invoices processed at the end of each month. The frozen schedule enum does not encode daily settlement."
+    logistics:
+      status: "known"
+      notes:
+        - "Organizations configure campaign and participant pages, registration, activity metrics, per-unit pledges, leaderboards, messaging, sponsor packages, and reporting. Funds flow to the beneficiary's dedicated Stripe account."
+    outcomes:
+      - "cash"
+      - "sponsorship"
+    capabilities:
+      - "donation-forms"
+      - "recurring-giving"
+      - "crowdfunding-pages"
+      - "peer-to-peer-pages"
+      - "participant-pages"
+      - "leaderboards"
+      - "ticketing-registration"
+      - "auctions-mobile-bidding"
+      - "raffles-prize-drawings"
+      - "digital-wallets"
+      - "online-store"
+      - "matching-gifts"
+      - "sponsorship-management"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+      - "individual-or-family"
+      - "local-nonprofit-or-charity"
+      - "national-nonprofit-or-charity"
+      - "community-cause"
+    activity_subtypes:
+      - "fun-run"
+      - "walkathon"
+      - "bike-ride"
+      - "fitness-challenge"
+      - "golf-event"
+      - "peer-fundraising-challenge"
+geography:
+  scope:
+    - "us-nationwide"
+  countries:
+    - "US"
+  states: []
+  regions: []
+  notes: "The terms require a U.S. bank account and U.S. tax identifiers for permitted non-charity beneficiaries; charities are subject to U.S. 501(c)(3) and GuideStar requirements."
+content:
+  summary: "Pledge It is a subscription fundraising suite with peer-to-peer, per-unit pledges, events, endurance, sponsorships, auctions, raffles, and donation tools."
+  how_it_works: "An eligible beneficiary connects Stripe, creates campaigns or events, recruits participants or sponsors, and tracks donations, pledges, activity, teams, registrations, sponsor packages, and reporting in one platform."
+  best_for:
+    - "U.S. nonprofits and other eligible beneficiaries running activity challenges, endurance events, peer-to-peer campaigns, or events with sponsor packages."
+  considerations:
+    - "A paid subscription and Stripe processing fees apply."
+    - "Flat gifts, performance pledges, and sponsorship sales have different processing and settlement flows."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 2 research"
+  verified_by: "FRD batch 2 research"
+  sources:
+    - id: "src_000094"
+      type: "terms-or-fees"
+      url: "https://www.pledgeit.org/pricing"
+      title: "Pricing — Pledge It"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.pledge-it-fundraising-suite.summary"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000095"
+      type: "official-program"
+      url: "https://www.pledgeit.org/solutions/peer-to-peer"
+      title: "Peer-to-Peer Fundraising — Pledge It"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.pledge-it-fundraising-suite.summary"
+          status: "current"
+          notes: null
+        - path: "programs.pledge-it-fundraising-suite.activity_subtypes"
+          status: "current"
+          notes: null
+        - path: "programs.pledge-it-fundraising-suite.capabilities"
+          status: "current"
+          notes: null
+        - path: "programs.pledge-it-fundraising-suite.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000096"
+      type: "official-program"
+      url: "https://www.pledgeit.org/power-ups/sponsorships"
+      title: "Sponsorships — Pledge It"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "classification.methods"
+          status: "current"
+          notes: null
+        - path: "classification.outcomes"
+          status: "current"
+          notes: null
+        - path: "programs.pledge-it-fundraising-suite.capabilities"
+          status: "current"
+          notes: null
+        - path: "programs.pledge-it-fundraising-suite.outcomes"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000097"
+      type: "platform-documentation"
+      url: "https://www.pledgeit.org/platform/payments-security"
+      title: "Payments & Security — Pledge It"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.pledge-it-fundraising-suite.timing"
+          status: "current"
+          notes: null
+        - path: "programs.pledge-it-fundraising-suite.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000098"
+      type: "terms-or-fees"
+      url: "https://www.pledgeit.org/terms-of-service"
+      title: "Terms of Service — Pledge It"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.pledge-it-fundraising-suite.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.pledge-it-fundraising-suite.timing"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

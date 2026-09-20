@@ -1,0 +1,459 @@
+meta:
+  id: "prov_000024"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Tiltify"
+  slug: "tiltify"
+  legal_name: null
+  aliases: []
+  website: "https://tiltify.com/"
+  fundraising_url: "https://tiltify.com/start-fundraising"
+  logo: null
+classification:
+  methods:
+    - "direct-donations"
+    - "crowdfunding"
+    - "peer-to-peer"
+    - "events-activities"
+    - "giving-matching"
+  products_services:
+    - "donation-platform"
+    - "crowdfunding-platform"
+    - "peer-to-peer-platform"
+    - "event-fundraising-platform"
+  organizations:
+    - "schools"
+    - "sports-athletics"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "animal-rescue"
+    - "individuals-personal-causes"
+  outcomes:
+    - "cash"
+  capabilities:
+    - "donation-forms"
+    - "recurring-giving"
+    - "crowdfunding-pages"
+    - "peer-to-peer-pages"
+    - "participant-pages"
+    - "leaderboards"
+    - "matching-gifts"
+    - "livestream-integrations"
+    - "gaming-integrations"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+    - "individual-or-family"
+    - "local-nonprofit-or-charity"
+    - "national-nonprofit-or-charity"
+    - "open-or-unspecified-cause"
+  cause_areas:
+    - "animals-pets"
+    - "children-families"
+    - "health-medical"
+    - "education-literacy"
+    - "veterans-military"
+    - "disaster-emergency-relief"
+    - "community-neighborhood"
+    - "faith-missions"
+  activity_subtypes:
+    - "gaming-livestream"
+    - "creator-livestream"
+    - "fitness-challenge"
+    - "peer-fundraising-challenge"
+programs:
+  - id: "prog_000034"
+    name: "Charity Digital and Livestream Fundraising"
+    slug: "charity-digital-and-livestream-fundraising"
+    url: "https://tiltify.com/start-fundraising"
+    method: "peer-to-peer"
+    products_services:
+      - "donation-platform"
+      - "crowdfunding-platform"
+      - "peer-to-peer-platform"
+      - "event-fundraising-platform"
+    channels:
+      - "online"
+      - "hybrid"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+      - "not-applicable"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "Individuals create digital, livestream, fitness, or team campaigns for an approved charitable cause using rewards, polls, milestones, match challenges, employer matching, and streaming integrations."
+    economics_mode: "program-specific"
+    economics:
+      status: "known"
+      arrangements:
+        - type: "upfront-cost"
+          value:
+            kind: "amount"
+            amount: 0
+            currency: "USD"
+          basis: "Creating a fundraiser campaign"
+          conditions: []
+          caveats: []
+        - type: "processing-fee"
+          value:
+            kind: "variable"
+            description: "Third-party processor fee depends on the charity's activated PayPal, PayPal Giving Fund, Stripe, or Giving Block account and negotiated terms"
+          basis: "Donation processing"
+          conditions: []
+          caveats: []
+        - type: "platform-fee"
+          value:
+            kind: "variable"
+            description: "Tiltify contribution fee varies by charity plan; Tiltify states its current processing average is less than 5%"
+          basis: "Technology and services"
+          conditions: []
+          caveats:
+            - "A charity may enable an option for donors to cover this fee"
+      notes: []
+    requirements:
+      status: "known"
+      legal_status:
+        - "nonprofit"
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "A cause must be a charitable organization, and registration must be submitted by an authorized representative."
+        - "Fundraisers create and verify a Tiltify account before launching a campaign."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "The cause may be asked for additional verification information before approval."
+      editorial_summary: "Charitable causes are reviewed by Tiltify before supporters can fundraise for them."
+    timing:
+      status: "known"
+      setup_lead_time:
+        minimum:
+          value: 5
+          unit: "business-days"
+        maximum:
+          value: 7
+          unit: "business-days"
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time:
+        exact:
+          value: 0
+          unit: "days"
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "Cause approval usually takes 5–7 business days. Donations go directly to the charity's activated payment processor in real time."
+    logistics:
+      status: "known"
+      notes:
+        - "Fundraisers build and share campaign pages, can add incentives and schedules, form teams, stream on supported services, or connect digital fitness, while the charity receives donations through its own processor."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "donation-forms"
+      - "recurring-giving"
+      - "crowdfunding-pages"
+      - "peer-to-peer-pages"
+      - "participant-pages"
+      - "leaderboards"
+      - "matching-gifts"
+      - "livestream-integrations"
+      - "gaming-integrations"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "local-nonprofit-or-charity"
+      - "national-nonprofit-or-charity"
+    activity_subtypes:
+      - "gaming-livestream"
+      - "creator-livestream"
+      - "fitness-challenge"
+      - "peer-fundraising-challenge"
+  - id: "prog_000035"
+    name: "Tiltify Personal Fundraising"
+    slug: "tiltify-personal-fundraising"
+    url: "https://info.tiltify.com/support/solutions/articles/43000735715"
+    method: "crowdfunding"
+    products_services:
+      - "crowdfunding-platform"
+      - "peer-to-peer-platform"
+    channels:
+      - "online"
+      - "in-person"
+      - "hybrid"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+      - "not-applicable"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "A personal crowdfunding program for raising money for oneself or another person through campaign pages, optional supporting fundraisers, rewards, polls, livestreams, fitness challenges, video, audio, merchandise, or in-person events."
+    economics_mode: "program-specific"
+    economics:
+      status: "known"
+      arrangements:
+        - type: "upfront-cost"
+          value:
+            kind: "amount"
+            amount: 0
+            currency: "USD"
+          basis: "Creating a fundraiser campaign"
+          conditions: []
+          caveats: []
+        - type: "other"
+          value:
+            kind: "percentage-range"
+            minimum: 1
+            maximum: 2
+          basis: "Transfer requiring currency conversion"
+          conditions:
+            - "A transfer requires currency conversion"
+          caveats:
+            - "Other personal-campaign fee terms were not established from the reviewed support pages"
+      notes: []
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The recipient verifies identity through Stripe, connects a bank account, agrees to the terms, and meets the requirements of a supported country."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "The fundraiser country is selected during creation and cannot be changed; unsupported or ineligible campaigns may be refunded and removed."
+      editorial_summary: "Personal campaigns may support educational, medical, emergency, animal, sports, memorial, veterans, faith, family, travel, event, or community needs."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time:
+        exact:
+          value: 14
+          unit: "days"
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "Funds are held for 14 days before being sent to the connected account on a rolling basis; subsequent processor settlement time was not established."
+    logistics:
+      status: "known"
+      notes:
+        - "The recipient creates a page and can allow linked supporting campaigns; identity verification and a connected bank account are required before publication and withdrawal."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "crowdfunding-pages"
+      - "peer-to-peer-pages"
+      - "participant-pages"
+      - "livestream-integrations"
+      - "gaming-integrations"
+    beneficiary_types:
+      - "individual-or-family"
+      - "community-cause"
+      - "open-or-unspecified-cause"
+    cause_areas:
+      - "animals-pets"
+      - "children-families"
+      - "health-medical"
+      - "education-literacy"
+      - "veterans-military"
+      - "disaster-emergency-relief"
+      - "community-neighborhood"
+      - "faith-missions"
+    activity_subtypes:
+      - "gaming-livestream"
+      - "creator-livestream"
+      - "fitness-challenge"
+      - "peer-fundraising-challenge"
+geography:
+  scope:
+    - "international"
+  countries:
+    - "AU"
+    - "AT"
+    - "BE"
+    - "CA"
+    - "DK"
+    - "FI"
+    - "FR"
+    - "DE"
+    - "IE"
+    - "IT"
+    - "LU"
+    - "MX"
+    - "NL"
+    - "NO"
+    - "PT"
+    - "ES"
+    - "SE"
+    - "CH"
+    - "GB"
+    - "US"
+  states: []
+  regions: []
+  notes: "Tiltify describes cause fundraising as global. Tiltify Personal currently publishes 20 supported payout countries; cause and processor availability can differ."
+content:
+  summary: "Tiltify supports digital, livestream, gaming, fitness, charity, and personal fundraising campaigns."
+  how_it_works: "A fundraiser selects an approved charity or creates a verified personal campaign, builds a shareable page, adds interactive tools such as milestones or polls, and can raise through streaming, fitness, teams, video, social, or in-person outreach."
+  best_for:
+    - "Charities, creators, gaming communities, teams, and individuals seeking interactive digital fundraising and livestream integrations."
+  considerations:
+    - "Charity and personal programs have different eligibility, money flow, geography, and timing."
+    - "Charity fees vary by plan and processor; personal transfers requiring currency conversion add 1–2%."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 2 research"
+  verified_by: "FRD batch 2 research"
+  sources:
+    - id: "src_000076"
+      type: "platform-documentation"
+      url: "https://info.tiltify.com/support/solutions/articles/43000015876-what-is-tiltify-"
+      title: "What is Tiltify?"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000077"
+      type: "platform-documentation"
+      url: "https://info.tiltify.com/support/solutions/articles/43000711613-what-features-does-tiltify-offer-that-can-impact-my-fundraising-campaign-"
+      title: "What features does Tiltify offer for a fundraising campaign?"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "classification.capabilities"
+          status: "current"
+          notes: null
+        - path: "classification.activity_subtypes"
+          status: "current"
+          notes: null
+        - path: "programs.charity-digital-and-livestream-fundraising.capabilities"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000078"
+      type: "terms-or-fees"
+      url: "https://info.tiltify.com/support/solutions/articles/43000045885-what-are-the-fees-"
+      title: "What are the fees? — Tiltify"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.charity-digital-and-livestream-fundraising.economics"
+          status: "current"
+          notes: null
+        - path: "programs.charity-digital-and-livestream-fundraising.timing"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000079"
+      type: "platform-documentation"
+      url: "https://info.tiltify.com/support/solutions/articles/43000008124-how-do-i-sign-my-organization-up-for-tiltify-"
+      title: "How do I sign my Organization up for Tiltify?"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.charity-digital-and-livestream-fundraising.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.charity-digital-and-livestream-fundraising.timing"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000080"
+      type: "platform-documentation"
+      url: "https://info.tiltify.com/support/solutions/articles/43000735715"
+      title: "Tiltify Personal Fundraising"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.tiltify-personal-fundraising.summary"
+          status: "current"
+          notes: null
+        - path: "programs.tiltify-personal-fundraising.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.tiltify-personal-fundraising.timing"
+          status: "current"
+          notes: null
+        - path: "programs.tiltify-personal-fundraising.logistics"
+          status: "current"
+          notes: null
+        - path: "programs.tiltify-personal-fundraising.cause_areas"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000081"
+      type: "platform-documentation"
+      url: "https://info.tiltify.com/support/solutions/articles/43000736446-supported-countries-on-tiltify-personal"
+      title: "Supported Countries on Tiltify Personal"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "geography"
+          status: "current"
+          notes: null
+        - path: "programs.tiltify-personal-fundraising.economics"
+          status: "current"
+          notes: null
+        - path: "programs.tiltify-personal-fundraising.requirements"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

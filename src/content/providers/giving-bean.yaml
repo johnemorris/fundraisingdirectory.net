@@ -1,0 +1,313 @@
+meta:
+  id: "prov_000025"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Giving Bean"
+  slug: "giving-bean"
+  legal_name: null
+  aliases:
+    - "Giving Bean Coffee & Tea"
+  website: "https://givingbean.com/"
+  fundraising_url: "https://givingbean.com/coffee-fundraising-program/"
+  logo: null
+classification:
+  methods:
+    - "product-sales"
+  products_services:
+    - "coffee-beverages"
+  organizations:
+    - "schools"
+    - "pto-pta"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "animal-rescue"
+  outcomes:
+    - "cash"
+  capabilities:
+    - "online-store"
+    - "fulfillment"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+programs:
+  - id: "prog_000036"
+    name: "Order Form Coffee Fundraiser"
+    slug: "order-form-coffee-fundraiser"
+    url: "https://givingbean.com/coffee-fundraising-program/"
+    method: "product-sales"
+    products_services:
+      - "coffee-beverages"
+    channels:
+      - "in-person"
+    online_ordering: false
+    fulfillment:
+      - "provider-delivery"
+      - "group-distribution"
+    inventory_model: "preorder"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "Group members collect local orders for coffee and tea, submit the sold quantities, receive a consolidated shipment, and distribute products to supporters."
+    economics_mode: "program-specific"
+    economics:
+      status: "known"
+      arrangements:
+        - type: "upfront-cost"
+          value:
+            kind: "amount"
+            amount: 0
+            currency: "USD"
+          basis: "Registration and preorder sales"
+          conditions: []
+          caveats: []
+        - type: "product-sale-profit"
+          value:
+            kind: "percentage"
+            percent: 40
+          basis: "Order-form products sold"
+          conditions: []
+          caveats: []
+      notes:
+        - "Shipping is free for 100 or more items delivered to a commercial address; smaller orders can incur shipping."
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The group collects orders before submitting its product order and coordinates distribution after delivery."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions: []
+      editorial_summary: "There is no registration fee, upfront product purchase, or minimum commitment for order-form sales."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration: null
+      fulfillment_time:
+        minimum:
+          value: 7
+          unit: "business-days"
+        maximum:
+          value: 14
+          unit: "business-days"
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes: []
+    logistics:
+      status: "known"
+      notes:
+        - "Giving Bean roasts, packs, and ships the consolidated sold order to the group, which delivers items to supporters; custom coffee labels are available at no extra charge."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "fulfillment"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+  - id: "prog_000037"
+    name: "Online Coffee Fundraising Store"
+    slug: "online-coffee-fundraising-store"
+    url: "https://givingbean.com/webstore-fundraising/"
+    method: "product-sales"
+    products_services:
+      - "coffee-beverages"
+    channels:
+      - "online"
+    online_ordering: true
+    fulfillment:
+      - "direct-to-supporter"
+      - "provider-delivery"
+    inventory_model: "no-inventory"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "A group shares its online fundraising link while Giving Bean processes purchases, ships coffee and tea directly to supporters, and credits 25% on most items to the group."
+    economics_mode: "program-specific"
+    economics:
+      status: "known"
+      arrangements:
+        - type: "upfront-cost"
+          value:
+            kind: "amount"
+            amount: 0
+            currency: "USD"
+          basis: "Registration and online store"
+          conditions: []
+          caveats: []
+        - type: "product-sale-profit"
+          value:
+            kind: "percentage"
+            percent: 25
+          basis: "Most online-store items sold"
+          conditions: []
+          caveats:
+            - "The published 25% applies to most items"
+      notes: []
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The group registers and shares its supplied link or group name through email, social media, or other outreach."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions: []
+      editorial_summary: "The online store has no registration fee, upfront inventory, or minimum commitment."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration:
+        open_ended: true
+      fulfillment_time:
+        minimum:
+          value: 2
+          unit: "days"
+        maximum:
+          value: 10
+          unit: "days"
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "The online fundraiser may remain active year-round; the source does not specify whether the 2–10 fulfillment days are calendar or business days."
+    logistics:
+      status: "known"
+      notes:
+        - "Giving Bean handles online ordering and direct shipment to supporter homes or offices; subscriptions can continue generating group earnings through repeat orders."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "online-store"
+      - "fulfillment"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+geography:
+  scope:
+    - "us-nationwide"
+  countries:
+    - "US"
+  states: []
+  regions: []
+  notes: "Giving Bean states that it supports groups throughout the United States."
+content:
+  summary: "Giving Bean offers coffee and tea fundraising through local order forms or a direct-ship online store."
+  how_it_works: "A group chooses local preorder sales for 40% profit and group distribution, or an online link for 25% on most sales with provider fulfillment and no inventory."
+  best_for:
+    - "Schools, churches, teams, missions, and community groups seeking coffee and tea products with local or direct-ship fulfillment."
+  considerations:
+    - "Profit and fulfillment differ by program: 40% with group distribution versus 25% on most direct-ship store items."
+    - "Free consolidated shipping requires at least 100 items and delivery to a commercial address."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 2 research"
+  verified_by: "FRD batch 2 research"
+  sources:
+    - id: "src_000082"
+      type: "official-program"
+      url: "https://givingbean.com/webstore-fundraising/"
+      title: "Webstore Fundraising — Giving Bean"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.order-form-coffee-fundraiser.economics"
+          status: "current"
+          notes: null
+        - path: "programs.order-form-coffee-fundraiser.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.order-form-coffee-fundraiser.logistics"
+          status: "current"
+          notes: null
+        - path: "programs.online-coffee-fundraising-store.summary"
+          status: "current"
+          notes: null
+        - path: "programs.online-coffee-fundraising-store.economics"
+          status: "current"
+          notes: null
+        - path: "programs.online-coffee-fundraising-store.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.online-coffee-fundraising-store.timing"
+          status: "current"
+          notes: null
+        - path: "programs.online-coffee-fundraising-store.logistics"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000083"
+      type: "official-program"
+      url: "https://givingbean.com/faqs/"
+      title: "Frequently Asked Questions — Giving Bean"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.order-form-coffee-fundraiser.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.order-form-coffee-fundraiser.timing"
+          status: "current"
+          notes: null
+        - path: "programs.online-coffee-fundraising-store.timing"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false
