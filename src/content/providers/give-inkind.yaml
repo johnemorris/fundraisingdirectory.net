@@ -1,0 +1,274 @@
+meta:
+  id: "prov_000037"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Give InKind"
+  slug: "give-inkind"
+  legal_name: null
+  aliases: []
+  website: "https://www.giveinkind.com/"
+  fundraising_url: "https://www.giveinkind.com/how-inkind-works"
+  logo: null
+classification:
+  methods:
+    - "in-kind-resource-fundraising"
+    - "direct-donations"
+  products_services:
+    - "gift-cards"
+  organizations:
+    - "schools"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "clubs-community"
+    - "individuals-personal-causes"
+  outcomes:
+    - "food"
+    - "services"
+    - "volunteer-support"
+    - "donated-goods"
+    - "cash"
+  capabilities:
+    - "online-store"
+  beneficiary_types:
+    - "individual-or-family"
+    - "own-organization"
+    - "community-cause"
+  cause_areas:
+    - "children-families"
+    - "health-medical"
+    - "disaster-emergency-relief"
+    - "community-neighborhood"
+    - "mental-health"
+    - "disability-support"
+programs:
+  - id: "prog_000054"
+    name: "InKind Support Page"
+    slug: "inkind-support-page"
+    url: "https://www.giveinkind.com/how-inkind-works"
+    method: "in-kind-resource-fundraising"
+    products_services:
+      - "gift-cards"
+    channels:
+      - "online"
+      - "hybrid"
+    online_ordering: true
+    fulfillment:
+      - "digital"
+      - "direct-to-supporter"
+      - "on-site"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "A free support-coordination page combining a care calendar, meal and service requests, wishlists, secure gift cards, updates, and links to outside fundraising accounts for an individual, family, group, or organization."
+    economics_mode: "program-specific"
+    economics:
+      status: "known"
+      arrangements:
+        - type: "upfront-cost"
+          value:
+            kind: "amount"
+            amount: 0
+            currency: "USD"
+          basis: "Creating, accessing, or supporting a standard InKind Page"
+          conditions: []
+          caveats:
+            - "An optional Premium Page is mentioned, but universal current premium pricing was not established from the reviewed pages"
+        - type: "platform-fee"
+          value:
+            kind: "amount"
+            amount: 0
+            currency: "USD"
+          basis: "Contributions sent through connected fundraising links and Give InKind gift cards"
+          conditions: []
+          caveats:
+            - "Third-party fundraising services may charge their own fees"
+            - "Supporters may leave an optional tip on direct gift-card purchases"
+        - type: "proceeds"
+          value:
+            kind: "percentage"
+            percent: 100
+          basis: "Face value of a gift card purchased for the recipient through Give InKind"
+          conditions: []
+          caveats: []
+      notes:
+        - "Give InKind does not collect or manage cash donations sent through connected GoFundMe, PayPal, Venmo, or Cash App links."
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "A page organizer creates an account and designates whether the page supports the organizer, another person, or an organization."
+        - "Supporters create or use an account for certain calendar claims, gifting, and page interactions."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Connected fundraising depends on the recipient's separate eligible account with the selected third-party service."
+        - "Give InKind facilitates coordination and gifting but does not itself deliver meals, services, or linked cash donations."
+      editorial_summary: "Individuals, families, faith groups, schools, employers, and community organizations can coordinate support; the recipient and organizer control requests and privacy."
+    timing:
+      status: "known"
+      setup_lead_time:
+        maximum:
+          value: 5
+          unit: "minutes"
+      campaign_duration:
+        open_ended: true
+      fulfillment_time:
+        exact:
+          value: 24
+          unit: "hours"
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "The five-minute setup is the provider's stated page-creation time. Gift cards enter the recipient's InKind Wallet and become redeemable after a 24-hour security delay; meal, ride, childcare, and other service timing is chosen in the care calendar."
+    logistics:
+      status: "known"
+      notes:
+        - "The organizer publishes needs, preferences, a care calendar, wishlist, and optional outside fundraising links. Supporters claim dated tasks, arrange their own in-person or third-party delivery, purchase trackable gift cards, or follow a connected fundraising button. Automated confirmations and reminders coordinate fulfillment."
+    outcomes:
+      - "food"
+      - "services"
+      - "volunteer-support"
+      - "donated-goods"
+      - "cash"
+    capabilities:
+      - "online-store"
+    beneficiary_types:
+      - "individual-or-family"
+      - "own-organization"
+      - "community-cause"
+    cause_areas:
+      - "children-families"
+      - "health-medical"
+      - "disaster-emergency-relief"
+      - "community-neighborhood"
+      - "mental-health"
+      - "disability-support"
+geography:
+  scope:
+    - "international"
+  countries: []
+  states: []
+  regions: []
+  notes: "Give InKind presents the service as a way to organize support for anyone, anywhere. Individual gifts, third-party fundraising accounts, merchants, and delivery services remain subject to their own geographic availability."
+content:
+  summary: "Give InKind is a free support-coordination service for meals, rides, childcare, tasks, wishlists, gift cards, updates, and connected fundraising."
+  how_it_works: "An organizer creates a page for a recipient or organization, publishes requested help and preferences, and shares the page; supporters claim calendar tasks, send gift cards or wishlist items, or follow connected donation links."
+  best_for:
+    - "Families and community groups coordinating several kinds of practical support around illness, caregiving, loss, disaster, birth, or another major life event."
+  considerations:
+    - "Give InKind coordinates help but does not provide the meals, services, or linked cash itself."
+    - "Fees and payout rules for connected cash fundraising belong to the third-party service, not Give InKind."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 3 research"
+  verified_by: "FRD batch 3 research"
+  sources:
+    - id: "src_000121"
+      type: "official-program"
+      url: "https://www.giveinkind.com/how-inkind-works"
+      title: "How Give InKind Works"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.inkind-support-page.summary"
+          status: "current"
+          notes: null
+        - path: "programs.inkind-support-page.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.inkind-support-page.timing"
+          status: "current"
+          notes: null
+        - path: "programs.inkind-support-page.logistics"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000122"
+      type: "official-program"
+      url: "https://www.giveinkind.com/faq"
+      title: "Give InKind Common Questions"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.inkind-support-page.economics"
+          status: "current"
+          notes: null
+        - path: "programs.inkind-support-page.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.inkind-support-page.timing"
+          status: "current"
+          notes: null
+        - path: "programs.inkind-support-page.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000123"
+      type: "platform-documentation"
+      url: "https://help.giveinkind.com/en/articles/4044399-is-there-a-fee-for-using-give-inkind"
+      title: "Is There a Fee for Using Give InKind?"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.inkind-support-page.economics"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

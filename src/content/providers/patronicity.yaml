@@ -1,0 +1,372 @@
+meta:
+  id: "prov_000039"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Patronicity"
+  slug: "patronicity"
+  legal_name: "Catalaunch, LLC"
+  aliases: []
+  website: "https://www.patronicity.com/home"
+  fundraising_url: "https://impact.patronicity.com/crowdfunding"
+  logo: null
+classification:
+  methods:
+    - "crowdfunding"
+    - "grant-seeking"
+    - "giving-matching"
+  products_services:
+    - "crowdfunding-platform"
+  organizations:
+    - "schools"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "individuals-personal-causes"
+  outcomes:
+    - "cash"
+    - "grants"
+    - "volunteer-support"
+  capabilities:
+    - "crowdfunding-pages"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+    - "community-cause"
+    - "local-nonprofit-or-charity"
+    - "open-or-unspecified-cause"
+  cause_areas:
+    - "community-neighborhood"
+    - "environment-conservation"
+    - "arts-culture"
+    - "youth-development-prevention"
+    - "disability-support"
+economics:
+  status: "known"
+  arrangements:
+    - type: "upfront-cost"
+      value:
+        kind: "amount"
+        amount: 0
+        currency: "USD"
+      basis: "Creating and launching an approved campaign"
+      conditions: []
+      caveats: []
+    - type: "platform-fee"
+      value:
+        kind: "percentage"
+        percent: 5
+      basis: "Funds raised through a Patronicity campaign"
+      conditions:
+        - "The campaign raises funds"
+      caveats:
+        - "Patrons may elect to cover fees at checkout"
+    - type: "processing-fee"
+      value:
+        kind: "percentage"
+        percent: 2.6
+      basis: "Online contributions processed by Stripe"
+      conditions: []
+      caveats: []
+    - type: "transaction-fee"
+      value:
+        kind: "amount"
+        amount: 0.3
+        currency: "USD"
+      basis: "Each online contribution processed by Stripe"
+      conditions: []
+      caveats: []
+  notes:
+    - "Patronicity offers all-or-nothing and partial-funding crowdfunding under the same standard platform price. Matching-grant amount and terms are set by each crowdgranting partner program."
+programs:
+  - id: "prog_000056"
+    name: "Civic Crowdfunding"
+    slug: "civic-crowdfunding"
+    url: "https://impact.patronicity.com/crowdfunding"
+    method: "crowdfunding"
+    products_services:
+      - "crowdfunding-platform"
+    channels:
+      - "online"
+      - "hybrid"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+      - "not-applicable"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "A coached crowdfunding platform for place-based community projects using either all-or-nothing or partial funding, online and recorded offline contributions, giving levels, project updates, reporting, and optional volunteer recruitment."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The project creator submits a campaign for Patronicity review and approval and provides banking or check-payment information before funds are transferred."
+        - "The campaign sets a project goal, deadline, pitch, budget, and community outreach plan."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Campaigns for personal foreclosure relief, individual homeownership, personal bills, health care costs, vet bills, political campaigns, or advocacy are not allowed."
+        - "Projects generally need to improve a community and fit Patronicity's approved project scope."
+      editorial_summary: "Individuals, entrepreneurs, student groups, nonprofits, civic groups, municipalities, and businesses may propose a community project, subject to approval."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "Crowdfunding uses a constrained campaign timeframe chosen for the project. The reviewed general pages do not establish one universal campaign or post-campaign transfer duration."
+    logistics:
+      status: "known"
+      notes:
+        - "A project coach helps develop the campaign and outreach strategy. Creators can add offline contributions, export patron data, monitor financial and daily performance, post updates, and collect volunteer interest. Online funds move to the creator's bank account or are sent by check after the campaign under the selected funding model."
+    outcomes:
+      - "cash"
+      - "volunteer-support"
+    capabilities:
+      - "crowdfunding-pages"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+      - "community-cause"
+      - "local-nonprofit-or-charity"
+      - "open-or-unspecified-cause"
+    cause_areas:
+      - "community-neighborhood"
+      - "environment-conservation"
+      - "arts-culture"
+      - "youth-development-prevention"
+      - "disability-support"
+  - id: "prog_000057"
+    name: "Crowdgranting Matching Grants"
+    slug: "crowdgranting-matching-grants"
+    url: "https://www.patronicity.com/home"
+    method: "giving-matching"
+    products_services:
+      - "crowdfunding-platform"
+    channels:
+      - "online"
+      - "hybrid"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+      - "not-applicable"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "Partner-specific programs in which an approved community project crowdfunds toward a goal and receives a public, foundation, nonprofit, bank, or corporate matching grant after satisfying the program's funding and eligibility conditions."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The creator applies to a specific matching-grant program and passes Patronicity and funding-partner review."
+        - "The approved project completes its crowdfunding campaign and reaches the required funding goal or other partner milestone before receiving the match."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales:
+        kind: "variable"
+        description: "The crowdfunding target or threshold required by the selected matching-grant program"
+      other_restrictions:
+        - "Eligible project types, locations, applicants, grant amounts, deadlines, and implementation/reporting duties vary by partner program."
+      editorial_summary: "Crowdgranting is not one nationally uniform grant: each public or private partner defines a local or regional program and match conditions."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "The fundraising window and grant-award timing vary by matching program and project agreement; no universal duration is asserted."
+    logistics:
+      status: "known"
+      notes:
+        - "Patronicity screens projects, coaches the crowdfunding effort, tracks online and offline support, and administers the grantmaking workflow while the funding partner approves and supplies the match under its program rules."
+    outcomes:
+      - "cash"
+      - "grants"
+      - "volunteer-support"
+    capabilities:
+      - "crowdfunding-pages"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+      - "community-cause"
+      - "local-nonprofit-or-charity"
+    cause_areas:
+      - "community-neighborhood"
+      - "environment-conservation"
+      - "arts-culture"
+      - "youth-development-prevention"
+      - "disability-support"
+geography:
+  scope:
+    - "us-nationwide"
+    - "canada"
+  countries:
+    - "US"
+    - "CA"
+  states: []
+  regions: []
+  notes: "General project creators may be located in the United States or Canada and contributions can come from anywhere. Matching-grant availability is tied to specific partner geographies, commonly state or local programs in the United States; no location entities are modeled here."
+content:
+  summary: "Patronicity combines coached civic crowdfunding with partner-specific matching grants for community-led projects."
+  how_it_works: "A creator submits a community project, works with a coach to launch a time-limited campaign, gathers online and offline support, and—if enrolled in crowdgranting—earns a partner match after meeting the program's threshold and other requirements."
+  best_for:
+    - "Community groups, nonprofits, municipalities, small businesses, and local changemakers raising for a visible place-based project."
+  considerations:
+    - "Personal bills, medical costs, political campaigns, and several other personal-use categories are excluded."
+    - "Matching grants are location- and program-specific; a provider-level profile cannot show current ZIP-level availability."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 3 research"
+  verified_by: "FRD batch 3 research"
+  sources:
+    - id: "src_000127"
+      type: "official-provider"
+      url: "https://www.patronicity.com/about-us"
+      title: "About Patronicity"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.crowdgranting-matching-grants.summary"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000128"
+      type: "official-program"
+      url: "https://impact.patronicity.com/crowdfunding"
+      title: "Patronicity Crowdfunding"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.civic-crowdfunding.summary"
+          status: "current"
+          notes: null
+        - path: "programs.civic-crowdfunding.logistics"
+          status: "current"
+          notes: null
+        - path: "programs.civic-crowdfunding.outcomes"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000129"
+      type: "official-program"
+      url: "https://www.patronicity.com/home"
+      title: "Patronicity Civic Crowdfunding and Crowdgranting"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.crowdgranting-matching-grants.summary"
+          status: "current"
+          notes: null
+        - path: "programs.crowdgranting-matching-grants.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.crowdgranting-matching-grants.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000130"
+      type: "platform-documentation"
+      url: "https://www.patronicity.com/faq"
+      title: "Patronicity FAQ"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.civic-crowdfunding.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.civic-crowdfunding.timing"
+          status: "current"
+          notes: null
+        - path: "programs.civic-crowdfunding.logistics"
+          status: "current"
+          notes: null
+        - path: "programs.crowdgranting-matching-grants.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.crowdgranting-matching-grants.timing"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+        - path: "content.considerations"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

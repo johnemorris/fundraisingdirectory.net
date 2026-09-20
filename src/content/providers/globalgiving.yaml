@@ -1,0 +1,359 @@
+meta:
+  id: "prov_000040"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  legal_name: null
+  aliases: []
+  fundraising_url: "https://www.globalgiving.org/nonprofits/"
+  logo: null
+  name: "GlobalGiving"
+  slug: "globalgiving"
+  website: "https://www.globalgiving.org/"
+classification:
+  products_services:
+    - "donation-platform"
+    - "crowdfunding-platform"
+    - "peer-to-peer-platform"
+  methods:
+    - "direct-donations"
+    - "crowdfunding"
+    - "peer-to-peer"
+    - "giving-matching"
+  organizations:
+    - "schools"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "animal-rescue"
+  outcomes:
+    - "cash"
+    - "grants"
+  capabilities:
+    - "donation-forms"
+    - "recurring-giving"
+    - "crowdfunding-pages"
+    - "peer-to-peer-pages"
+    - "matching-gifts"
+    - "workplace-giving"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+    - "local-nonprofit-or-charity"
+    - "national-nonprofit-or-charity"
+    - "community-cause"
+  cause_areas:
+    - "disaster-emergency-relief"
+    - "community-neighborhood"
+    - "environment-conservation"
+    - "education-literacy"
+    - "health-medical"
+    - "children-families"
+    - "hunger-food-security"
+economics:
+  status: "known"
+  arrangements:
+    - type: "upfront-cost"
+      value:
+        kind: "amount"
+        amount: 0
+        currency: "USD"
+      basis: "Application, setup, monthly, and annual access"
+      conditions:
+        - "The organization passes due diligence and is admitted"
+      caveats: []
+    - type: "platform-fee"
+      value:
+        kind: "percentage"
+        percent: 12
+      basis: "Initial $5,000 raised by any organization and GlobalGiving-managed donations"
+      conditions: []
+      caveats: []
+    - type: "platform-fee"
+      value:
+        kind: "percentage"
+        percent: 5
+      basis: "Direct project donations after the initial $5,000 for U.S.- or U.K.-registered organizations"
+      conditions:
+        - "The organization maintains active due diligence and qualifying partner status"
+      caveats: []
+    - type: "platform-fee"
+      value:
+        kind: "percentage"
+        percent: 7
+      basis: "Direct project donations after the initial $5,000 for organizations registered outside the United States and United Kingdom"
+      conditions:
+        - "The organization maintains active due diligence and qualifying partner status"
+      caveats: []
+    - type: "processing-fee"
+      value:
+        kind: "percentage"
+        percent: 3
+      basis: "Donations"
+      conditions: []
+      caveats:
+        - "Fees are negotiable for larger commitments"
+    - type: "minimum-payout"
+      value:
+        kind: "amount"
+        amount: 250
+        currency: "USD"
+      basis: "International organization disbursement threshold under the documented FXecute process"
+      conditions:
+        - "The partner is outside the United States and receives funds through the applicable international process"
+      caveats:
+        - "Location and disbursement method affect delivery and transfer costs"
+  notes:
+    - "GlobalGiving states that at least 85 cents of each donated dollar reaches nonprofit partners across the documented fee tiers. Gift Aid and managed projects have separate published treatment."
+programs:
+  - id: "prog_000058"
+    products_services:
+      - "donation-platform"
+      - "crowdfunding-platform"
+      - "peer-to-peer-platform"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+      - "not-applicable"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status:
+        - "registered-nonprofit"
+        - "nonprofit"
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The organization demonstrates a track record of project implementation and passes GlobalGiving due diligence using legal, financial, program, leadership, and compliance documentation."
+        - "Partners maintain current due diligence and submit public project reports at least quarterly."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "GlobalGiving primarily accepts registered nonprofits; some unregistered groups participate through an accepted fiscal sponsor."
+        - "Disbursement may be delayed or redirected when law, compliance, banking, project status, account information, or fraud review prevents the intended transfer."
+      editorial_summary: "Registered nonprofits worldwide may apply, including organizations outside the United States with translated documentation, but admission depends on due diligence and program compliance."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration:
+        open_ended: true
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time:
+        maximum:
+          value: 2
+          unit: "weeks"
+      payout_schedules:
+        - frequency: "monthly"
+          delivery_method: null
+          anchor: "On or around the 25th of the month after the donation"
+          conditions:
+            - "The partner has cleared donations and remains eligible for disbursement"
+          caveats:
+            - "Delivery can be ACH, check, FXecute, or wire depending on location; the frozen delivery enum cannot express FXecute or wire"
+        - frequency: "quarterly"
+          delivery_method: null
+          anchor: null
+          conditions:
+            - "The partner is registered in China and the required regulatory approval is in place"
+          caveats:
+            - "China-specific disbursement timing follows local regulatory requirements"
+      notes:
+        - "Most partners enter the monthly cycle. After GlobalGiving sends a disbursement, ACH commonly takes one to three business days, checks one to five days, and FXecute or international wire can take up to two weeks."
+    logistics:
+      status: "known"
+      notes:
+        - "Partners publish projects, receive one-time and recurring donations, create supporter fundraisers, participate in campaigns and matching opportunities, communicate through project reports and appeals, and download donation and disbursement reports. GlobalGiving vets partners and processes eligible funds through location-appropriate payment methods."
+    name: "GlobalGiving Nonprofit Partnership"
+    slug: "globalgiving-nonprofit-partnership"
+    url: "https://www.globalgiving.org/nonprofits/"
+    method: "crowdfunding"
+    channels:
+      - "online"
+    summary: "A vetted worldwide nonprofit fundraising community with project pages, individual fundraisers, recurring gifts, matching campaigns, corporate and employee-giving access, training, donor communication, reporting, and country-sensitive disbursement."
+    outcomes:
+      - "cash"
+      - "grants"
+    capabilities:
+      - "donation-forms"
+      - "recurring-giving"
+      - "crowdfunding-pages"
+      - "peer-to-peer-pages"
+      - "matching-gifts"
+      - "workplace-giving"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+      - "local-nonprofit-or-charity"
+      - "national-nonprofit-or-charity"
+      - "community-cause"
+    cause_areas:
+      - "disaster-emergency-relief"
+      - "community-neighborhood"
+      - "environment-conservation"
+      - "education-literacy"
+      - "health-medical"
+      - "children-families"
+      - "hunger-food-security"
+geography:
+  countries: []
+  states: []
+  regions: []
+  notes: "GlobalGiving says it has supported vetted nonprofits in more than 175 countries and accepts registered organizations worldwide, subject to due diligence, local law, banking, and country-specific disbursement constraints."
+  scope:
+    - "international"
+content:
+  best_for:
+    - "Registered nonprofits seeking international reach, vetted-project credibility, corporate and matching opportunities, donor acquisition, training, and multi-country disbursement support."
+  considerations:
+    - "The fee depends on amount raised, registration country, and donation type, with a 3% processing fee added."
+    - "Admission and continued visibility require substantial due diligence and recurring project reporting."
+  summary: "GlobalGiving is a vetted international nonprofit fundraising community connecting local projects with individual, corporate, workplace, matching, and grant funding."
+  how_it_works: "A nonprofit applies and passes due diligence, publishes one or more projects, raises through project pages and supporter campaigns, reports progress at least quarterly, and receives cleared net funds on the applicable monthly or country-specific schedule."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 3 research"
+  verified_by: "FRD batch 3 research"
+  sources:
+    - id: "src_000131"
+      title: "How GlobalGiving Works"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.globalgiving-nonprofit-partnership.summary"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+        - path: "content.summary"
+          status: "current"
+          notes: null
+      notes: null
+      type: "official-provider"
+      url: "https://www.globalgiving.org/aboutus/how-it-works/"
+      checked_at: "2026-09-20"
+    - id: "src_000132"
+      title: "GlobalGiving Fees"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+      notes: null
+      type: "terms-or-fees"
+      url: "https://www.globalgiving.org/aboutus/fee/"
+      checked_at: "2026-09-20"
+    - id: "src_000133"
+      title: "GlobalGiving for Nonprofits"
+      status: "current"
+      supports:
+        - path: "programs.globalgiving-nonprofit-partnership.requirements"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+        - path: "content.best_for"
+          status: "current"
+          notes: null
+      notes: null
+      type: "official-program"
+      url: "https://www.globalgiving.org/nonprofits/"
+      checked_at: "2026-09-20"
+    - id: "src_000134"
+      title: "GlobalGiving Nonprofit Vetting"
+      status: "current"
+      supports:
+        - path: "programs.globalgiving-nonprofit-partnership.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.globalgiving-nonprofit-partnership.logistics"
+          status: "current"
+          notes: null
+      notes: null
+      type: "official-program"
+      url: "https://www.globalgiving.org/aboutus/how-it-works/vetting/"
+      checked_at: "2026-09-20"
+    - id: "src_000135"
+      title: "GlobalGiving Nonprofit Partner Handbook — Start Fundraising"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.globalgiving-nonprofit-partnership.timing"
+          status: "current"
+          notes: null
+        - path: "programs.globalgiving-nonprofit-partnership.logistics"
+          status: "current"
+          notes: null
+      notes: null
+      type: "platform-documentation"
+      url: "https://www.globalgiving.org/nonprofit-partner-handbook/start-fundraising/"
+      checked_at: "2026-09-20"
+    - id: "src_000136"
+      title: "GlobalGiving China Partner Disbursement Timing"
+      status: "current"
+      supports:
+        - path: "programs.globalgiving-nonprofit-partnership.timing"
+          status: "current"
+          notes: null
+      notes: null
+      type: "platform-documentation"
+      url: "https://support.globalgiving.org/hc/en-us/articles/8407592519444-When-will-my-organization-receive-the-money-we-raised-for-organizations-registered-in-China"
+      checked_at: "2026-09-20"
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false
