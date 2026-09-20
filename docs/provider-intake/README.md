@@ -80,11 +80,25 @@ Top-level shape:
     "capabilities": ["donation-forms"],
     "outcomes": ["cash"]
   },
-  "programs": [],
+  "programs": [{
+    "name": "Example Program",
+    "economics": { "status": "not-researched", "arrangements": [], "notes": [] },
+    "requirements": {
+      "status": "not-researched",
+      "legal_status": [],
+      "age_range": null,
+      "grade_range": null,
+      "participation_requirements": [],
+      "minimum_group_size": null,
+      "minimum_order": null,
+      "minimum_sales": null,
+      "other_restrictions": [],
+      "editorial_summary": null
+    },
+    "timing": { "status": "not-researched", "lead_time": null, "campaign_duration": null, "notes": [] },
+    "logistics": { "status": "not-researched", "notes": [] }
+  }],
   "geography": {},
-  "economics": {},
-  "requirements": [],
-  "logistics": [],
   "content": {},
   "sources": [],
   "verification": {},
@@ -102,6 +116,10 @@ Supported record types are `provider` and `official-beneficiary-program`. The ty
 Intake imports the canonical definitions and validators from `src/data/taxonomies/`. It does not maintain duplicate arrays. Supported dimensions are organizer types (`classification.organizations`), beneficiary types, cause areas, methods, activity subtypes, channels, products/services, capabilities, and outcomes.
 
 Program taxonomy is additive. Effective review values are provider values plus program values with duplicates removed. No override or subtraction semantics exist. Effective values are review output and are not written as a second taxonomy model.
+
+Economics, eligibility/requirements, timing, and logistics are canonical program-level research. Each section uses one explicit missing-data state: `not-researched`, `researched-unknown`, `not-applicable`, or `known`. A `known` section must contain supporting detail; the other states cannot carry apparently known values. Economics arrangements distinguish fees, profit/margin, give-back/proceeds/revenue share, payouts, and order/sales minimums. Values can be exact amounts or percentages, ranges, quantities, tiered payouts, or documented variable terms. Currency uses three-letter ISO codes.
+
+The older record-level `economics`, `requirements`, and `logistics` input remains accepted only as single-program shorthand and is normalized onto that program. It is rejected when multiple programs make the association ambiguous.
 
 An official beneficiary program can represent supporters fundraising on behalf of a named charity:
 
@@ -139,20 +157,25 @@ Sources use:
 
 ```json
 {
+  "id": "src_000123",
   "url": "https://example.com/fundraising",
   "source_type": "official-provider",
   "title": "Fundraising Program",
-  "supports": ["economics.platform_fee_percent", "geography.countries"],
+  "supports": [
+    { "path": "programs.example-program.economics", "status": "current", "notes": null },
+    { "path": "geography.countries", "status": "current", "notes": null }
+  ],
   "checked_at": "2026-09-12",
+  "status": "current",
   "notes": "Optional editor note"
 }
 ```
 
-Supported source types are `official-provider`, `official-charity`, `official-program`, `government`, `platform-documentation`, `terms-or-fees`, `public-press-release`, `reputable-third-party`, and `frd-editorial-note`. Review artifacts preserve `supports`. Canonical publication maps these richer intake types to the live source categories; it does not claim field-level evidence in V1.
+Supported source types are `official-provider`, `official-charity`, `official-program`, `government`, `platform-documentation`, `terms-or-fees`, `public-press-release`, `reputable-third-party`, and `frd-editorial-note`. Canonical publication preserves the stable source ID, title, exact source type, URL, checked date, status, notes, and every `supports` association. Omit `id` for a new source and the publisher assigns one; use the canonical ID for later source-status updates. Source and individual claim status are independently `current`, `stale`, `disputed`, or `needs-recheck`. Intake may use a plain path string as shorthand for a current claim; structured associations are preferred when a claim needs its own flag or note. Claim updates merge by path and do not erase unrelated source associations.
 
-Verification states are `unverified`, `partially-verified`, `verified`, `stale`, and `disputed`. Completeness states are `minimal`, `standard`, and `anchor-quality`; they are independent. The engine never marks a record verified automatically. `stale` and `disputed` drafts are blocked from publication. Research chronology can retain both `first_researched_at` and the canonical `first_verified_at`; they are not inferred from each other. Because the current live schema requires `first_verified_at`, its absence remains a publish error even when a working draft is otherwise valid.
+Verification states are `unverified`, `partially-verified`, `verified`, `stale`, and `disputed`. Completeness states are `minimal`, `standard`, and `anchor-quality`; they are independent and are preserved canonically with reviewer/verifier metadata. The canonical review status is `current`, `stale`, `disputed`, or `needs-recheck`. The engine never marks a record verified automatically. `stale` and `disputed` drafts are blocked from publication. A source or record can be flagged `needs-recheck` without supplying or changing a checked/verification date. Research chronology retains both `first_researched_at` and `first_verified_at`; they are not inferred from each other. Because the live schema requires `first_verified_at`, its absence remains a publish error even when a working draft is otherwise valid.
 
-Origins are `internal-research`, `bulk-import`, `provider-submission`, `organization-submission`, `claim-update`, and `automated-research-assist`. Origin and completeness remain operational review metadata.
+Origins are `internal-research`, `bulk-import`, `provider-submission`, `organization-submission`, `claim-update`, and `automated-research-assist`. Canonical provenance preserves both the exact intake origins and their broader durable discovery categories.
 
 ## Duplicate and update handling
 
@@ -169,6 +192,6 @@ Ambiguous or weak matches are never merged. Likely duplicates are blocked from p
 
 Commercial research is internal operational metadata, not provider taxonomy. It supports affiliate status (`unknown`, `none-found`, `available`, `applied`, `approved`, `rejected`), program and approved destination URLs, network, commission notes, cookie duration, eligibility notes, checked date, and internal notes.
 
-`unknown` produces a visible **Affiliate research needed** flag. Provider and organization submissions cannot set these fields: supplied commercial metadata is discarded to `unknown` with a review warning. Commercial research is excluded from canonical YAML, Finder serialization, scoring inputs, editorial quality, verification, and recommendations. It does not modify canonical affiliate, sponsor, partner, featured, disclosure, or outbound-link behavior; those remain separately administered.
+`unknown` produces a visible **Affiliate research needed** flag. Provider and organization submissions cannot set these fields: supplied commercial metadata is discarded to `unknown` with a review warning and cannot overwrite existing internal research. Internally researched values are preserved in an isolated canonical section, but are excluded from Finder serialization, scoring inputs, editorial quality, verification, and recommendations. They do not modify canonical affiliate, sponsor, partner, featured, disclosure, or outbound-link behavior; those remain separately administered.
 
 The browser workbench preserves the same firewall. It displays affiliate data as internal research metadata and never converts it into taxonomy, approval, verification, ranking, or outbound-link behavior.

@@ -25,7 +25,40 @@
       "inventory_model": "not-applicable",
       "upfront_cost": "unknown",
       "ease_to_raise": null,
-      "summary": "A fictional online donation-page program for fixture and workflow testing."
+      "summary": "A fictional online donation-page program for fixture and workflow testing.",
+      "economics": {
+        "status": "known",
+        "arrangements": [{
+          "type": "platform-fee",
+          "value": { "kind": "percentage", "percent": 2.5 },
+          "basis": null,
+          "conditions": [],
+          "caveats": ["Fictional fixture value"]
+        }],
+        "notes": []
+      },
+      "requirements": {
+        "status": "known",
+        "legal_status": [],
+        "age_range": null,
+        "grade_range": null,
+        "participation_requirements": [],
+        "minimum_group_size": null,
+        "minimum_order": null,
+        "minimum_sales": null,
+        "other_restrictions": ["Confirm current fictional program terms."],
+        "editorial_summary": null
+      },
+      "timing": {
+        "status": "researched-unknown",
+        "lead_time": null,
+        "campaign_duration": null,
+        "notes": []
+      },
+      "logistics": {
+        "status": "known",
+        "notes": ["Online setup only."]
+      }
     }
   ],
   "geography": {
@@ -35,12 +68,6 @@
     "regions": [],
     "notes": "Fictional fixture data."
   },
-  "economics": {
-    "platform_fee_percent": 2.5,
-    "notes": "Fictional fixture value; not published automatically."
-  },
-  "requirements": ["Confirm current fictional program terms."],
-  "logistics": ["Online setup only."],
   "content": {
     "summary": "Acorn Fundraising Labs is a fictional provider used to test internal intake workflows.",
     "how_it_works": "An editor prepares and reviews the fictional record before any explicit write action.",
@@ -52,7 +79,7 @@
       "url": "https://acorn-fundraising.example/programs",
       "source_type": "official-provider",
       "title": "Acorn programs",
-      "supports": ["identity.website", "classification.methods", "geography.countries"],
+      "supports": ["identity.website", "classification.methods", "programs.acorn-giving-pages.economics", "geography.countries"],
       "checked_at": "2026-09-12"
     }
   ],

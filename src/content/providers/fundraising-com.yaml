@@ -1,6 +1,6 @@
 meta:
   id: "prov_000001"
-  schema_version: 1
+  schema_version: 2
   created_at: "2026-08-24"
   created_by: "user_000001"
   modified_at: "2026-08-24"
@@ -14,6 +14,7 @@ identity:
   name: "Fundraising.com"
   slug: "fundraising-com"
   legal_name: null
+  aliases: []
   website: "https://fundraising.com/"
   fundraising_url: "https://fundraising.com/programs"
   logo: null
@@ -62,6 +63,29 @@ programs:
     ease_to_raise: "hands-on"
     summary: "Groups purchase ready-to-sell products and make immediate, in-person sales to supporters."
 
+    economics:
+      status: "not-researched"
+      arrangements: []
+      notes: []
+    requirements:
+      status: "not-researched"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements: []
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions: []
+      editorial_summary: null
+    timing:
+      status: "not-researched"
+      lead_time: null
+      campaign_duration: null
+      notes: []
+    logistics:
+      status: "not-researched"
+      notes: []
   - id: "prog_000002"
     name: "Order-Taker Fundraising"
     slug: "order-taker-fundraising"
@@ -82,6 +106,29 @@ programs:
     ease_to_raise: "moderate"
     summary: "Participants collect product orders during a campaign window, then the group submits the orders and coordinates delivery after fulfillment."
 
+    economics:
+      status: "not-researched"
+      arrangements: []
+      notes: []
+    requirements:
+      status: "not-researched"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements: []
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions: []
+      editorial_summary: null
+    timing:
+      status: "not-researched"
+      lead_time: null
+      campaign_duration: null
+      notes: []
+    logistics:
+      status: "not-researched"
+      notes: []
   - id: "prog_000003"
     name: "Online Fundraiser Store"
     slug: "online-fundraiser-store"
@@ -105,6 +152,29 @@ programs:
     ease_to_raise: "easy"
     summary: "Fundraising.com creates a shareable group storefront, processes supporter payments, and ships orders either to buyers or to a central group location."
 
+    economics:
+      status: "not-researched"
+      arrangements: []
+      notes: []
+    requirements:
+      status: "not-researched"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements: []
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions: []
+      editorial_summary: null
+    timing:
+      status: "not-researched"
+      lead_time: null
+      campaign_duration: null
+      notes: []
+    logistics:
+      status: "not-researched"
+      notes: []
   - id: "prog_000004"
     name: "Online Donation Campaign"
     slug: "online-donation-campaign"
@@ -122,6 +192,29 @@ programs:
     inventory_model: "not-applicable"
     upfront_cost: "varies"
     ease_to_raise: "easy"
+    economics:
+      status: "not-researched"
+      arrangements: []
+      notes: []
+    requirements:
+      status: "not-researched"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements: []
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions: []
+      editorial_summary: null
+    timing:
+      status: "not-researched"
+      lead_time: null
+      campaign_duration: null
+      notes: []
+    logistics:
+      status: "not-researched"
+      notes: []
 geography:
   scope:
     - "us-nationwide"
@@ -155,41 +248,81 @@ status:
 
 verification:
   level: "verified"
+  review_status: "current"
+  completeness: "unassessed"
+  first_researched_at: null
+  reviewed_by: null
+  verified_by: null
   sources:
-    - type: "official-website"
+    - id: "src_000005"
+      type: "official-website"
       url: "https://fundraising.com/"
       checked_at: "2026-08-24"
+      title: null
+      status: "current"
+      supports: []
       notes: "Active site offering current fundraising programs and enrollment calls to action."
-    - type: "official-program-page"
+    - id: "src_000006"
+      type: "official-program-page"
       url: "https://fundraising.com/direct-sale"
       checked_at: "2026-08-24"
+      title: null
+      status: "current"
+      supports: []
       notes: "Documents in-hand direct selling, supported audiences, hands-on product handling, and no upfront cost."
-    - type: "official-program-page"
+    - id: "src_000007"
+      type: "official-program-page"
       url: "https://fundraising.com/order-taker-program"
       checked_at: "2026-08-24"
+      title: null
+      status: "current"
+      supports: []
       notes: "Documents preorder workflow, product categories, audiences, delivery sequence, and no-upfront-inventory model."
-    - type: "official-program-page"
+    - id: "src_000008"
+      type: "official-program-page"
       url: "https://fundraising.com/online-fundraiser-store"
       checked_at: "2026-08-24"
+      title: null
+      status: "current"
+      supports: []
       notes: "Documents online checkout, US and Canada reach, no upfront cost, and direct-to-buyer or central-location fulfillment."
-    - type: "official-program-page"
+    - id: "src_000009"
+      type: "official-program-page"
       url: "https://fundraising.com/online-fundraising-platform"
       checked_at: "2026-08-24"
+      title: null
+      status: "current"
+      supports: []
       notes: "Documents supported organization audiences, online campaign tools, products, and US and Canada availability."
-    - type: "official-program-page"
+    - id: "src_000010"
+      type: "official-program-page"
       url: "https://fundraising.com/online-fundraising/products"
       checked_at: "2026-08-24"
+      title: null
+      status: "current"
+      supports: []
       notes: "Documents donation-only and hybrid campaigns, built-in donation pages, product storefronts, and online checkout."
 
 provenance:
   discovered_via:
     - "web-research"
     - "editorial-research"
+  intake_origins: []
   legacy:
     listed: false
     name: null
     url: null
 
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
 affiliation:
   type: "none"
   disclosure_required: false

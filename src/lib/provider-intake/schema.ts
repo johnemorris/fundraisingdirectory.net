@@ -1,5 +1,12 @@
 import { z } from "astro/zod";
-import { publicDateSchema } from "../../data/providerSchema.ts";
+import {
+  programEconomicsSchema,
+  programLogisticsSchema,
+  programRequirementsSchema,
+  programTimingSchema,
+  publicDateSchema,
+  SOURCE_REVIEW_STATES,
+} from "../../data/providerSchema.ts";
 import { GEOGRAPHY_SCOPES } from "../../data/taxonomies/geography.ts";
 import { ORGANIZATION_TYPES } from "../../data/taxonomies/organizations.ts";
 import {
@@ -58,16 +65,31 @@ export const intakeProgramSchema = z.object({
   ease_to_raise: z.enum(EASE_TO_RAISE).nullable().optional(),
   summary: z.string().min(1).optional(),
   beneficiary: intakeBeneficiaryDraftSchema.optional(),
+  economics: programEconomicsSchema.optional(),
+  requirements: programRequirementsSchema.optional(),
+  timing: programTimingSchema.optional(),
+  logistics: programLogisticsSchema.optional(),
   ...OPTIONAL_FUNDRAISING_DIMENSION_SCHEMAS,
 });
 
 export const intakeSourceSchema = z.object({
-  url: z.string().url(),
-  source_type: z.enum(SOURCE_TYPES),
-  title: z.string().min(1),
-  supports: z.array(z.string().regex(/^[a-z][a-z0-9_-]*(?:\.[a-z][a-z0-9_-]*)*$/)).default([]),
-  checked_at: publicDateSchema,
+  id: z.string().regex(/^src_\d{6}$/).optional(),
+  url: z.string().url().optional(),
+  source_type: z.enum(SOURCE_TYPES).optional(),
+  title: z.string().min(1).optional(),
+  supports: z.array(z.union([
+    z.string().regex(/^[a-z][a-z0-9_-]*(?:\.[a-z][a-z0-9_-]*)*$/),
+    z.object({
+      path: z.string().regex(/^[a-z][a-z0-9_-]*(?:\.[a-z][a-z0-9_-]*)*$/),
+      status: z.enum(SOURCE_REVIEW_STATES),
+      notes: z.string().min(1).nullable().optional(),
+    }),
+  ])).optional(),
+  checked_at: publicDateSchema.optional(),
+  status: z.enum(SOURCE_REVIEW_STATES).optional(),
   notes: z.string().min(1).optional(),
+}).refine((source) => source.id || source.url, {
+  message: "Provide a stable source ID or source URL",
 });
 
 export const intakeRecordSchema = z.object({
@@ -120,6 +142,7 @@ export const intakeRecordSchema = z.object({
   sources: z.array(intakeSourceSchema).optional(),
   verification: z.object({
     status: z.enum(VERIFICATION_STATES),
+    review_status: z.enum(SOURCE_REVIEW_STATES).optional(),
     first_researched_at: publicDateSchema.optional(),
     first_verified_at: publicDateSchema.optional(),
     last_verified_at: publicDateSchema.optional(),

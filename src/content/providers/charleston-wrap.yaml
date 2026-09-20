@@ -1,6 +1,6 @@
 meta:
   id: "prov_000007"
-  schema_version: 1
+  schema_version: 2
   created_at: "2026-08-29"
   created_by: "user_000001"
   modified_at: "2026-08-29"
@@ -13,6 +13,7 @@ identity:
   name: "Charleston Wrap"
   slug: "charleston-wrap"
   legal_name: null
+  aliases: []
   website: "https://charlestonwrap.com/"
   fundraising_url: "https://go.charlestonwrap.com/"
   logo: null
@@ -33,6 +34,29 @@ programs:
     upfront_cost: "unknown"
     ease_to_raise: null
     summary: "Families shop through a group's online link or catalog, and orders can ship directly to the family that placed them."
+    economics:
+      status: "not-researched"
+      arrangements: []
+      notes: []
+    requirements:
+      status: "not-researched"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements: []
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions: []
+      editorial_summary: null
+    timing:
+      status: "not-researched"
+      lead_time: null
+      campaign_duration: null
+      notes: []
+    logistics:
+      status: "not-researched"
+      notes: []
 geography:
   scope: ["us-nationwide"]
   countries: ["US"]
@@ -57,17 +81,37 @@ status:
   inactive_reason: null
 verification:
   level: "verified"
+  review_status: "current"
+  completeness: "unassessed"
+  first_researched_at: null
+  reviewed_by: null
+  verified_by: null
   sources:
-    - type: "official-program-page"
+    - id: "src_000002"
+      type: "official-program-page"
       url: "https://charlestonwrap.com/groups/school-student-groups/"
       checked_at: "2026-08-29"
+      title: null
+      status: "current"
+      supports: []
       notes: "Documents online sharing, online payments, direct-to-home shipping, and supported school, team, faith, youth, arts, and community groups."
 provenance:
   discovered_via: ["web-research", "editorial-research"]
+  intake_origins: []
   legacy:
     listed: false
     name: null
     url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
 affiliation:
   type: "none"
   disclosure_required: false

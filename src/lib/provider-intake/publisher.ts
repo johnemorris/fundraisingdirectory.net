@@ -12,18 +12,6 @@ import type {
   ValidationIssue,
 } from "./types.ts";
 
-const SOURCE_TYPE_MAP = {
-  "official-provider": "official-website",
-  "official-charity": "official-website",
-  "official-program": "official-program-page",
-  government: "reputable-third-party",
-  "platform-documentation": "official-document",
-  "terms-or-fees": "official-document",
-  "public-press-release": "reputable-third-party",
-  "reputable-third-party": "reputable-third-party",
-  "frd-editorial-note": "other",
-} as const;
-
 const ORIGIN_MAP = {
   "internal-research": "editorial-research",
   "bulk-import": "web-research",
@@ -33,21 +21,24 @@ const ORIGIN_MAP = {
   "automated-research-assist": "web-research",
 } as const;
 
-function padId(prefix: "prov" | "prog", value: number): string {
+function padId(prefix: "prov" | "prog" | "src", value: number): string {
   return `${prefix}_${String(value).padStart(6, "0")}`;
 }
 
 export interface PublicationIdAllocator {
   provider: () => string;
   program: () => string;
+  source: () => string;
 }
 
 export function createPublicationIdAllocator(existingRecords: ExistingProviderRecord[]): PublicationIdAllocator {
   let provider = Math.max(0, ...existingRecords.map(({ data }) => Number(data.meta.id.slice(5))));
   let program = Math.max(0, ...existingRecords.flatMap(({ data }) => data.programs.map((entry) => Number(entry.id.slice(5)))));
+  let source = Math.max(0, ...existingRecords.flatMap(({ data }) => data.verification.sources.map((entry) => Number(entry.id.slice(4)))));
   return {
     provider: () => padId("prov", ++provider),
     program: () => padId("prog", ++program),
+    source: () => padId("src", ++source),
   };
 }
 
@@ -65,24 +56,87 @@ function mergeProvided(base: any, patch: any): any {
   return output;
 }
 
-function mapSources(sources: Record<string, any>[] | undefined) {
-  return sources?.map((source) => ({
-    type: SOURCE_TYPE_MAP[source.source_type as keyof typeof SOURCE_TYPE_MAP],
+function canonicalSourcePatch(source: Record<string, any>, id?: string) {
+  return compact({
+    id: source.id ?? id,
+    type: source.source_type,
     url: source.url,
+    title: source.title === undefined ? undefined : source.title,
     checked_at: source.checked_at,
-    notes: [source.title, source.notes].filter(Boolean).join(" — ") || null,
-  }));
+    status: source.status,
+    supports: source.supports,
+    notes: source.notes === undefined ? undefined : source.notes,
+  });
 }
 
-function mergeSources(existing: Record<string, any>[], incoming: Record<string, any>[]) {
+function mapNewSources(sources: Record<string, any>[] | undefined, nextSourceId: () => string) {
+  return sources?.map((source) => mergeProvided({
+    id: nextSourceId(),
+    title: null,
+    status: "current",
+    supports: [],
+    notes: null,
+  }, canonicalSourcePatch(source)));
+}
+
+function mergeSupportedClaims(existing: Record<string, any>[], incoming: Record<string, any>[]) {
   const output = structuredClone(existing);
-  incoming.forEach((source) => {
-    const index = output.findIndex((current) => current.url === source.url);
-    if (index >= 0) output[index] = mergeProvided(output[index], source);
-    else output.push(source);
+  incoming.forEach((claim) => {
+    const index = output.findIndex((current) => current.path === claim.path);
+    if (index >= 0) output[index] = mergeProvided(output[index], claim);
+    else output.push(claim);
   });
   return output;
 }
+
+function mergeSources(existing: Record<string, any>[], incoming: Record<string, any>[], nextSourceId: () => string) {
+  const output = structuredClone(existing);
+  incoming.forEach((source) => {
+    const index = output.findIndex((current) => source.id ? current.id === source.id : current.url === source.url);
+    if (index >= 0) {
+      const patch = canonicalSourcePatch(source);
+      if (source.supports !== undefined) {
+        patch.supports = mergeSupportedClaims(output[index].supports, source.supports);
+      }
+      output[index] = mergeProvided(output[index], patch);
+    }
+    else output.push(mergeProvided({
+      id: nextSourceId(),
+      title: null,
+      status: "current",
+      supports: [],
+      notes: null,
+    }, canonicalSourcePatch(source)));
+  });
+  return output;
+}
+
+const EMPTY_ECONOMICS = { status: "not-researched", arrangements: [], notes: [] };
+const EMPTY_REQUIREMENTS = {
+  status: "not-researched",
+  legal_status: [],
+  age_range: null,
+  grade_range: null,
+  participation_requirements: [],
+  minimum_group_size: null,
+  minimum_order: null,
+  minimum_sales: null,
+  other_restrictions: [],
+  editorial_summary: null,
+};
+const EMPTY_TIMING = { status: "not-researched", lead_time: null, campaign_duration: null, notes: [] };
+const EMPTY_LOGISTICS = { status: "not-researched", notes: [] };
+const EMPTY_COMMERCIAL_RESEARCH = {
+  affiliate_status: "unknown",
+  affiliate_program_url: null,
+  affiliate_network: null,
+  commission_structure: null,
+  cookie_duration_days: null,
+  eligibility_requirements: null,
+  checked_at: null,
+  approved_destination_url: null,
+  internal_notes: null,
+};
 
 function canonicalProgramPatch(program: Record<string, any>): Record<string, any> {
   return compact({
@@ -100,6 +154,10 @@ function canonicalProgramPatch(program: Record<string, any>): Record<string, any
     ease_to_raise: program.ease_to_raise,
     summary: program.summary,
     beneficiary: program.beneficiary,
+    economics: program.economics,
+    requirements: program.requirements,
+    timing: program.timing,
+    logistics: program.logistics,
     outcomes: program.outcomes,
     capabilities: program.capabilities,
     beneficiary_types: program.beneficiary_types,
@@ -135,6 +193,10 @@ function mergePrograms(
       inventory_model: "unknown",
       upfront_cost: "unknown",
       ease_to_raise: null,
+      economics: EMPTY_ECONOMICS,
+      requirements: EMPTY_REQUIREMENTS,
+      timing: EMPTY_TIMING,
+      logistics: EMPTY_LOGISTICS,
     }, patch));
   });
   return output;
@@ -147,7 +209,7 @@ function buildNewCandidate(record: Record<string, any>, ids: PublicationIdAlloca
   return {
     meta: {
       id: ids.provider(),
-      schema_version: 1,
+      schema_version: 2,
       created_at: date,
       created_by: actor,
       modified_at: date,
@@ -157,7 +219,7 @@ function buildNewCandidate(record: Record<string, any>, ids: PublicationIdAlloca
       deleted_by: null,
       deletion_reason: null,
     },
-    identity: mergeProvided({ legal_name: null, fundraising_url: null, logo: null }, compact(record.identity ?? {})),
+    identity: mergeProvided({ legal_name: null, aliases: [], fundraising_url: null, logo: null }, compact(record.identity ?? {})),
     classification: mergeProvided({ products_services: [] }, record.classification ?? {}),
     programs: mergePrograms([], record.programs ?? [], ids.program),
     geography: mergeProvided({ countries: [], states: [], regions: [], notes: null }, record.geography ?? {}),
@@ -172,12 +234,19 @@ function buildNewCandidate(record: Record<string, any>, ids: PublicationIdAlloca
     },
     verification: {
       level: verificationLevel,
-      sources: mapSources(record.sources) ?? [],
+      review_status: record.verification?.review_status ?? "current",
+      completeness: record.completeness ?? "unassessed",
+      first_researched_at: record.verification?.first_researched_at ?? null,
+      reviewed_by: record.verification?.reviewer ?? null,
+      verified_by: record.verification?.verifier ?? null,
+      sources: mapNewSources(record.sources, ids.source) ?? [],
     },
     provenance: {
       discovered_via: [ORIGIN_MAP[record.origin as keyof typeof ORIGIN_MAP]],
+      intake_origins: [record.origin],
       legacy: { listed: false, name: null, url: null },
     },
+    commercial_research: mergeProvided(EMPTY_COMMERCIAL_RESEARCH, record.commercial_research ?? {}),
     affiliation: { type: "none", disclosure_required: false },
     editorial: { featured: false },
   };
@@ -190,9 +259,8 @@ function buildUpdateCandidate(
   actor: string,
   date: string,
 ) {
-  const mappedSources = mapSources(record.sources);
-  const sourcePatch = mappedSources
-    ? { sources: mergeSources(existing.data.verification.sources, mappedSources) }
+  const sourcePatch = record.sources
+    ? { sources: mergeSources(existing.data.verification.sources, record.sources, ids.source) }
     : undefined;
   const verificationStatus = record.verification?.status;
   const recordLevelRecheck = record.verification?.record_level_recheck === true;
@@ -200,6 +268,11 @@ function buildUpdateCandidate(
     level: recordLevelRecheck && verificationStatus && ["verified", "partially-verified", "unverified"].includes(verificationStatus)
       ? verificationStatus
       : undefined,
+    review_status: record.verification?.review_status,
+    completeness: record.completeness,
+    first_researched_at: record.verification?.first_researched_at,
+    reviewed_by: record.verification?.reviewer,
+    verified_by: recordLevelRecheck ? record.verification?.verifier : undefined,
     ...sourcePatch,
   });
   const statusPatch = compact({
@@ -223,7 +296,14 @@ function buildUpdateCandidate(
         ...existing.data.provenance.discovered_via,
         ORIGIN_MAP[record.origin as keyof typeof ORIGIN_MAP],
       ])],
+      intake_origins: [...new Set([
+        ...existing.data.provenance.intake_origins,
+        record.origin,
+      ])],
     },
+    commercial_research: ["provider-submission", "organization-submission"].includes(record.origin)
+      ? undefined
+      : record.commercial_research,
   });
   const candidate = mergeProvided(existing.data, patch);
   if (record.programs) candidate.programs = mergePrograms(existing.data.programs, record.programs, ids.program);

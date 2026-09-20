@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { serializeFinderProvider } from "../src/data/finderProviders.ts";
 import { normalizeFinderAnswers, rankProviderMatches } from "../src/lib/finderScoring.js";
 
 function provider({
@@ -54,11 +55,26 @@ test("missing provider data lowers confidence without creating a fake match", ()
   assert.ok(!unknownResult.matchedConstraints.includes("No documented upfront cost"));
 });
 
-test("affiliate and sponsor metadata have zero ranking effect", () => {
+test("affiliate, sponsor, featured, and commercial metadata have zero ranking effect", () => {
   const organic = provider({ name: "Same Provider", slug: "same", affiliation: "none" });
-  const sponsored = structuredClone(organic);
-  sponsored.affiliation.type = "sponsor";
-  assert.deepEqual(rankProviderMatches([organic], { group: "schools", format: "online" }), rankProviderMatches([sponsored], { group: "schools", format: "online" }));
+  const commercial = structuredClone(organic);
+  commercial.affiliation.type = "affiliate";
+  commercial.editorial = { featured: true };
+  commercial.commercial_research = { affiliate_status: "approved", commission_structure: "must never score" };
+  assert.deepEqual(rankProviderMatches([organic], { group: "schools", format: "online" }), rankProviderMatches([commercial], { group: "schools", format: "online" }));
+  commercial.affiliation.type = "sponsor";
+  assert.deepEqual(rankProviderMatches([organic], { group: "schools", format: "online" }), rankProviderMatches([commercial], { group: "schools", format: "online" }));
+});
+
+test("Finder serialization includes approved program outcomes and excludes commercial state", () => {
+  const input = provider({ name: "Serialized", slug: "serialized", outcomes: ["equipment"], affiliation: "sponsor" });
+  input.editorial = { featured: true };
+  input.commercial_research = { affiliate_status: "approved" };
+  const serialized = serializeFinderProvider(input);
+  assert.deepEqual(serialized.programs[0].outcomes, ["equipment"]);
+  assert.equal("affiliation" in serialized, false);
+  assert.equal("editorial" in serialized, false);
+  assert.equal("commercial_research" in serialized, false);
 });
 
 test("identical inputs produce deterministic ordering", () => {

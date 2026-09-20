@@ -68,6 +68,21 @@ export function validateDraft(raw: unknown): { success: boolean; data?: Record<s
     }
   }
 
+  const hasLegacyProgramResearch = Boolean(
+    data.economics
+    || data.requirements?.length
+    || data.logistics?.length,
+  );
+  if (hasLegacyProgramResearch && (data.programs?.length ?? 0) !== 1) {
+    issues.push(issue(
+      "draft",
+      "error",
+      "ambiguous-program-research",
+      "programs",
+      "Legacy record-level economics, requirements, and logistics can only be mapped when exactly one program exists; move them onto the applicable program.",
+    ));
+  }
+
   if (data.verification?.status === "verified") {
     if (!data.verification.first_verified_at || !data.verification.last_verified_at || !data.verification.verifier || !(data.sources?.length > 0)) {
       issues.push(issue("draft", "error", "incomplete-verification", "verification", "Verified status requires first_verified_at, last_verified_at, verifier, and at least one source. Intake never verifies automatically."));
@@ -88,12 +103,51 @@ export function validateDraft(raw: unknown): { success: boolean; data?: Record<s
 
 export function validateCanonicalCandidate(candidate: unknown): ValidationIssue[] {
   const result = providerSchema.safeParse(candidate);
-  if (result.success) return [];
-  return result.error.issues.map((entry) => issue(
-    "publish",
-    "error",
-    entry.code,
-    entry.path.join(".") || "$",
-    entry.message,
-  ));
+  if (!result.success) {
+    return result.error.issues.map((entry) => issue(
+      "publish",
+      "error",
+      entry.code,
+      entry.path.join(".") || "$",
+      entry.message,
+    ));
+  }
+
+  const issues: ValidationIssue[] = [];
+  result.data.verification.sources.forEach((source, sourceIndex) => {
+    const seenClaims = new Set<string>();
+    source.supports.forEach((claim, claimIndex) => {
+      const parts = claim.path.split(".");
+      let current: unknown = result.data;
+      if (parts[0] === "programs" && parts.length > 1) {
+        current = result.data.programs.find((program) => program.slug === parts[1] || program.id === parts[1]);
+        parts.splice(0, 2);
+      }
+      const exists = current !== undefined && parts.every((part) => {
+        if (!current || typeof current !== "object" || !(part in current)) return false;
+        current = (current as Record<string, unknown>)[part];
+        return true;
+      });
+      if (!exists) {
+        issues.push(issue(
+          "publish",
+          "error",
+          "unknown-supported-claim",
+          `verification.sources.${sourceIndex}.supports.${claimIndex}.path`,
+          `Supported claim path ${claim.path} does not resolve to a canonical provider field or program slug/ID.`,
+        ));
+      }
+      if (seenClaims.has(claim.path)) {
+        issues.push(issue(
+          "publish",
+          "error",
+          "duplicate-supported-claim",
+          `verification.sources.${sourceIndex}.supports.${claimIndex}.path`,
+          `Supported claim path ${claim.path} is duplicated for this source.`,
+        ));
+      }
+      seenClaims.add(claim.path);
+    });
+  });
+  return issues;
 }

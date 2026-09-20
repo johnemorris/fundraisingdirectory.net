@@ -124,9 +124,10 @@ import {
       </details>
 
       <details class="workbench-section" data-section="economics">
-        <summary><span><b>5</b> Economics</span><small>Research-only supported percentages and notes</small></summary>
+        <summary><span><b>5</b> Economics</span><small>Single-program shorthand for common values</small></summary>
         <div class="section-body">
           <div class="section-issues" data-issues-for="economics" hidden></div>
+          <p class="section-guidance">These common fields normalize into structured economics on the only program. For multiple programs or ranges, tiers, currency amounts, and conditional terms, use each program's structured economics object in intake JSON.</p>
           <div class="form-grid form-grid-3">
             <label>Platform fee (%)<input name="economics.platform_fee_percent" type="number" min="0" max="100" step="0.01" /></label>
             <label>Transaction fee (%)<input name="economics.transaction_fee_percent" type="number" min="0" max="100" step="0.01" /></label>
@@ -137,10 +138,10 @@ import {
       </details>
 
       <details class="workbench-section" data-section="logistics">
-        <summary><span><b>6</b> Logistics and effort</span><small>Operational notes; effort lives on programs</small></summary>
+        <summary><span><b>6</b> Logistics and effort</span><small>Single-program shorthand; effort lives on programs</small></summary>
         <div class="section-body">
           <div class="section-issues" data-issues-for="logistics" hidden></div>
-          <p class="section-guidance">The current intake schema has no timing field. Do not encode timing into another taxonomy; capture sourced context in logistics or program summary until the canonical field exists.</p>
+          <p class="section-guidance">These notes normalize onto the only program. Structured lead time and campaign duration belong in that program's <code>timing</code> object in intake JSON.</p>
           <label>Logistics <small>One item per line</small><textarea name="logistics" rows="4"></textarea></label>
         </div>
       </details>
@@ -160,9 +161,10 @@ import {
       </details>
 
       <details class="workbench-section" data-section="requirements">
-        <summary><span><b>8</b> Eligibility and requirements</span><small>Operational constraints</small></summary>
+        <summary><span><b>8</b> Eligibility and requirements</span><small>Single-program shorthand for editorial restrictions</small></summary>
         <div class="section-body">
           <div class="section-issues" data-issues-for="requirements" hidden></div>
+          <p class="section-guidance">These lines normalize into the only program's editorial restrictions. Use the structured program object for legal status, age/grade, group size, participation, order, and sales requirements.</p>
           <label>Requirements <small>One item per line</small><textarea name="requirements" rows="5"></textarea></label>
         </div>
       </details>
@@ -182,6 +184,7 @@ import {
           <div class="section-issues" data-issues-for="verification" hidden></div>
           <div class="form-grid form-grid-3">
             <label>Verification status<select name="verification.status"><IntakeTaxonomyOptions values={VERIFICATION_STATES} /></select></label>
+            <label>Review status<select name="verification.review_status"><option value="current">Current</option><option value="stale">Stale</option><option value="disputed">Disputed</option><option value="needs-recheck">Needs recheck</option></select></label>
             <label>Completeness<select name="completeness"><IntakeTaxonomyOptions values={COMPLETENESS_STATES} /></select></label>
             <label>First researched<input name="verification.first_researched_at" type="date" /></label>
             <label>First verified<input name="verification.first_verified_at" type="date" /></label>
@@ -280,10 +283,12 @@ import {
       <legend>Source <span data-repeat-number></span></legend>
       <button class="remove-button" type="button" data-remove-source>Remove source</button>
       <div class="form-grid form-grid-3">
+        <label>Stable source ID <small>Use for updates; assigned on first publication</small><input name="source.id" pattern="src_\d{6}" /></label>
         <label>URL<input name="source.url" type="url" /></label>
         <label>Source type<select name="source.source_type"><option value="">Choose a type</option><IntakeTaxonomyOptions values={SOURCE_TYPES} /></select></label>
         <label>Title<input name="source.title" /></label>
         <label>Checked date<input name="source.checked_at" type="date" /></label>
+        <label>Source status<select name="source.status"><option value="">Current (default)</option><option value="current">Current</option><option value="stale">Stale</option><option value="disputed">Disputed</option><option value="needs-recheck">Needs recheck</option></select></label>
         <label>Supports <small>Comma-separated field paths</small><input name="source.supports" placeholder="identity.website, geography.countries" /></label>
       </div>
       <label>Notes<textarea name="source.notes" rows="2"></textarea></label>
@@ -343,7 +348,7 @@ import {
   }
 
   function readSource(root: HTMLElement) {
-    return { url: value("source.url", root), source_type: value("source.source_type", root), title: value("source.title", root), checked_at: value("source.checked_at", root), supports: value("source.supports", root), notes: value("source.notes", root) };
+    return { id: value("source.id", root), url: value("source.url", root), source_type: value("source.source_type", root), title: value("source.title", root), checked_at: value("source.checked_at", root), status: value("source.status", root), supports: value("source.supports", root), notes: value("source.notes", root) };
   }
 
   function formToDraft() {
@@ -358,7 +363,7 @@ import {
       economics: { platform_fee_percent: value("economics.platform_fee_percent"), transaction_fee_percent: value("economics.transaction_fee_percent"), proceeds_percent: value("economics.proceeds_percent"), notes: value("economics.notes") },
       logistics: value("logistics"), geography: { scope: values("geography.scope"), countries: value("geography.countries"), states: value("geography.states"), regions: value("geography.regions"), notes: value("geography.notes") }, requirements: value("requirements"),
       sources: [...sourceList.querySelectorAll<HTMLElement>("[data-source]")].map(readSource),
-      verification: { status: value("verification.status"), first_researched_at: value("verification.first_researched_at"), first_verified_at: value("verification.first_verified_at"), last_verified_at: value("verification.last_verified_at"), reviewer: value("verification.reviewer"), verifier: value("verification.verifier"), record_level_recheck: checked("verification.record_level_recheck") },
+      verification: { status: value("verification.status"), review_status: value("verification.review_status"), first_researched_at: value("verification.first_researched_at"), first_verified_at: value("verification.first_verified_at"), last_verified_at: value("verification.last_verified_at"), reviewer: value("verification.reviewer"), verifier: value("verification.verifier"), record_level_recheck: checked("verification.record_level_recheck") },
       completeness: value("completeness"),
       commercial_research: { affiliate_status: value("commercial_research.affiliate_status"), affiliate_program_url: value("commercial_research.affiliate_program_url"), affiliate_network: value("commercial_research.affiliate_network"), commission_structure: value("commercial_research.commission_structure"), cookie_duration_days: value("commercial_research.cookie_duration_days"), eligibility_requirements: value("commercial_research.eligibility_requirements"), checked_at: value("commercial_research.checked_at"), approved_destination_url: value("commercial_research.approved_destination_url"), internal_notes: value("commercial_research.internal_notes") },
     };
@@ -380,7 +385,7 @@ import {
   }
 
   function populateForm(draft: Record<string, any>) {
-    const scalarPaths = ["record_type", "origin", "publication.lifecycle", "publication.next_review_at", "publication.inactive_since", "publication.inactive_reason", "identity.name", "identity.slug", "identity.legal_name", "identity.website", "identity.fundraising_url", "identity.logo", "identity.aliases", "content.summary", "content.how_it_works", "content.best_for", "content.considerations", "beneficiary.type", "beneficiary.name", "beneficiary.slug", "economics.platform_fee_percent", "economics.transaction_fee_percent", "economics.proceeds_percent", "economics.notes", "logistics", "geography.countries", "geography.states", "geography.regions", "geography.notes", "requirements", "verification.status", "verification.first_researched_at", "verification.first_verified_at", "verification.last_verified_at", "verification.reviewer", "verification.verifier", "completeness", "commercial_research.affiliate_status", "commercial_research.affiliate_program_url", "commercial_research.affiliate_network", "commercial_research.commission_structure", "commercial_research.cookie_duration_days", "commercial_research.eligibility_requirements", "commercial_research.checked_at", "commercial_research.approved_destination_url", "commercial_research.internal_notes"];
+    const scalarPaths = ["record_type", "origin", "publication.lifecycle", "publication.next_review_at", "publication.inactive_since", "publication.inactive_reason", "identity.name", "identity.slug", "identity.legal_name", "identity.website", "identity.fundraising_url", "identity.logo", "identity.aliases", "content.summary", "content.how_it_works", "content.best_for", "content.considerations", "beneficiary.type", "beneficiary.name", "beneficiary.slug", "economics.platform_fee_percent", "economics.transaction_fee_percent", "economics.proceeds_percent", "economics.notes", "logistics", "geography.countries", "geography.states", "geography.regions", "geography.notes", "requirements", "verification.status", "verification.review_status", "verification.first_researched_at", "verification.first_verified_at", "verification.last_verified_at", "verification.reviewer", "verification.verifier", "completeness", "commercial_research.affiliate_status", "commercial_research.affiliate_program_url", "commercial_research.affiliate_network", "commercial_research.commission_structure", "commercial_research.cookie_duration_days", "commercial_research.eligibility_requirements", "commercial_research.checked_at", "commercial_research.approved_destination_url", "commercial_research.internal_notes"];
     scalarPaths.forEach((name) => setControl(name, name.split(".").reduce<any>((current, key) => current?.[key], draft)));
     ["organizations", "beneficiary_types", "cause_areas", "methods", "activity_subtypes", "products_services", "capabilities", "outcomes"].forEach((key) => setValues(`classification.${key}`, draft.classification?.[key]));
     setValues("geography.scope", draft.geography?.scope);
@@ -437,7 +442,7 @@ import {
     write("[data-review-programs]", { beneficiary: normalized.beneficiary, programs: normalized.programs });
     write("[data-review-operations]", { economics: normalized.economics, geography: normalized.geography, logistics: normalized.logistics, requirements: normalized.requirements });
     write("[data-review-sources]", { sources: normalized.sources, verification: normalized.verification, completeness: normalized.completeness, duplicate_update_result: "Run intake:review in the CLI" });
-    write("[data-review-commercial]", { ...normalized.commercial_research, affiliate_research_needed: normalized.commercial_research?.affiliate_status === "unknown", editorial_firewall: "Excluded from canonical provider output and Finder scoring" });
+    write("[data-review-commercial]", { ...normalized.commercial_research, affiliate_research_needed: normalized.commercial_research?.affiliate_status === "unknown", editorial_firewall: "Preserved separately; excluded from Finder serialization and scoring" });
     document.querySelector<HTMLElement>("[data-json-preview]")!.textContent = reviewedJson;
     const filename = `${normalized.identity?.slug ?? "provider-intake"}.json`;
     document.querySelector<HTMLElement>("[data-cli-commands]")!.textContent = `npm run intake:validate -- ${filename}\nnpm run intake:review -- ${filename}\nnpm run intake:publish -- ${filename}`;

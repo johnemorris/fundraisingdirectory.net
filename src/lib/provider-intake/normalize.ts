@@ -44,6 +44,55 @@ function normalizeTaxonomyContainer(value: Record<string, any> | undefined) {
   return output;
 }
 
+function legacyResearchForSingleProgram(record: IntakeRecord): Record<string, any> {
+  const research: Record<string, any> = {};
+  if (record.economics) {
+    const arrangements = [
+      record.economics.platform_fee_percent === undefined ? undefined : {
+        type: "platform-fee",
+        value: { kind: "percentage", percent: record.economics.platform_fee_percent },
+        basis: null,
+        conditions: [],
+        caveats: [],
+      },
+      record.economics.transaction_fee_percent === undefined ? undefined : {
+        type: "transaction-fee",
+        value: { kind: "percentage", percent: record.economics.transaction_fee_percent },
+        basis: null,
+        conditions: [],
+        caveats: [],
+      },
+      record.economics.proceeds_percent === undefined ? undefined : {
+        type: "proceeds",
+        value: { kind: "percentage", percent: record.economics.proceeds_percent },
+        basis: null,
+        conditions: [],
+        caveats: [],
+      },
+    ].filter(Boolean);
+    const notes = record.economics.notes ? [record.economics.notes] : [];
+    if (arrangements.length || notes.length) research.economics = { status: "known", arrangements, notes };
+  }
+  if (record.requirements?.length) {
+    research.requirements = {
+      status: "known",
+      legal_status: [],
+      age_range: null,
+      grade_range: null,
+      participation_requirements: [],
+      minimum_group_size: null,
+      minimum_order: null,
+      minimum_sales: null,
+      other_restrictions: record.requirements,
+      editorial_summary: null,
+    };
+  }
+  if (record.logistics?.length) {
+    research.logistics = { status: "known", notes: record.logistics };
+  }
+  return research;
+}
+
 export function normalizeIntakeRecord(record: IntakeRecord): {
   normalized: Record<string, any>;
   issues: ValidationIssue[];
@@ -59,7 +108,9 @@ export function normalizeIntakeRecord(record: IntakeRecord): {
     logo: normalizeUrl(record.identity.logo),
   };
 
+  const legacyResearch = legacyResearchForSingleProgram(record);
   const programs = record.programs?.map((program) => ({
+    ...legacyResearch,
     ...normalizeTaxonomyContainer(program),
     name: program.name?.trim(),
     slug: program.slug ?? (program.name ? slugify(program.name) : undefined),
@@ -69,7 +120,7 @@ export function normalizeIntakeRecord(record: IntakeRecord): {
     fulfillment: unique(program.fulfillment),
   }));
 
-  let commercialResearch = record.commercial_research ?? { affiliate_status: "unknown" };
+  let commercialResearch = record.commercial_research;
   if (EXTERNAL_ORIGINS.has(record.origin) && record.commercial_research) {
     commercialResearch = { affiliate_status: "unknown" };
     issues.push({
@@ -96,11 +147,21 @@ export function normalizeIntakeRecord(record: IntakeRecord): {
     sources: record.sources?.map((source) => ({
       ...source,
       url: normalizeUrl(source.url),
-      supports: unique(source.supports) ?? [],
+      supports: source.supports === undefined ? undefined : [...new Map(source.supports.map((claim) => {
+        const normalizedClaim = typeof claim === "string"
+          ? { path: claim, status: "current", notes: null }
+          : { ...claim, notes: claim.notes ?? null };
+        return [normalizedClaim.path, normalizedClaim];
+      })).values()],
+      status: source.status,
     })),
-    completeness: record.completeness ?? "minimal",
+    completeness: record.completeness,
     commercial_research: commercialResearch,
   };
+
+  delete normalized.economics;
+  delete normalized.requirements;
+  delete normalized.logistics;
 
   return { normalized, issues };
 }

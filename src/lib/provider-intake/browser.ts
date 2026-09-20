@@ -59,7 +59,7 @@ export function createEmptyIntakeDraft(today = new Date().toISOString().slice(0,
     logistics: [],
     content: {},
     sources: [{}],
-    verification: { status: "unverified", first_researched_at: today },
+    verification: { status: "unverified", review_status: "current", first_researched_at: today },
     completeness: "minimal",
     commercial_research: { affiliate_status: "unknown" },
   };
@@ -115,6 +115,10 @@ export function buildIntakeRecord(draft: Record<string, any>): Record<string, un
     beneficiary_types: list(program.beneficiary_types),
     cause_areas: list(program.cause_areas),
     activity_subtypes: list(program.activity_subtypes),
+    economics: program.economics,
+    requirements: program.requirements,
+    timing: program.timing,
+    logistics: program.logistics,
   }) ?? {}).filter(programHasContent);
 
   const beneficiary = recordType === "official-beneficiary-program" ? definedObject({
@@ -147,16 +151,19 @@ export function buildIntakeRecord(draft: Record<string, any>): Record<string, un
   });
 
   const sources = (draft.sources ?? []).map((source: Record<string, any>) => definedObject({
+    id: text(source.id),
     url: text(source.url),
     source_type: text(source.source_type),
     title: text(source.title),
-    supports: list(source.supports) ?? [],
+    supports: list(source.supports),
     checked_at: text(source.checked_at),
+    status: text(source.status),
     notes: text(source.notes),
   }) ?? {}).filter(programHasContent);
 
   const verification = definedObject({
     status: text(draft.verification?.status) ?? "unverified",
+    review_status: text(draft.verification?.review_status),
     first_researched_at: text(draft.verification?.first_researched_at),
     first_verified_at: text(draft.verification?.first_verified_at),
     last_verified_at: text(draft.verification?.last_verified_at),
