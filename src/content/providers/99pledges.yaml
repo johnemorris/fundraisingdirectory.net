@@ -1,0 +1,280 @@
+meta:
+  id: "prov_000015"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "99Pledges"
+  slug: "99pledges"
+  legal_name: null
+  aliases: []
+  website: "https://99pledges.com/"
+  fundraising_url: "https://schools.99pledges.com/"
+  logo: null
+classification:
+  methods:
+    - "pledge-athon"
+    - "peer-to-peer"
+    - "crowdfunding"
+  products_services:
+    - "peer-to-peer-platform"
+    - "crowdfunding-platform"
+    - "donation-platform"
+  organizations:
+    - "schools"
+    - "pto-pta"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "nonprofits-charities"
+  outcomes:
+    - "cash"
+  capabilities:
+    - "donation-forms"
+    - "crowdfunding-pages"
+    - "peer-to-peer-pages"
+    - "participant-pages"
+    - "leaderboards"
+    - "qr-giving"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+  activity_subtypes:
+    - "fun-run"
+    - "walkathon"
+    - "readathon"
+    - "peer-fundraising-challenge"
+programs:
+  - id: "prog_000022"
+    name: "Pledge and A-Thon Fundraising"
+    slug: "pledge-and-a-thon-fundraising"
+    url: "https://schools.99pledges.com/"
+    method: "pledge-athon"
+    products_services:
+      - "peer-to-peer-platform"
+      - "crowdfunding-platform"
+      - "donation-platform"
+    channels:
+      - "online"
+      - "hybrid"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+      - "not-applicable"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "Schools, teams, and groups receive campaign and participant pages for flat donations or activity-based pledges such as laps or reading minutes, with online reporting and leaderboards."
+    economics_mode: "program-specific"
+    economics:
+      status: "known"
+      arrangements:
+        - type: "upfront-cost"
+          value:
+            kind: "amount"
+            amount: 0
+            currency: "USD"
+          basis: "Fundraiser setup"
+          conditions: []
+          caveats: []
+        - type: "platform-fee"
+          value:
+            kind: "percentage"
+            percent: 0
+          basis: "Online donations"
+          conditions: []
+          caveats: []
+        - type: "processing-fee"
+          value:
+            kind: "percentage"
+            percent: 3.49
+          basis: "Online donation transaction"
+          conditions: []
+          caveats: []
+        - type: "transaction-fee"
+          value:
+            kind: "amount"
+            amount: 0.49
+            currency: "USD"
+          basis: "Per online donation transaction"
+          conditions: []
+          caveats: []
+      notes:
+        - "Cash and check donations can be tracked in the platform without online processing fees."
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "An organizer creates the fundraiser and supplies or invites participants; activity-based campaigns require results before payment can be requested."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions: []
+      editorial_summary: "The platform is designed for schools, sports teams, nonprofits, and other groups; no nonprofit-status requirement was established."
+    timing:
+      status: "known"
+      setup_lead_time:
+        maximum:
+          value: 1
+          unit: "days"
+      campaign_duration:
+        minimum:
+          value: 2
+          unit: "weeks"
+        typical:
+          value: 2
+          unit: "weeks"
+        maximum:
+          value: 3
+          unit: "weeks"
+      fulfillment_time: null
+      funds_available_time:
+        maximum:
+          value: 1
+          unit: "business-days"
+      payout_time:
+        minimum:
+          value: 1
+          unit: "business-days"
+        maximum:
+          value: 4
+          unit: "business-days"
+      payout_schedules: []
+      notes:
+        - "Direct deposit is initiated within one business day after a completed payment request. Paper checks are an alternative and generally arrive in seven to ten business days."
+    logistics:
+      status: "known"
+      notes:
+        - "99Pledges can set up participant pages from a roster; organizers share pages, record activity results where applicable, close the fundraiser, and request one lump-sum payment."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "donation-forms"
+      - "crowdfunding-pages"
+      - "peer-to-peer-pages"
+      - "participant-pages"
+      - "leaderboards"
+      - "qr-giving"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+    activity_subtypes:
+      - "fun-run"
+      - "walkathon"
+      - "readathon"
+      - "peer-fundraising-challenge"
+geography:
+  scope:
+    - "us-nationwide"
+  countries:
+    - "US"
+  states: []
+  regions: []
+  notes: "The reviewed school and payment documentation describes United States organizations and U.S. bank or mailed-check payout paths."
+content:
+  summary: "99Pledges is an online pledge and participant-page platform for school, team, and group fundraisers."
+  how_it_works: "An organizer creates a fundraiser, adds participant pages, shares the campaign, records activity results when pledges depend on performance, then closes the fundraiser and requests payment."
+  best_for:
+    - "Schools, PTOs, teams, and youth groups running fun runs, walkathons, readathons, or participant-led donation drives."
+  considerations:
+    - "Online donations incur percentage and per-transaction processing charges."
+    - "Activity results must be entered before requesting payout for performance-based pledges."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 1 research"
+  verified_by: "FRD batch 1 research"
+  sources:
+    - id: "src_000044"
+      type: "official-program"
+      url: "https://schools.99pledges.com/"
+      title: "99Pledges Online Fundraising for Schools"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.pledge-and-a-thon-fundraising.summary"
+          status: "current"
+          notes: null
+        - path: "programs.pledge-and-a-thon-fundraising.economics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000045"
+      type: "platform-documentation"
+      url: "https://help.99pledges.com/en/articles/687644-start-a-read-a-thon-with-99pledges"
+      title: "Start a Read-a-thon with 99Pledges"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.pledge-and-a-thon-fundraising.timing"
+          status: "current"
+          notes: null
+        - path: "programs.pledge-and-a-thon-fundraising.logistics"
+          status: "current"
+          notes: null
+        - path: "classification.activity_subtypes"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000046"
+      type: "platform-documentation"
+      url: "https://help.99pledges.com/en/articles/675806-when-will-we-get-paid"
+      title: "When will we get paid?"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.pledge-and-a-thon-fundraising.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.pledge-and-a-thon-fundraising.timing"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

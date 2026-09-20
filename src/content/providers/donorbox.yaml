@@ -1,0 +1,309 @@
+meta:
+  id: "prov_000013"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Donorbox"
+  slug: "donorbox"
+  legal_name: null
+  aliases: []
+  website: "https://donorbox.org/"
+  fundraising_url: "https://donorbox.org/explore/fundraising-for-nonprofits"
+  logo: null
+classification:
+  methods:
+    - "direct-donations"
+    - "crowdfunding"
+    - "peer-to-peer"
+    - "events-activities"
+  products_services:
+    - "donation-platform"
+    - "crowdfunding-platform"
+    - "peer-to-peer-platform"
+    - "event-fundraising-platform"
+    - "text-mobile-giving"
+  organizations:
+    - "schools"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "animal-rescue"
+    - "individuals-personal-causes"
+  outcomes:
+    - "cash"
+  capabilities:
+    - "donation-forms"
+    - "recurring-giving"
+    - "crowdfunding-pages"
+    - "peer-to-peer-pages"
+    - "participant-pages"
+    - "leaderboards"
+    - "ticketing-registration"
+    - "text-to-give"
+    - "qr-giving"
+    - "tap-to-pay"
+    - "digital-wallets"
+    - "donor-crm"
+    - "email-marketing"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+    - "individual-or-family"
+    - "community-cause"
+    - "open-or-unspecified-cause"
+programs:
+  - id: "prog_000020"
+    name: "Donorbox Fundraising Platform"
+    slug: "donorbox-fundraising-platform"
+    url: "https://donorbox.org/explore/fundraising-for-nonprofits"
+    method: "direct-donations"
+    products_services:
+      - "donation-platform"
+      - "crowdfunding-platform"
+      - "peer-to-peer-platform"
+      - "event-fundraising-platform"
+      - "text-mobile-giving"
+    channels:
+      - "online"
+      - "in-person"
+      - "hybrid"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+      - "on-site"
+      - "not-applicable"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "Organizations and individuals create donation forms, hosted fundraising pages, crowdfunding and peer-to-peer campaigns, event ticketing, and in-person giving experiences connected to Stripe or PayPal."
+    economics_mode: "program-specific"
+    economics:
+      status: "known"
+      arrangements:
+        - type: "upfront-cost"
+          value:
+            kind: "amount"
+            amount: 0
+            currency: "USD"
+          basis: "Standard-plan setup"
+          conditions: []
+          caveats:
+            - "Paid Pro and Premium subscriptions are optional"
+        - type: "platform-fee"
+          value:
+            kind: "percentage"
+            percent: 2.95
+          basis: "Standard-plan donation forms, fundraising pages, QuickDonate, organization peer-to-peer, and crowdfunding"
+          conditions:
+            - "Standard plan"
+          caveats: []
+        - type: "platform-fee"
+          value:
+            kind: "percentage"
+            percent: 3.95
+          basis: "Standard-plan event ticketing, memberships, and supporter peer-to-peer transactions"
+          conditions:
+            - "Standard plan"
+          caveats: []
+        - type: "processing-fee"
+          value:
+            kind: "percentage"
+            percent: 2.2
+          basis: "United States nonprofit card and digital-wallet processing through Stripe"
+          conditions:
+            - "Registered nonprofit processor pricing in the United States using USD"
+          caveats:
+            - "American Express and non-qualifying accounts may differ"
+        - type: "transaction-fee"
+          value:
+            kind: "amount"
+            amount: 0.3
+            currency: "USD"
+          basis: "Per qualifying Stripe card or digital-wallet transaction"
+          conditions:
+            - "United States nonprofit processor pricing in USD"
+          caveats: []
+        - type: "processing-fee"
+          value:
+            kind: "percentage"
+            percent: 0.8
+          basis: "ACH bank transfer"
+          conditions:
+            - "ACH through Stripe"
+          caveats:
+            - "Fee is capped at $5 per transaction"
+      notes:
+        - "Donors may be offered the option to cover platform and processing fees. Pro and Premium plans use different subscription and platform-fee terms."
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The fundraiser connects a supported Stripe or PayPal account to receive funds."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "A registered 501(c)(3) is not required to create a Donorbox fundraiser; processor eligibility and local fundraising rules still apply."
+      editorial_summary: "Donorbox supports nonprofits, other organizations, and individual fundraisers where its payment processors operate."
+    timing:
+      status: "known"
+      setup_lead_time:
+        typical:
+          value: 15
+          unit: "minutes"
+      campaign_duration:
+        open_ended: true
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time:
+        typical:
+          value: 2
+          unit: "business-days"
+        maximum:
+          value: 7
+          unit: "business-days"
+      payout_schedules: []
+      notes:
+        - "The two-business-day figure applies to supported Stripe countries; a first Stripe transfer may take about seven days. PayPal transfers are initiated by the account holder and generally arrive three to five business days later."
+    logistics:
+      status: "known"
+      notes:
+        - "Organizations embed a form or use a Donorbox-hosted page and connect Stripe or PayPal; peer fundraisers can create individual pages linked to the organization campaign."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "donation-forms"
+      - "recurring-giving"
+      - "crowdfunding-pages"
+      - "peer-to-peer-pages"
+      - "participant-pages"
+      - "leaderboards"
+      - "ticketing-registration"
+      - "text-to-give"
+      - "qr-giving"
+      - "tap-to-pay"
+      - "digital-wallets"
+      - "donor-crm"
+      - "email-marketing"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+      - "individual-or-family"
+      - "community-cause"
+      - "open-or-unspecified-cause"
+geography:
+  scope:
+    - "international"
+  countries: []
+  states: []
+  regions: []
+  notes: "Donorbox is available where Stripe or PayPal operates and supports multiple currencies; payment methods, processing terms, and payout timing vary by country."
+content:
+  summary: "Donorbox provides donation forms, fundraising pages, crowdfunding, peer-to-peer fundraising, event ticketing, and donor-management tools."
+  how_it_works: "A fundraiser creates an account and campaign, connects Stripe or PayPal, publishes an embedded or hosted giving experience, and receives funds through the connected processor."
+  best_for:
+    - "Nonprofits and other fundraisers needing configurable online forms, recurring giving, peer-to-peer pages, or event tools."
+  considerations:
+    - "Platform fees depend on the feature and plan, while processor pricing and payout timing depend on account and country."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 1 research"
+  verified_by: "FRD batch 1 research"
+  sources:
+    - id: "src_000038"
+      type: "terms-or-fees"
+      url: "https://donorbox.org/pricing"
+      title: "Donorbox Pricing"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.donorbox-fundraising-platform.economics"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000039"
+      type: "official-program"
+      url: "https://donorbox.org/explore/fundraising-for-nonprofits"
+      title: "Fundraising for Nonprofits"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.donorbox-fundraising-platform.summary"
+          status: "current"
+          notes: null
+        - path: "programs.donorbox-fundraising-platform.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.donorbox-fundraising-platform.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000040"
+      type: "platform-documentation"
+      url: "https://donorbox.org/nonprofit-blog/get-started-with-donorbox"
+      title: "Get Started with Donorbox: Step-by-Step Guide"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.donorbox-fundraising-platform.timing"
+          status: "current"
+          notes: null
+        - path: "content.how_it_works"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

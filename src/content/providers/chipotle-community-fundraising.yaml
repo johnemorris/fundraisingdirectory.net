@@ -1,0 +1,260 @@
+meta:
+  id: "prov_000019"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Chipotle Community Fundraising"
+  slug: "chipotle-community-fundraising"
+  legal_name: "Chipotle Mexican Grill, Inc."
+  aliases:
+    - "Chipotle Fundraisers"
+  website: "https://community.chipotle.com/"
+  fundraising_url: "https://marketing.chipotle.com/partner/fundraiser-request/"
+  logo: null
+classification:
+  methods:
+    - "restaurant-business-partnerships"
+    - "events-activities"
+  products_services: []
+  organizations:
+    - "schools"
+    - "pto-pta"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "animal-rescue"
+  outcomes:
+    - "cash"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+    - "local-nonprofit-or-charity"
+    - "community-cause"
+  activity_subtypes:
+    - "restaurant-night"
+programs:
+  - id: "prog_000027"
+    name: "Chipotle Restaurant Fundraiser"
+    slug: "chipotle-restaurant-fundraiser"
+    url: "https://marketing.chipotle.com/partner/fundraiser-request/"
+    method: "restaurant-business-partnerships"
+    products_services: []
+    channels:
+      - "in-person"
+      - "online"
+      - "hybrid"
+    online_ordering: true
+    fulfillment:
+      - "on-site"
+      - "local-pickup"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "An approved organization promotes a four-hour event at one Chipotle restaurant, and qualifying in-person or coded online pickup sales generate a donation to the organization."
+    economics_mode: "program-specific"
+    economics:
+      status: "known"
+      arrangements:
+        - type: "upfront-cost"
+          value:
+            kind: "amount"
+            amount: 0
+            currency: "USD"
+          basis: "Applying for and hosting the fundraiser"
+          conditions:
+            - "The request is approved"
+          caveats: []
+        - type: "restaurant-give-back"
+          value:
+            kind: "percentage"
+            percent: 25
+          basis: "Qualifying pre-tax event sales"
+          conditions:
+            - "Supporters identify the fundraiser in person or use the event code for pickup during the scheduled location and time"
+          caveats: []
+        - type: "minimum-sales"
+          value:
+            kind: "amount"
+            amount: 150
+            currency: "USD"
+          basis: "Total qualifying event sales"
+          conditions:
+            - "Minimum must be met for the organization to receive a donation"
+          caveats: []
+      notes: []
+    requirements:
+      status: "known"
+      legal_status:
+        - "other"
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The organization applies at least three weeks before the event and completes the approval and tax-information process."
+        - "Supporters must identify the fundraiser or use its online pickup code during the scheduled event."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales:
+        kind: "amount"
+        amount: 150
+        currency: "USD"
+      other_restrictions:
+        - "Chipotle does not fund individual causes, for-profit ventures, political or lobbying groups, religious groups for religious purposes, or individual study, research, travel, scholarship, stipend, or medical-expense requests."
+        - "Each organization is limited to one fundraiser every six months and one participating restaurant per event."
+        - "Promotion at the restaurant, solicitation, tables, donation jars, and flyer distribution on restaurant premises are prohibited."
+      editorial_summary: "Checks are payable only to organizations; public schools and public universities can use specified institutional payment paths when they lack separate tax information."
+    timing:
+      status: "known"
+      setup_lead_time:
+        minimum:
+          value: 3
+          unit: "weeks"
+      campaign_duration:
+        exact:
+          value: 4
+          unit: "hours"
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time:
+        minimum:
+          value: 30
+          unit: "days"
+        maximum:
+          value: 45
+          unit: "days"
+      payout_schedules: []
+      notes:
+        - "Events use either a 4–8 p.m. or 5–9 p.m. evening window. Checks are processed and mailed after the fundraiser."
+    logistics:
+      status: "known"
+      notes:
+        - "Qualifying purchases are made in person after identifying the fundraiser or online/in-app for pickup using the event code. Delivery orders, gift cards, orders outside the event time, and orders at another location do not count."
+    outcomes:
+      - "cash"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+      - "local-nonprofit-or-charity"
+      - "community-cause"
+    activity_subtypes:
+      - "restaurant-night"
+geography:
+  scope:
+    - "local"
+  countries:
+    - "US"
+  states: []
+  regions: []
+  notes: "Each approved fundraiser is tied to one participating Chipotle restaurant. Individual restaurant/location ingestion is outside the provider corpus."
+content:
+  summary: "Chipotle Community Fundraising offers approved organizations a scheduled restaurant event that returns 25% of qualifying sales after a minimum is met."
+  how_it_works: "An eligible organization applies for one restaurant and evening time, promotes the provided event materials, and receives a mailed check after supporters generate qualifying in-person or coded pickup sales."
+  best_for:
+    - "Schools, teams, clubs, community organizations, and nonprofits with supporters near a participating Chipotle restaurant."
+  considerations:
+    - "The event must generate at least $150 in qualifying sales."
+    - "Only orders at the approved location and time using an eligible participation method count."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 1 research"
+  verified_by: "FRD batch 1 research"
+  sources:
+    - id: "src_000059"
+      type: "official-program"
+      url: "https://community.chipotle.com/"
+      title: "Chipotle Community Fundraising"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "programs.chipotle-restaurant-fundraiser.summary"
+          status: "current"
+          notes: null
+        - path: "programs.chipotle-restaurant-fundraiser.economics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000060"
+      type: "official-program"
+      url: "https://marketing.chipotle.com/partner/fundraiser-request/"
+      title: "Chipotle Fundraising Application"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "classification.organizations"
+          status: "current"
+          notes: null
+        - path: "programs.chipotle-restaurant-fundraiser.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.chipotle-restaurant-fundraiser.timing"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000061"
+      type: "official-program"
+      url: "https://marketing.chipotle.com/fundraisers/faq"
+      title: "Chipotle Fundraisers — Frequently Asked Questions"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.chipotle-restaurant-fundraiser.economics"
+          status: "current"
+          notes: null
+        - path: "programs.chipotle-restaurant-fundraiser.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.chipotle-restaurant-fundraiser.timing"
+          status: "current"
+          notes: null
+        - path: "programs.chipotle-restaurant-fundraiser.logistics"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

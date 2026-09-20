@@ -1,0 +1,818 @@
+[
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "Zeffy",
+      "slug": "zeffy",
+      "website": "https://www.zeffy.com/",
+      "fundraising_url": "https://www.zeffy.com/"
+    },
+    "classification": {
+      "methods": ["direct-donations", "crowdfunding", "peer-to-peer", "events-activities", "auctions"],
+      "products_services": ["donation-platform", "crowdfunding-platform", "peer-to-peer-platform", "auction-platform", "event-fundraising-platform", "text-mobile-giving", "merchandise-online-store"],
+      "organizations": ["schools", "pto-pta", "sports-athletics", "booster-clubs", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance", "animal-rescue"],
+      "beneficiary_types": ["own-organization", "own-project-or-program"],
+      "capabilities": ["donation-forms", "recurring-giving", "crowdfunding-pages", "peer-to-peer-pages", "participant-pages", "leaderboards", "ticketing-registration", "auctions-mobile-bidding", "raffles-prize-drawings", "tap-to-pay", "digital-wallets", "online-store", "donor-crm", "email-marketing", "reporting-analytics"],
+      "outcomes": ["cash"]
+    },
+    "economics": {
+      "status": "known",
+      "arrangements": [
+        { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Account setup and platform access", "conditions": ["Organization meets Zeffy eligibility and verification requirements"], "caveats": [] },
+        { "type": "platform-fee", "value": { "kind": "percentage", "percent": 0 }, "basis": "Payments collected through Zeffy fundraising tools", "conditions": [], "caveats": [] },
+        { "type": "processing-fee", "value": { "kind": "percentage", "percent": 0 }, "basis": "Card and supported payment processing", "conditions": [], "caveats": [] }
+      ],
+      "notes": ["Zeffy is funded by a voluntary contribution presented to donors at checkout; the contribution is optional and is not deducted from the nonprofit's payment."]
+    },
+    "programs": [{
+      "name": "All-in-One Fundraising Platform",
+      "slug": "all-in-one-fundraising-platform",
+      "url": "https://www.zeffy.com/",
+      "method": "direct-donations",
+      "products_services": ["donation-platform", "crowdfunding-platform", "peer-to-peer-platform", "auction-platform", "event-fundraising-platform", "text-mobile-giving", "merchandise-online-store"],
+      "channels": ["online", "in-person", "hybrid"],
+      "online_ordering": null,
+      "fulfillment": ["digital", "on-site", "not-applicable"],
+      "inventory_model": "not-applicable",
+      "upfront_cost": "none",
+      "summary": "Eligible nonprofit organizations use Zeffy for donations, ticketing, auctions, raffles, peer-to-peer campaigns, online stores, in-person payments, donor management, and email without platform or payment-processing fees.",
+      "economics_mode": "inherit-provider",
+      "requirements": {
+        "status": "known",
+        "legal_status": ["nonprofit", "registered-nonprofit"],
+        "age_range": null,
+        "grade_range": null,
+        "participation_requirements": ["The organization must have a bank account in its own name and complete identity and bank verification."],
+        "minimum_group_size": null,
+        "minimum_order": null,
+        "minimum_sales": null,
+        "other_restrictions": ["Individuals and personal accounts are not eligible."],
+        "editorial_summary": "Zeffy is limited to qualifying nonprofit or charitable organizations in supported countries."
+      },
+      "timing": {
+        "status": "known",
+        "setup_lead_time": null,
+        "campaign_duration": { "open_ended": true },
+        "fulfillment_time": null,
+        "funds_available_time": { "minimum": { "value": 1, "unit": "business-days" }, "maximum": { "value": 3, "unit": "business-days" } },
+        "payout_time": { "maximum": { "value": 2, "unit": "business-days" } },
+        "payout_schedules": [{ "frequency": "monthly", "delivery_method": "direct-deposit", "anchor": "First Monday of each month", "conditions": ["The organization selects monthly payouts"], "caveats": ["Payments still in security review roll into the following cycle"] }],
+        "notes": ["Weekly direct-deposit payouts sent on Monday are the default schedule. Eligible organizations may receive next-business-day payouts; that eligibility is account-specific."]
+      },
+      "logistics": { "status": "known", "notes": ["Organizations create and share forms or campaigns, connect an organization bank account, and manage payments, donors, and reports from one dashboard."] },
+      "beneficiary_types": ["own-organization", "own-project-or-program"],
+      "capabilities": ["donation-forms", "recurring-giving", "crowdfunding-pages", "peer-to-peer-pages", "participant-pages", "leaderboards", "ticketing-registration", "auctions-mobile-bidding", "raffles-prize-drawings", "tap-to-pay", "digital-wallets", "online-store", "donor-crm", "email-marketing", "reporting-analytics"],
+      "outcomes": ["cash"]
+    }],
+    "geography": { "scope": ["international"], "countries": ["US", "CA", "GB", "IE", "AU", "DE"], "states": [], "regions": [], "notes": "Organizations must be registered in the United States, Canada, United Kingdom, Ireland, Australia, or Germany; United States eligibility includes Washington, D.C. and Puerto Rico but not other U.S. territories." },
+    "content": {
+      "summary": "Zeffy is a fee-free fundraising and donor-management platform for verified nonprofit organizations.",
+      "how_it_works": "An eligible organization verifies its identity and bank account, creates fundraising forms or campaigns, and receives collected funds by scheduled direct deposit while donors may optionally contribute to Zeffy.",
+      "best_for": ["Verified nonprofits seeking integrated online, event, auction, and peer-to-peer fundraising tools without platform fees."],
+      "considerations": ["Eligibility is restricted by legal status, country, and organization-owned bank account.", "Weekly payout cadence is retained in timing notes because the frozen recurring-schedule taxonomy is intentionally limited to pilot-proven monthly and quarterly schedules."]
+    },
+    "sources": [
+      { "url": "https://www.zeffy.com/", "source_type": "official-provider", "title": "Zeffy — Free, All-in-One Fundraising Software + CRM", "supports": ["identity.website", "classification", "economics", "programs.all-in-one-fundraising-platform.summary", "programs.all-in-one-fundraising-platform.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://support.zeffy.com/is-my-organization-eligible-to-use-zeffy-8m24r", "source_type": "platform-documentation", "title": "Is my organization eligible to use Zeffy?", "supports": ["programs.all-in-one-fundraising-platform.requirements", "geography"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://support.zeffy.com/zeffy-payouts-schedules-amounts-and-reports-ajuec", "source_type": "platform-documentation", "title": "Zeffy payouts: Schedules, amounts, and reports", "supports": ["programs.all-in-one-fundraising-platform.timing"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 1 research", "verifier": "FRD batch 1 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 1 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": { "name": "Donorbox", "slug": "donorbox", "website": "https://donorbox.org/", "fundraising_url": "https://donorbox.org/explore/fundraising-for-nonprofits" },
+    "classification": {
+      "methods": ["direct-donations", "crowdfunding", "peer-to-peer", "events-activities"],
+      "products_services": ["donation-platform", "crowdfunding-platform", "peer-to-peer-platform", "event-fundraising-platform", "text-mobile-giving"],
+      "organizations": ["schools", "sports-athletics", "booster-clubs", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance", "animal-rescue", "individuals-personal-causes"],
+      "beneficiary_types": ["own-organization", "own-project-or-program", "individual-or-family", "community-cause", "open-or-unspecified-cause"],
+      "capabilities": ["donation-forms", "recurring-giving", "crowdfunding-pages", "peer-to-peer-pages", "participant-pages", "leaderboards", "ticketing-registration", "text-to-give", "qr-giving", "tap-to-pay", "digital-wallets", "donor-crm", "email-marketing", "reporting-analytics"],
+      "outcomes": ["cash"]
+    },
+    "programs": [{
+      "name": "Donorbox Fundraising Platform",
+      "slug": "donorbox-fundraising-platform",
+      "url": "https://donorbox.org/explore/fundraising-for-nonprofits",
+      "method": "direct-donations",
+      "products_services": ["donation-platform", "crowdfunding-platform", "peer-to-peer-platform", "event-fundraising-platform", "text-mobile-giving"],
+      "channels": ["online", "in-person", "hybrid"],
+      "online_ordering": null,
+      "fulfillment": ["digital", "on-site", "not-applicable"],
+      "inventory_model": "not-applicable",
+      "upfront_cost": "none",
+      "summary": "Organizations and individuals create donation forms, hosted fundraising pages, crowdfunding and peer-to-peer campaigns, event ticketing, and in-person giving experiences connected to Stripe or PayPal.",
+      "economics_mode": "program-specific",
+      "economics": {
+        "status": "known",
+        "arrangements": [
+          { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Standard-plan setup", "conditions": [], "caveats": ["Paid Pro and Premium subscriptions are optional"] },
+          { "type": "platform-fee", "value": { "kind": "percentage", "percent": 2.95 }, "basis": "Standard-plan donation forms, fundraising pages, QuickDonate, organization peer-to-peer, and crowdfunding", "conditions": ["Standard plan"], "caveats": [] },
+          { "type": "platform-fee", "value": { "kind": "percentage", "percent": 3.95 }, "basis": "Standard-plan event ticketing, memberships, and supporter peer-to-peer transactions", "conditions": ["Standard plan"], "caveats": [] },
+          { "type": "processing-fee", "value": { "kind": "percentage", "percent": 2.2 }, "basis": "United States nonprofit card and digital-wallet processing through Stripe", "conditions": ["Registered nonprofit processor pricing in the United States using USD"], "caveats": ["American Express and non-qualifying accounts may differ"] },
+          { "type": "transaction-fee", "value": { "kind": "amount", "amount": 0.3, "currency": "USD" }, "basis": "Per qualifying Stripe card or digital-wallet transaction", "conditions": ["United States nonprofit processor pricing in USD"], "caveats": [] },
+          { "type": "processing-fee", "value": { "kind": "percentage", "percent": 0.8 }, "basis": "ACH bank transfer", "conditions": ["ACH through Stripe"], "caveats": ["Fee is capped at $5 per transaction"] }
+        ],
+        "notes": ["Donors may be offered the option to cover platform and processing fees. Pro and Premium plans use different subscription and platform-fee terms."]
+      },
+      "requirements": {
+        "status": "known",
+        "legal_status": [],
+        "age_range": null,
+        "grade_range": null,
+        "participation_requirements": ["The fundraiser connects a supported Stripe or PayPal account to receive funds."],
+        "minimum_group_size": null,
+        "minimum_order": null,
+        "minimum_sales": null,
+        "other_restrictions": ["A registered 501(c)(3) is not required to create a Donorbox fundraiser; processor eligibility and local fundraising rules still apply."],
+        "editorial_summary": "Donorbox supports nonprofits, other organizations, and individual fundraisers where its payment processors operate."
+      },
+      "timing": {
+        "status": "known",
+        "setup_lead_time": { "typical": { "value": 15, "unit": "minutes" } },
+        "campaign_duration": { "open_ended": true },
+        "fulfillment_time": null,
+        "funds_available_time": null,
+        "payout_time": { "typical": { "value": 2, "unit": "business-days" }, "maximum": { "value": 7, "unit": "business-days" } },
+        "payout_schedules": [],
+        "notes": ["The two-business-day figure applies to supported Stripe countries; a first Stripe transfer may take about seven days. PayPal transfers are initiated by the account holder and generally arrive three to five business days later."]
+      },
+      "logistics": { "status": "known", "notes": ["Organizations embed a form or use a Donorbox-hosted page and connect Stripe or PayPal; peer fundraisers can create individual pages linked to the organization campaign."] },
+      "beneficiary_types": ["own-organization", "own-project-or-program", "individual-or-family", "community-cause", "open-or-unspecified-cause"],
+      "capabilities": ["donation-forms", "recurring-giving", "crowdfunding-pages", "peer-to-peer-pages", "participant-pages", "leaderboards", "ticketing-registration", "text-to-give", "qr-giving", "tap-to-pay", "digital-wallets", "donor-crm", "email-marketing", "reporting-analytics"],
+      "outcomes": ["cash"]
+    }],
+    "geography": { "scope": ["international"], "countries": [], "states": [], "regions": [], "notes": "Donorbox is available where Stripe or PayPal operates and supports multiple currencies; payment methods, processing terms, and payout timing vary by country." },
+    "content": {
+      "summary": "Donorbox provides donation forms, fundraising pages, crowdfunding, peer-to-peer fundraising, event ticketing, and donor-management tools.",
+      "how_it_works": "A fundraiser creates an account and campaign, connects Stripe or PayPal, publishes an embedded or hosted giving experience, and receives funds through the connected processor.",
+      "best_for": ["Nonprofits and other fundraisers needing configurable online forms, recurring giving, peer-to-peer pages, or event tools."],
+      "considerations": ["Platform fees depend on the feature and plan, while processor pricing and payout timing depend on account and country."]
+    },
+    "sources": [
+      { "url": "https://donorbox.org/pricing", "source_type": "terms-or-fees", "title": "Donorbox Pricing", "supports": ["programs.donorbox-fundraising-platform.economics", "geography"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://donorbox.org/explore/fundraising-for-nonprofits", "source_type": "official-program", "title": "Fundraising for Nonprofits", "supports": ["classification", "programs.donorbox-fundraising-platform.summary", "programs.donorbox-fundraising-platform.requirements", "programs.donorbox-fundraising-platform.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://donorbox.org/nonprofit-blog/get-started-with-donorbox", "source_type": "platform-documentation", "title": "Get Started with Donorbox: Step-by-Step Guide", "supports": ["programs.donorbox-fundraising-platform.timing", "content.how_it_works"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 1 research", "verifier": "FRD batch 1 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 1 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": { "name": "OneCause", "slug": "onecause", "website": "https://www.onecause.com/", "fundraising_url": "https://www.onecause.com/solutions/fundraising-platform/" },
+    "classification": {
+      "methods": ["direct-donations", "peer-to-peer", "events-activities", "auctions"],
+      "products_services": ["donation-platform", "peer-to-peer-platform", "auction-platform", "event-fundraising-platform", "text-mobile-giving"],
+      "organizations": ["schools", "churches-faith", "nonprofits-charities", "clubs-community", "arts-music-performance", "animal-rescue"],
+      "beneficiary_types": ["own-organization", "own-project-or-program"],
+      "activity_subtypes": ["fun-run", "walkathon", "bike-ride", "fitness-challenge", "giving-day", "gala", "golf-event", "raffle", "silent-auction", "live-auction", "peer-fundraising-challenge"],
+      "capabilities": ["donation-forms", "recurring-giving", "peer-to-peer-pages", "participant-pages", "leaderboards", "ticketing-registration", "auctions-mobile-bidding", "raffles-prize-drawings", "text-to-give", "digital-wallets", "sponsorship-management", "reporting-analytics"],
+      "outcomes": ["cash", "sponsorship"]
+    },
+    "programs": [{
+      "name": "OneCause Fundraising Platform",
+      "slug": "onecause-fundraising-platform",
+      "url": "https://www.onecause.com/solutions/fundraising-platform/",
+      "method": "auctions",
+      "products_services": ["donation-platform", "peer-to-peer-platform", "auction-platform", "event-fundraising-platform", "text-mobile-giving"],
+      "channels": ["online", "in-person", "hybrid"],
+      "online_ordering": null,
+      "fulfillment": ["digital", "on-site", "not-applicable"],
+      "inventory_model": "not-applicable",
+      "upfront_cost": "varies",
+      "summary": "OneCause combines online giving, text giving, ticketing, event management, auctions and mobile bidding, sponsorships, and peer-to-peer fundraising in packages for nonprofit organizations.",
+      "economics_mode": "program-specific",
+      "economics": {
+        "status": "known",
+        "arrangements": [
+          { "type": "upfront-cost", "value": { "kind": "amount", "amount": 200, "currency": "USD" }, "basis": "Published starting price for Pay-As-You-Go", "conditions": ["Pay-As-You-Go package"], "caveats": ["The final package price and fee cap are quote-dependent"] },
+          { "type": "platform-fee", "value": { "kind": "percentage", "percent": 5 }, "basis": "Funds raised under Pay-As-You-Go", "conditions": ["Pay-As-You-Go package"], "caveats": ["OneCause states that the percentage fee is capped but does not publish the cap on the general plans page"] },
+          { "type": "upfront-cost", "value": { "kind": "amount", "amount": 2995, "currency": "USD" }, "basis": "Professional Auction & Event annual package", "conditions": ["Flat annual subscription selected instead of percentage pricing"], "caveats": [] }
+        ],
+        "notes": ["Package availability and pricing vary by fundraising solution and organization needs; payment-processing terms were not established from the cited general plan pages."]
+      },
+      "requirements": {
+        "status": "known",
+        "legal_status": ["registered-nonprofit", "tax-exempt"],
+        "age_range": { "minimum": 18 },
+        "grade_range": null,
+        "participation_requirements": ["The customer must be a registered nonprofit, charitable organization, or other qualified donee in the United States or Canada."],
+        "minimum_group_size": null,
+        "minimum_order": null,
+        "minimum_sales": null,
+        "other_restrictions": ["Users must satisfy the age and account requirements in the OneCause terms."],
+        "editorial_summary": "OneCause is designed for registered nonprofit and charitable organizations in the United States and Canada."
+      },
+      "timing": { "status": "researched-unknown", "notes": [] },
+      "logistics": { "status": "known", "notes": ["Organizations select a package and configure online or hybrid campaigns, supporter pages, ticketing, auction inventory, bidding, event checkout, and reporting in the platform."] },
+      "beneficiary_types": ["own-organization", "own-project-or-program"],
+      "activity_subtypes": ["fun-run", "walkathon", "bike-ride", "fitness-challenge", "giving-day", "gala", "golf-event", "raffle", "silent-auction", "live-auction", "peer-fundraising-challenge"],
+      "capabilities": ["donation-forms", "recurring-giving", "peer-to-peer-pages", "participant-pages", "leaderboards", "ticketing-registration", "auctions-mobile-bidding", "raffles-prize-drawings", "text-to-give", "digital-wallets", "sponsorship-management", "reporting-analytics"],
+      "outcomes": ["cash", "sponsorship"]
+    }],
+    "geography": { "scope": ["us-nationwide", "canada"], "countries": ["US", "CA"], "states": [], "regions": [], "notes": "OneCause terms describe qualified nonprofit and charitable users in the United States and Canada." },
+    "content": {
+      "summary": "OneCause provides fundraising software for nonprofit auctions, events, online giving, text giving, and peer-to-peer campaigns.",
+      "how_it_works": "A nonprofit selects a plan and configures fundraising sites, participant experiences, event registration, auctions, donation appeals, or peer-to-peer campaigns in a shared platform.",
+      "best_for": ["Nonprofits running auctions, galas, golf events, giving campaigns, or supporter-led peer-to-peer programs."],
+      "considerations": ["Pricing is package-dependent and some material terms require a sales quote.", "No reliable standardized setup, funds-available, or payout timing was established from the reviewed official pages."]
+    },
+    "sources": [
+      { "url": "https://www.onecause.com/solutions/fundraising-platform/", "source_type": "official-program", "title": "OneCause Fundraising Platform", "supports": ["classification", "programs.onecause-fundraising-platform.summary", "programs.onecause-fundraising-platform.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.onecause.com/plans/", "source_type": "terms-or-fees", "title": "OneCause Plans & Pricing", "supports": ["programs.onecause-fundraising-platform.economics", "classification.organizations"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.onecause.com/general/user-terms/", "source_type": "terms-or-fees", "title": "OneCause User Terms", "supports": ["programs.onecause-fundraising-platform.requirements", "geography"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 1 research", "verifier": "FRD batch 1 research" },
+    "completeness": "standard",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 1 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": { "name": "99Pledges", "slug": "99pledges", "website": "https://99pledges.com/", "fundraising_url": "https://schools.99pledges.com/" },
+    "classification": {
+      "methods": ["pledge-athon", "peer-to-peer", "crowdfunding"],
+      "products_services": ["peer-to-peer-platform", "crowdfunding-platform", "donation-platform"],
+      "organizations": ["schools", "pto-pta", "sports-athletics", "booster-clubs", "youth-organizations", "clubs-community", "arts-music-performance", "nonprofits-charities"],
+      "beneficiary_types": ["own-organization", "own-project-or-program"],
+      "activity_subtypes": ["fun-run", "walkathon", "readathon", "peer-fundraising-challenge"],
+      "capabilities": ["donation-forms", "crowdfunding-pages", "peer-to-peer-pages", "participant-pages", "leaderboards", "qr-giving", "reporting-analytics"],
+      "outcomes": ["cash"]
+    },
+    "programs": [{
+      "name": "Pledge and A-Thon Fundraising",
+      "slug": "pledge-and-a-thon-fundraising",
+      "url": "https://schools.99pledges.com/",
+      "method": "pledge-athon",
+      "products_services": ["peer-to-peer-platform", "crowdfunding-platform", "donation-platform"],
+      "channels": ["online", "hybrid"],
+      "online_ordering": null,
+      "fulfillment": ["digital", "not-applicable"],
+      "inventory_model": "not-applicable",
+      "upfront_cost": "none",
+      "summary": "Schools, teams, and groups receive campaign and participant pages for flat donations or activity-based pledges such as laps or reading minutes, with online reporting and leaderboards.",
+      "economics_mode": "program-specific",
+      "economics": {
+        "status": "known",
+        "arrangements": [
+          { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Fundraiser setup", "conditions": [], "caveats": [] },
+          { "type": "platform-fee", "value": { "kind": "percentage", "percent": 0 }, "basis": "Online donations", "conditions": [], "caveats": [] },
+          { "type": "processing-fee", "value": { "kind": "percentage", "percent": 3.49 }, "basis": "Online donation transaction", "conditions": [], "caveats": [] },
+          { "type": "transaction-fee", "value": { "kind": "amount", "amount": 0.49, "currency": "USD" }, "basis": "Per online donation transaction", "conditions": [], "caveats": [] }
+        ],
+        "notes": ["Cash and check donations can be tracked in the platform without online processing fees."]
+      },
+      "requirements": {
+        "status": "known",
+        "legal_status": [],
+        "age_range": null,
+        "grade_range": null,
+        "participation_requirements": ["An organizer creates the fundraiser and supplies or invites participants; activity-based campaigns require results before payment can be requested."],
+        "minimum_group_size": null,
+        "minimum_order": null,
+        "minimum_sales": null,
+        "other_restrictions": [],
+        "editorial_summary": "The platform is designed for schools, sports teams, nonprofits, and other groups; no nonprofit-status requirement was established."
+      },
+      "timing": {
+        "status": "known",
+        "setup_lead_time": { "maximum": { "value": 1, "unit": "days" } },
+        "campaign_duration": { "minimum": { "value": 2, "unit": "weeks" }, "typical": { "value": 2, "unit": "weeks" }, "maximum": { "value": 3, "unit": "weeks" } },
+        "fulfillment_time": null,
+        "funds_available_time": { "maximum": { "value": 1, "unit": "business-days" } },
+        "payout_time": { "minimum": { "value": 1, "unit": "business-days" }, "maximum": { "value": 4, "unit": "business-days" } },
+        "payout_schedules": [],
+        "notes": ["Direct deposit is initiated within one business day after a completed payment request. Paper checks are an alternative and generally arrive in seven to ten business days."]
+      },
+      "logistics": { "status": "known", "notes": ["99Pledges can set up participant pages from a roster; organizers share pages, record activity results where applicable, close the fundraiser, and request one lump-sum payment."] },
+      "beneficiary_types": ["own-organization", "own-project-or-program"],
+      "activity_subtypes": ["fun-run", "walkathon", "readathon", "peer-fundraising-challenge"],
+      "capabilities": ["donation-forms", "crowdfunding-pages", "peer-to-peer-pages", "participant-pages", "leaderboards", "qr-giving", "reporting-analytics"],
+      "outcomes": ["cash"]
+    }],
+    "geography": { "scope": ["us-nationwide"], "countries": ["US"], "states": [], "regions": [], "notes": "The reviewed school and payment documentation describes United States organizations and U.S. bank or mailed-check payout paths." },
+    "content": {
+      "summary": "99Pledges is an online pledge and participant-page platform for school, team, and group fundraisers.",
+      "how_it_works": "An organizer creates a fundraiser, adds participant pages, shares the campaign, records activity results when pledges depend on performance, then closes the fundraiser and requests payment.",
+      "best_for": ["Schools, PTOs, teams, and youth groups running fun runs, walkathons, readathons, or participant-led donation drives."],
+      "considerations": ["Online donations incur percentage and per-transaction processing charges.", "Activity results must be entered before requesting payout for performance-based pledges."]
+    },
+    "sources": [
+      { "url": "https://schools.99pledges.com/", "source_type": "official-program", "title": "99Pledges Online Fundraising for Schools", "supports": ["classification", "programs.pledge-and-a-thon-fundraising.summary", "programs.pledge-and-a-thon-fundraising.economics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://help.99pledges.com/en/articles/687644-start-a-read-a-thon-with-99pledges", "source_type": "platform-documentation", "title": "Start a Read-a-thon with 99Pledges", "supports": ["programs.pledge-and-a-thon-fundraising.timing", "programs.pledge-and-a-thon-fundraising.logistics", "classification.activity_subtypes"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://help.99pledges.com/en/articles/675806-when-will-we-get-paid", "source_type": "platform-documentation", "title": "When will we get paid?", "supports": ["programs.pledge-and-a-thon-fundraising.requirements", "programs.pledge-and-a-thon-fundraising.timing"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 1 research", "verifier": "FRD batch 1 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 1 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": { "name": "Bonfire", "slug": "bonfire", "website": "https://www.bonfire.com/", "fundraising_url": "https://www.bonfire.com/fundraising/nonprofits/" },
+    "classification": {
+      "methods": ["product-sales", "direct-donations", "crowdfunding"],
+      "products_services": ["apparel-spirit-wear", "merchandise-online-store"],
+      "organizations": ["schools", "pto-pta", "sports-athletics", "booster-clubs", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance", "animal-rescue", "individuals-personal-causes"],
+      "beneficiary_types": ["own-organization", "own-project-or-program", "individual-or-family", "local-nonprofit-or-charity", "national-nonprofit-or-charity", "community-cause", "open-or-unspecified-cause"],
+      "capabilities": ["online-store", "print-on-demand", "fulfillment", "reporting-analytics"],
+      "outcomes": ["cash"]
+    },
+    "programs": [{
+      "name": "Merch Fundraising Campaigns",
+      "slug": "merch-fundraising-campaigns",
+      "url": "https://www.bonfire.com/fundraising/nonprofits/",
+      "method": "product-sales",
+      "products_services": ["apparel-spirit-wear", "merchandise-online-store"],
+      "channels": ["online", "hybrid"],
+      "online_ordering": true,
+      "fulfillment": ["direct-to-supporter", "group-distribution", "provider-delivery"],
+      "inventory_model": "no-inventory",
+      "upfront_cost": "none",
+      "summary": "Organizers design and price custom merchandise, promote an online campaign, and receive the difference between sale price and Bonfire's base cost while Bonfire prints and ships orders.",
+      "economics_mode": "program-specific",
+      "economics": {
+        "status": "known",
+        "arrangements": [
+          { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Launching and selling through a Bonfire campaign", "conditions": [], "caveats": [] },
+          { "type": "product-sale-profit", "value": { "kind": "variable", "description": "Campaign price minus the product's manufacturing, sourcing, and printing base cost; margins increase with higher quantities" }, "basis": "Each product sold", "conditions": ["The organizer sets a sale price above the applicable base cost"], "caveats": ["Base cost varies by product, design, and batch quantity"] },
+          { "type": "processing-fee", "value": { "kind": "percentage", "percent": 8 }, "basis": "Optional additional contributions at checkout", "conditions": ["Standard campaign donation processing"], "caveats": [] },
+          { "type": "processing-fee", "value": { "kind": "percentage", "percent": 3.5 }, "basis": "Optional additional contributions at checkout", "conditions": ["Verified nonprofit campaign"], "caveats": [] },
+          { "type": "minimum-payout", "value": { "kind": "amount", "amount": 5, "currency": "USD" }, "basis": "PayPal payout request", "conditions": [], "caveats": ["Alternative check and ACH payout methods have higher minimums and are eligibility-dependent"] }
+        ],
+        "notes": ["Buyers pay shipping separately, so standard campaign shipping is not deducted from campaign profits."]
+      },
+      "requirements": {
+        "status": "known",
+        "legal_status": [],
+        "age_range": null,
+        "grade_range": null,
+        "participation_requirements": ["The organizer supplies or creates a design, selects products, sets prices, and promotes the campaign."],
+        "minimum_group_size": null,
+        "minimum_order": null,
+        "minimum_sales": null,
+        "other_restrictions": ["United States nonprofit verification and an authorized organization role are required for verified nonprofit perks and direct organization payouts."],
+        "editorial_summary": "Anyone may sell through Bonfire, while verified nonprofit status provides reduced donation fees and nonprofit-specific payout options."
+      },
+      "timing": {
+        "status": "known",
+        "setup_lead_time": null,
+        "campaign_duration": { "minimum": { "value": 2, "unit": "days" }, "maximum": { "value": 21, "unit": "days" } },
+        "fulfillment_time": null,
+        "funds_available_time": { "minimum": { "value": 1, "unit": "business-days" }, "maximum": { "value": 3, "unit": "business-days" } },
+        "payout_time": { "typical": { "value": 1, "unit": "business-days" } },
+        "payout_schedules": [],
+        "notes": ["The 2–21-day duration applies to batch campaigns; campaigns may instead run continuously using print on demand. The one-business-day payout time describes PayPal after a payout request."]
+      },
+      "logistics": { "status": "known", "notes": ["Bonfire prints after a batch ends or on the next business day for print-on-demand orders. Sellers choose direct-to-buyer, group shipping, or buyer-choice shipping; buyers generally pay shipping."] },
+      "beneficiary_types": ["own-organization", "own-project-or-program", "individual-or-family", "local-nonprofit-or-charity", "national-nonprofit-or-charity", "community-cause", "open-or-unspecified-cause"],
+      "capabilities": ["online-store", "print-on-demand", "fulfillment", "reporting-analytics"],
+      "outcomes": ["cash"]
+    }],
+    "geography": { "scope": ["international"], "countries": [], "states": [], "regions": [], "notes": "Bonfire offers international campaign-order shipping subject to country restrictions and customs charges; nonprofit verification in Bonfire is currently limited to United States nonprofits." },
+    "content": {
+      "summary": "Bonfire is a custom-merchandise campaign platform that handles printing, payments, shipping, and campaign payouts.",
+      "how_it_works": "An organizer creates a design, chooses products and prices, launches a campaign, and promotes it; Bonfire produces and fulfills sold merchandise and makes campaign profits available after each successful batch.",
+      "best_for": ["Groups, nonprofits, and individuals that want custom apparel fundraising without purchasing inventory upfront."],
+      "considerations": ["Profit varies with product base cost, price, design, and quantity.", "International buyers may owe duties or taxes, and group shipping is limited to the continental United States."]
+    },
+    "sources": [
+      { "url": "https://www.bonfire.com/fundraising/nonprofits/", "source_type": "official-program", "title": "Nonprofit Fundraising with Custom Merch", "supports": ["classification.organizations", "programs.merch-fundraising-campaigns.economics", "programs.merch-fundraising-campaigns.requirements"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://help.bonfire.com/en/articles/1614156-pricing-fees", "source_type": "terms-or-fees", "title": "Pricing & fees", "supports": ["programs.merch-fundraising-campaigns.economics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://help.bonfire.com/en/articles/1614140-bonfire-basics", "source_type": "platform-documentation", "title": "Bonfire Basics", "supports": ["programs.merch-fundraising-campaigns.summary", "programs.merch-fundraising-campaigns.timing", "programs.merch-fundraising-campaigns.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://help.bonfire.com/en/articles/1614157-how-payouts-work", "source_type": "platform-documentation", "title": "How Payouts Work", "supports": ["programs.merch-fundraising-campaigns.economics", "programs.merch-fundraising-campaigns.timing"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://help.bonfire.com/en/articles/3396430-shipping-options", "source_type": "platform-documentation", "title": "Shipping Options", "supports": ["programs.merch-fundraising-campaigns.logistics", "geography"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 1 research", "verifier": "FRD batch 1 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 1 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": { "name": "Funds2Orgs", "slug": "funds2orgs", "website": "https://funds2orgs.com/", "fundraising_url": "https://funds2orgs.com/funds2orgs-faq/" },
+    "classification": {
+      "methods": ["collection-reuse-fundraising", "in-kind-resource-fundraising"],
+      "products_services": [],
+      "organizations": ["schools", "pto-pta", "sports-athletics", "booster-clubs", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance", "animal-rescue"],
+      "beneficiary_types": ["own-organization", "own-project-or-program"],
+      "cause_areas": ["environment-conservation", "community-neighborhood"],
+      "activity_subtypes": ["shoe-drive"],
+      "capabilities": ["collection-logistics", "fulfillment"],
+      "outcomes": ["cash"]
+    },
+    "programs": [{
+      "name": "Shoe Drive Fundraiser",
+      "slug": "shoe-drive-fundraiser",
+      "url": "https://funds2orgs.com/funds2orgs-faq/",
+      "method": "collection-reuse-fundraising",
+      "products_services": [],
+      "channels": ["in-person"],
+      "online_ordering": false,
+      "fulfillment": ["not-applicable"],
+      "inventory_model": "no-inventory",
+      "upfront_cost": "none",
+      "summary": "Groups collect paired, gently worn, used, and new shoes; Funds2Orgs supplies collection materials and coaching, arranges receipt, weighs the shoes, and pays the group by the pound.",
+      "economics_mode": "program-specific",
+      "economics": {
+        "status": "known",
+        "arrangements": [
+          { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Shoe-drive materials, coaching, and standard collection support", "conditions": [], "caveats": ["Groups pay their own costs if they choose to print optional marketing templates"] },
+          { "type": "fixed-payout", "value": { "kind": "variable", "description": "Payment is based on the total pounds of accepted shoes and the selected shoe-drive program" }, "basis": "Accepted shoe weight", "conditions": ["Funds2Orgs receives and processes the collected shoes"], "caveats": ["The official FAQ does not publish one universal per-pound rate"] }
+        ],
+        "notes": []
+      },
+      "requirements": {
+        "status": "known",
+        "legal_status": [],
+        "age_range": null,
+        "grade_range": null,
+        "participation_requirements": ["Shoes must be gently worn, used, or new and remain paired together.", "The group coordinates community collection and follows the coach's packing and pickup instructions."],
+        "minimum_group_size": null,
+        "minimum_order": null,
+        "minimum_sales": null,
+        "other_restrictions": ["Funds2Orgs is a for-profit social enterprise and does not issue charitable tax receipts."],
+        "editorial_summary": "Fundraising terms and the applicable payment plan are established with a Funds2Orgs coach."
+      },
+      "timing": {
+        "status": "known",
+        "setup_lead_time": null,
+        "campaign_duration": { "typical": { "value": 60, "unit": "days" } },
+        "fulfillment_time": null,
+        "funds_available_time": null,
+        "payout_time": { "exact": { "value": 2, "unit": "business-days" } },
+        "payout_schedules": [],
+        "notes": ["The two-business-day payment timing begins after shoes reach and are processed at the Funds2Orgs Florida warehouse."]
+      },
+      "logistics": { "status": "known", "notes": ["Funds2Orgs provides clear collection bags, rubber bands, templates, coaching, and pickup support. The warehouse weighs received shoes and issues a receipt and check."] },
+      "beneficiary_types": ["own-organization", "own-project-or-program"],
+      "cause_areas": ["environment-conservation", "community-neighborhood"],
+      "activity_subtypes": ["shoe-drive"],
+      "capabilities": ["collection-logistics", "fulfillment"],
+      "outcomes": ["cash"]
+    }],
+    "geography": { "scope": ["us-nationwide"], "countries": ["US"], "states": [], "regions": [], "notes": "The reviewed materials describe United States collection support and processing through the Funds2Orgs warehouse in Florida; pickup details are arranged with a fundraising coach." },
+    "content": {
+      "summary": "Funds2Orgs runs no-upfront-cost shoe-drive fundraisers that pay organizations based on collected shoe weight.",
+      "how_it_works": "A group enrolls with a coach, collects and pairs shoes using supplied materials, coordinates pickup, and receives a weight-based check after warehouse processing.",
+      "best_for": ["Schools, teams, churches, nonprofits, and civic groups able to organize a community shoe collection."],
+      "considerations": ["The payout rate is program-specific and must be confirmed with a coach.", "Collection, packing, storage, and promotion require hands-on group coordination."]
+    },
+    "sources": [
+      { "url": "https://funds2orgs.com/funds2orgs-faq/", "source_type": "official-program", "title": "Shoe Drive FAQ", "supports": ["programs.shoe-drive-fundraiser.summary", "programs.shoe-drive-fundraiser.economics", "programs.shoe-drive-fundraiser.requirements", "programs.shoe-drive-fundraiser.timing", "programs.shoe-drive-fundraiser.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://funds2orgs.com/school-shoe-drive/", "source_type": "official-program", "title": "School Shoe Drive Fundraisers", "supports": ["classification.organizations", "classification.activity_subtypes", "classification.capabilities", "content.how_it_works"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 1 research", "verifier": "FRD batch 1 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 1 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": { "name": "ShopRaise", "slug": "shopraise", "website": "https://shopraise.com/", "fundraising_url": "https://shopraise.com/schools" },
+    "classification": {
+      "methods": ["everyday-passive-fundraising"],
+      "products_services": ["shopping-rewards", "gift-cards"],
+      "organizations": ["schools", "pto-pta", "sports-athletics", "booster-clubs", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance", "animal-rescue", "individuals-personal-causes"],
+      "beneficiary_types": ["own-organization", "own-project-or-program", "individual-or-family", "community-cause", "open-or-unspecified-cause"],
+      "capabilities": ["reporting-analytics"],
+      "outcomes": ["cash"]
+    },
+    "economics": {
+      "status": "known",
+      "arrangements": [
+        { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Organization and supporter participation", "conditions": [], "caveats": [] },
+        { "type": "revenue-share", "value": { "kind": "variable", "description": "Merchant- and transaction-specific contribution advertised as up to 10%" }, "basis": "Qualifying online purchases or digital gift-card sales", "conditions": ["The supporter uses ShopRaise and completes a qualifying purchase"], "caveats": ["Contribution percentage varies by retailer, item, category, and current merchant program"] },
+        { "type": "minimum-payout", "value": { "kind": "amount", "amount": 50, "currency": "USD" }, "basis": "Monthly organization eCheck payout", "conditions": ["The organization requests payout and completes any required verification"], "caveats": ["Official help describes the threshold as approximately $50"] }
+      ],
+      "notes": ["Participating retailers fund shopping contributions; supporters do not pay an added charitable charge for eligible shopping or gift-card transactions."]
+    },
+    "programs": [
+      {
+        "name": "Online Shopping Rewards",
+        "slug": "online-shopping-rewards",
+        "url": "https://shopraise.com/schools",
+        "method": "everyday-passive-fundraising",
+        "products_services": ["shopping-rewards"],
+        "channels": ["online"],
+        "online_ordering": true,
+        "fulfillment": ["digital", "not-applicable"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "Supporters select a cause and shop through the ShopRaise app or browser tools at participating retailers, generating a merchant-funded contribution for the cause.",
+        "economics_mode": "inherit-provider",
+        "requirements": { "status": "known", "legal_status": [], "age_range": null, "grade_range": null, "participation_requirements": ["The organization or individual creates a cause account and supporters select it before eligible shopping."], "minimum_group_size": null, "minimum_order": null, "minimum_sales": null, "other_restrictions": ["Retailers may change contribution rates, exclusions, or participation."], "editorial_summary": "A 501(c)(3) designation is not required." },
+        "timing": { "status": "known", "setup_lead_time": null, "campaign_duration": { "open_ended": true }, "fulfillment_time": null, "funds_available_time": null, "payout_time": null, "payout_schedules": [{ "frequency": "monthly", "delivery_method": null, "anchor": null, "conditions": ["The cause requests payout, confirms payout information, and has approximately $50 available"], "caveats": ["ShopRaise describes delivery as eCheck"] }], "notes": [] },
+        "logistics": { "status": "known", "notes": ["Supporters use the mobile app or browser extension to activate eligible merchant shopping; causes receive customized sharing materials and contribution reporting."] },
+        "beneficiary_types": ["own-organization", "own-project-or-program", "individual-or-family", "community-cause", "open-or-unspecified-cause"],
+        "capabilities": ["reporting-analytics"],
+        "outcomes": ["cash"]
+      },
+      {
+        "name": "Digital Gift Card Rewards",
+        "slug": "digital-gift-card-rewards",
+        "url": "https://shopraise.com/gift-cards",
+        "method": "everyday-passive-fundraising",
+        "products_services": ["gift-cards"],
+        "channels": ["online", "in-person"],
+        "online_ordering": true,
+        "fulfillment": ["digital"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "Supporters purchase digital merchant gift cards through ShopRaise for email delivery and the selected cause earns the published merchant-specific contribution.",
+        "economics_mode": "inherit-provider",
+        "requirements": { "status": "known", "legal_status": [], "age_range": null, "grade_range": null, "participation_requirements": ["The supporter selects a cause and purchases a participating digital gift card through ShopRaise."], "minimum_group_size": null, "minimum_order": null, "minimum_sales": null, "other_restrictions": ["Gift-card availability and contribution rates vary by merchant."], "editorial_summary": "A 501(c)(3) designation is not required for the cause account." },
+        "timing": { "status": "known", "setup_lead_time": null, "campaign_duration": { "open_ended": true }, "fulfillment_time": null, "funds_available_time": null, "payout_time": null, "payout_schedules": [{ "frequency": "monthly", "delivery_method": null, "anchor": null, "conditions": ["The cause requests payout, confirms payout information, and has approximately $50 available"], "caveats": ["ShopRaise describes delivery as eCheck"] }], "notes": ["ShopRaise states digital gift cards are delivered by email within minutes, but does not publish an exact delivery guarantee."] },
+        "logistics": { "status": "known", "notes": ["Digital cards are delivered by email and can be used according to the participating merchant's in-store or online redemption rules."] },
+        "beneficiary_types": ["own-organization", "own-project-or-program", "individual-or-family", "community-cause", "open-or-unspecified-cause"],
+        "outcomes": ["cash"]
+      }
+    ],
+    "geography": { "scope": ["us-nationwide"], "countries": ["US"], "states": [], "regions": [], "notes": "The reviewed retailer, school, and eCheck materials describe United States shopping and organization participation; merchant availability varies." },
+    "content": {
+      "summary": "ShopRaise turns eligible online shopping and digital gift-card purchases into merchant-funded contributions for a selected cause.",
+      "how_it_works": "A cause enrolls and invites supporters, supporters select it in the ShopRaise app or browser tools, and qualifying merchant shopping or gift-card purchases accrue variable contributions for monthly payout.",
+      "best_for": ["Schools, teams, clubs, charities, and personal causes seeking year-round passive fundraising linked to routine purchases."],
+      "considerations": ["Retailer participation, exclusions, and contribution percentages vary and can change.", "Monthly payouts require verification and an approximately $50 available balance."]
+    },
+    "sources": [
+      { "url": "https://shopraise.com/schools", "source_type": "official-program", "title": "School Fundraising with Everyday Shopping", "supports": ["classification.organizations", "economics", "programs.online-shopping-rewards.summary", "programs.online-shopping-rewards.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://shopraise.com/gift-cards", "source_type": "official-program", "title": "Gift Card Fundraising", "supports": ["economics", "programs.digital-gift-card-rewards.summary", "programs.digital-gift-card-rewards.timing", "programs.digital-gift-card-rewards.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://help.shopraise.com/hc/en-us/articles/218391578-How-much-does-it-cost-Are-there-any-fees", "source_type": "platform-documentation", "title": "How much does it cost? Are there any fees?", "supports": ["economics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://help.shopraise.com/hc/en-us/articles/360032985831-How-do-I-request-a-payout", "source_type": "platform-documentation", "title": "How do I request a payout?", "supports": ["economics", "programs.online-shopping-rewards.timing", "programs.digital-gift-card-rewards.timing"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://help.shopraise.com/hc/en-us/articles/218910497-Who-can-sign-up-for-an-account", "source_type": "platform-documentation", "title": "Who can sign up for an account?", "supports": ["programs.online-shopping-rewards.requirements", "programs.digital-gift-card-rewards.requirements"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 1 research", "verifier": "FRD batch 1 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 1 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": { "name": "Chipotle Community Fundraising", "slug": "chipotle-community-fundraising", "legal_name": "Chipotle Mexican Grill, Inc.", "aliases": ["Chipotle Fundraisers"], "website": "https://community.chipotle.com/", "fundraising_url": "https://marketing.chipotle.com/partner/fundraiser-request/" },
+    "classification": {
+      "methods": ["restaurant-business-partnerships", "events-activities"],
+      "products_services": [],
+      "organizations": ["schools", "pto-pta", "sports-athletics", "booster-clubs", "nonprofits-charities", "youth-organizations", "clubs-community", "animal-rescue"],
+      "beneficiary_types": ["own-organization", "own-project-or-program", "local-nonprofit-or-charity", "community-cause"],
+      "activity_subtypes": ["restaurant-night"],
+      "outcomes": ["cash"]
+    },
+    "programs": [{
+      "name": "Chipotle Restaurant Fundraiser",
+      "slug": "chipotle-restaurant-fundraiser",
+      "url": "https://marketing.chipotle.com/partner/fundraiser-request/",
+      "method": "restaurant-business-partnerships",
+      "products_services": [],
+      "channels": ["in-person", "online", "hybrid"],
+      "online_ordering": true,
+      "fulfillment": ["on-site", "local-pickup"],
+      "inventory_model": "not-applicable",
+      "upfront_cost": "none",
+      "summary": "An approved organization promotes a four-hour event at one Chipotle restaurant, and qualifying in-person or coded online pickup sales generate a donation to the organization.",
+      "economics_mode": "program-specific",
+      "economics": {
+        "status": "known",
+        "arrangements": [
+          { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Applying for and hosting the fundraiser", "conditions": ["The request is approved"], "caveats": [] },
+          { "type": "restaurant-give-back", "value": { "kind": "percentage", "percent": 25 }, "basis": "Qualifying pre-tax event sales", "conditions": ["Supporters identify the fundraiser in person or use the event code for pickup during the scheduled location and time"], "caveats": [] },
+          { "type": "minimum-sales", "value": { "kind": "amount", "amount": 150, "currency": "USD" }, "basis": "Total qualifying event sales", "conditions": ["Minimum must be met for the organization to receive a donation"], "caveats": [] }
+        ],
+        "notes": []
+      },
+      "requirements": {
+        "status": "known",
+        "legal_status": ["other"],
+        "age_range": null,
+        "grade_range": null,
+        "participation_requirements": ["The organization applies at least three weeks before the event and completes the approval and tax-information process.", "Supporters must identify the fundraiser or use its online pickup code during the scheduled event."],
+        "minimum_group_size": null,
+        "minimum_order": null,
+        "minimum_sales": { "kind": "amount", "amount": 150, "currency": "USD" },
+        "other_restrictions": ["Chipotle does not fund individual causes, for-profit ventures, political or lobbying groups, religious groups for religious purposes, or individual study, research, travel, scholarship, stipend, or medical-expense requests.", "Each organization is limited to one fundraiser every six months and one participating restaurant per event.", "Promotion at the restaurant, solicitation, tables, donation jars, and flyer distribution on restaurant premises are prohibited."],
+        "editorial_summary": "Checks are payable only to organizations; public schools and public universities can use specified institutional payment paths when they lack separate tax information."
+      },
+      "timing": {
+        "status": "known",
+        "setup_lead_time": { "minimum": { "value": 3, "unit": "weeks" } },
+        "campaign_duration": { "exact": { "value": 4, "unit": "hours" } },
+        "fulfillment_time": null,
+        "funds_available_time": null,
+        "payout_time": { "minimum": { "value": 30, "unit": "days" }, "maximum": { "value": 45, "unit": "days" } },
+        "payout_schedules": [],
+        "notes": ["Events use either a 4–8 p.m. or 5–9 p.m. evening window. Checks are processed and mailed after the fundraiser."]
+      },
+      "logistics": { "status": "known", "notes": ["Qualifying purchases are made in person after identifying the fundraiser or online/in-app for pickup using the event code. Delivery orders, gift cards, orders outside the event time, and orders at another location do not count."] },
+      "beneficiary_types": ["own-organization", "own-project-or-program", "local-nonprofit-or-charity", "community-cause"],
+      "activity_subtypes": ["restaurant-night"],
+      "outcomes": ["cash"]
+    }],
+    "geography": { "scope": ["local"], "countries": ["US"], "states": [], "regions": [], "notes": "Each approved fundraiser is tied to one participating Chipotle restaurant. Individual restaurant/location ingestion is outside the provider corpus." },
+    "content": {
+      "summary": "Chipotle Community Fundraising offers approved organizations a scheduled restaurant event that returns 25% of qualifying sales after a minimum is met.",
+      "how_it_works": "An eligible organization applies for one restaurant and evening time, promotes the provided event materials, and receives a mailed check after supporters generate qualifying in-person or coded pickup sales.",
+      "best_for": ["Schools, teams, clubs, community organizations, and nonprofits with supporters near a participating Chipotle restaurant."],
+      "considerations": ["The event must generate at least $150 in qualifying sales.", "Only orders at the approved location and time using an eligible participation method count."]
+    },
+    "sources": [
+      { "url": "https://community.chipotle.com/", "source_type": "official-program", "title": "Chipotle Community Fundraising", "supports": ["identity", "programs.chipotle-restaurant-fundraiser.summary", "programs.chipotle-restaurant-fundraiser.economics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://marketing.chipotle.com/partner/fundraiser-request/", "source_type": "official-program", "title": "Chipotle Fundraising Application", "supports": ["classification.organizations", "programs.chipotle-restaurant-fundraiser.requirements", "programs.chipotle-restaurant-fundraiser.timing", "geography"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://marketing.chipotle.com/fundraisers/faq", "source_type": "official-program", "title": "Chipotle Fundraisers — Frequently Asked Questions", "supports": ["programs.chipotle-restaurant-fundraiser.economics", "programs.chipotle-restaurant-fundraiser.requirements", "programs.chipotle-restaurant-fundraiser.timing", "programs.chipotle-restaurant-fundraiser.logistics"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 1 research", "verifier": "FRD batch 1 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 1 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": { "name": "Little Caesars Fundraising", "slug": "little-caesars-fundraising", "aliases": ["Little Caesars Pizza Kit Fundraising Program"], "website": "https://fundraising.littlecaesars.com/", "fundraising_url": "https://fundraising.littlecaesars.com/how-it-works" },
+    "classification": {
+      "methods": ["product-sales"],
+      "products_services": ["frozen-prepared-foods"],
+      "organizations": ["schools", "pto-pta", "sports-athletics", "booster-clubs", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance"],
+      "beneficiary_types": ["own-organization", "own-project-or-program"],
+      "outcomes": ["cash"]
+    },
+    "economics": {
+      "status": "known",
+      "arrangements": [{
+        "type": "product-sale-profit",
+        "value": { "kind": "variable", "description": "Official pages currently conflict between $6 and $7 profit per standard kit or meal-deal sale; Slice of Giving and bundle profit varies" },
+        "basis": "Eligible item sold",
+        "conditions": [],
+        "caveats": ["Confirm the current per-item profit before launch because official pages checked on the same date publish different amounts"]
+      }],
+      "notes": []
+    },
+    "programs": [
+      {
+        "name": "Brochure Pizza Kit Fundraiser",
+        "slug": "brochure-pizza-kit-fundraiser",
+        "url": "https://fundraising.littlecaesars.com/how-it-works",
+        "method": "product-sales",
+        "products_services": ["frozen-prepared-foods"],
+        "channels": ["in-person"],
+        "online_ordering": false,
+        "fulfillment": ["provider-delivery", "group-distribution"],
+        "inventory_model": "preorder",
+        "upfront_cost": "varies",
+        "summary": "A group takes brochure orders for Pizza Kits and Meal Deal Codes, submits a consolidated order, receives delivery at one location, distributes items, and retains collected profit before paying the balance to the driver.",
+        "economics_mode": "inherit-provider",
+        "requirements": { "status": "known", "legal_status": [], "age_range": null, "grade_range": null, "participation_requirements": ["The group books the fundraiser, distributes selling materials, submits its consolidated order, receives delivery, and coordinates supporter pickup."], "minimum_group_size": null, "minimum_order": null, "minimum_sales": null, "other_restrictions": [], "editorial_summary": "No reliable current minimum order was established from the reviewed pages." },
+        "timing": { "status": "known", "setup_lead_time": null, "campaign_duration": null, "fulfillment_time": null, "funds_available_time": null, "payout_time": null, "payout_schedules": [], "notes": ["The group retains its profit from collected brochure-order cash at fundraiser close and pays the remaining amount to the delivery driver; no separate elapsed funds-availability interval applies."] },
+        "logistics": { "status": "known", "notes": ["The consolidated order is delivered to one group location for organizer-managed distribution; the group pays the order balance to the driver on delivery day."] },
+        "beneficiary_types": ["own-organization", "own-project-or-program"],
+        "outcomes": ["cash"]
+      },
+      {
+        "name": "Online Pizza Kit Fundraiser",
+        "slug": "online-pizza-kit-fundraiser",
+        "url": "https://fundraising.littlecaesars.com/how-it-works",
+        "method": "product-sales",
+        "products_services": ["frozen-prepared-foods"],
+        "channels": ["online"],
+        "online_ordering": true,
+        "fulfillment": ["direct-to-supporter", "provider-delivery"],
+        "inventory_model": "preorder",
+        "upfront_cost": "none",
+        "summary": "Supporters order Pizza Kits and Meal Deal Codes online, physical products ship by FedEx to buyers, and the group receives its profit by mailed check after the fundraiser.",
+        "economics_mode": "inherit-provider",
+        "requirements": { "status": "known", "legal_status": [], "age_range": null, "grade_range": null, "participation_requirements": ["The group registers, shares its online fundraiser, and supplies accurate organization and mailing information."], "minimum_group_size": null, "minimum_order": null, "minimum_sales": null, "other_restrictions": [], "editorial_summary": "The official page states that the online fundraiser has no minimum order." },
+        "timing": { "status": "known", "setup_lead_time": null, "campaign_duration": null, "fulfillment_time": null, "funds_available_time": null, "payout_time": { "minimum": { "value": 2, "unit": "weeks" }, "maximum": { "value": 4, "unit": "weeks" } }, "payout_schedules": [], "notes": ["The profit check is mailed after the fundraiser ends."] },
+        "logistics": { "status": "known", "notes": ["Physical Pizza Kit orders ship directly to buyers by FedEx; digital Meal Deal Codes are emailed."] },
+        "beneficiary_types": ["own-organization", "own-project-or-program"],
+        "outcomes": ["cash"]
+      },
+      {
+        "name": "Meal Deal Fundraiser",
+        "slug": "meal-deal-fundraiser",
+        "url": "https://fundraising.littlecaesars.com/how-it-works",
+        "method": "product-sales",
+        "products_services": ["frozen-prepared-foods"],
+        "channels": ["online", "in-person"],
+        "online_ordering": true,
+        "fulfillment": ["digital", "local-pickup"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "Supporters buy digital Meal Deal Codes through the fundraiser, receive them by email, and redeem them through Little Caesars for restaurant pickup without shipping.",
+        "economics_mode": "inherit-provider",
+        "requirements": { "status": "known", "legal_status": [], "age_range": null, "grade_range": null, "participation_requirements": ["The group registers and shares the online fundraiser; supporters redeem emailed codes according to the Meal Deal terms."], "minimum_group_size": null, "minimum_order": null, "minimum_sales": null, "other_restrictions": [], "editorial_summary": "The official page states that the Meal Deal fundraiser has no minimum order." },
+        "timing": { "status": "known", "setup_lead_time": null, "campaign_duration": null, "fulfillment_time": null, "funds_available_time": null, "payout_time": { "minimum": { "value": 2, "unit": "weeks" }, "maximum": { "value": 4, "unit": "weeks" } }, "payout_schedules": [], "notes": ["Codes are delivered by email, but the reviewed overview does not publish an exact delivery-time guarantee."] },
+        "logistics": { "status": "known", "notes": ["Meal Deal Codes are emailed to buyers and redeemed through the Little Caesars app or website for restaurant pickup; no product shipping is required."] },
+        "beneficiary_types": ["own-organization", "own-project-or-program"],
+        "outcomes": ["cash"]
+      }
+    ],
+    "geography": { "scope": ["us-nationwide", "canada"], "countries": ["US", "CA"], "states": [], "regions": [], "notes": "Little Caesars Fundraising states that it serves schools, teams, and nonprofit organizations in the United States and Canada; product and restaurant availability may vary by postal code." },
+    "content": {
+      "summary": "Little Caesars Fundraising offers brochure, direct-shipped online, and digital Meal Deal product-sale fundraisers.",
+      "how_it_works": "A group chooses a fundraiser format, registers, promotes its store or brochure, and earns item-based profit while fulfillment and payment flow depend on the chosen format.",
+      "best_for": ["Schools, teams, and nonprofit groups seeking a recognized prepared-food product fundraiser with group-delivery or direct-to-supporter options."],
+      "considerations": ["Official pages checked together conflict on whether standard profit is $6 or $7 per item; confirm current economics before launch.", "Brochure campaigns require delivery and group distribution, while online and Meal Deal campaigns use mailed profit checks."]
+    },
+    "sources": [
+      { "url": "https://fundraising.littlecaesars.com/how-it-works", "source_type": "official-program", "title": "How It Works — Little Caesars Fundraising", "supports": [{ "path": "economics", "status": "needs-recheck", "notes": "This official page publishes $6 profit while other current official pages publish $7." }, "programs.brochure-pizza-kit-fundraiser.summary", "programs.brochure-pizza-kit-fundraiser.requirements", "programs.brochure-pizza-kit-fundraiser.timing", "programs.brochure-pizza-kit-fundraiser.logistics", "programs.online-pizza-kit-fundraiser.summary", "programs.online-pizza-kit-fundraiser.requirements", "programs.online-pizza-kit-fundraiser.timing", "programs.online-pizza-kit-fundraiser.logistics", "programs.meal-deal-fundraiser.summary", "programs.meal-deal-fundraiser.requirements", "programs.meal-deal-fundraiser.timing", "programs.meal-deal-fundraiser.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://fundraising.littlecaesars.com/fundraiser-info?referralsource=we-are-teachers", "source_type": "official-program", "title": "Little Caesars Fundraising — Fundraiser Information", "supports": [{ "path": "economics", "status": "needs-recheck", "notes": "This official page publishes $7 profit while the current How It Works page publishes $6." }, "classification.products_services"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.fundraising.littlecaesars.com/about-us", "source_type": "official-provider", "title": "About Little Caesars Fundraising", "supports": [{ "path": "economics", "status": "needs-recheck", "notes": "This official page publishes $7 profit while the current How It Works page publishes $6." }, "classification.organizations", "geography"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "partially-verified", "review_status": "needs-recheck", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 1 research", "verifier": "FRD batch 1 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 1 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": { "name": "BetterWorld", "slug": "betterworld", "website": "https://betterworld.org/", "fundraising_url": "https://betterworld.org/pricing/" },
+    "classification": {
+      "methods": ["direct-donations", "crowdfunding", "peer-to-peer", "events-activities", "auctions", "pledge-athon"],
+      "products_services": ["donation-platform", "crowdfunding-platform", "peer-to-peer-platform", "auction-platform", "event-fundraising-platform"],
+      "organizations": ["schools", "pto-pta", "sports-athletics", "booster-clubs", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance", "animal-rescue", "individuals-personal-causes"],
+      "beneficiary_types": ["own-organization", "own-project-or-program", "local-nonprofit-or-charity", "national-nonprofit-or-charity", "community-cause", "open-or-unspecified-cause"],
+      "activity_subtypes": ["fun-run", "walkathon", "readathon", "raffle", "prize-drawing", "silent-auction", "live-auction", "peer-fundraising-challenge"],
+      "capabilities": ["donation-forms", "recurring-giving", "crowdfunding-pages", "peer-to-peer-pages", "participant-pages", "leaderboards", "ticketing-registration", "auctions-mobile-bidding", "raffles-prize-drawings", "digital-wallets", "donor-crm", "reporting-analytics"],
+      "outcomes": ["cash"]
+    },
+    "economics": {
+      "status": "known",
+      "arrangements": [
+        { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Free plan subscription", "conditions": ["Free plan"], "caveats": ["Donors are shown an optional suggested contribution"] },
+        { "type": "platform-fee", "value": { "kind": "percentage", "percent": 0 }, "basis": "Free plan transactions", "conditions": ["Free plan"], "caveats": ["Payment-processing costs still apply unless covered by the donor"] },
+        { "type": "platform-fee", "value": { "kind": "percentage", "percent": 2.2 }, "basis": "Standard Donation campaigns and Donation Forms", "conditions": ["Flex plan"], "caveats": [] },
+        { "type": "platform-fee", "value": { "kind": "percentage", "percent": 5 }, "basis": "Campaign types other than Standard Donation and Donation Forms", "conditions": ["Flex plan"], "caveats": [] },
+        { "type": "upfront-cost", "value": { "kind": "amount", "amount": 1550, "currency": "USD" }, "basis": "Annual Partner plan membership", "conditions": ["Partner plan"], "caveats": [] },
+        { "type": "platform-fee", "value": { "kind": "percentage", "percent": 1.25 }, "basis": "Partner plan transactions", "conditions": ["Partner plan"], "caveats": [] },
+        { "type": "processing-fee", "value": { "kind": "percentage", "percent": 2.9 }, "basis": "Credit-card transaction", "conditions": [], "caveats": [] },
+        { "type": "transaction-fee", "value": { "kind": "amount", "amount": 0.3, "currency": "USD" }, "basis": "Per credit-card transaction", "conditions": [], "caveats": [] },
+        { "type": "minimum-payout", "value": { "kind": "amount", "amount": 25, "currency": "USD" }, "basis": "Automatic payout threshold", "conditions": ["Verified nonprofit on an active Partner or Keystone plan", "Funds have cleared the availability period"], "caveats": [] },
+        { "type": "other", "value": { "kind": "amount", "amount": 2.25, "currency": "USD" }, "basis": "Per Express-account payout", "conditions": ["Express Stripe account"], "caveats": ["A 0.25% variable payout fee also applies"] },
+        { "type": "other", "value": { "kind": "percentage", "percent": 0.25 }, "basis": "Express-account payout", "conditions": ["Express Stripe account"], "caveats": ["A $2.25 fixed payout fee also applies"] },
+        { "type": "other", "value": { "kind": "amount", "amount": 10, "currency": "USD" }, "basis": "Annual 1099 preparation and filing", "conditions": ["Express Stripe account"], "caveats": [] }
+      ],
+      "notes": ["Other published options include a $5,950 annual Keystone plan with a 1% platform fee, ACH at 1.5% plus $0.30, and processor-specific PayPal, Venmo, and DAFpay terms."]
+    },
+    "programs": [{
+      "name": "BetterWorld Fundraising Platform",
+      "slug": "betterworld-fundraising-platform",
+      "url": "https://betterworld.org/pricing/",
+      "method": "auctions",
+      "products_services": ["donation-platform", "crowdfunding-platform", "peer-to-peer-platform", "auction-platform", "event-fundraising-platform"],
+      "channels": ["online", "in-person", "hybrid"],
+      "online_ordering": null,
+      "fulfillment": ["digital", "on-site", "not-applicable"],
+      "inventory_model": "not-applicable",
+      "upfront_cost": "varies",
+      "summary": "BetterWorld provides auctions, donation forms, crowdfunding, peer-to-peer and a-thon campaigns, events and ticketing, giveaways, impact giving, and donor management in one platform.",
+      "economics_mode": "inherit-provider",
+      "requirements": {
+        "status": "known",
+        "legal_status": [],
+        "age_range": null,
+        "grade_range": null,
+        "participation_requirements": ["The account owner supplies organization details and connects an eligible bank or Stripe account for payout.", "A person or group fundraising on behalf of a nonprofit must obtain the nonprofit's authorization."],
+        "minimum_group_size": null,
+        "minimum_order": null,
+        "minimum_sales": null,
+        "other_restrictions": ["Organizations outside the United States should contact BetterWorld; the platform is optimized for organizations with a U.S. bank account.", "Raffle and giveaway organizers remain responsible for legal compliance and any required license or eligibility documentation."],
+        "editorial_summary": "Nonprofits, businesses, and individuals may use the platform, including authorized on-behalf-of fundraising."
+      },
+      "timing": {
+        "status": "known",
+        "setup_lead_time": null,
+        "campaign_duration": { "open_ended": true },
+        "fulfillment_time": null,
+        "funds_available_time": { "minimum": { "value": 6, "unit": "days" } },
+        "payout_time": { "maximum": { "value": 5, "unit": "business-days" } },
+        "payout_schedules": [{ "frequency": "monthly", "delivery_method": null, "anchor": "Organizer-selected day of the month", "conditions": ["Verified nonprofit on an active Partner or Keystone plan", "Automatic payouts are enabled", "At least $25 is available for withdrawal"], "caveats": ["BetterWorld also permits daily and weekly automatic payouts, which are retained in notes because the frozen schedule taxonomy does not encode those cadences", "Destination may be a connected Stripe bank account or an enrolled check payout"] }],
+        "notes": ["Funds become available for withdrawal six days after receipt. After payout initiation, BetterWorld states that bank receipt should occur within five business days, often sooner. Eligible paid-plan nonprofits may alternatively choose daily, weekly, or monthly automatic payouts."]
+      },
+      "logistics": { "status": "known", "notes": ["Campaign tools share one dashboard and payments ledger. Organizers configure campaign-specific auction items, tickets, participant pages, donation forms, or activity pledges and connect payout information."] },
+      "beneficiary_types": ["own-organization", "own-project-or-program", "local-nonprofit-or-charity", "national-nonprofit-or-charity", "community-cause", "open-or-unspecified-cause"],
+      "activity_subtypes": ["fun-run", "walkathon", "readathon", "raffle", "prize-drawing", "silent-auction", "live-auction", "peer-fundraising-challenge"],
+      "capabilities": ["donation-forms", "recurring-giving", "crowdfunding-pages", "peer-to-peer-pages", "participant-pages", "leaderboards", "ticketing-registration", "auctions-mobile-bidding", "raffles-prize-drawings", "digital-wallets", "donor-crm", "reporting-analytics"],
+      "outcomes": ["cash"]
+    }],
+    "geography": { "scope": ["us-nationwide"], "countries": ["US"], "states": [], "regions": [], "notes": "BetterWorld is best configured for United States organizations with a U.S. bank account. Donors may participate internationally, but the provider advises organizations outside the United States to contact support before creating an account." },
+    "content": {
+      "summary": "BetterWorld is an all-in-one fundraising platform for auctions, donations, events, peer-to-peer campaigns, a-thons, and related online fundraising.",
+      "how_it_works": "An organization or authorized fundraiser selects campaign tools, publishes fundraising pages, processes supporter payments through the platform, and withdraws eligible funds through a connected Stripe account.",
+      "best_for": ["Organizations seeking auctions, event ticketing, donation forms, peer-to-peer fundraising, and a-thons in one system."],
+      "considerations": ["Fees depend on the selected plan, payment method, campaign type, and whether donors cover costs.", "Raffles and giveaways require organizer review of applicable law and licensing."]
+    },
+    "sources": [
+      { "url": "https://betterworld.org/pricing/", "source_type": "terms-or-fees", "title": "BetterWorld Pricing", "supports": ["classification", "economics", "programs.betterworld-fundraising-platform.summary"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://help.betterworld.org/en/articles/8553821-how-much-does-betterworld-cost", "source_type": "terms-or-fees", "title": "How much does BetterWorld cost?", "supports": ["economics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://help.betterworld.org/en/articles/8553867-how-to-receive-the-funds-i-raised", "source_type": "platform-documentation", "title": "How to receive the funds I raised", "supports": ["economics", "programs.betterworld-fundraising-platform.timing", "programs.betterworld-fundraising-platform.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://help.betterworld.org/en/articles/14187622-how-to-enable-and-set-up-automatic-payouts", "source_type": "platform-documentation", "title": "How to enable and set up automatic payouts", "supports": ["economics", "programs.betterworld-fundraising-platform.timing"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://help.betterworld.org/en/articles/8557833-my-organization-is-based-outside-the-u-s-can-we-use-betterworld", "source_type": "platform-documentation", "title": "My organization is based outside the U.S. — can we use BetterWorld?", "supports": ["programs.betterworld-fundraising-platform.requirements", "geography"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 1 research", "verifier": "FRD batch 1 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 1 brief", "approved_at": "2026-09-20" }
+  }
+]
