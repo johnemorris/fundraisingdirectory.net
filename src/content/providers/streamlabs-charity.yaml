@@ -1,0 +1,311 @@
+meta:
+  id: "prov_000045"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  legal_name: null
+  aliases:
+    - "StreamlabsCharity"
+  fundraising_url: "https://streamlabscharity.com/"
+  logo: null
+  name: "Streamlabs Charity"
+  slug: "streamlabs-charity"
+  website: "https://streamlabscharity.com/"
+classification:
+  products_services:
+    - "donation-platform"
+    - "peer-to-peer-platform"
+    - "event-fundraising-platform"
+  methods:
+    - "direct-donations"
+    - "peer-to-peer"
+    - "events-activities"
+  organizations:
+    - "nonprofits-charities"
+    - "individuals-personal-causes"
+  outcomes:
+    - "cash"
+  capabilities:
+    - "donation-forms"
+    - "peer-to-peer-pages"
+    - "qr-giving"
+    - "livestream-integrations"
+    - "gaming-integrations"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "local-nonprofit-or-charity"
+    - "national-nonprofit-or-charity"
+  activity_subtypes:
+    - "gaming-livestream"
+    - "creator-livestream"
+economics:
+  status: "known"
+  arrangements:
+    - type: "upfront-cost"
+      value:
+        kind: "amount"
+        amount: 0
+        currency: "USD"
+      basis: "Charity and fundraiser account setup"
+      conditions: []
+      caveats: []
+    - type: "platform-fee"
+      value:
+        kind: "percentage"
+        percent: 0
+      basis: "Charity donations processed through Streamlabs Charity"
+      conditions: []
+      caveats:
+        - "Standard third-party payment-processing fees may still apply"
+    - type: "processing-fee"
+      value:
+        kind: "variable"
+        description: "Standard payment-processor charge based on the charity, donor, payment method, and currency"
+      basis: "Donation payment processing"
+      conditions: []
+      caveats:
+        - "Streamlabs states it does not take a cut of charity donations"
+  notes:
+    - "Official Streamlabs documentation describes no annual fee and a 0% Streamlabs transaction fee for charities; processor terms remain separate."
+programs:
+  - id: "prog_000063"
+    products_services:
+      - "donation-platform"
+      - "peer-to-peer-platform"
+      - "event-fundraising-platform"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+      - "not-applicable"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status:
+        - "nonprofit"
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "A charity creates the charity account, supplies its organization and tax-identification information, preferably uses an organization-domain email, and passes Streamlabs review."
+        - "A fundraiser creates and verifies an account, chooses an available charity, sets campaign dates and a goal, and publishes the campaign."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "U.S.-based donors can contribute through the platform only to eligible 501(c)(3) organizations under Streamlabs' current U.S. compliance rules."
+        - "Charity and payment availability depends on organization compliance, processor support, and applicable law."
+      editorial_summary: "The program connects approved charities with individual Twitch, YouTube, Facebook, and other creators who raise through livestream campaigns."
+    timing:
+      status: "known"
+      setup_lead_time:
+        minimum:
+          value: 1
+          unit: "business-days"
+        maximum:
+          value: 3
+          unit: "business-days"
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "Streamlabs says charity-profile review usually takes one to three business days. Fundraisers choose campaign start and end dates. Universal processor settlement timing was not established for the charity platform."
+    logistics:
+      status: "known"
+      notes:
+        - "Creators publish a charity donation page and can connect campaign alerts to their livestream. Charities can export global, opt-in, and event-level donation data. Rewards or thank-you gifts are fulfilled by the charity, sponsor, or streamer when offered."
+    name: "Charity Livestream Fundraising"
+    slug: "charity-livestream-fundraising"
+    url: "https://streamlabscharity.com/"
+    method: "peer-to-peer"
+    channels:
+      - "online"
+    summary: "Approved charities maintain donation profiles while individual creators select a listed charity, schedule and publish livestream campaigns, and use donation pages, alerts, QR codes, goals, rewards, and reporting to raise funds."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "donation-forms"
+      - "peer-to-peer-pages"
+      - "qr-giving"
+      - "livestream-integrations"
+      - "gaming-integrations"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "local-nonprofit-or-charity"
+      - "national-nonprofit-or-charity"
+    activity_subtypes:
+      - "gaming-livestream"
+      - "creator-livestream"
+geography:
+  countries: []
+  states: []
+  regions: []
+  notes: "Streamlabs describes government-issued tax IDs, international-currency configuration, and global creator platforms, but the reviewed charity documentation does not publish one definitive country list. U.S. donor and charity eligibility has additional 501(c)(3) compliance restrictions."
+  scope:
+    - "international"
+content:
+  best_for:
+    - "Charities seeking a creator and gaming livestream option and streamers who want campaign pages, live alerts, QR giving, goals, and donation reporting tied to a selected charity."
+  considerations:
+    - "Third-party payment processing and country availability vary even though Streamlabs charges no platform percentage."
+    - "U.S. donations are subject to current 501(c)(3) and good-standing requirements."
+  summary: "Streamlabs Charity is a no-platform-fee livestream fundraising service connecting approved charities with gaming and creator campaigns."
+  how_it_works: "A charity creates and passes review for a profile; a creator chooses the charity, creates and publishes a dated campaign, shares or integrates the donation page with a stream, and donors give through the page while the charity tracks event-level activity."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 4 research"
+  verified_by: "FRD batch 4 research"
+  sources:
+    - id: "src_000155"
+      title: "How to Create a Streamlabs Charity Profile"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.charity-livestream-fundraising.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.charity-livestream-fundraising.timing"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+        - path: "content.summary"
+          status: "current"
+          notes: null
+      notes: null
+      type: "platform-documentation"
+      url: "https://support.streamlabs.com/hc/en-us/articles/1260800840970-How-to-Create-a-Streamlabs-Charity-Profile"
+      checked_at: "2026-09-20"
+    - id: "src_000156"
+      title: "How to Start a Streamlabs Charity Fundraising Campaign"
+      status: "current"
+      supports:
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.charity-livestream-fundraising.summary"
+          status: "current"
+          notes: null
+        - path: "programs.charity-livestream-fundraising.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.charity-livestream-fundraising.timing"
+          status: "current"
+          notes: null
+        - path: "programs.charity-livestream-fundraising.logistics"
+          status: "current"
+          notes: null
+        - path: "content.how_it_works"
+          status: "current"
+          notes: null
+      notes: null
+      type: "platform-documentation"
+      url: "https://support.streamlabs.com/hc/en-us/articles/1260800841090-How-to-Start-a-Charity-Fundraising-Campaign"
+      checked_at: "2026-09-20"
+    - id: "src_000157"
+      title: "How to Start a Live Stream for Charity"
+      status: "current"
+      supports:
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.charity-livestream-fundraising.summary"
+          status: "current"
+          notes: null
+        - path: "programs.charity-livestream-fundraising.logistics"
+          status: "current"
+          notes: null
+        - path: "content.best_for"
+          status: "current"
+          notes: null
+      notes: null
+      type: "official-program"
+      url: "https://support.streamlabs.com/hc/en-us/articles/4413170327067-How-to-Start-a-Live-Stream-for-Charity"
+      checked_at: "2026-09-20"
+    - id: "src_000158"
+      title: "How to Export Streamlabs Charity Donation Data"
+      status: "current"
+      supports:
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.charity-livestream-fundraising.logistics"
+          status: "current"
+          notes: null
+      notes: null
+      type: "platform-documentation"
+      url: "https://support.streamlabs.com/hc/en-us/articles/1260800791989-How-to-Export-Data-as-a-Charity"
+      checked_at: "2026-09-20"
+    - id: "src_000159"
+      title: "Streamlabs Charity U.S. Compliance and Eligibility Update"
+      status: "current"
+      supports:
+        - path: "programs.charity-livestream-fundraising.requirements"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+        - path: "content.considerations"
+          status: "current"
+          notes: null
+      notes: null
+      type: "platform-documentation"
+      url: "https://support.streamlabs.com/hc/en-us/articles/40564944768539-Important-Update-for-Streamlabs-Charity-Users-Changes-in-Light-of-California-Assembly-Bill-488"
+      checked_at: "2026-09-20"
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

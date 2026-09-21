@@ -261,11 +261,11 @@ export function evaluateProviderProgram(provider, program, rawAnswers = {}) {
   }
   if (answers.groupSize) {
     confidence -= confidencePenalty.groupSize;
-    gaps.push("Participant-size fit is not structured yet");
+    gaps.push("Participant-size fit is not documented in Finder data");
   }
   if (answers.time || constraints.has("fast")) {
     confidence -= confidencePenalty.timing;
-    gaps.push("Provider timing is not structured yet");
+    gaps.push("Provider timing is not documented in Finder data");
   }
   if (constraints.has("passive")) {
     confidence -= confidencePenalty.passive;

@@ -1,0 +1,284 @@
+meta:
+  id: "prov_000034"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Help Hope Live"
+  slug: "help-hope-live"
+  legal_name: null
+  aliases: []
+  website: "https://helphopelive.org/"
+  fundraising_url: "https://helphopelive.org/get-started/request-help/"
+  logo: null
+classification:
+  methods:
+    - "direct-donations"
+    - "crowdfunding"
+    - "events-activities"
+    - "giving-matching"
+  products_services:
+    - "donation-platform"
+    - "crowdfunding-platform"
+    - "event-fundraising-platform"
+  organizations:
+    - "individuals-personal-causes"
+  outcomes:
+    - "cash"
+    - "equipment"
+    - "services"
+  capabilities:
+    - "donation-forms"
+    - "crowdfunding-pages"
+    - "matching-gifts"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "individual-or-family"
+  cause_areas:
+    - "health-medical"
+    - "organ-donation-transplant"
+    - "disability-support"
+    - "children-families"
+    - "mental-health"
+economics:
+  status: "known"
+  arrangements:
+    - type: "upfront-cost"
+      value:
+        kind: "amount"
+        amount: 0
+        currency: "USD"
+      basis: "Client fundraising services"
+      conditions:
+        - "The applicant is accepted as a Help Hope Live client"
+      caveats: []
+    - type: "platform-fee"
+      value:
+        kind: "percentage"
+        percent: 3
+      basis: "Donations raised in honor of a client"
+      conditions: []
+      caveats:
+        - "Donors may optionally cover the fee"
+    - type: "processing-fee"
+      value:
+        kind: "percentage"
+        percent: 2.65
+      basis: "Online credit/debit-card and eCheck donations"
+      conditions:
+        - "The donation uses an applicable online payment method"
+      caveats:
+        - "Donors may optionally cover the fee"
+    - type: "minimum-order"
+      value:
+        kind: "amount"
+        amount: 10
+        currency: "USD"
+      basis: "Minimum donation amount"
+      conditions: []
+      caveats: []
+  notes:
+    - "Help Hope Live states that, on average, 95 cents of each dollar raised in honor of clients is used for unmet medical expenses."
+programs:
+  - id: "prog_000051"
+    name: "Medical Fundraising Campaign"
+    slug: "medical-fundraising-campaign"
+    url: "https://helphopelive.org/get-started/request-help/"
+    method: "crowdfunding"
+    products_services:
+      - "donation-platform"
+      - "crowdfunding-platform"
+      - "event-fundraising-platform"
+    channels:
+      - "online"
+      - "in-person"
+      - "hybrid"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+      - "not-applicable"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "Help Hope Live supports medically and financially verified individuals with tax-deductible community fundraising, campaign pages, event guidance, and nonprofit-held funds used for approved medical and related expenses."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The applicant completes an initial campaign request and, if invited forward, a detailed application documenting medical and financial need, household information, insurance, community support, and authorized team members."
+        - "A medical professional must verify the diagnosis before the client can request funds."
+        - "Clients submit documented fund requests for eligible medical and related expenses."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Help Hope Live evaluates whether community-based fundraising is a fit and does not promise acceptance or that a goal will be reached."
+        - "Funds are held and administered by Help Hope Live and may be paid to providers or used to reimburse approved expenses rather than transferred as unrestricted personal cash."
+      editorial_summary: "The program serves people in the United States and Puerto Rico with verified unmet expenses from transplant, catastrophic injury, or illness and a community able to participate in fundraising."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration:
+        open_ended: true
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "There is no campaign deadline while medical and financial need continues and the client remains active and in contact. The reviewed pages do not publish one universal application-review or fund-request processing duration."
+    logistics:
+      status: "known"
+      notes:
+        - "A Client Services Coordinator provides one-on-one planning, materials, event and outreach guidance. Donations are made to Help Hope Live in honor of the client; the nonprofit holds the funds and processes documented requests for eligible medical and related expenses."
+    outcomes:
+      - "cash"
+      - "equipment"
+      - "services"
+    capabilities:
+      - "donation-forms"
+      - "crowdfunding-pages"
+      - "matching-gifts"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "individual-or-family"
+    cause_areas:
+      - "health-medical"
+      - "organ-donation-transplant"
+      - "disability-support"
+      - "children-families"
+      - "mental-health"
+geography:
+  scope:
+    - "us-nationwide"
+  countries:
+    - "US"
+  states: []
+  regions: []
+  notes: "Help Hope Live supports fundraising campaigns in all 50 states and Puerto Rico. Certain recommended treatments outside the United States may qualify, but the campaign itself remains a U.S./Puerto Rico program."
+content:
+  summary: "Help Hope Live provides nonprofit-administered medical fundraising for verified transplant, catastrophic injury, and illness expenses in the United States and Puerto Rico."
+  how_it_works: "An individual or representative requests help, completes medical and financial verification, works with a coordinator to raise tax-deductible donations through online and community activity, and submits documented requests for eligible expenses held by Help Hope Live."
+  best_for:
+    - "Individuals and families with significant verified medical need who want sustained community fundraising, tax-deductible gifts, personalized support, and nonprofit administration of the funds."
+  considerations:
+    - "Acceptance is case-by-case and requires medical and financial documentation plus an active support community."
+    - "Funds are restricted to eligible medical and related expenses and are not unrestricted personal income."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 3 research"
+  verified_by: "FRD batch 3 research"
+  sources:
+    - id: "src_000111"
+      type: "official-program"
+      url: "https://helphopelive.org/about/faqs/"
+      title: "Help Hope Live FAQs"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.medical-fundraising-campaign.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.medical-fundraising-campaign.timing"
+          status: "current"
+          notes: null
+        - path: "programs.medical-fundraising-campaign.logistics"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000112"
+      type: "official-program"
+      url: "https://helphopelive.org/get-started/request-help/"
+      title: "Create a Fundraising Campaign — Apply Now"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "programs.medical-fundraising-campaign.summary"
+          status: "current"
+          notes: null
+        - path: "programs.medical-fundraising-campaign.requirements"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000113"
+      type: "terms-or-fees"
+      url: "https://helphopelive.org/we-reduced-our-admin-fee/"
+      title: "Help Hope Live Reduced Administrative Fee"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000114"
+      type: "official-provider"
+      url: "https://helphopelive.org/what-is-a-501c3/"
+      title: "Help Hope Live — What Is a 501(c)(3)?"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.medical-fundraising-campaign.logistics"
+          status: "current"
+          notes: null
+        - path: "content.considerations"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

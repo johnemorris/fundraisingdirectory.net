@@ -43,7 +43,7 @@
     "url": "https://kind-harbor.example/fundraise",
     "source_type": "official-charity",
     "title": "Harbor Helpers",
-    "supports": ["programs", "programs.beneficiary", "classification.cause_areas"],
+    "supports": ["programs", "programs.harbor-helpers.beneficiary", "classification.cause_areas"],
     "checked_at": "2026-09-12"
   }],
   "verification": { "status": "partially-verified", "first_researched_at": "2026-09-12", "first_verified_at": "2026-09-12", "last_verified_at": "2026-09-12" },

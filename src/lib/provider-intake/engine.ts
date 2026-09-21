@@ -62,6 +62,12 @@ export function processIntakeRecords(
 ): IntakeRun {
   const runId = options.runId ?? createRunId();
   const idAllocator = createPublicationIdAllocator(existingRecords);
+  const idOwners = new Map<string, string>();
+  existingRecords.forEach(({ path: recordPath, data }) => {
+    idOwners.set(data.meta.id, recordPath);
+    data.programs.forEach((program) => idOwners.set(program.id, recordPath));
+    data.verification.sources.forEach((source) => idOwners.set(source.id, recordPath));
+  });
   const records = rawRecords.map((raw, index): ReviewRecord => {
     const draft = validateDraft(raw);
     if (!draft.success || !draft.data) {
@@ -81,6 +87,30 @@ export function processIntakeRecords(
     const { normalized, issues: normalizationIssues } = normalizeIntakeRecord(draft.data as any);
     const duplicate = assessDuplicate(normalized, existingRecords);
     const publication = preparePublication(normalized, duplicate, existingRecords, { ...options, idAllocator });
+    if (publication.candidate) {
+      const ids = [
+        publication.candidate.meta.id,
+        ...publication.candidate.programs.map((program) => program.id),
+        ...publication.candidate.verification.sources.map((source) => source.id),
+      ];
+      const localIds = new Set<string>();
+      ids.forEach((id) => {
+        const owner = idOwners.get(id);
+        if (localIds.has(id) || (owner && owner !== publication.destination)) {
+          publication.issues.push({
+            code: "duplicate-stable-id",
+            message: `${id} is already assigned to another canonical entity or record.`,
+            path: id,
+            severity: "error",
+            stage: "publish",
+          });
+          publication.publishReady = false;
+          return;
+        }
+        localIds.add(id);
+        idOwners.set(id, publication.destination);
+      });
+    }
     const issues = [...draft.issues, ...normalizationIssues, ...publication.issues];
     return {
       index,
@@ -92,7 +122,7 @@ export function processIntakeRecords(
       issues,
       duplicate,
       effectiveTaxonomy: effectiveProgramTaxonomy(normalized),
-      affiliateResearchNeeded: normalized.commercial_research?.affiliate_status === "unknown",
+      affiliateResearchNeeded: (normalized.commercial_research?.affiliate_status ?? "unknown") === "unknown",
       proposedSlug: normalized.identity?.slug,
       proposedPath: publication.destination,
       publication,

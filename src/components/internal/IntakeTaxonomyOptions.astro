@@ -1,0 +1,11 @@
+---
+import { formatProviderLabel } from "../../data/providerLabels";
+
+interface Props {
+  values: readonly string[];
+}
+
+const { values } = Astro.props;
+---
+
+{values.map((value) => <option value={value}>{formatProviderLabel(value)}</option>)}

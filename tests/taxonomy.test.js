@@ -8,6 +8,7 @@ import {
   FUNDRAISING_OUTCOMES,
 } from "../src/data/taxonomies/fundraising-dimensions.ts";
 import { DISCOVERY_METHODS, FUNDRAISING_METHODS } from "../src/data/taxonomies/methods.ts";
+import { PRODUCTS_SERVICES } from "../src/data/taxonomies/products-services.ts";
 import {
   activitySubtypeSchema,
   beneficiaryTypeSchema,
@@ -79,4 +80,15 @@ test("provider and program taxonomy dimensions remain optional but validate popu
     assert.equal(schema.safeParse([]).success, false);
     assert.equal(schema.safeParse(["invented-taxonomy-value"]).success, false);
   });
+});
+
+test("purchase-linked fundraising models have distinct product and service values", () => {
+  const purchaseLinkedValues = [
+    "gift-cards",
+    "shopping-rewards",
+    "card-linked-dining-rewards",
+    "travel-booking-rewards",
+  ];
+  purchaseLinkedValues.forEach((value) => assert.ok(PRODUCTS_SERVICES.includes(value)));
+  assertUnique(PRODUCTS_SERVICES);
 });

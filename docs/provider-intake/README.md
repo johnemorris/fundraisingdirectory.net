@@ -6,7 +6,27 @@ The pipeline is:
 
 `JSON input → normalize → draft validation → taxonomy validation → duplicate check → review draft → canonical preview/diff → explicit write`
 
-No command commits, pushes, deploys, or changes Finder ordering. There is no public form, CMS, database, authentication layer, or automatic publication.
+No command commits, pushes, deploys, or changes Finder ordering. There is no public intake-to-content integration, CMS, database, authentication layer, or automatic publication.
+
+The public `/for-providers/` wizard is a separate, friendly listing inquiry. It uses the site's existing email contact channel and does not expose or invoke this intake engine, create provider content, persist approval, or publish a listing. Editors must still review any inquiry and deliberately prepare intake data through the internal workflow.
+
+## Internal editorial workbench
+
+The thin browser workbench lives at `/internal/provider-intake/`. It is deliberately absent from public navigation and the sitemap, and the route emits `noindex`. It is a static, client-side drafting aid: it cannot read repository provider files, run duplicate detection, produce authoritative diffs, write content, or publish.
+
+The workbench covers identity and publication state, beneficiary/audience data, canonical provider taxonomy, repeatable programs with additive taxonomy, economics, logistics, geography, requirements, repeatable sources, verification/completeness, and isolated affiliate research. Taxonomy controls import the same canonical modules used by provider content and the Finder; submitted JSON retains canonical IDs while the UI displays readable labels.
+
+Drafts are stored only in the current browser's `localStorage`. **Clear draft** explicitly removes that state. Workflow approval is never stored by the browser. Review uses the engine's browser-safe draft validation and normalization, keeps errors near the relevant section, shows the normalized record and inherited program taxonomy, and provides Copy JSON and Download JSON actions. The exported file has the exact intake shape accepted by the commands below.
+
+After download, continue in the terminal:
+
+```sh
+npm run intake:validate -- provider.json
+npm run intake:review -- provider.json
+npm run intake:publish -- provider.json
+```
+
+The workbench never suggests or invokes `--write`. Duplicate/update classification, comparison with current provider YAML, publish-ready validation, approval, and any explicit write remain repository-aware CLI responsibilities.
 
 ## Commands
 
@@ -60,11 +80,25 @@ Top-level shape:
     "capabilities": ["donation-forms"],
     "outcomes": ["cash"]
   },
-  "programs": [],
+  "programs": [{
+    "name": "Example Program",
+    "economics": { "status": "not-researched", "arrangements": [], "notes": [] },
+    "requirements": {
+      "status": "not-researched",
+      "legal_status": [],
+      "age_range": null,
+      "grade_range": null,
+      "participation_requirements": [],
+      "minimum_group_size": null,
+      "minimum_order": null,
+      "minimum_sales": null,
+      "other_restrictions": [],
+      "editorial_summary": null
+    },
+    "timing": { "status": "not-researched", "lead_time": null, "campaign_duration": null, "notes": [] },
+    "logistics": { "status": "not-researched", "notes": [] }
+  }],
   "geography": {},
-  "economics": {},
-  "requirements": [],
-  "logistics": [],
   "content": {},
   "sources": [],
   "verification": {},
@@ -82,6 +116,14 @@ Supported record types are `provider` and `official-beneficiary-program`. The ty
 Intake imports the canonical definitions and validators from `src/data/taxonomies/`. It does not maintain duplicate arrays. Supported dimensions are organizer types (`classification.organizations`), beneficiary types, cause areas, methods, activity subtypes, channels, products/services, capabilities, and outcomes.
 
 Program taxonomy is additive. Effective review values are provider values plus program values with duplicates removed. No override or subtraction semantics exist. Effective values are review output and are not written as a second taxonomy model.
+
+Economics may be canonical at the provider level when the same complete terms apply to multiple programs. Every program declares `economics_mode` as either `inherit-provider` or `program-specific`. An inherited program must not contain a duplicate economics object, and inheritance is invalid unless provider economics exist. A program-specific economics object is a complete replacement for provider economics; arrangements are never implicitly merged across levels. This keeps claim paths unambiguous: sources support either `economics` or `programs.<slug>.economics`.
+
+Eligibility/requirements, timing, and logistics remain canonical program-level research. Each research section uses one explicit missing-data state: `not-researched`, `researched-unknown`, `not-applicable`, or `known`. A `known` section must contain supporting detail; the other states cannot carry apparently known values. Economics arrangements distinguish fees, profit/margin, give-back/proceeds/revenue share, payouts, and order/sales minimums. Values can be exact amounts or percentages, ranges, quantities, tiered payouts, or documented variable terms. Currency uses three-letter ISO codes.
+
+Timing distinguishes `setup_lead_time`, `campaign_duration`, `fulfillment_time`, `funds_available_time`, and elapsed `payout_time`. Each duration may be exact, minimum, typical, maximum, open-ended, or a supported combination of bounds. Supported units are minutes, hours, source-ambiguous days, calendar days, business days, weeks, and months. `payout_schedules` is intentionally narrower: it represents recurring disbursement frequencies such as monthly direct deposit or quarterly checks when those facts cannot accurately be expressed as elapsed durations. It is not a general scheduling or calendar framework.
+
+The older record-level `requirements` and `logistics` input remains accepted only as single-program shorthand and is normalized onto that program. Legacy percentage-only record economics receives the same treatment. Canonical provider-level economics is distinguished by its explicit research `status`. Ambiguous multi-program shorthand is rejected.
 
 An official beneficiary program can represent supporters fundraising on behalf of a named charity:
 
@@ -119,20 +161,25 @@ Sources use:
 
 ```json
 {
+  "id": "src_000123",
   "url": "https://example.com/fundraising",
   "source_type": "official-provider",
   "title": "Fundraising Program",
-  "supports": ["economics.platform_fee_percent", "geography.countries"],
+  "supports": [
+    { "path": "programs.example-program.economics", "status": "current", "notes": null },
+    { "path": "geography.countries", "status": "current", "notes": null }
+  ],
   "checked_at": "2026-09-12",
+  "status": "current",
   "notes": "Optional editor note"
 }
 ```
 
-Supported source types are `official-provider`, `official-charity`, `official-program`, `government`, `platform-documentation`, `terms-or-fees`, `public-press-release`, `reputable-third-party`, and `frd-editorial-note`. Review artifacts preserve `supports`. Canonical publication maps these richer intake types to the live source categories; it does not claim field-level evidence in V1.
+Supported source types are `official-provider`, `official-charity`, `official-program`, `government`, `platform-documentation`, `terms-or-fees`, `public-press-release`, `reputable-third-party`, and `frd-editorial-note`. Canonical publication preserves the stable source ID, title, exact source type, URL, checked date, status, notes, and every `supports` association. Omit `id` for a new source and the publisher assigns one; use the canonical ID for later source-status updates. Source and individual claim status are independently `current`, `stale`, `disputed`, or `needs-recheck`. Intake may use a plain path string as shorthand for a current claim; structured associations are preferred when a claim needs its own flag or note. Claim updates merge by path and do not erase unrelated source associations. A deliberate claim migration can set `supports_mode` to `replace`; this replaces only that matched source's claim list and leaves all other source metadata and sources intact.
 
-Verification states are `unverified`, `partially-verified`, `verified`, `stale`, and `disputed`. Completeness states are `minimal`, `standard`, and `anchor-quality`; they are independent. The engine never marks a record verified automatically. `stale` and `disputed` drafts are blocked from publication. Research chronology can retain both `first_researched_at` and the canonical `first_verified_at`; they are not inferred from each other. Because the current live schema requires `first_verified_at`, its absence remains a publish error even when a working draft is otherwise valid.
+Verification states are `unverified`, `partially-verified`, `verified`, `stale`, and `disputed`. Completeness states are `minimal`, `standard`, and `anchor-quality`; they are independent and are preserved canonically with reviewer/verifier metadata. The canonical review status is `current`, `stale`, `disputed`, or `needs-recheck`. The engine never marks a record verified automatically. `stale` and `disputed` drafts are blocked from publication. A source or record can be flagged `needs-recheck` without supplying or changing a checked/verification date. Research chronology retains both `first_researched_at` and `first_verified_at`; they are not inferred from each other. Because the live schema requires `first_verified_at`, its absence remains a publish error even when a working draft is otherwise valid.
 
-Origins are `internal-research`, `bulk-import`, `provider-submission`, `organization-submission`, `claim-update`, and `automated-research-assist`. Origin and completeness remain operational review metadata.
+Origins are `internal-research`, `bulk-import`, `provider-submission`, `organization-submission`, `claim-update`, and `automated-research-assist`. Canonical provenance preserves both the exact intake origins and their broader durable discovery categories.
 
 ## Duplicate and update handling
 
@@ -145,8 +192,16 @@ Existing YAML records are compared using normalized provider name, canonical dom
 
 Ambiguous or weak matches are never merged. Likely duplicates are blocked from publication pending editorial resolution. Update previews preserve omitted canonical fields and other programs, show a field-level diff, and warn when arrays shrink or populated values are removed.
 
+## Local opportunity boundary
+
+The current provider corpus stores facts that are stable for a provider or program. It cannot cleanly represent GroupRaise-style opportunities that vary by restaurant location and search area. A future location/ZIP subsystem needs a separate local-opportunity entity linked to its provider and program, with stable location identity, address and postal code, coordinates or service/search radius, locally available formats and ordering channels, location-specific economics and requirements, booking/availability windows, and location-level sources with checked dates.
+
+Until that subsystem exists, ingestion may record the provider-level fact that availability is local or location-dependent, but it must not flatten individual locations or ZIP search results into provider geography, duplicate programs per location, or imply nationwide local availability. Building that subsystem is outside this pilot and is a prerequisite only for location-level ingestion, not national/provider-level ingestion.
+
 ## Commercial research firewall
 
 Commercial research is internal operational metadata, not provider taxonomy. It supports affiliate status (`unknown`, `none-found`, `available`, `applied`, `approved`, `rejected`), program and approved destination URLs, network, commission notes, cookie duration, eligibility notes, checked date, and internal notes.
 
-`unknown` produces a visible **Affiliate research needed** flag. Provider and organization submissions cannot set these fields: supplied commercial metadata is discarded to `unknown` with a review warning. Commercial research is excluded from canonical YAML, Finder serialization, scoring inputs, editorial quality, verification, and recommendations. It does not modify canonical affiliate, sponsor, partner, featured, disclosure, or outbound-link behavior; those remain separately administered.
+`unknown` produces a visible **Affiliate research needed** flag. Provider and organization submissions cannot set these fields: supplied commercial metadata is discarded to `unknown` with a review warning and cannot overwrite existing internal research. Internally researched values are preserved in an isolated canonical section, but are excluded from Finder serialization, scoring inputs, editorial quality, verification, and recommendations. They do not modify canonical affiliate, sponsor, partner, featured, disclosure, or outbound-link behavior; those remain separately administered.
+
+The browser workbench preserves the same firewall. It displays affiliate data as internal research metadata and never converts it into taxonomy, approval, verification, ranking, or outbound-link behavior.

@@ -1,0 +1,241 @@
+---
+import { SITE_CONTACT_EMAIL } from "../data/site";
+import { PROVIDER_AUDIENCE_OPTIONS, PROVIDER_METHOD_OPTIONS } from "../lib/providerSubmission";
+---
+
+<main class="provider-wizard-shell">
+  <header class="provider-wizard-intro">
+    <p class="eyebrow eyebrow-light">For fundraising providers</p>
+    <h1>Get started in five easy steps</h1>
+    <p>Tell us a little about your organization and fundraising opportunities. It only takes a few minutes. We’ll review your information and get in touch about next steps.</p>
+  </header>
+
+  <ol class="wizard-journey" aria-label="Listing request steps">
+    {["Organization", "Fundraising", "Best Fit", "More About You", "Contact"].map((label, index) => (
+      <li data-journey-step={index}><span>{index + 1}</span>{label}</li>
+    ))}
+  </ol>
+
+  <form class="provider-wizard" data-provider-wizard data-contact-email={SITE_CONTACT_EMAIL} novalidate>
+    <div class="wizard-progress">
+      <span data-step-status aria-live="polite">Step 1 of 5</span>
+      <progress value="1" max="5" aria-label="Listing request progress"></progress>
+    </div>
+
+    <section class="wizard-step" data-wizard-step>
+      <header><p>Step 1 of 5</p><h2 tabindex="-1">Tell us about your organization</h2><span>A few basics help us understand who you are.</span></header>
+      <div class="wizard-fields">
+        <label>Organization or provider name <input name="organization_name" autocomplete="organization" required maxlength="160" /></label>
+        <label>Website <input name="website" type="url" inputmode="url" autocomplete="url" placeholder="https://example.com" required /></label>
+        <label>What should we know about your organization? <textarea name="introduction" rows="5" maxlength="1600" required></textarea></label>
+      </div>
+    </section>
+
+    <section class="wizard-step" data-wizard-step hidden>
+      <header><p>Step 2 of 5</p><h2 tabindex="-1">Tell us about your fundraising opportunities</h2><span>Choose every option that describes what you offer.</span></header>
+      <fieldset>
+        <legend>Fundraising opportunities</legend>
+        <div class="wizard-choices">
+          {PROVIDER_METHOD_OPTIONS.map(({ id, label }) => <label><input type="checkbox" name="fundraising_methods" value={id} /><span>{label}</span></label>)}
+          <label><input type="checkbox" name="fundraising_other_selected" value="true" /><span>Other</span></label>
+        </div>
+      </fieldset>
+      <label>Something we missed? Tell us about it. <textarea name="fundraising_other" rows="3" maxlength="1000"></textarea></label>
+    </section>
+
+    <section class="wizard-step" data-wizard-step hidden>
+      <header><p>Step 3 of 5</p><h2 tabindex="-1">Tell us who benefits most</h2><span>Choose the groups your programs are especially well suited for.</span></header>
+      <fieldset>
+        <legend>Best-fit groups</legend>
+        <div class="wizard-choices">
+          {PROVIDER_AUDIENCE_OPTIONS.map(({ id, label }) => <label><input type="checkbox" name="best_fit" value={id} /><span>{label}</span></label>)}
+          <label><input type="checkbox" name="best_fit_other_selected" value="true" /><span>Other</span></label>
+        </div>
+      </fieldset>
+      <label>Anyone else your fundraising programs are especially well suited for? <textarea name="best_fit_other" rows="3" maxlength="1000"></textarea></label>
+    </section>
+
+    <section class="wizard-step" data-wizard-step hidden>
+      <header><p>Step 4 of 5</p><h2 tabindex="-1">Tell us anything else about your organization</h2><span>This step is optional—share only what feels useful.</span></header>
+      <label>Is there anything else you’d like us to know about your organization or fundraising programs? <textarea name="additional_notes" rows="8" maxlength="2000"></textarea></label>
+    </section>
+
+    <section class="wizard-step" data-wizard-step hidden>
+      <header><p>Step 5 of 5</p><h2 tabindex="-1">Let’s see if we can help!</h2><span>Add your contact details, then review everything below.</span></header>
+      <div class="contact-grid">
+        <label>Contact name <input name="contact_name" autocomplete="name" required maxlength="120" /></label>
+        <label>Work email <input name="contact_email" type="email" inputmode="email" autocomplete="email" required maxlength="254" /></label>
+        <label>Role or title <span>Optional</span><input name="contact_role" autocomplete="organization-title" maxlength="120" /></label>
+        <label>Phone <span>Optional</span><input name="contact_phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="40" /></label>
+      </div>
+      <section class="wizard-review" aria-labelledby="wizard-review-title">
+        <div><p class="eyebrow">Your information</p><h3 id="wizard-review-title">Review before submitting</h3></div>
+        <dl data-provider-review></dl>
+      </section>
+      <p class="submission-note">We’ll review your information and contact you about next steps. Submitting your information does not automatically create or publish a listing.</p>
+    </section>
+
+    <p class="wizard-error" data-wizard-error role="alert" hidden>Please complete the highlighted fields before continuing.</p>
+    <div class="wizard-actions">
+      <button class="button wizard-previous" type="button" data-wizard-previous hidden>← Previous</button>
+      <button class="button button-primary" type="button" data-wizard-next>Continue →</button>
+      <button class="button button-primary" type="submit" data-wizard-submit hidden>Submit for Review</button>
+    </div>
+    <p class="submission-status" data-submission-status role="status" aria-live="polite"></p>
+    <noscript><p>JavaScript is needed for the step-by-step form. You can also email <a href={`mailto:${SITE_CONTACT_EMAIL}`}>{SITE_CONTACT_EMAIL}</a>.</p></noscript>
+  </form>
+</main>
+
+<script>
+  import { buildProviderInquiry, providerInquiryEmail, providerInquiryReview } from "../lib/providerSubmission.ts";
+
+  const form = document.querySelector<HTMLFormElement>("[data-provider-wizard]")!;
+  const contactEmail = form.dataset.contactEmail!;
+  const steps = [...form.querySelectorAll<HTMLElement>("[data-wizard-step]")];
+  const journey = [...document.querySelectorAll<HTMLElement>("[data-journey-step]")];
+  const progress = form.querySelector<HTMLProgressElement>("progress")!;
+  const stepStatus = form.querySelector<HTMLElement>("[data-step-status]")!;
+  const previous = form.querySelector<HTMLButtonElement>("[data-wizard-previous]")!;
+  const next = form.querySelector<HTMLButtonElement>("[data-wizard-next]")!;
+  const submit = form.querySelector<HTMLButtonElement>("[data-wizard-submit]")!;
+  const error = form.querySelector<HTMLElement>("[data-wizard-error]")!;
+  const review = form.querySelector<HTMLDListElement>("[data-provider-review]")!;
+  const status = form.querySelector<HTMLElement>("[data-submission-status]")!;
+  let currentStep = 0;
+
+  function currentStepIsValid() {
+    const fields = [...steps[currentStep].querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input, textarea")];
+    const invalid = fields.find((field) => !field.checkValidity());
+    error.hidden = !invalid;
+    if (invalid) { invalid.reportValidity(); invalid.focus(); return false; }
+    return true;
+  }
+
+  function renderReview() {
+    const inquiry = buildProviderInquiry(new FormData(form));
+    review.replaceChildren();
+    providerInquiryReview(inquiry).slice(0, 8).forEach(({ label, value }) => {
+      const row = document.createElement("div");
+      const term = document.createElement("dt");
+      const detail = document.createElement("dd");
+      term.textContent = label; detail.textContent = value;
+      row.append(term, detail); review.append(row);
+    });
+  }
+
+  function showStep(index: number, moveFocus = true) {
+    currentStep = Math.max(0, Math.min(index, steps.length - 1));
+    steps.forEach((step, stepIndex) => { step.hidden = stepIndex !== currentStep; });
+    journey.forEach((item, stepIndex) => {
+      if (stepIndex === currentStep) item.setAttribute("aria-current", "step"); else item.removeAttribute("aria-current");
+      item.classList.toggle("is-complete", stepIndex < currentStep);
+    });
+    progress.value = currentStep + 1;
+    stepStatus.textContent = `Step ${currentStep + 1} of ${steps.length}`;
+    previous.hidden = currentStep === 0;
+    next.hidden = currentStep === steps.length - 1;
+    submit.hidden = currentStep !== steps.length - 1;
+    error.hidden = true; status.textContent = "";
+    if (currentStep === steps.length - 1) renderReview();
+    if (moveFocus) steps[currentStep].querySelector<HTMLElement>("h2")?.focus();
+  }
+
+  next.addEventListener("click", () => { if (currentStepIsValid()) showStep(currentStep + 1); });
+  previous.addEventListener("click", () => showStep(currentStep - 1));
+  form.addEventListener("input", () => { if (currentStep === steps.length - 1) renderReview(); });
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!currentStepIsValid()) return;
+    const message = providerInquiryEmail(buildProviderInquiry(new FormData(form)));
+    status.textContent = "Your email app should open with your information ready to send.";
+    window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(message.subject)}&body=${encodeURIComponent(message.body)}`;
+  });
+
+  showStep(0, false);
+</script>
+
+<style lang="scss">
+  .provider-wizard-shell { width: min(64rem, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 5rem; }
+  .provider-wizard-intro { position: relative; padding: clamp(2rem, 6vw, 4.5rem); overflow: hidden; border-radius: 2rem 1rem 3.5rem 1.25rem; background: linear-gradient(130deg, var(--ink-deep), var(--ink) 62%, var(--ink-teal)); box-shadow: var(--shadow-lg); color: #fff;
+    &::after { content: ""; position: absolute; inset: 54% -8% -38% 50%; background: linear-gradient(125deg, rgba(105, 68, 173, .38), rgba(34, 111, 193, .08)); clip-path: polygon(0 24%, 100% 0, 84% 100%, 12% 78%); pointer-events: none; }
+    > * { position: relative; z-index: 1; }
+    h1 { max-width: 15ch; margin: .5rem 0 1rem; font-size: clamp(2.7rem, 7vw, 5.25rem); line-height: .96; letter-spacing: -.055em; }
+    > p:last-child { max-width: 46rem; margin: 0; color: var(--text-on-dark); font-size: 1.08rem; line-height: 1.7; }
+  }
+  .wizard-journey { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .5rem; margin: 1.25rem 0; padding: 0; list-style: none;
+    li { display: flex; min-width: 0; align-items: center; gap: .5rem; padding: .65rem .75rem; border: 1px solid var(--border); border-radius: .65rem; background: var(--surface); color: var(--text-muted); font-size: .76rem; font-weight: 700; }
+    span { display: grid; flex: 0 0 1.5rem; height: 1.5rem; place-items: center; border-radius: 50%; background: var(--surface-alternate); color: var(--ink); }
+    [aria-current="step"] { border-color: var(--teal); background: var(--surface-teal); color: var(--ink); box-shadow: var(--shadow-sm);
+      span { background: var(--teal); color: #fff; }
+    }
+    .is-complete span { background: var(--ink); color: #fff; }
+  }
+  .provider-wizard { padding: clamp(1.25rem, 4vw, 2.5rem); border: 1px solid var(--border); border-radius: 1.25rem 1.25rem 2.5rem 1.25rem; background: var(--surface); box-shadow: var(--shadow-sm); }
+  .wizard-progress { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; color: var(--teal-dark); font-size: .82rem; font-weight: 800;
+    progress { width: min(18rem, 55vw); height: .65rem; accent-color: var(--teal); }
+  }
+  .wizard-step { display: grid; gap: 1.5rem;
+    &[hidden] { display: none; }
+    > header { padding-bottom: 1.25rem; border-bottom: 1px solid var(--border);
+      p { margin: 0 0 .35rem; color: var(--purple); font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+      h2 { max-width: 26ch; margin: 0 0 .5rem; color: var(--ink); font-size: clamp(1.8rem, 4vw, 2.75rem); letter-spacing: -.035em; }
+      span { color: var(--text-muted); line-height: 1.55; }
+    }
+  }
+  .wizard-fields, .contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem;
+    label:last-child { grid-column: 1 / -1; }
+  }
+  label { display: grid; gap: .4rem; color: var(--ink); font-size: .9rem; font-weight: 700;
+    > span { color: var(--text-muted); font-size: .76rem; font-weight: 500; }
+  }
+  input, textarea { width: 100%; min-height: 2.875rem; padding: .72rem .8rem; border: 1px solid var(--border-strong); border-radius: .55rem; background: #fff; color: var(--text); font: inherit;
+    &:focus { border-color: var(--teal); }
+    &:user-invalid { border-color: #a7443a; background: #fff8f7; }
+  }
+  textarea { resize: vertical; line-height: 1.5; }
+  fieldset { min-width: 0; margin: 0; padding: 0; border: 0;
+    legend { margin-bottom: .75rem; color: var(--ink); font-weight: 750; }
+  }
+  .wizard-choices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .625rem;
+    label { display: flex; min-height: 3.25rem; align-items: center; gap: .65rem; padding: .65rem .75rem; border: 1px solid var(--border); border-radius: .6rem; background: var(--surface-alternate); cursor: pointer; font-weight: 600; line-height: 1.3;
+      &:has(input:checked) { border-color: var(--teal-border); background: var(--surface-teal); color: var(--teal-dark); }
+    }
+    input { flex: 0 0 1.1rem; width: 1.1rem; min-height: 1.1rem; margin: 0; accent-color: var(--teal); }
+  }
+  .wizard-review { display: grid; grid-template-columns: minmax(11rem, .45fr) minmax(0, 1.55fr); gap: 1.25rem; padding: 1.25rem; border-radius: .8rem; background: var(--surface-blue);
+    h3 { margin: 0; color: var(--ink); }
+    dl { display: grid; gap: .75rem; margin: 0; }
+    dl > div { display: grid; grid-template-columns: minmax(8rem, .55fr) minmax(0, 1.45fr); gap: .75rem; padding-bottom: .75rem; border-bottom: 1px solid var(--border); }
+    dt { color: var(--text-muted); font-size: .75rem; font-weight: 700; }
+    dd { margin: 0; color: var(--ink); line-height: 1.45; overflow-wrap: anywhere; }
+  }
+  .submission-note { margin: 0; padding: 1rem; border-left: .25rem solid var(--purple); background: var(--surface-purple); color: var(--ink-soft); line-height: 1.55; }
+  .wizard-actions { display: flex; justify-content: flex-end; gap: .75rem; margin-top: 1.5rem;
+    .button[hidden] { display: none; }
+    .wizard-previous { border: 1px solid var(--border-strong); background: #fff; color: var(--ink); }
+  }
+  .wizard-error { margin: 1rem 0 0; color: #8a3028; font-weight: 700; }
+  .submission-status { min-height: 1.25rem; margin: .75rem 0 0; color: var(--teal-dark); font-size: .85rem; font-weight: 700; text-align: right; }
+
+  @media (max-width: 760px) {
+    .provider-wizard-shell { padding-top: 1rem; }
+    .wizard-journey { grid-template-columns: 1fr; gap: .25rem;
+      li { display: none; }
+      li[aria-current="step"] { display: flex; }
+    }
+    .wizard-fields, .contact-grid, .wizard-review { grid-template-columns: 1fr; }
+    .wizard-fields label:last-child { grid-column: auto; }
+    .wizard-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .wizard-review dl > div { grid-template-columns: 1fr; gap: .2rem; }
+  }
+  @media (max-width: 470px) {
+    .provider-wizard-intro { border-radius: 1.25rem .75rem 2.25rem .9rem; }
+    .provider-wizard { padding: 1.1rem; }
+    .wizard-choices { grid-template-columns: 1fr; }
+    .wizard-actions { align-items: stretch; flex-direction: column-reverse;
+      .button { width: 100%; }
+    }
+    .submission-status { text-align: left; }
+  }
+  @media (prefers-reduced-motion: reduce) { .button { transition: none; } }
+</style>

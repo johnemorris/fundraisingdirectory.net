@@ -1,0 +1,307 @@
+meta:
+  id: "prov_000016"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Bonfire"
+  slug: "bonfire"
+  legal_name: null
+  aliases: []
+  website: "https://www.bonfire.com/"
+  fundraising_url: "https://www.bonfire.com/fundraising/nonprofits/"
+  logo: null
+classification:
+  methods:
+    - "product-sales"
+    - "direct-donations"
+    - "crowdfunding"
+  products_services:
+    - "apparel-spirit-wear"
+    - "merchandise-online-store"
+  organizations:
+    - "schools"
+    - "pto-pta"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "animal-rescue"
+    - "individuals-personal-causes"
+  outcomes:
+    - "cash"
+  capabilities:
+    - "online-store"
+    - "print-on-demand"
+    - "fulfillment"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+    - "individual-or-family"
+    - "local-nonprofit-or-charity"
+    - "national-nonprofit-or-charity"
+    - "community-cause"
+    - "open-or-unspecified-cause"
+programs:
+  - id: "prog_000023"
+    name: "Merch Fundraising Campaigns"
+    slug: "merch-fundraising-campaigns"
+    url: "https://www.bonfire.com/fundraising/nonprofits/"
+    method: "product-sales"
+    products_services:
+      - "apparel-spirit-wear"
+      - "merchandise-online-store"
+    channels:
+      - "online"
+      - "hybrid"
+    online_ordering: true
+    fulfillment:
+      - "direct-to-supporter"
+      - "group-distribution"
+      - "provider-delivery"
+    inventory_model: "no-inventory"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "Organizers design and price custom merchandise, promote an online campaign, and receive the difference between sale price and Bonfire's base cost while Bonfire prints and ships orders."
+    economics_mode: "program-specific"
+    economics:
+      status: "known"
+      arrangements:
+        - type: "upfront-cost"
+          value:
+            kind: "amount"
+            amount: 0
+            currency: "USD"
+          basis: "Launching and selling through a Bonfire campaign"
+          conditions: []
+          caveats: []
+        - type: "product-sale-profit"
+          value:
+            kind: "variable"
+            description: "Campaign price minus the product's manufacturing, sourcing, and printing base cost; margins increase with higher quantities"
+          basis: "Each product sold"
+          conditions:
+            - "The organizer sets a sale price above the applicable base cost"
+          caveats:
+            - "Base cost varies by product, design, and batch quantity"
+        - type: "processing-fee"
+          value:
+            kind: "percentage"
+            percent: 8
+          basis: "Optional additional contributions at checkout"
+          conditions:
+            - "Standard campaign donation processing"
+          caveats: []
+        - type: "processing-fee"
+          value:
+            kind: "percentage"
+            percent: 3.5
+          basis: "Optional additional contributions at checkout"
+          conditions:
+            - "Verified nonprofit campaign"
+          caveats: []
+        - type: "minimum-payout"
+          value:
+            kind: "amount"
+            amount: 5
+            currency: "USD"
+          basis: "PayPal payout request"
+          conditions: []
+          caveats:
+            - "Alternative check and ACH payout methods have higher minimums and are eligibility-dependent"
+      notes:
+        - "Buyers pay shipping separately, so standard campaign shipping is not deducted from campaign profits."
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The organizer supplies or creates a design, selects products, sets prices, and promotes the campaign."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "United States nonprofit verification and an authorized organization role are required for verified nonprofit perks and direct organization payouts."
+      editorial_summary: "Anyone may sell through Bonfire, while verified nonprofit status provides reduced donation fees and nonprofit-specific payout options."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration:
+        minimum:
+          value: 2
+          unit: "days"
+        maximum:
+          value: 21
+          unit: "days"
+      fulfillment_time: null
+      funds_available_time:
+        minimum:
+          value: 1
+          unit: "business-days"
+        maximum:
+          value: 3
+          unit: "business-days"
+      payout_time:
+        typical:
+          value: 1
+          unit: "business-days"
+      payout_schedules: []
+      notes:
+        - "The 2–21-day duration applies to batch campaigns; campaigns may instead run continuously using print on demand. The one-business-day payout time describes PayPal after a payout request."
+    logistics:
+      status: "known"
+      notes:
+        - "Bonfire prints after a batch ends or on the next business day for print-on-demand orders. Sellers choose direct-to-buyer, group shipping, or buyer-choice shipping; buyers generally pay shipping."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "online-store"
+      - "print-on-demand"
+      - "fulfillment"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+      - "individual-or-family"
+      - "local-nonprofit-or-charity"
+      - "national-nonprofit-or-charity"
+      - "community-cause"
+      - "open-or-unspecified-cause"
+geography:
+  scope:
+    - "international"
+  countries: []
+  states: []
+  regions: []
+  notes: "Bonfire offers international campaign-order shipping subject to country restrictions and customs charges; nonprofit verification in Bonfire is currently limited to United States nonprofits."
+content:
+  summary: "Bonfire is a custom-merchandise campaign platform that handles printing, payments, shipping, and campaign payouts."
+  how_it_works: "An organizer creates a design, chooses products and prices, launches a campaign, and promotes it; Bonfire produces and fulfills sold merchandise and makes campaign profits available after each successful batch."
+  best_for:
+    - "Groups, nonprofits, and individuals that want custom apparel fundraising without purchasing inventory upfront."
+  considerations:
+    - "Profit varies with product base cost, price, design, and quantity."
+    - "International buyers may owe duties or taxes, and group shipping is limited to the continental United States."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 1 research"
+  verified_by: "FRD batch 1 research"
+  sources:
+    - id: "src_000047"
+      type: "official-program"
+      url: "https://www.bonfire.com/fundraising/nonprofits/"
+      title: "Nonprofit Fundraising with Custom Merch"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "classification.organizations"
+          status: "current"
+          notes: null
+        - path: "programs.merch-fundraising-campaigns.economics"
+          status: "current"
+          notes: null
+        - path: "programs.merch-fundraising-campaigns.requirements"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000048"
+      type: "terms-or-fees"
+      url: "https://help.bonfire.com/en/articles/1614156-pricing-fees"
+      title: "Pricing & fees"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.merch-fundraising-campaigns.economics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000049"
+      type: "platform-documentation"
+      url: "https://help.bonfire.com/en/articles/1614140-bonfire-basics"
+      title: "Bonfire Basics"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.merch-fundraising-campaigns.summary"
+          status: "current"
+          notes: null
+        - path: "programs.merch-fundraising-campaigns.timing"
+          status: "current"
+          notes: null
+        - path: "programs.merch-fundraising-campaigns.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000050"
+      type: "platform-documentation"
+      url: "https://help.bonfire.com/en/articles/1614157-how-payouts-work"
+      title: "How Payouts Work"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.merch-fundraising-campaigns.economics"
+          status: "current"
+          notes: null
+        - path: "programs.merch-fundraising-campaigns.timing"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000051"
+      type: "platform-documentation"
+      url: "https://help.bonfire.com/en/articles/3396430-shipping-options"
+      title: "Shipping Options"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.merch-fundraising-campaigns.logistics"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

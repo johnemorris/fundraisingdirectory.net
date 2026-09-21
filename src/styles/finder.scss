@@ -266,7 +266,7 @@
       background: var(--surface-elevated);
     }
 
-    li.is-unanswered { background: rgba(255, 253, 248, 0.56); }
+    li.is-unanswered { background: color-mix(in srgb, var(--surface-elevated) 56%, transparent); }
 
     div {
       display: grid;

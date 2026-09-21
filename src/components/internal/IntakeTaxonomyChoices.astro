@@ -1,0 +1,14 @@
+---
+import { formatProviderLabel } from "../../data/providerLabels";
+
+interface Props {
+  name: string;
+  values: readonly string[];
+}
+
+const { name, values } = Astro.props;
+---
+
+{values.map((value) => (
+  <label class="choice"><input type="checkbox" name={name} value={value} /><span>{formatProviderLabel(value)}</span></label>
+))}

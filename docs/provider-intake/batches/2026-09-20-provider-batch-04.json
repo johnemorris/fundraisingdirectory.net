@@ -1,0 +1,453 @@
+[
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "Savers FUNDrive",
+      "legal_name": "TVI, Inc.",
+      "aliases": ["FUNDrive", "Value Village FUNDrive"],
+      "slug": "savers-fundrive",
+      "website": "https://fundrive.savers.com/",
+      "fundraising_url": "https://fundrive.savers.com/Home/Faq"
+    },
+    "classification": {
+      "methods": ["collection-reuse-fundraising", "in-kind-resource-fundraising"],
+      "products_services": [],
+      "organizations": ["schools", "pto-pta", "sports-athletics", "booster-clubs", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance", "animal-rescue"],
+      "beneficiary_types": ["own-organization", "own-project-or-program", "community-cause"],
+      "cause_areas": ["environment-conservation", "community-neighborhood"],
+      "activity_subtypes": ["clothing-drive", "recycling-drive"],
+      "capabilities": ["collection-logistics"],
+      "outcomes": ["cash", "donated-goods"]
+    },
+    "economics": {
+      "status": "known",
+      "arrangements": [
+        { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "FUNDrive platform and generic template tools", "conditions": ["The organization is approved for a local FUNDrive opportunity"], "caveats": [] },
+        { "type": "fixed-payout", "value": { "kind": "variable", "description": "Purchase payment for accepted clothing, books, and household goods under the local FUNDrive agreement" }, "basis": "Accepted collected goods delivered and sold to Savers, Value Village, Unique, or 2nd Ave.", "conditions": ["The organization completes the agreed event and scheduled delivery"], "caveats": ["Accepted goods and purchase terms depend on the local store opportunity", "The official FAQ says most organizations earn at least $700 per event but does not state that amount as a guarantee"] }
+      ],
+      "notes": ["FUNDrive payment is purchase consideration for goods sold by the nonprofit, not a donation from Savers or its retail brands."]
+    },
+    "programs": [
+      {
+        "name": "Clothing and Household Goods FUNDrive",
+        "slug": "clothing-and-household-goods-fundrive",
+        "url": "https://fundrive.savers.com/Home/Faq",
+        "method": "collection-reuse-fundraising",
+        "products_services": [],
+        "channels": ["in-person"],
+        "online_ordering": false,
+        "fulfillment": ["not-applicable"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "An approved nonprofit collects gently used clothing, books, and household goods, schedules a delivery to a participating local store, and receives a purchase payment for accepted goods.",
+        "economics_mode": "inherit-provider",
+        "requirements": {
+          "status": "known",
+          "legal_status": ["nonprofit", "tax-exempt"],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": ["The organization applies and is approved for an available local FUNDrive opportunity.", "The organization signs the applicable agreement, supplies required tax documentation, reports accurate bag and box counts, and schedules a delivery appointment."],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": ["U.S. groups must be tax-exempt with the IRS; Canadian groups must provide applicable government nonprofit recognition.", "Personal assistance and goods left from thrift, secondhand, or textile-recycling operations are ineligible unless Savers agrees otherwise."],
+          "editorial_summary": "The program is for compliant nonprofit or charitable organizations whose proceeds support a community served by Savers."
+        },
+        "timing": {
+          "status": "known",
+          "setup_lead_time": null,
+          "campaign_duration": null,
+          "fulfillment_time": null,
+          "funds_available_time": null,
+          "payout_time": null,
+          "payout_schedules": [],
+          "notes": ["Collection and delivery dates are arranged with the local FUNDrive representative. The reviewed official pages do not publish a universal event length or payment-delivery time."]
+        },
+        "logistics": {
+          "status": "known",
+          "notes": ["The organization runs and promotes the drive, collects accepted goods, supplies advance bag and box counts, and delivers the goods at a scheduled store appointment. Savers supplies generic templates but does not solicit or collect the goods on the organization's behalf."]
+        },
+        "beneficiary_types": ["own-organization", "own-project-or-program", "community-cause"],
+        "cause_areas": ["environment-conservation", "community-neighborhood"],
+        "activity_subtypes": ["clothing-drive", "recycling-drive"],
+        "capabilities": ["collection-logistics"],
+        "outcomes": ["cash", "donated-goods"]
+      }
+    ],
+    "geography": { "scope": ["local", "canada"], "countries": ["US", "CA"], "states": [], "regions": [], "notes": "FUNDrive is available near most participating Savers, Value Village, 2nd Ave., and Unique stores in the United States and Canada, but not in Minnesota, Puget Sound, or Quebec. Actual opportunity and accepted goods are store-specific." },
+    "content": {
+      "summary": "Savers FUNDrive lets eligible nonprofits turn locally collected clothing and household goods into unrestricted purchase revenue.",
+      "how_it_works": "An eligible nonprofit coordinates a collection event, gathers approved used goods, reports bag and box counts, delivers at a scheduled participating store appointment, and receives the locally agreed purchase payment.",
+      "best_for": ["Nonprofits near a participating Savers-family store that can mobilize volunteers and donors to collect reusable clothing and small household goods."],
+      "considerations": ["Availability, accepted product, and purchase terms are location-specific.", "The nonprofit—not Savers—operates and promotes the drive and handles collection and delivery."]
+    },
+    "sources": [
+      { "url": "https://fundrive.savers.com/Home/Faq", "source_type": "official-program", "title": "Savers FUNDrive Eligibility and Frequently Asked Questions", "supports": ["identity", "classification", "economics", "programs.clothing-and-household-goods-fundrive.summary", "programs.clothing-and-household-goods-fundrive.requirements", "programs.clothing-and-household-goods-fundrive.timing", "programs.clothing-and-household-goods-fundrive.logistics", "geography", "content.summary"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://fundrive.savers.com/Content/PhilosophyAndGuidelines", "source_type": "terms-or-fees", "title": "Savers FUNDrive Philosophy and Program Guidelines", "supports": ["identity", "classification", "programs.clothing-and-household-goods-fundrive.requirements", "geography", "content.considerations"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 4 research", "verifier": "FRD batch 4 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD final targeted provider ingestion batch 4 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "YouGiveGoods",
+      "slug": "yougivegoods",
+      "website": "https://yougivegoods.com/",
+      "fundraising_url": "https://yougivegoods.com/starting-a-goodsdrive"
+    },
+    "classification": {
+      "methods": ["in-kind-resource-fundraising"],
+      "products_services": [],
+      "organizations": ["schools", "pto-pta", "sports-athletics", "booster-clubs", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance", "animal-rescue", "individuals-personal-causes"],
+      "beneficiary_types": ["local-nonprofit-or-charity", "national-nonprofit-or-charity", "community-cause"],
+      "cause_areas": ["children-families", "education-literacy", "hunger-food-security", "homelessness-housing", "veterans-military", "disaster-emergency-relief", "community-neighborhood"],
+      "activity_subtypes": ["supply-drive", "food-drive", "clothing-drive"],
+      "capabilities": ["online-store", "reporting-analytics", "fulfillment"],
+      "outcomes": ["supplies", "food", "donated-goods"]
+    },
+    "programs": [
+      {
+        "name": "Online GoodsDrive",
+        "slug": "online-goodsdrive",
+        "url": "https://yougivegoods.com/starting-a-goodsdrive",
+        "method": "in-kind-resource-fundraising",
+        "products_services": [],
+        "channels": ["online"],
+        "online_ordering": true,
+        "fulfillment": ["provider-delivery"],
+        "inventory_model": "no-inventory",
+        "upfront_cost": "none",
+        "summary": "An organizer chooses a U.S. charity and needed new goods, supporters purchase items through a custom online drive, and YouGiveGoods ships every purchased item directly to the recipient charity.",
+        "economics_mode": "program-specific",
+        "economics": {
+          "status": "known",
+          "arrangements": [
+            { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Starting and using a GoodsDrive", "conditions": [], "caveats": ["Donors purchase goods at the prices shown in the selected drive"] },
+            { "type": "proceeds", "value": { "kind": "percentage", "percent": 100 }, "basis": "Goods purchased through the GoodsDrive", "conditions": [], "caveats": ["The recipient receives the purchased goods, not cash proceeds"] },
+            { "type": "other", "value": { "kind": "percentage", "percent": 5 }, "basis": "Annual Charity Partner Giveback Program cash gift", "conditions": ["The nonprofit partner receives at least $5,000 in donated goods during the year"], "caveats": [] }
+          ],
+          "notes": ["YouGiveGoods states there are no organizer fees or subscriptions and that all purchased goods are delivered to the selected charity."]
+        },
+        "requirements": {
+          "status": "known",
+          "legal_status": [],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": ["The organizer selects a charity in the United States, chooses the goods to raise, creates the drive, and shares its page."],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": ["Goods available for purchase and delivery come from the platform's current new-goods selection."],
+          "editorial_summary": "Individuals, companies, schools, groups, and charities can create a drive for a selected U.S. charity."
+        },
+        "timing": { "status": "researched-unknown", "setup_lead_time": null, "campaign_duration": null, "fulfillment_time": null, "funds_available_time": null, "payout_time": null, "payout_schedules": [], "notes": [] },
+        "logistics": {
+          "status": "known",
+          "notes": ["Supporters choose and purchase brand-new goods through the drive. YouGiveGoods and its foundation handle receipt, tax acknowledgments, logistics, and direct delivery to the selected charity, so the organizer does not maintain collection bins or inventory."]
+        },
+        "beneficiary_types": ["local-nonprofit-or-charity", "national-nonprofit-or-charity", "community-cause"],
+        "cause_areas": ["children-families", "education-literacy", "hunger-food-security", "homelessness-housing", "veterans-military", "disaster-emergency-relief", "community-neighborhood"],
+        "activity_subtypes": ["supply-drive", "food-drive", "clothing-drive"],
+        "capabilities": ["online-store", "reporting-analytics", "fulfillment"],
+        "outcomes": ["supplies", "food", "donated-goods"]
+      }
+    ],
+    "geography": { "scope": ["us-nationwide"], "countries": ["US"], "states": [], "regions": [], "notes": "Organizers can start an online drive from anywhere, but the reviewed program pages state that the selected recipient charity and delivery destination are within the United States." },
+    "content": {
+      "summary": "YouGiveGoods is a free online platform for food, school-supply, clothing, hygiene, disaster-relief, and other new-goods drives delivered directly to U.S. charities.",
+      "how_it_works": "An organizer chooses a cause, charity, and requested goods; supporters buy listed items online; the platform tracks progress and handles delivery to the charity.",
+      "best_for": ["Individuals, schools, employee teams, companies, and charities seeking an online goods drive without physical collection bins or organizer-managed shipping."],
+      "considerations": ["The program raises new goods rather than unrestricted cash.", "Available items and prices are those shown in the platform catalog for the drive."]
+    },
+    "sources": [
+      { "url": "https://yougivegoods.com/", "source_type": "official-provider", "title": "YouGiveGoods Online GoodsDrives", "supports": ["identity", "classification", "programs.online-goodsdrive.summary", "programs.online-goodsdrive.logistics", "content.summary"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://yougivegoods.com/starting-a-goodsdrive", "source_type": "official-program", "title": "Starting a YouGiveGoods GoodsDrive", "supports": ["classification", "programs.online-goodsdrive.summary", "programs.online-goodsdrive.requirements", "programs.online-goodsdrive.logistics", "geography"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://yougivegoods.com/individuals", "source_type": "official-program", "title": "YouGiveGoods for Individuals", "supports": ["classification", "programs.online-goodsdrive.economics", "programs.online-goodsdrive.requirements", "programs.online-goodsdrive.logistics", "geography", "content.best_for"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://yougivegoods.com/terms-of-use", "source_type": "terms-or-fees", "title": "YouGiveGoods Terms of Use", "supports": ["identity", "programs.online-goodsdrive.economics", "programs.online-goodsdrive.requirements"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 4 research", "verifier": "FRD batch 4 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD final targeted provider ingestion batch 4 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "Waggle",
+      "slug": "waggle",
+      "website": "https://www.waggle.org/",
+      "fundraising_url": "https://www.waggle.org/about-us/how-we-work"
+    },
+    "classification": {
+      "methods": ["crowdfunding", "peer-to-peer", "giving-matching", "sponsorships"],
+      "products_services": ["crowdfunding-platform", "peer-to-peer-platform"],
+      "organizations": ["animal-rescue", "nonprofits-charities", "individuals-personal-causes"],
+      "beneficiary_types": ["individual-or-family", "own-organization", "own-project-or-program"],
+      "cause_areas": ["animals-pets"],
+      "capabilities": ["crowdfunding-pages", "peer-to-peer-pages", "matching-gifts", "sponsorship-management", "reporting-analytics"],
+      "outcomes": ["cash", "services"]
+    },
+    "economics": {
+      "status": "known",
+      "arrangements": [
+        { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Creating a reviewed pet medical campaign", "conditions": [], "caveats": [] },
+        { "type": "processing-fee", "value": { "kind": "percentage", "percent": 10 }, "basis": "Donation to an animal rescue campaign", "conditions": [], "caveats": ["The fee is added at checkout instead of deducted from the chosen donation"] },
+        { "type": "processing-fee", "value": { "kind": "percentage", "percent": 15 }, "basis": "Donation to a pet guardian campaign", "conditions": [], "caveats": ["The fee is added at checkout instead of deducted from the chosen donation"] },
+        { "type": "transaction-fee", "value": { "kind": "variable", "description": "For a U.S. veterinarian paid by physical check, the lesser of $50 or 15% of the payment" }, "basis": "Physical check processing", "conditions": ["The veterinary provider chooses check instead of e-payment"], "caveats": ["E-payments to veterinary providers have no Waggle payment fee"] }
+      ],
+      "notes": ["Standard campaign donations are applied to the selected pet's eligible veterinary care. Payment is limited to the documented invoice; unused amounts support other pets or the Waggle mission under the stated campaign rules."]
+    },
+    "programs": [
+      {
+        "name": "Pet Medical Crowdfunding",
+        "slug": "pet-medical-crowdfunding",
+        "url": "https://www.waggle.org/about-us/how-we-work",
+        "method": "crowdfunding",
+        "products_services": ["crowdfunding-platform", "peer-to-peer-platform"],
+        "channels": ["online"],
+        "online_ordering": null,
+        "fulfillment": ["not-applicable"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "Pet guardians and rescue organizations submit a veterinary estimate for review, share an approved campaign, may receive sponsor or matching support, and have eligible funds paid directly to the veterinary provider.",
+        "economics_mode": "inherit-provider",
+        "requirements": {
+          "status": "known",
+          "legal_status": [],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": ["The organizer provides veterinarian contact information, a medical estimate, and clear pet photos for Waggle review.", "After the campaign closes, the organizer posts an update and ensures the veterinarian submits the required invoice or treatment estimate."],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": ["Waggle approves campaigns before publication and verifies the veterinary practice and invoice.", "Funds are paid to the veterinary provider or approved animal welfare organization, not to the organizer's personal account, and cannot exceed the documented eligible invoice."],
+          "editorial_summary": "The program is for pet guardians and rescues facing eligible veterinary treatment costs and able to document the provider and estimated care."
+        },
+        "timing": {
+          "status": "known",
+          "setup_lead_time": null,
+          "campaign_duration": null,
+          "fulfillment_time": null,
+          "funds_available_time": null,
+          "payout_time": { "typical": { "value": 15, "unit": "business-days" } },
+          "payout_schedules": [],
+          "notes": ["Waggle typically processes veterinary payment net 15 business days after receiving the provider's required invoice or estimate. Campaign review and campaign duration are not published as one universal elapsed time."]
+        },
+        "logistics": {
+          "status": "known",
+          "notes": ["The organizer shares the approved campaign; Waggle verifies the practice and documentation, requests the final invoice after closure, and pays the hospital through e-payment, virtual card, or—at U.S. hospitals—check."]
+        },
+        "beneficiary_types": ["individual-or-family", "own-organization", "own-project-or-program"],
+        "cause_areas": ["animals-pets"],
+        "capabilities": ["crowdfunding-pages", "peer-to-peer-pages", "matching-gifts", "sponsorship-management", "reporting-analytics"],
+        "outcomes": ["cash", "services"]
+      }
+    ],
+    "geography": { "scope": ["us-nationwide", "canada"], "countries": ["US", "CA"], "states": [], "regions": [], "notes": "Waggle documents veterinary partners in the United States and Canada. Physical checks are available only to U.S. veterinary hospitals; payment options otherwise depend on the provider." },
+    "content": {
+      "summary": "Waggle is a nonprofit pet-medical crowdfunding platform that verifies veterinary cases and pays eligible funds directly to veterinary providers.",
+      "how_it_works": "A pet guardian or rescue submits the animal's veterinary estimate and provider details, Waggle reviews and publishes an approved campaign, supporters donate and share it, and Waggle pays the verified final invoice directly to the hospital.",
+      "best_for": ["Pet guardians and animal rescue organizations with a documented veterinary treatment need and a provider able to submit an invoice."],
+      "considerations": ["Campaign acceptance is reviewed, and funds cannot be withdrawn as unrestricted personal cash.", "Donation processing fees differ between rescue and pet-guardian campaigns and are added to the donor's checkout amount."]
+    },
+    "sources": [
+      { "url": "https://www.waggle.org/about-us/how-we-work", "source_type": "official-program", "title": "How Waggle Works", "supports": ["identity", "classification", "economics", "programs.pet-medical-crowdfunding.summary", "programs.pet-medical-crowdfunding.requirements", "programs.pet-medical-crowdfunding.logistics", "content.summary"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://support.waggle.org/hc/en-us/articles/44255793446164-Does-Waggle-take-a-fee-from-donations", "source_type": "terms-or-fees", "title": "Waggle Campaign Processing Fees", "supports": ["economics", "content.considerations"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://support.waggle.org/hc/en-us/articles/50075583215124-What-Happens-After-My-Pet-s-Campaign-Closes", "source_type": "platform-documentation", "title": "What Happens After a Waggle Campaign Closes", "supports": ["programs.pet-medical-crowdfunding.requirements", "programs.pet-medical-crowdfunding.timing", "programs.pet-medical-crowdfunding.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://support.waggle.org/hc/en-us/articles/31713562952852-How-does-BILL-work", "source_type": "platform-documentation", "title": "Waggle Veterinary Payments Through BILL", "supports": ["economics", "programs.pet-medical-crowdfunding.logistics", "geography"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://support.waggle.org/hc/en-us/articles/360033474531-Does-my-veterinarian-need-to-partner-with-Waggle", "source_type": "platform-documentation", "title": "Waggle Veterinary Provider Requirements and Payment Fees", "supports": ["economics", "programs.pet-medical-crowdfunding.requirements", "programs.pet-medical-crowdfunding.logistics", "geography"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://support.waggle.org/hc/en-us/articles/360033479551-Does-my-full-donation-really-go-to-the-pet-s-care", "source_type": "terms-or-fees", "title": "How Waggle Applies Campaign Donations", "supports": ["economics", "programs.pet-medical-crowdfunding.requirements", "content.considerations"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 4 research", "verifier": "FRD batch 4 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD final targeted provider ingestion batch 4 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "Custom Ink Fundraising",
+      "legal_name": "CustomInk, LLC",
+      "aliases": ["Custom Ink"],
+      "slug": "custom-ink-fundraising",
+      "website": "https://www.customink.com/fundraising/",
+      "fundraising_url": "https://www.customink.com/fundraising/how-it-works"
+    },
+    "classification": {
+      "methods": ["product-sales", "direct-donations", "crowdfunding"],
+      "products_services": ["apparel-spirit-wear", "merchandise-online-store", "crowdfunding-platform", "donation-platform"],
+      "organizations": ["schools", "pto-pta", "sports-athletics", "booster-clubs", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance", "animal-rescue", "individuals-personal-causes"],
+      "beneficiary_types": ["own-organization", "own-project-or-program", "individual-or-family", "local-nonprofit-or-charity", "national-nonprofit-or-charity", "community-cause", "open-or-unspecified-cause"],
+      "capabilities": ["online-store", "print-on-demand", "fulfillment", "crowdfunding-pages", "donation-forms", "reporting-analytics"],
+      "outcomes": ["cash"]
+    },
+    "economics": {
+      "status": "known",
+      "arrangements": [
+        { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Launching and running a fundraising page", "conditions": [], "caveats": [] },
+        { "type": "product-sale-profit", "value": { "kind": "variable", "description": "Organizer-set sale price minus product, design, production, platform, and selected delivery costs" }, "basis": "Merchandise sold after the campaign reaches its print minimum", "conditions": ["The campaign meets the product-specific print minimum"], "caveats": ["Product, print locations, colors, sale price, volume, and shipping selection change the amount raised per item"] },
+        { "type": "processing-fee", "value": { "kind": "percentage", "percent": 2.9 }, "basis": "Additional or donation-only contributions", "conditions": [], "caveats": ["The fee is deducted from the donation, not merchandise proceeds"] }
+      ],
+      "notes": ["If a merchandise campaign does not reach its print minimum, purchase amounts are refunded and merchandise is not produced; monetary donations over $20 are still passed to the beneficiary under the reviewed FAQ."]
+    },
+    "programs": [
+      {
+        "name": "Custom Apparel Fundraising Campaign",
+        "slug": "custom-apparel-fundraising-campaign",
+        "url": "https://www.customink.com/fundraising/how-it-works",
+        "method": "product-sales",
+        "products_services": ["apparel-spirit-wear", "merchandise-online-store", "crowdfunding-platform", "donation-platform"],
+        "channels": ["online", "hybrid"],
+        "online_ordering": true,
+        "fulfillment": ["direct-to-supporter", "group-distribution", "provider-delivery"],
+        "inventory_model": "no-inventory",
+        "upfront_cost": "none",
+        "summary": "An organizer designs custom apparel, sets the campaign price and close date, shares a hosted sales and donation page, and has Custom Ink process orders, print, deliver, and disburse the resulting funds.",
+        "economics_mode": "inherit-provider",
+        "requirements": {
+          "status": "known",
+          "legal_status": [],
+          "age_range": { "minimum": 13 },
+          "grade_range": null,
+          "participation_requirements": ["The organizer creates or supplies an authorized design, sets the sales price, goal, beneficiary, and campaign close date, and complies with campaign and content rules.", "A merchandise campaign must reach its displayed product-specific print minimum for the merchandise order to proceed."],
+          "minimum_group_size": null,
+          "minimum_order": { "kind": "variable", "description": "Product- and design-specific print minimum shown during setup" },
+          "minimum_sales": { "kind": "variable", "description": "Enough sales to reach the displayed print minimum" },
+          "other_restrictions": ["Users age 13 through 17 require the consent and supervision of a parent or legal guardian who is at least 18.", "Only an eligible U.S. 501(c)(3) can be designated under the platform's verified charity beneficiary option; organizers may otherwise select themselves or another third party under the applicable payout options."],
+          "editorial_summary": "Individuals and organizations can run campaigns for themselves, groups, third parties, or eligible U.S. charities, subject to age, content, and beneficiary rules."
+        },
+        "timing": {
+          "status": "known",
+          "setup_lead_time": null,
+          "campaign_duration": null,
+          "fulfillment_time": { "typical": { "value": 12, "unit": "business-days" } },
+          "funds_available_time": null,
+          "payout_time": { "maximum": { "value": 4, "unit": "weeks" } },
+          "payout_schedules": [],
+          "notes": ["The organizer chooses the campaign close date. Orders typically arrive about 12 working days after close. PayPal or online beneficiary payments take no more than two weeks; checks take about four weeks."]
+        },
+        "logistics": {
+          "status": "known",
+          "notes": ["Custom Ink handles checkout, payment processing, printing, customer service, and delivery. Campaigns may use paid individual shipping, free bulk shipment to the organizer, or hybrid delivery; international individual shipments carry higher delivery charges, customs, and longer turn times."]
+        },
+        "beneficiary_types": ["own-organization", "own-project-or-program", "individual-or-family", "local-nonprofit-or-charity", "national-nonprofit-or-charity", "community-cause", "open-or-unspecified-cause"],
+        "capabilities": ["online-store", "print-on-demand", "fulfillment", "crowdfunding-pages", "donation-forms", "reporting-analytics"],
+        "outcomes": ["cash"]
+      }
+    ],
+    "geography": { "scope": ["us-nationwide", "international"], "countries": [], "states": [], "regions": [], "notes": "Custom Ink supports U.S. territories and APO addresses and publishes a current list of select international countries for individually shipped fundraiser orders. Charity-beneficiary verification is limited to eligible U.S. 501(c)(3) organizations, and international shipments have separate fees, duties, and restrictions." },
+    "content": {
+      "summary": "Custom Ink Fundraising provides risk-limited custom-apparel campaigns with hosted sales, optional donations, print-on-demand production, delivery, and beneficiary disbursement.",
+      "how_it_works": "The organizer designs merchandise and selects its price, goal, beneficiary, close date, and delivery options; supporters order or donate online; Custom Ink prints qualifying orders, handles fulfillment, and sends net funds after the campaign.",
+      "best_for": ["Groups and individuals that want custom apparel to raise both money and awareness without buying or storing inventory upfront."],
+      "considerations": ["Merchandise orders proceed only after the campaign reaches its displayed print minimum.", "Profit varies with the product, design, price, volume, and delivery choice; international duties and taxes are paid by the recipient."]
+    },
+    "sources": [
+      { "url": "https://www.customink.com/fundraising/how-it-works", "source_type": "official-program", "title": "How Custom Ink Fundraising Campaigns Work", "supports": ["identity", "classification", "economics", "programs.custom-apparel-fundraising-campaign.summary", "programs.custom-apparel-fundraising-campaign.logistics", "content.summary"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.customink.com/help_center/fundraising-how-does-custom-ink-fundraising-make-money", "source_type": "terms-or-fees", "title": "How Custom Ink Fundraising Makes Money", "supports": ["economics", "content.considerations"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.customink.com/help_center/fundraising-is-custom-ink-fundraising-free-to-use", "source_type": "terms-or-fees", "title": "Custom Ink Fundraising Cost and Print Minimum", "supports": ["economics", "programs.custom-apparel-fundraising-campaign.requirements", "content.considerations"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.customink.com/help_center/fundraising-how-and-when-will-the-funds-be-sent", "source_type": "platform-documentation", "title": "Custom Ink Fundraising Disbursement Methods and Timing", "supports": ["programs.custom-apparel-fundraising-campaign.requirements", "programs.custom-apparel-fundraising-campaign.timing", "programs.custom-apparel-fundraising-campaign.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.customink.com/help_center/fundraising-where-does-custom-ink-fundraising-ship", "source_type": "platform-documentation", "title": "Custom Ink Fundraising Shipping Countries and Fees", "supports": ["programs.custom-apparel-fundraising-campaign.logistics", "geography", "content.considerations"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.customink.com/fundraising/user-agreement-policies", "source_type": "terms-or-fees", "title": "Custom Ink Fundraising Terms of Service", "supports": ["identity", "economics", "programs.custom-apparel-fundraising-campaign.requirements", "geography"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 4 research", "verifier": "FRD batch 4 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD final targeted provider ingestion batch 4 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "Streamlabs Charity",
+      "aliases": ["StreamlabsCharity"],
+      "slug": "streamlabs-charity",
+      "website": "https://streamlabscharity.com/",
+      "fundraising_url": "https://streamlabscharity.com/"
+    },
+    "classification": {
+      "methods": ["direct-donations", "peer-to-peer", "events-activities"],
+      "products_services": ["donation-platform", "peer-to-peer-platform", "event-fundraising-platform"],
+      "organizations": ["nonprofits-charities", "individuals-personal-causes"],
+      "beneficiary_types": ["local-nonprofit-or-charity", "national-nonprofit-or-charity"],
+      "activity_subtypes": ["gaming-livestream", "creator-livestream"],
+      "capabilities": ["donation-forms", "peer-to-peer-pages", "qr-giving", "livestream-integrations", "gaming-integrations", "reporting-analytics"],
+      "outcomes": ["cash"]
+    },
+    "economics": {
+      "status": "known",
+      "arrangements": [
+        { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Charity and fundraiser account setup", "conditions": [], "caveats": [] },
+        { "type": "platform-fee", "value": { "kind": "percentage", "percent": 0 }, "basis": "Charity donations processed through Streamlabs Charity", "conditions": [], "caveats": ["Standard third-party payment-processing fees may still apply"] },
+        { "type": "processing-fee", "value": { "kind": "variable", "description": "Standard payment-processor charge based on the charity, donor, payment method, and currency" }, "basis": "Donation payment processing", "conditions": [], "caveats": ["Streamlabs states it does not take a cut of charity donations"] }
+      ],
+      "notes": ["Official Streamlabs documentation describes no annual fee and a 0% Streamlabs transaction fee for charities; processor terms remain separate."]
+    },
+    "programs": [
+      {
+        "name": "Charity Livestream Fundraising",
+        "slug": "charity-livestream-fundraising",
+        "url": "https://streamlabscharity.com/",
+        "method": "peer-to-peer",
+        "products_services": ["donation-platform", "peer-to-peer-platform", "event-fundraising-platform"],
+        "channels": ["online"],
+        "online_ordering": null,
+        "fulfillment": ["digital", "not-applicable"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "Approved charities maintain donation profiles while individual creators select a listed charity, schedule and publish livestream campaigns, and use donation pages, alerts, QR codes, goals, rewards, and reporting to raise funds.",
+        "economics_mode": "inherit-provider",
+        "requirements": {
+          "status": "known",
+          "legal_status": ["nonprofit"],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": ["A charity creates the charity account, supplies its organization and tax-identification information, preferably uses an organization-domain email, and passes Streamlabs review.", "A fundraiser creates and verifies an account, chooses an available charity, sets campaign dates and a goal, and publishes the campaign."],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": ["U.S.-based donors can contribute through the platform only to eligible 501(c)(3) organizations under Streamlabs' current U.S. compliance rules.", "Charity and payment availability depends on organization compliance, processor support, and applicable law."],
+          "editorial_summary": "The program connects approved charities with individual Twitch, YouTube, Facebook, and other creators who raise through livestream campaigns."
+        },
+        "timing": {
+          "status": "known",
+          "setup_lead_time": { "minimum": { "value": 1, "unit": "business-days" }, "maximum": { "value": 3, "unit": "business-days" } },
+          "campaign_duration": null,
+          "fulfillment_time": null,
+          "funds_available_time": null,
+          "payout_time": null,
+          "payout_schedules": [],
+          "notes": ["Streamlabs says charity-profile review usually takes one to three business days. Fundraisers choose campaign start and end dates. Universal processor settlement timing was not established for the charity platform."]
+        },
+        "logistics": {
+          "status": "known",
+          "notes": ["Creators publish a charity donation page and can connect campaign alerts to their livestream. Charities can export global, opt-in, and event-level donation data. Rewards or thank-you gifts are fulfilled by the charity, sponsor, or streamer when offered."]
+        },
+        "beneficiary_types": ["local-nonprofit-or-charity", "national-nonprofit-or-charity"],
+        "activity_subtypes": ["gaming-livestream", "creator-livestream"],
+        "capabilities": ["donation-forms", "peer-to-peer-pages", "qr-giving", "livestream-integrations", "gaming-integrations", "reporting-analytics"],
+        "outcomes": ["cash"]
+      }
+    ],
+    "geography": { "scope": ["international"], "countries": [], "states": [], "regions": [], "notes": "Streamlabs describes government-issued tax IDs, international-currency configuration, and global creator platforms, but the reviewed charity documentation does not publish one definitive country list. U.S. donor and charity eligibility has additional 501(c)(3) compliance restrictions." },
+    "content": {
+      "summary": "Streamlabs Charity is a no-platform-fee livestream fundraising service connecting approved charities with gaming and creator campaigns.",
+      "how_it_works": "A charity creates and passes review for a profile; a creator chooses the charity, creates and publishes a dated campaign, shares or integrates the donation page with a stream, and donors give through the page while the charity tracks event-level activity.",
+      "best_for": ["Charities seeking a creator and gaming livestream option and streamers who want campaign pages, live alerts, QR giving, goals, and donation reporting tied to a selected charity."],
+      "considerations": ["Third-party payment processing and country availability vary even though Streamlabs charges no platform percentage.", "U.S. donations are subject to current 501(c)(3) and good-standing requirements."]
+    },
+    "sources": [
+      { "url": "https://support.streamlabs.com/hc/en-us/articles/1260800840970-How-to-Create-a-Streamlabs-Charity-Profile", "source_type": "platform-documentation", "title": "How to Create a Streamlabs Charity Profile", "supports": ["identity", "classification", "economics", "programs.charity-livestream-fundraising.requirements", "programs.charity-livestream-fundraising.timing", "geography", "content.summary"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://support.streamlabs.com/hc/en-us/articles/1260800841090-How-to-Start-a-Charity-Fundraising-Campaign", "source_type": "platform-documentation", "title": "How to Start a Streamlabs Charity Fundraising Campaign", "supports": ["classification", "programs.charity-livestream-fundraising.summary", "programs.charity-livestream-fundraising.requirements", "programs.charity-livestream-fundraising.timing", "programs.charity-livestream-fundraising.logistics", "content.how_it_works"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://support.streamlabs.com/hc/en-us/articles/4413170327067-How-to-Start-a-Live-Stream-for-Charity", "source_type": "official-program", "title": "How to Start a Live Stream for Charity", "supports": ["classification", "economics", "programs.charity-livestream-fundraising.summary", "programs.charity-livestream-fundraising.logistics", "content.best_for"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://support.streamlabs.com/hc/en-us/articles/1260800791989-How-to-Export-Data-as-a-Charity", "source_type": "platform-documentation", "title": "How to Export Streamlabs Charity Donation Data", "supports": ["classification", "programs.charity-livestream-fundraising.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://support.streamlabs.com/hc/en-us/articles/40564944768539-Important-Update-for-Streamlabs-Charity-Users-Changes-in-Light-of-California-Assembly-Bill-488", "source_type": "platform-documentation", "title": "Streamlabs Charity U.S. Compliance and Eligibility Update", "supports": ["programs.charity-livestream-fundraising.requirements", "geography", "content.considerations"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 4 research", "verifier": "FRD batch 4 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD final targeted provider ingestion batch 4 brief", "approved_at": "2026-09-20" }
+  }
+]

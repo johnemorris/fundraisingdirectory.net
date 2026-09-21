@@ -17,6 +17,12 @@ export const PRODUCTS_SERVICES_BY_CATEGORY = {
     "books-educational",
   ],
   savings: ["discount-cards-coupon-books"],
+  "purchase-linked-earnings": [
+    "gift-cards",
+    "shopping-rewards",
+    "card-linked-dining-rewards",
+    "travel-booking-rewards",
+  ],
   "fundraising-services": [
     "donation-platform",
     "crowdfunding-platform",
@@ -33,6 +39,7 @@ export const PRODUCTS_SERVICES = [
   ...PRODUCTS_SERVICES_BY_CATEGORY["food-treats"],
   ...PRODUCTS_SERVICES_BY_CATEGORY.merchandise,
   ...PRODUCTS_SERVICES_BY_CATEGORY.savings,
+  ...PRODUCTS_SERVICES_BY_CATEGORY["purchase-linked-earnings"],
   ...PRODUCTS_SERVICES_BY_CATEGORY["fundraising-services"],
 ] as const;
 

@@ -20,3 +20,12 @@ Consult these guides before working on related tasks:
 - [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+
+## Repository Instructions
+
+Before making changes, read and follow:
+
+- docs/ARCHITECTURE.md
+- docs/DEVELOPER-REQ.md
+
+These documents define the project's architecture and development standards.

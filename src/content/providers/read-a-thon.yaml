@@ -1,0 +1,279 @@
+meta:
+  id: "prov_000036"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Read-A-Thon"
+  slug: "read-a-thon"
+  legal_name: null
+  aliases: []
+  website: "https://www.read-a-thon.com/"
+  fundraising_url: "https://www.read-a-thon.com/info/landing_page/"
+  logo: null
+classification:
+  methods:
+    - "pledge-athon"
+    - "peer-to-peer"
+    - "events-activities"
+  products_services:
+    - "peer-to-peer-platform"
+    - "event-fundraising-platform"
+  organizations:
+    - "schools"
+    - "pto-pta"
+    - "youth-organizations"
+  outcomes:
+    - "cash"
+    - "supplies"
+  capabilities:
+    - "peer-to-peer-pages"
+    - "participant-pages"
+    - "leaderboards"
+    - "reporting-analytics"
+    - "fulfillment"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+  cause_areas:
+    - "education-literacy"
+    - "children-families"
+    - "youth-development-prevention"
+  activity_subtypes:
+    - "readathon"
+    - "peer-fundraising-challenge"
+programs:
+  - id: "prog_000053"
+    name: "School Read-A-Thon"
+    slug: "school-read-a-thon"
+    url: "https://www.read-a-thon.com/info/landing_page/"
+    method: "pledge-athon"
+    products_services:
+      - "peer-to-peer-platform"
+      - "event-fundraising-platform"
+    channels:
+      - "online"
+      - "hybrid"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+      - "provider-delivery"
+      - "group-distribution"
+    inventory_model: "no-inventory"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "A full-service school reading fundraiser with student pages, minute tracking, sponsor outreach, dashboards, payment processing, printed materials, and either school-managed rewards or a provider-run student prize store."
+    economics_mode: "program-specific"
+    economics:
+      status: "known"
+      arrangements:
+        - type: "upfront-cost"
+          value:
+            kind: "amount"
+            amount: 0
+            currency: "USD"
+          basis: "Program signup"
+          conditions: []
+          caveats:
+            - "No contract or fundraising minimum is required"
+        - type: "proceeds"
+          value:
+            kind: "percentage"
+            percent: 80
+          basis: "Total donations under the School-Sponsored Rewards model"
+          conditions:
+            - "The school selects, funds, and distributes its own student rewards"
+          caveats:
+            - "Read-A-Thon includes payment processing and program materials"
+        - type: "proceeds"
+          value:
+            kind: "percentage"
+            percent: 75
+          basis: "Total donations under the Student Reward Store model"
+          conditions:
+            - "Read-A-Thon manages the online prize store and reward fulfillment"
+          caveats:
+            - "Readers earn an additional 15% of their individual donations as prize-store credit without reducing the school's stated 75% share"
+      notes: []
+    requirements:
+      status: "known"
+      legal_status:
+        - "school-or-education"
+      age_range: null
+      grade_range:
+        minimum: "pre-k"
+        maximum: "12"
+      participation_requirements:
+        - "An authorized school or organization coordinator creates and operates the fundraiser."
+        - "A reader under age 18 needs an adult parent or guardian to activate the reader account."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "The school or organization must be legally permitted to use the service and comply with applicable laws."
+      editorial_summary: "Read-A-Thon says minute-based tracking works for all grade levels and requires no contract or fundraising minimum."
+    timing:
+      status: "known"
+      setup_lead_time:
+        maximum:
+          value: 5
+          unit: "minutes"
+      campaign_duration:
+        typical:
+          value: 2
+          unit: "weeks"
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time:
+        typical:
+          value: 10
+          unit: "days"
+      payout_schedules: []
+      notes:
+        - "Read-A-Thon recommends a two-week event. The first payment, representing 80% of earned profit, is paid approximately 10 days after the organizer ends the fundraiser; the remaining balance is paid 20 days after the first payment and is held as a chargeback reserve. These are two event-triggered payouts, not a recurring schedule."
+    logistics:
+      status: "known"
+      notes:
+        - "Read-A-Thon sets up the fundraiser and provides printed and digital materials, sponsor messages, student and classroom dashboards, minute and donation reports, and payment processing. Under the reward-store model, prizes are packed by class and shipped to the school after the event closes."
+    outcomes:
+      - "cash"
+      - "supplies"
+    capabilities:
+      - "peer-to-peer-pages"
+      - "participant-pages"
+      - "leaderboards"
+      - "reporting-analytics"
+      - "fulfillment"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+    cause_areas:
+      - "education-literacy"
+      - "children-families"
+      - "youth-development-prevention"
+    activity_subtypes:
+      - "readathon"
+      - "peer-fundraising-challenge"
+geography:
+  scope:
+    - "international"
+  countries: []
+  states: []
+  regions: []
+  notes: "Official pages describe schools around the globe and donors participating from anywhere, but the reviewed pages do not publish a definitive organization-eligibility country list."
+content:
+  summary: "Read-A-Thon is a dedicated school literacy fundraiser with reading-minute tracking, student fundraising pages, communications, reporting, and optional prize fulfillment."
+  how_it_works: "A school chooses a reward model, creates the event, enrolls readers, shares student sponsor pages, tracks minutes and donations, closes the fundraiser, and receives its earned proceeds in two post-event payments."
+  best_for:
+    - "Schools and PTO/PTAs seeking a short, literacy-aligned, no-product-sale event with participant pages and optional outsourced prizes."
+  considerations:
+    - "The school receives 75% or 80% depending on who manages student rewards."
+    - "Profit is split into two payments so a reserve can cover chargebacks and bad checks."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 3 research"
+  verified_by: "FRD batch 3 research"
+  sources:
+    - id: "src_000118"
+      type: "official-program"
+      url: "https://www.read-a-thon.com/info/landing_page/"
+      title: "How Read-A-Thon School Fundraising Works"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.school-read-a-thon.summary"
+          status: "current"
+          notes: null
+        - path: "programs.school-read-a-thon.economics"
+          status: "current"
+          notes: null
+        - path: "programs.school-read-a-thon.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.school-read-a-thon.timing"
+          status: "current"
+          notes: null
+        - path: "programs.school-read-a-thon.logistics"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000119"
+      type: "official-program"
+      url: "https://www.read-a-thon.com/info/faqs"
+      title: "Read-A-Thon Frequently Asked Questions"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.school-read-a-thon.economics"
+          status: "current"
+          notes: null
+        - path: "programs.school-read-a-thon.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.school-read-a-thon.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000120"
+      type: "terms-or-fees"
+      url: "https://www.read-a-thon.com/terms.php"
+      title: "Read-A-Thon Terms and Conditions"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.school-read-a-thon.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.school-read-a-thon.timing"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

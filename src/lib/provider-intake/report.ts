@@ -36,7 +36,7 @@ function recordMarkdown(record: ReviewRecord): string {
     "### Provenance, verification, and completeness",
     json({ sources: data.sources, verification: data.verification, completeness: data.completeness }),
     "",
-    "### Commercial research (internal; excluded from canonical publication and Finder scoring)",
+    "### Commercial research (internal; preserved separately and excluded from Finder scoring)",
     json(data.commercial_research),
     "",
     "### Validation warnings and errors",

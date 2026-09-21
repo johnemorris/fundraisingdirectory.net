@@ -1,0 +1,237 @@
+meta:
+  id: "prov_000022"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Double the Donation"
+  slug: "double-the-donation"
+  legal_name: null
+  aliases: []
+  website: "https://doublethedonation.com/"
+  fundraising_url: "https://doublethedonation.com/product/"
+  logo: null
+classification:
+  methods:
+    - "giving-matching"
+    - "sponsorships"
+  products_services: []
+  organizations:
+    - "schools"
+    - "nonprofits-charities"
+    - "animal-rescue"
+  outcomes:
+    - "cash"
+    - "sponsorship"
+  capabilities:
+    - "matching-gifts"
+    - "workplace-giving"
+    - "sponsorship-management"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+economics:
+  status: "known"
+  arrangements:
+    - type: "platform-fee"
+      value:
+        kind: "tiered"
+        tiers:
+          - threshold: "Up to $2,000 in gifts identified as match eligible"
+            payout:
+              kind: "amount"
+              amount: 300
+              currency: "USD"
+          - threshold: "Up to $5,000 in gifts identified as match eligible"
+            payout:
+              kind: "amount"
+              amount: 500
+              currency: "USD"
+          - threshold: "Up to $15,000 in gifts identified as match eligible"
+            payout:
+              kind: "amount"
+              amount: 1200
+              currency: "USD"
+      basis: "Essentials plan usage tiers"
+      conditions:
+        - "The organization qualifies for the Essentials plan"
+      caveats:
+        - "The first Essentials year is free at the first tier"
+    - type: "platform-fee"
+      value:
+        kind: "variable"
+        description: "Standard starts at $999 per year and Enterprise starts at $30,000 per year; final pricing is quote-based"
+      basis: "Annual software subscription"
+      conditions: []
+      caveats: []
+  notes:
+    - "Essentials eligibility and billing are based on the organization's Form 990 contribution volume and match-eligible gifts identified by the system."
+programs:
+  - id: "prog_000032"
+    name: "Double the Donation Matching and Workplace Giving"
+    slug: "matching-and-workplace-giving"
+    url: "https://doublethedonation.com/product/"
+    method: "giving-matching"
+    products_services: []
+    channels:
+      - "online"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+    inventory_model: "not-applicable"
+    upfront_cost: "required"
+    ease_to_raise: null
+    summary: "Software for nonprofits and schools that identifies employer matching, volunteer-grant, payroll-giving, and corporate-sponsorship opportunities and guides supporters through employer-specific next steps."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status:
+        - "nonprofit"
+        - "school-or-education"
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The organization integrates Double the Donation with its donation form, CRM, volunteer system, or other supported fundraising workflow."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Essentials is designed for nonprofits reporting under $250,000 in contributions on their most recent Form 990; larger organizations are directed to quoted plans."
+      editorial_summary: "The product is built for nonprofit and education fundraisers; plan eligibility and included integrations vary."
+    timing:
+      status: "not-applicable"
+      setup_lead_time: null
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes: []
+    logistics:
+      status: "known"
+      notes:
+        - "The platform screens supporter employment data, surfaces program rules and submission links, automates outreach, and tracks matching-gift status; employers or their foundations disburse funds directly, not Double the Donation."
+    outcomes:
+      - "cash"
+      - "sponsorship"
+    capabilities:
+      - "matching-gifts"
+      - "workplace-giving"
+      - "sponsorship-management"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+geography:
+  scope:
+    - "us-nationwide"
+  countries:
+    - "US"
+  states: []
+  regions: []
+  notes: "Published Essentials eligibility uses United States Form 990 contribution data. Broader international organization availability was not established from the reviewed pages."
+content:
+  summary: "Double the Donation provides matching-gift and workplace-giving automation for nonprofits and schools."
+  how_it_works: "An organization integrates the software with its fundraising systems, captures supporter employment data, and uses company-specific eligibility, automated outreach, and submission tools to pursue matching gifts, volunteer grants, payroll giving, and sponsorship opportunities."
+  best_for:
+    - "Nonprofits and educational institutions with donation or volunteer activity that want to identify and automate workplace-giving opportunities."
+  considerations:
+    - "Double the Donation does not disburse employer funds; payment timing and approval remain with each employer or foundation."
+    - "Published plan eligibility and pricing vary by organization size, contribution volume, and required integrations."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 2 research"
+  verified_by: "FRD batch 2 research"
+  sources:
+    - id: "src_000070"
+      type: "terms-or-fees"
+      url: "https://doublethedonation.com/pricing/"
+      title: "Our Pricing — Double the Donation"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.matching-and-workplace-giving.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.matching-and-workplace-giving.capabilities"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000071"
+      type: "official-program"
+      url: "https://doublethedonation.com/product/"
+      title: "Matching Gift and Workplace Giving Software for Nonprofits and Schools"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.matching-and-workplace-giving.summary"
+          status: "current"
+          notes: null
+        - path: "programs.matching-and-workplace-giving.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000072"
+      type: "platform-documentation"
+      url: "https://doublethedonation.com/our-tools-faq/"
+      title: "Our Tools FAQ — Double the Donation"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.matching-and-workplace-giving.logistics"
+          status: "current"
+          notes: null
+        - path: "content.considerations"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

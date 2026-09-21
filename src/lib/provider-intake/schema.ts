@@ -1,5 +1,13 @@
 import { z } from "astro/zod";
-import { publicDateSchema } from "../../data/providerSchema.ts";
+import {
+  programEconomicsSchema,
+  programLogisticsSchema,
+  programRequirementsSchema,
+  programTimingSchema,
+  PROGRAM_ECONOMICS_MODES,
+  publicDateSchema,
+  SOURCE_REVIEW_STATES,
+} from "../../data/providerSchema.ts";
 import { GEOGRAPHY_SCOPES } from "../../data/taxonomies/geography.ts";
 import { ORGANIZATION_TYPES } from "../../data/taxonomies/organizations.ts";
 import {
@@ -28,12 +36,25 @@ import {
 const slugSchema = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 const nullableUrl = z.string().url().nullable();
 const percentage = z.number().finite();
+const legacyRecordEconomicsSchema = z.object({
+  platform_fee_percent: percentage.optional(),
+  transaction_fee_percent: percentage.optional(),
+  proceeds_percent: percentage.optional(),
+  notes: z.string().min(1).optional(),
+});
 
 export const intakeBeneficiarySchema = z.object({
   type: beneficiaryTypeSchema,
   name: z.string().min(1),
   slug: slugSchema,
   official: z.boolean(),
+});
+
+const intakeBeneficiaryDraftSchema = z.object({
+  type: beneficiaryTypeSchema.optional(),
+  name: z.string().min(1).optional(),
+  slug: slugSchema.optional(),
+  official: z.boolean().optional(),
 });
 
 export const intakeProgramSchema = z.object({
@@ -50,17 +71,34 @@ export const intakeProgramSchema = z.object({
   upfront_cost: z.enum(UPFRONT_COSTS).optional(),
   ease_to_raise: z.enum(EASE_TO_RAISE).nullable().optional(),
   summary: z.string().min(1).optional(),
-  beneficiary: intakeBeneficiarySchema.optional(),
+  beneficiary: intakeBeneficiaryDraftSchema.optional(),
+  economics_mode: z.enum(PROGRAM_ECONOMICS_MODES).optional(),
+  economics: programEconomicsSchema.optional(),
+  requirements: programRequirementsSchema.optional(),
+  timing: programTimingSchema.optional(),
+  logistics: programLogisticsSchema.optional(),
   ...OPTIONAL_FUNDRAISING_DIMENSION_SCHEMAS,
 });
 
 export const intakeSourceSchema = z.object({
-  url: z.string().url(),
-  source_type: z.enum(SOURCE_TYPES),
-  title: z.string().min(1),
-  supports: z.array(z.string().regex(/^[a-z][a-z0-9_-]*(?:\.[a-z][a-z0-9_-]*)*$/)).default([]),
-  checked_at: publicDateSchema,
+  id: z.string().regex(/^src_\d{6}$/).optional(),
+  url: z.string().url().optional(),
+  source_type: z.enum(SOURCE_TYPES).optional(),
+  title: z.string().min(1).optional(),
+  supports_mode: z.enum(["merge", "replace"]).optional(),
+  supports: z.array(z.union([
+    z.string().regex(/^[a-z][a-z0-9_-]*(?:\.[a-z][a-z0-9_-]*)*$/),
+    z.object({
+      path: z.string().regex(/^[a-z][a-z0-9_-]*(?:\.[a-z][a-z0-9_-]*)*$/),
+      status: z.enum(SOURCE_REVIEW_STATES),
+      notes: z.string().min(1).nullable().optional(),
+    }),
+  ])).optional(),
+  checked_at: publicDateSchema.optional(),
+  status: z.enum(SOURCE_REVIEW_STATES).optional(),
   notes: z.string().min(1).optional(),
+}).refine((source) => source.id || source.url, {
+  message: "Provide a stable source ID or source URL",
 });
 
 export const intakeRecordSchema = z.object({
@@ -82,7 +120,7 @@ export const intakeRecordSchema = z.object({
     ...OPTIONAL_FUNDRAISING_DIMENSION_SCHEMAS,
   }).optional(),
   programs: z.array(intakeProgramSchema).optional(),
-  beneficiary: intakeBeneficiarySchema.optional(),
+  beneficiary: intakeBeneficiaryDraftSchema.optional(),
   geography: z.object({
     scope: z.array(z.enum(GEOGRAPHY_SCOPES)).min(1).optional(),
     countries: z.array(z.string().length(2)).optional(),
@@ -90,12 +128,7 @@ export const intakeRecordSchema = z.object({
     regions: z.array(z.string().min(1)).optional(),
     notes: z.string().min(1).nullable().optional(),
   }).optional(),
-  economics: z.object({
-    platform_fee_percent: percentage.optional(),
-    transaction_fee_percent: percentage.optional(),
-    proceeds_percent: percentage.optional(),
-    notes: z.string().min(1).optional(),
-  }).optional(),
+  economics: z.union([programEconomicsSchema, legacyRecordEconomicsSchema]).optional(),
   requirements: z.array(z.string().min(1)).optional(),
   logistics: z.array(z.string().min(1)).optional(),
   content: z.object({
@@ -113,6 +146,7 @@ export const intakeRecordSchema = z.object({
   sources: z.array(intakeSourceSchema).optional(),
   verification: z.object({
     status: z.enum(VERIFICATION_STATES),
+    review_status: z.enum(SOURCE_REVIEW_STATES).optional(),
     first_researched_at: publicDateSchema.optional(),
     first_verified_at: publicDateSchema.optional(),
     last_verified_at: publicDateSchema.optional(),

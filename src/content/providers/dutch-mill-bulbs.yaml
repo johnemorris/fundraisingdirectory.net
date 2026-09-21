@@ -1,0 +1,321 @@
+meta:
+  id: "prov_000026"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Dutch Mill Bulbs"
+  slug: "dutch-mill-bulbs"
+  legal_name: null
+  aliases: []
+  website: "https://dutchmillbulbs.com/"
+  fundraising_url: "https://dutchmillbulbs.com/how-to-fundraise/"
+  logo: null
+classification:
+  methods:
+    - "product-sales"
+  products_services:
+    - "flowers-plants"
+  organizations:
+    - "schools"
+    - "pto-pta"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "animal-rescue"
+  outcomes:
+    - "cash"
+  capabilities:
+    - "online-store"
+    - "fulfillment"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+economics:
+  status: "known"
+  arrangements:
+    - type: "upfront-cost"
+      value:
+        kind: "amount"
+        amount: 0
+        currency: "USD"
+      basis: "Registration and fundraiser materials"
+      conditions: []
+      caveats: []
+    - type: "product-sale-profit"
+      value:
+        kind: "percentage"
+        percent: 50
+      basis: "Brochure and online product sales"
+      conditions: []
+      caveats:
+        - "Shipping charges on qualifying smaller brochure orders can reduce effective profit"
+  notes:
+    - "There is no minimum order. Collective brochure orders of 35 or more items receive free shipping."
+programs:
+  - id: "prog_000038"
+    name: "Brochure Flower Bulb Fundraiser"
+    slug: "brochure-flower-bulb-fundraiser"
+    url: "https://dutchmillbulbs.com/how-to-fundraise/"
+    method: "product-sales"
+    products_services:
+      - "flowers-plants"
+    channels:
+      - "in-person"
+    online_ordering: false
+    fulfillment:
+      - "provider-delivery"
+      - "group-distribution"
+    inventory_model: "preorder"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "Group members take brochure orders for seasonal bulbs and plants, submit one collective order, retain 50% profit, and distribute the delivered products to supporters."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The group collects supporter orders and payment, submits the collective order through its dashboard, pays Dutch Mill Bulbs' share, and distributes the shipment promptly."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Products are seasonal living plant material and all submitted orders are final."
+      editorial_summary: "There is no minimum order; free brochure-order shipping requires at least 35 items."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration:
+        minimum:
+          value: 2
+          unit: "weeks"
+        maximum:
+          value: 3
+          unit: "weeks"
+      fulfillment_time: null
+      funds_available_time:
+        exact:
+          value: 0
+          unit: "days"
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "Most groups run for 2–3 weeks within the published spring or fall selling windows. The group keeps its brochure profit when submitting the order rather than waiting for a separate payout."
+    logistics:
+      status: "known"
+      notes:
+        - "Dutch Mill Bulbs ships the collective seasonal order to the organization; the organization is responsible for timely supporter distribution and handling distribution questions."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "fulfillment"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+  - id: "prog_000039"
+    name: "Online Flower Bulb Fundraiser"
+    slug: "online-flower-bulb-fundraiser"
+    url: "https://dutchmillbulbs.com/how-to-fundraise/"
+    method: "product-sales"
+    products_services:
+      - "flowers-plants"
+    channels:
+      - "online"
+    online_ordering: true
+    fulfillment:
+      - "direct-to-supporter"
+      - "provider-delivery"
+    inventory_model: "no-inventory"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "Supporters buy bulbs and plants through the group's unique link or QR code, Dutch Mill Bulbs ships directly to their entered addresses, and the group earns 50% of online sales."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The group registers, sets dates within a spring or fall selling season, and shares its unique URL or QR code."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Online shipping excludes Alaska, Hawaii, U.S. territories, and APO/FPO addresses."
+      editorial_summary: "There is no minimum order or inventory requirement."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration:
+        minimum:
+          value: 2
+          unit: "weeks"
+        maximum:
+          value: 3
+          unit: "weeks"
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time:
+        maximum:
+          value: 30
+          unit: "days"
+      payout_schedules: []
+      notes:
+        - "Profit disbursements are processed in bi-weekly batches and paid within 30 days of fundraiser close when the account is in good standing. The frozen cadence enum does not encode bi-weekly schedules."
+    logistics:
+      status: "known"
+      notes:
+        - "Supporters pay online and receive direct seasonal shipment with tracking. Online profit offsets any brochure balance first; excess profit is disbursed after close."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "online-store"
+      - "fulfillment"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+geography:
+  scope:
+    - "us-nationwide"
+  countries:
+    - "US"
+  states: []
+  regions: []
+  notes: "Programs serve the contiguous 48 United States; direct shipment excludes Alaska, Hawaii, U.S. territories, and APO/FPO addresses."
+content:
+  summary: "Dutch Mill Bulbs offers seasonal flower-bulb and plant fundraisers through brochures, online direct shipping, or a combination."
+  how_it_works: "A group registers for a spring or fall selling window, shares brochures or a unique online link, and earns 50% while group-distributed and direct-ship orders follow different payment and logistics flows."
+  best_for:
+    - "Schools, teams, PTOs, scouts, clubs, and community groups seeking a seasonal flowers-and-plants fundraiser."
+  considerations:
+    - "Products and shipping dates are seasonal and orders are final."
+    - "Online profit is credited against any brochure balance before an excess payout is issued."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 2 research"
+  verified_by: "FRD batch 2 research"
+  sources:
+    - id: "src_000084"
+      type: "official-provider"
+      url: "https://dutchmillbulbs.com/"
+      title: "Dutch Mill Bulbs Fundraising"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.brochure-flower-bulb-fundraiser.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.brochure-flower-bulb-fundraiser.timing"
+          status: "current"
+          notes: null
+        - path: "programs.online-flower-bulb-fundraiser.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.online-flower-bulb-fundraiser.timing"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000085"
+      type: "official-program"
+      url: "https://dutchmillbulbs.com/how-to-fundraise/"
+      title: "How to Fundraise — Dutch Mill Bulbs"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.brochure-flower-bulb-fundraiser.summary"
+          status: "current"
+          notes: null
+        - path: "programs.brochure-flower-bulb-fundraiser.logistics"
+          status: "current"
+          notes: null
+        - path: "programs.online-flower-bulb-fundraiser.summary"
+          status: "current"
+          notes: null
+        - path: "programs.online-flower-bulb-fundraiser.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000086"
+      type: "terms-or-fees"
+      url: "https://dutchmillbulbs.com/terms-of-use/"
+      title: "Dutch Mill Bulbs Fundraising Terms & Conditions"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.brochure-flower-bulb-fundraiser.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.brochure-flower-bulb-fundraiser.timing"
+          status: "current"
+          notes: null
+        - path: "programs.brochure-flower-bulb-fundraiser.logistics"
+          status: "current"
+          notes: null
+        - path: "programs.online-flower-bulb-fundraiser.timing"
+          status: "current"
+          notes: null
+        - path: "programs.online-flower-bulb-fundraiser.logistics"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

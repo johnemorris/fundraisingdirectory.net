@@ -1,0 +1,297 @@
+meta:
+  id: "prov_000012"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Zeffy"
+  slug: "zeffy"
+  legal_name: null
+  aliases: []
+  website: "https://www.zeffy.com/"
+  fundraising_url: "https://www.zeffy.com/"
+  logo: null
+classification:
+  methods:
+    - "direct-donations"
+    - "crowdfunding"
+    - "peer-to-peer"
+    - "events-activities"
+    - "auctions"
+  products_services:
+    - "donation-platform"
+    - "crowdfunding-platform"
+    - "peer-to-peer-platform"
+    - "auction-platform"
+    - "event-fundraising-platform"
+    - "text-mobile-giving"
+    - "merchandise-online-store"
+  organizations:
+    - "schools"
+    - "pto-pta"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "animal-rescue"
+  outcomes:
+    - "cash"
+  capabilities:
+    - "donation-forms"
+    - "recurring-giving"
+    - "crowdfunding-pages"
+    - "peer-to-peer-pages"
+    - "participant-pages"
+    - "leaderboards"
+    - "ticketing-registration"
+    - "auctions-mobile-bidding"
+    - "raffles-prize-drawings"
+    - "tap-to-pay"
+    - "digital-wallets"
+    - "online-store"
+    - "donor-crm"
+    - "email-marketing"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+economics:
+  status: "known"
+  arrangements:
+    - type: "upfront-cost"
+      value:
+        kind: "amount"
+        amount: 0
+        currency: "USD"
+      basis: "Account setup and platform access"
+      conditions:
+        - "Organization meets Zeffy eligibility and verification requirements"
+      caveats: []
+    - type: "platform-fee"
+      value:
+        kind: "percentage"
+        percent: 0
+      basis: "Payments collected through Zeffy fundraising tools"
+      conditions: []
+      caveats: []
+    - type: "processing-fee"
+      value:
+        kind: "percentage"
+        percent: 0
+      basis: "Card and supported payment processing"
+      conditions: []
+      caveats: []
+  notes:
+    - "Zeffy is funded by a voluntary contribution presented to donors at checkout; the contribution is optional and is not deducted from the nonprofit's payment."
+programs:
+  - id: "prog_000019"
+    name: "All-in-One Fundraising Platform"
+    slug: "all-in-one-fundraising-platform"
+    url: "https://www.zeffy.com/"
+    method: "direct-donations"
+    products_services:
+      - "donation-platform"
+      - "crowdfunding-platform"
+      - "peer-to-peer-platform"
+      - "auction-platform"
+      - "event-fundraising-platform"
+      - "text-mobile-giving"
+      - "merchandise-online-store"
+    channels:
+      - "online"
+      - "in-person"
+      - "hybrid"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+      - "on-site"
+      - "not-applicable"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "Eligible nonprofit organizations use Zeffy for donations, ticketing, auctions, raffles, peer-to-peer campaigns, online stores, in-person payments, donor management, and email without platform or payment-processing fees."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status:
+        - "nonprofit"
+        - "registered-nonprofit"
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The organization must have a bank account in its own name and complete identity and bank verification."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Individuals and personal accounts are not eligible."
+      editorial_summary: "Zeffy is limited to qualifying nonprofit or charitable organizations in supported countries."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration:
+        open_ended: true
+      fulfillment_time: null
+      funds_available_time:
+        minimum:
+          value: 1
+          unit: "business-days"
+        maximum:
+          value: 3
+          unit: "business-days"
+      payout_time:
+        maximum:
+          value: 2
+          unit: "business-days"
+      payout_schedules:
+        - frequency: "monthly"
+          delivery_method: "direct-deposit"
+          anchor: "First Monday of each month"
+          conditions:
+            - "The organization selects monthly payouts"
+          caveats:
+            - "Payments still in security review roll into the following cycle"
+      notes:
+        - "Weekly direct-deposit payouts sent on Monday are the default schedule. Eligible organizations may receive next-business-day payouts; that eligibility is account-specific."
+    logistics:
+      status: "known"
+      notes:
+        - "Organizations create and share forms or campaigns, connect an organization bank account, and manage payments, donors, and reports from one dashboard."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "donation-forms"
+      - "recurring-giving"
+      - "crowdfunding-pages"
+      - "peer-to-peer-pages"
+      - "participant-pages"
+      - "leaderboards"
+      - "ticketing-registration"
+      - "auctions-mobile-bidding"
+      - "raffles-prize-drawings"
+      - "tap-to-pay"
+      - "digital-wallets"
+      - "online-store"
+      - "donor-crm"
+      - "email-marketing"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+geography:
+  scope:
+    - "international"
+  countries:
+    - "US"
+    - "CA"
+    - "GB"
+    - "IE"
+    - "AU"
+    - "DE"
+  states: []
+  regions: []
+  notes: "Organizations must be registered in the United States, Canada, United Kingdom, Ireland, Australia, or Germany; United States eligibility includes Washington, D.C. and Puerto Rico but not other U.S. territories."
+content:
+  summary: "Zeffy is a fee-free fundraising and donor-management platform for verified nonprofit organizations."
+  how_it_works: "An eligible organization verifies its identity and bank account, creates fundraising forms or campaigns, and receives collected funds by scheduled direct deposit while donors may optionally contribute to Zeffy."
+  best_for:
+    - "Verified nonprofits seeking integrated online, event, auction, and peer-to-peer fundraising tools without platform fees."
+  considerations:
+    - "Eligibility is restricted by legal status, country, and organization-owned bank account."
+    - "Weekly payout cadence is retained in timing notes because the frozen recurring-schedule taxonomy is intentionally limited to pilot-proven monthly and quarterly schedules."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 1 research"
+  verified_by: "FRD batch 1 research"
+  sources:
+    - id: "src_000035"
+      type: "official-provider"
+      url: "https://www.zeffy.com/"
+      title: "Zeffy — Free, All-in-One Fundraising Software + CRM"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "identity.website"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.all-in-one-fundraising-platform.summary"
+          status: "current"
+          notes: null
+        - path: "programs.all-in-one-fundraising-platform.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000036"
+      type: "platform-documentation"
+      url: "https://support.zeffy.com/is-my-organization-eligible-to-use-zeffy-8m24r"
+      title: "Is my organization eligible to use Zeffy?"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.all-in-one-fundraising-platform.requirements"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000037"
+      type: "platform-documentation"
+      url: "https://support.zeffy.com/zeffy-payouts-schedules-amounts-and-reports-ajuec"
+      title: "Zeffy payouts: Schedules, amounts, and reports"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.all-in-one-fundraising-platform.timing"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

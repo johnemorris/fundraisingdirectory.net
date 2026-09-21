@@ -1,0 +1,417 @@
+meta:
+  id: "prov_000021"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "BetterWorld"
+  slug: "betterworld"
+  legal_name: null
+  aliases: []
+  website: "https://betterworld.org/"
+  fundraising_url: "https://betterworld.org/pricing/"
+  logo: null
+classification:
+  methods:
+    - "direct-donations"
+    - "crowdfunding"
+    - "peer-to-peer"
+    - "events-activities"
+    - "auctions"
+    - "pledge-athon"
+  products_services:
+    - "donation-platform"
+    - "crowdfunding-platform"
+    - "peer-to-peer-platform"
+    - "auction-platform"
+    - "event-fundraising-platform"
+  organizations:
+    - "schools"
+    - "pto-pta"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "animal-rescue"
+    - "individuals-personal-causes"
+  outcomes:
+    - "cash"
+  capabilities:
+    - "donation-forms"
+    - "recurring-giving"
+    - "crowdfunding-pages"
+    - "peer-to-peer-pages"
+    - "participant-pages"
+    - "leaderboards"
+    - "ticketing-registration"
+    - "auctions-mobile-bidding"
+    - "raffles-prize-drawings"
+    - "digital-wallets"
+    - "donor-crm"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+    - "local-nonprofit-or-charity"
+    - "national-nonprofit-or-charity"
+    - "community-cause"
+    - "open-or-unspecified-cause"
+  activity_subtypes:
+    - "fun-run"
+    - "walkathon"
+    - "readathon"
+    - "raffle"
+    - "prize-drawing"
+    - "silent-auction"
+    - "live-auction"
+    - "peer-fundraising-challenge"
+economics:
+  status: "known"
+  arrangements:
+    - type: "upfront-cost"
+      value:
+        kind: "amount"
+        amount: 0
+        currency: "USD"
+      basis: "Free plan subscription"
+      conditions:
+        - "Free plan"
+      caveats:
+        - "Donors are shown an optional suggested contribution"
+    - type: "platform-fee"
+      value:
+        kind: "percentage"
+        percent: 0
+      basis: "Free plan transactions"
+      conditions:
+        - "Free plan"
+      caveats:
+        - "Payment-processing costs still apply unless covered by the donor"
+    - type: "platform-fee"
+      value:
+        kind: "percentage"
+        percent: 2.2
+      basis: "Standard Donation campaigns and Donation Forms"
+      conditions:
+        - "Flex plan"
+      caveats: []
+    - type: "platform-fee"
+      value:
+        kind: "percentage"
+        percent: 5
+      basis: "Campaign types other than Standard Donation and Donation Forms"
+      conditions:
+        - "Flex plan"
+      caveats: []
+    - type: "upfront-cost"
+      value:
+        kind: "amount"
+        amount: 1550
+        currency: "USD"
+      basis: "Annual Partner plan membership"
+      conditions:
+        - "Partner plan"
+      caveats: []
+    - type: "platform-fee"
+      value:
+        kind: "percentage"
+        percent: 1.25
+      basis: "Partner plan transactions"
+      conditions:
+        - "Partner plan"
+      caveats: []
+    - type: "processing-fee"
+      value:
+        kind: "percentage"
+        percent: 2.9
+      basis: "Credit-card transaction"
+      conditions: []
+      caveats: []
+    - type: "transaction-fee"
+      value:
+        kind: "amount"
+        amount: 0.3
+        currency: "USD"
+      basis: "Per credit-card transaction"
+      conditions: []
+      caveats: []
+    - type: "minimum-payout"
+      value:
+        kind: "amount"
+        amount: 25
+        currency: "USD"
+      basis: "Automatic payout threshold"
+      conditions:
+        - "Verified nonprofit on an active Partner or Keystone plan"
+        - "Funds have cleared the availability period"
+      caveats: []
+    - type: "other"
+      value:
+        kind: "amount"
+        amount: 2.25
+        currency: "USD"
+      basis: "Per Express-account payout"
+      conditions:
+        - "Express Stripe account"
+      caveats:
+        - "A 0.25% variable payout fee also applies"
+    - type: "other"
+      value:
+        kind: "percentage"
+        percent: 0.25
+      basis: "Express-account payout"
+      conditions:
+        - "Express Stripe account"
+      caveats:
+        - "A $2.25 fixed payout fee also applies"
+    - type: "other"
+      value:
+        kind: "amount"
+        amount: 10
+        currency: "USD"
+      basis: "Annual 1099 preparation and filing"
+      conditions:
+        - "Express Stripe account"
+      caveats: []
+  notes:
+    - "Other published options include a $5,950 annual Keystone plan with a 1% platform fee, ACH at 1.5% plus $0.30, and processor-specific PayPal, Venmo, and DAFpay terms."
+programs:
+  - id: "prog_000031"
+    name: "BetterWorld Fundraising Platform"
+    slug: "betterworld-fundraising-platform"
+    url: "https://betterworld.org/pricing/"
+    method: "auctions"
+    products_services:
+      - "donation-platform"
+      - "crowdfunding-platform"
+      - "peer-to-peer-platform"
+      - "auction-platform"
+      - "event-fundraising-platform"
+    channels:
+      - "online"
+      - "in-person"
+      - "hybrid"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+      - "on-site"
+      - "not-applicable"
+    inventory_model: "not-applicable"
+    upfront_cost: "varies"
+    ease_to_raise: null
+    summary: "BetterWorld provides auctions, donation forms, crowdfunding, peer-to-peer and a-thon campaigns, events and ticketing, giveaways, impact giving, and donor management in one platform."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The account owner supplies organization details and connects an eligible bank or Stripe account for payout."
+        - "A person or group fundraising on behalf of a nonprofit must obtain the nonprofit's authorization."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Organizations outside the United States should contact BetterWorld; the platform is optimized for organizations with a U.S. bank account."
+        - "Raffle and giveaway organizers remain responsible for legal compliance and any required license or eligibility documentation."
+      editorial_summary: "Nonprofits, businesses, and individuals may use the platform, including authorized on-behalf-of fundraising."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration:
+        open_ended: true
+      fulfillment_time: null
+      funds_available_time:
+        minimum:
+          value: 6
+          unit: "days"
+      payout_time:
+        maximum:
+          value: 5
+          unit: "business-days"
+      payout_schedules:
+        - frequency: "monthly"
+          delivery_method: null
+          anchor: "Organizer-selected day of the month"
+          conditions:
+            - "Verified nonprofit on an active Partner or Keystone plan"
+            - "Automatic payouts are enabled"
+            - "At least $25 is available for withdrawal"
+          caveats:
+            - "BetterWorld also permits daily and weekly automatic payouts, which are retained in notes because the frozen schedule taxonomy does not encode those cadences"
+            - "Destination may be a connected Stripe bank account or an enrolled check payout"
+      notes:
+        - "Funds become available for withdrawal six days after receipt. After payout initiation, BetterWorld states that bank receipt should occur within five business days, often sooner. Eligible paid-plan nonprofits may alternatively choose daily, weekly, or monthly automatic payouts."
+    logistics:
+      status: "known"
+      notes:
+        - "Campaign tools share one dashboard and payments ledger. Organizers configure campaign-specific auction items, tickets, participant pages, donation forms, or activity pledges and connect payout information."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "donation-forms"
+      - "recurring-giving"
+      - "crowdfunding-pages"
+      - "peer-to-peer-pages"
+      - "participant-pages"
+      - "leaderboards"
+      - "ticketing-registration"
+      - "auctions-mobile-bidding"
+      - "raffles-prize-drawings"
+      - "digital-wallets"
+      - "donor-crm"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+      - "local-nonprofit-or-charity"
+      - "national-nonprofit-or-charity"
+      - "community-cause"
+      - "open-or-unspecified-cause"
+    activity_subtypes:
+      - "fun-run"
+      - "walkathon"
+      - "readathon"
+      - "raffle"
+      - "prize-drawing"
+      - "silent-auction"
+      - "live-auction"
+      - "peer-fundraising-challenge"
+geography:
+  scope:
+    - "us-nationwide"
+  countries:
+    - "US"
+  states: []
+  regions: []
+  notes: "BetterWorld is best configured for United States organizations with a U.S. bank account. Donors may participate internationally, but the provider advises organizations outside the United States to contact support before creating an account."
+content:
+  summary: "BetterWorld is an all-in-one fundraising platform for auctions, donations, events, peer-to-peer campaigns, a-thons, and related online fundraising."
+  how_it_works: "An organization or authorized fundraiser selects campaign tools, publishes fundraising pages, processes supporter payments through the platform, and withdraws eligible funds through a connected Stripe account."
+  best_for:
+    - "Organizations seeking auctions, event ticketing, donation forms, peer-to-peer fundraising, and a-thons in one system."
+  considerations:
+    - "Fees depend on the selected plan, payment method, campaign type, and whether donors cover costs."
+    - "Raffles and giveaways require organizer review of applicable law and licensing."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 1 research"
+  verified_by: "FRD batch 1 research"
+  sources:
+    - id: "src_000065"
+      type: "terms-or-fees"
+      url: "https://betterworld.org/pricing/"
+      title: "BetterWorld Pricing"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.betterworld-fundraising-platform.summary"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000066"
+      type: "terms-or-fees"
+      url: "https://help.betterworld.org/en/articles/8553821-how-much-does-betterworld-cost"
+      title: "How much does BetterWorld cost?"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000067"
+      type: "platform-documentation"
+      url: "https://help.betterworld.org/en/articles/8553867-how-to-receive-the-funds-i-raised"
+      title: "How to receive the funds I raised"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.betterworld-fundraising-platform.timing"
+          status: "current"
+          notes: null
+        - path: "programs.betterworld-fundraising-platform.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000068"
+      type: "platform-documentation"
+      url: "https://help.betterworld.org/en/articles/8557833-my-organization-is-based-outside-the-u-s-can-we-use-betterworld"
+      title: "My organization is based outside the U.S. — can we use BetterWorld?"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.betterworld-fundraising-platform.requirements"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000069"
+      title: "How to enable and set up automatic payouts"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.betterworld-fundraising-platform.timing"
+          status: "current"
+          notes: null
+      notes: null
+      type: "platform-documentation"
+      url: "https://help.betterworld.org/en/articles/14187622-how-to-enable-and-set-up-automatic-payouts"
+      checked_at: "2026-09-20"
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

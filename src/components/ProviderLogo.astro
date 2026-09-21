@@ -1,0 +1,39 @@
+---
+interface Props {
+  providerName: string;
+  src: string;
+}
+
+const { providerName, src } = Astro.props;
+---
+
+<figure class="provider-logo">
+  <img src={src} alt={`${providerName} logo`} width="144" height="60" loading="eager" />
+</figure>
+
+<style lang="scss">
+  .provider-logo {
+    display: grid;
+    width: 9rem;
+    height: 3.75rem;
+    margin: 1rem 0 0;
+    padding: 0.5rem 0.625rem;
+    place-items: center;
+    border-radius: 0.625rem;
+    background: rgba(255, 255, 255, 0.72);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+
+  @media (max-width: 780px) {
+    .provider-logo {
+      width: 8rem;
+      height: 3.5rem;
+    }
+  }
+</style>

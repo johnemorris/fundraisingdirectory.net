@@ -1,0 +1,238 @@
+meta:
+  id: "prov_000038"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Graham-Pelton"
+  slug: "graham-pelton"
+  legal_name: null
+  aliases: []
+  website: "https://grahampelton.com/"
+  fundraising_url: "https://grahampelton.com/contact/"
+  logo: null
+classification:
+  methods:
+    - "direct-donations"
+  products_services:
+    - "fundraising-consulting"
+  organizations:
+    - "schools"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "arts-music-performance"
+  outcomes:
+    - "cash"
+    - "services"
+  capabilities:
+    - "donor-crm"
+    - "email-marketing"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+  cause_areas:
+    - "health-medical"
+    - "education-literacy"
+    - "environment-conservation"
+    - "arts-culture"
+    - "faith-missions"
+    - "community-neighborhood"
+programs:
+  - id: "prog_000055"
+    name: "Fundraising Consulting Services"
+    slug: "fundraising-consulting-services"
+    url: "https://grahampelton.com/"
+    method: "direct-donations"
+    products_services:
+      - "fundraising-consulting"
+    channels:
+      - "online"
+      - "in-person"
+      - "hybrid"
+    online_ordering: false
+    fulfillment:
+      - "varies"
+    inventory_model: "not-applicable"
+    upfront_cost: "required"
+    ease_to_raise: null
+    summary: "Bespoke nonprofit fundraising consulting covering campaign feasibility and planning, capital-campaign management, prospect and data intelligence, fundraising communications, growth strategy, interim staffing, and capacity building."
+    economics_mode: "program-specific"
+    economics:
+      status: "known"
+      arrangements:
+        - type: "platform-fee"
+          value:
+            kind: "variable"
+            description: "Custom engagement quote based on project size, staffing requirements, scope, and timeframe"
+          basis: "Fundraising consulting engagement"
+          conditions:
+            - "The nonprofit and Graham-Pelton agree to a tailored scope of work"
+          caveats:
+            - "No universal rate or package price is published"
+      notes: []
+    requirements:
+      status: "known"
+      legal_status:
+        - "nonprofit"
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "An organization contacts Graham-Pelton, describes its sector, goals, and requested service areas, and receives a proposal for a tailored engagement."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Graham-Pelton states that it exclusively serves nonprofits and primarily works with large nonprofit institutions."
+      editorial_summary: "The service is aimed at established nonprofit institutions, including higher education, independent schools, health organizations, and social or international-impact organizations."
+    timing:
+      status: "researched-unknown"
+      setup_lead_time: null
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes: []
+    logistics:
+      status: "known"
+      notes:
+        - "Consultants work as an extension of the nonprofit's development team through strategic counsel, research and analysis, planning, communications, training, interim staffing, or hands-on campaign support. Delivery and staffing are tailored to the engagement."
+    outcomes:
+      - "cash"
+      - "services"
+    capabilities:
+      - "donor-crm"
+      - "email-marketing"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+    cause_areas:
+      - "health-medical"
+      - "education-literacy"
+      - "environment-conservation"
+      - "arts-culture"
+      - "faith-missions"
+      - "community-neighborhood"
+geography:
+  scope:
+    - "us-nationwide"
+    - "international"
+  countries:
+    - "US"
+    - "GB"
+    - "AU"
+  states: []
+  regions: []
+  notes: "Graham-Pelton describes serving leading nonprofits worldwide and documents work in North America, Europe, and Australia, with offices in several U.S. cities and London."
+content:
+  summary: "Graham-Pelton provides custom fundraising consulting exclusively to nonprofit institutions worldwide."
+  how_it_works: "A nonprofit requests a proposal, defines campaign, data, communications, growth, staffing, or operational goals, and works with a tailored consulting team on an agreed scope and timeframe."
+  best_for:
+    - "Established nonprofit institutions planning major campaigns or needing specialized development strategy, staffing, data, communications, or organizational growth support."
+  considerations:
+    - "Pricing and timing are fully quote-based and engagement-specific."
+    - "The firm says it primarily serves large nonprofits, so it may not fit small volunteer-led groups seeking a self-service fundraiser."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 3 research"
+  verified_by: "FRD batch 3 research"
+  sources:
+    - id: "src_000124"
+      type: "official-provider"
+      url: "https://grahampelton.com/"
+      title: "Graham-Pelton Fundraising Consulting Services"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.fundraising-consulting-services.summary"
+          status: "current"
+          notes: null
+        - path: "programs.fundraising-consulting-services.logistics"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000125"
+      type: "official-provider"
+      url: "https://grahampelton.com/llm-info/"
+      title: "Graham-Pelton Facts and Service FAQ"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.fundraising-consulting-services.economics"
+          status: "current"
+          notes: null
+        - path: "programs.fundraising-consulting-services.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.fundraising-consulting-services.logistics"
+          status: "current"
+          notes: null
+        - path: "content.considerations"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000126"
+      type: "official-provider"
+      url: "https://grahampelton.com/contact/"
+      title: "Contact Graham-Pelton"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.fundraising-consulting-services.requirements"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

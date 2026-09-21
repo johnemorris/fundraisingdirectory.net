@@ -1,0 +1,816 @@
+[
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "FundingFactory",
+      "slug": "fundingfactory",
+      "website": "https://www.fundingfactory.com/",
+      "fundraising_url": "https://www.fundingfactory.com/"
+    },
+    "classification": {
+      "methods": ["collection-reuse-fundraising", "in-kind-resource-fundraising"],
+      "products_services": [],
+      "organizations": ["schools", "pto-pta", "sports-athletics", "booster-clubs", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance", "animal-rescue"],
+      "beneficiary_types": ["own-organization", "own-project-or-program", "local-nonprofit-or-charity", "community-cause"],
+      "cause_areas": ["environment-conservation", "community-neighborhood", "education-literacy"],
+      "activity_subtypes": ["electronics-drive", "recycling-drive"],
+      "capabilities": ["collection-logistics", "reporting-analytics"],
+      "outcomes": ["cash"]
+    },
+    "economics": {
+      "status": "known",
+      "arrangements": [
+        { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Program registration and participation", "conditions": [], "caveats": [] },
+        { "type": "fixed-payout", "value": { "kind": "variable", "description": "Current buyback value assigned by FundingFactory to each qualifying cartridge" }, "basis": "Accepted qualifying toner or inkjet cartridge", "conditions": ["The item appears on the current qualifying list and meets the stated condition rules"], "caveats": ["Qualifying items and values may change without advance notice"] },
+        { "type": "minimum-payout", "value": { "kind": "amount", "amount": 25, "currency": "USD" }, "basis": "Account balance required to request payment by check", "conditions": [], "caveats": [] }
+      ],
+      "notes": ["FundingFactory describes the program as free, with no selling, participation minimum, or obligation. Underfilled prepaid-label boxes may incur a $12 deduction under the program terms."]
+    },
+    "programs": [
+      {
+        "name": "Cartridge Recycling Fundraiser",
+        "slug": "cartridge-recycling-fundraiser",
+        "url": "https://www.fundingfactory.com/",
+        "method": "collection-reuse-fundraising",
+        "products_services": [],
+        "channels": ["in-person", "hybrid"],
+        "online_ordering": null,
+        "fulfillment": ["not-applicable"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "Schools, nonprofits, churches, troops, and community groups collect eligible used toner and inkjet cartridges, ship them to FundingFactory, and receive the current accepted-item value as cash.",
+        "economics_mode": "inherit-provider",
+        "requirements": {
+          "status": "known",
+          "legal_status": [],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": ["The group registers a Cause account, collects only items on the current qualifying list, and follows packing and shipping instructions."],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": ["Cartridges must be undamaged and not previously remanufactured unless the qualifying list says otherwise.", "Accounts may be closed after 12 months without an eligible shipment."],
+          "editorial_summary": "The program is open to many types of U.S. groups; cash credit depends on accepted cartridge type and condition."
+        },
+        "timing": {
+          "status": "known",
+          "setup_lead_time": null,
+          "campaign_duration": { "open_ended": true },
+          "fulfillment_time": null,
+          "funds_available_time": null,
+          "payout_time": null,
+          "payout_schedules": [],
+          "notes": ["A participant requests a check after the account reaches $25; the reviewed terms do not publish a universal check-delivery time."]
+        },
+        "logistics": {
+          "status": "known",
+          "notes": ["Participants collect qualifying cartridges, pack them under current shipping rules, use FundingFactory shipping materials or labels, and track shipments and earnings in the online account. Nonqualifying items receive no credit and are not returned."]
+        },
+        "beneficiary_types": ["own-organization", "own-project-or-program", "local-nonprofit-or-charity", "community-cause"],
+        "cause_areas": ["environment-conservation", "community-neighborhood", "education-literacy"],
+        "activity_subtypes": ["electronics-drive", "recycling-drive"],
+        "capabilities": ["collection-logistics", "reporting-analytics"],
+        "outcomes": ["cash"]
+      }
+    ],
+    "geography": { "scope": ["us-nationwide"], "countries": ["US"], "states": [], "regions": [], "notes": "FundingFactory describes its fundraising-through-recycling network as serving Causes around the United States and calls itself a continental United States program." },
+    "content": {
+      "summary": "FundingFactory converts qualifying used printer cartridges into cash for U.S. schools, nonprofits, churches, troops, and community groups.",
+      "how_it_works": "A group registers a Cause, recruits community or business supporters to collect accepted toner and inkjet cartridges, ships the items to FundingFactory, tracks credits online, and requests a check after reaching the payout minimum.",
+      "best_for": ["U.S. groups with access to a recurring stream of qualifying printer cartridges and volunteers or businesses able to consolidate shipments."],
+      "considerations": ["The qualifying list and per-item values change, and unlisted or damaged items do not earn credit.", "Shipping rules matter because an underfilled box using a prepaid label may create a deduction."]
+    },
+    "sources": [
+      { "url": "https://www.fundingfactory.com/", "source_type": "official-program", "title": "Toner and Inkjet Cartridge Recycling — FundingFactory", "supports": ["identity", "classification", "economics", "programs.cartridge-recycling-fundraiser.summary", "programs.cartridge-recycling-fundraiser.requirements", "programs.cartridge-recycling-fundraiser.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.fundingfactory.com/terms.aspx", "source_type": "terms-or-fees", "title": "FundingFactory Program Terms and Conditions", "supports": ["economics", "programs.cartridge-recycling-fundraiser.requirements", "programs.cartridge-recycling-fundraiser.timing", "programs.cartridge-recycling-fundraiser.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.fundingfactory.com/qualifying-list-detail.aspx", "source_type": "official-program", "title": "FundingFactory Qualifying List", "supports": ["economics", "programs.cartridge-recycling-fundraiser.requirements", "programs.cartridge-recycling-fundraiser.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.fundingfactory.com/about.aspx", "source_type": "official-provider", "title": "About FundingFactory", "supports": ["identity", "classification", "geography", "content.summary"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 3 research", "verifier": "FRD batch 3 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 3 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "CARS",
+      "legal_name": "Charitable Adult Rides & Services, Inc.",
+      "aliases": ["Charitable Adult Rides & Services", "CARS Vehicle Donation Program"],
+      "slug": "cars-vehicle-donation",
+      "website": "https://careasy.org/",
+      "fundraising_url": "https://careasy.org/services"
+    },
+    "classification": {
+      "methods": ["in-kind-resource-fundraising", "collection-reuse-fundraising"],
+      "products_services": [],
+      "organizations": ["schools", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance", "animal-rescue"],
+      "beneficiary_types": ["own-organization", "own-project-or-program"],
+      "capabilities": ["collection-logistics", "reporting-analytics", "email-marketing"],
+      "outcomes": ["cash", "donated-goods"]
+    },
+    "economics": {
+      "status": "known",
+      "arrangements": [
+        { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Nonprofit vehicle-donation program setup and ongoing monthly or annual charges", "conditions": [], "caveats": [] },
+        { "type": "revenue-share", "value": { "kind": "variable", "description": "Partner receives a negotiated percentage of net vehicle-sale proceeds" }, "basis": "Vehicle sale proceeds after tow, auction, title, and other operating expenses", "conditions": ["The donated vehicle is accepted, processed, and sold"], "caveats": ["The partner percentage is not universally published", "CARS absorbs any rare negative-result vehicle so the nonprofit does not incur a loss"] }
+      ],
+      "notes": []
+    },
+    "programs": [
+      {
+        "name": "Nonprofit Vehicle Donation Program",
+        "slug": "nonprofit-vehicle-donation-program",
+        "url": "https://careasy.org/services",
+        "method": "in-kind-resource-fundraising",
+        "products_services": [],
+        "channels": ["online", "in-person", "hybrid"],
+        "online_ordering": null,
+        "fulfillment": ["not-applicable"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "CARS establishes and operates a branded vehicle-donation program for a nonprofit, manages donor intake, nationwide pickup, title and tax documentation, vehicle sale, reporting, and remittance of net proceeds.",
+        "economics_mode": "inherit-provider",
+        "requirements": {
+          "status": "known",
+          "legal_status": ["nonprofit"],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": ["The organization becomes an approved CARS nonprofit partner and supplies authorized organization contacts and branded program information.", "Database users need an email address associated with the nonprofit's domain unless CARS makes another arrangement."],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": ["Vehicle acceptance, pickup expectations, vendor selection, sale method, and final net proceeds depend on the vehicle and local market."],
+          "editorial_summary": "The program is a managed fundraising service for nonprofit partners rather than a direct-to-individual cash fundraiser."
+        },
+        "timing": {
+          "status": "known",
+          "setup_lead_time": { "typical": { "value": 3, "unit": "days" } },
+          "campaign_duration": { "open_ended": true },
+          "fulfillment_time": { "minimum": { "value": 4, "unit": "weeks" }, "maximum": { "value": 12, "unit": "weeks" } },
+          "funds_available_time": null,
+          "payout_time": { "maximum": { "value": 5, "unit": "business-days" } },
+          "payout_schedules": [],
+          "notes": ["CARS says many partners can be set up within a few days. The vehicle sale process is approximately four to twelve weeks and may exceed twelve weeks. After CARS receives vendor funds, it distributes partner proceeds within five business days.", "CARS schedules disbursements once or twice each week. Weekly and twice-weekly cadences are preserved here because the frozen payout-schedule enum supports only monthly and quarterly."]
+        },
+        "logistics": {
+          "status": "known",
+          "notes": ["CARS handles donor calls, title issues, free pickup, vendor dispatch, auction or alternate sale channels, donor tax documents, weekly intake reports, final sales reports, marketing materials, and partner support. Partners can receive funds by ACH/EFT or mailed check."]
+        },
+        "beneficiary_types": ["own-organization", "own-project-or-program"],
+        "capabilities": ["collection-logistics", "reporting-analytics", "email-marketing"],
+        "outcomes": ["cash", "donated-goods"]
+      }
+    ],
+    "geography": { "scope": ["us-nationwide"], "countries": ["US"], "states": [], "regions": [], "notes": "CARS provides vehicle-donation processing throughout the contiguous 48 states and District of Columbia, within stated service areas in Alaska, and on Oahu and Hawaii Island." },
+    "content": {
+      "summary": "CARS provides turnkey vehicle-donation fundraising, pickup, sale, compliance, reporting, and proceeds remittance for nonprofit partners.",
+      "how_it_works": "A nonprofit launches a branded donation page and phone line, supporters offer vehicles, CARS evaluates and arranges pickup and sale, operating costs are deducted, and the nonprofit receives its negotiated share of net proceeds with transaction reporting.",
+      "best_for": ["U.S. nonprofits seeking a year-round vehicle-donation program without building towing, title, auction, donor-service, and tax-document operations."],
+      "considerations": ["Revenue varies with vehicle condition, location, sale result, operating expenses, and the partner's percentage agreement.", "The sale can take four to twelve weeks or longer before proceeds become available."]
+    },
+    "sources": [
+      { "url": "https://careasy.org/services", "source_type": "official-program", "title": "Vehicle Donation Partner Services — CARS", "supports": ["identity", "classification", "programs.nonprofit-vehicle-donation-program.summary", "programs.nonprofit-vehicle-donation-program.requirements", "programs.nonprofit-vehicle-donation-program.timing", "programs.nonprofit-vehicle-donation-program.logistics", "geography"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://partner-faq.careasy.org/partners-faq", "source_type": "platform-documentation", "title": "CARS Partners FAQ", "supports": ["economics", "programs.nonprofit-vehicle-donation-program.requirements", "programs.nonprofit-vehicle-donation-program.timing", "programs.nonprofit-vehicle-donation-program.logistics", "content.considerations"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 3 research", "verifier": "FRD batch 3 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 3 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "Help Hope Live",
+      "slug": "help-hope-live",
+      "website": "https://helphopelive.org/",
+      "fundraising_url": "https://helphopelive.org/get-started/request-help/"
+    },
+    "classification": {
+      "methods": ["direct-donations", "crowdfunding", "events-activities", "giving-matching"],
+      "products_services": ["donation-platform", "crowdfunding-platform", "event-fundraising-platform"],
+      "organizations": ["individuals-personal-causes"],
+      "beneficiary_types": ["individual-or-family"],
+      "cause_areas": ["health-medical", "organ-donation-transplant", "disability-support", "children-families", "mental-health"],
+      "capabilities": ["donation-forms", "crowdfunding-pages", "matching-gifts", "reporting-analytics"],
+      "outcomes": ["cash", "equipment", "services"]
+    },
+    "economics": {
+      "status": "known",
+      "arrangements": [
+        { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Client fundraising services", "conditions": ["The applicant is accepted as a Help Hope Live client"], "caveats": [] },
+        { "type": "platform-fee", "value": { "kind": "percentage", "percent": 3 }, "basis": "Donations raised in honor of a client", "conditions": [], "caveats": ["Donors may optionally cover the fee"] },
+        { "type": "processing-fee", "value": { "kind": "percentage", "percent": 2.65 }, "basis": "Online credit/debit-card and eCheck donations", "conditions": ["The donation uses an applicable online payment method"], "caveats": ["Donors may optionally cover the fee"] },
+        { "type": "minimum-order", "value": { "kind": "amount", "amount": 10, "currency": "USD" }, "basis": "Minimum donation amount", "conditions": [], "caveats": [] }
+      ],
+      "notes": ["Help Hope Live states that, on average, 95 cents of each dollar raised in honor of clients is used for unmet medical expenses."]
+    },
+    "programs": [
+      {
+        "name": "Medical Fundraising Campaign",
+        "slug": "medical-fundraising-campaign",
+        "url": "https://helphopelive.org/get-started/request-help/",
+        "method": "crowdfunding",
+        "products_services": ["donation-platform", "crowdfunding-platform", "event-fundraising-platform"],
+        "channels": ["online", "in-person", "hybrid"],
+        "online_ordering": null,
+        "fulfillment": ["digital", "not-applicable"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "Help Hope Live supports medically and financially verified individuals with tax-deductible community fundraising, campaign pages, event guidance, and nonprofit-held funds used for approved medical and related expenses.",
+        "economics_mode": "inherit-provider",
+        "requirements": {
+          "status": "known",
+          "legal_status": [],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": ["The applicant completes an initial campaign request and, if invited forward, a detailed application documenting medical and financial need, household information, insurance, community support, and authorized team members.", "A medical professional must verify the diagnosis before the client can request funds.", "Clients submit documented fund requests for eligible medical and related expenses."],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": ["Help Hope Live evaluates whether community-based fundraising is a fit and does not promise acceptance or that a goal will be reached.", "Funds are held and administered by Help Hope Live and may be paid to providers or used to reimburse approved expenses rather than transferred as unrestricted personal cash."],
+          "editorial_summary": "The program serves people in the United States and Puerto Rico with verified unmet expenses from transplant, catastrophic injury, or illness and a community able to participate in fundraising."
+        },
+        "timing": {
+          "status": "known",
+          "setup_lead_time": null,
+          "campaign_duration": { "open_ended": true },
+          "fulfillment_time": null,
+          "funds_available_time": null,
+          "payout_time": null,
+          "payout_schedules": [],
+          "notes": ["There is no campaign deadline while medical and financial need continues and the client remains active and in contact. The reviewed pages do not publish one universal application-review or fund-request processing duration."]
+        },
+        "logistics": {
+          "status": "known",
+          "notes": ["A Client Services Coordinator provides one-on-one planning, materials, event and outreach guidance. Donations are made to Help Hope Live in honor of the client; the nonprofit holds the funds and processes documented requests for eligible medical and related expenses."]
+        },
+        "beneficiary_types": ["individual-or-family"],
+        "cause_areas": ["health-medical", "organ-donation-transplant", "disability-support", "children-families", "mental-health"],
+        "capabilities": ["donation-forms", "crowdfunding-pages", "matching-gifts", "reporting-analytics"],
+        "outcomes": ["cash", "equipment", "services"]
+      }
+    ],
+    "geography": { "scope": ["us-nationwide"], "countries": ["US"], "states": [], "regions": [], "notes": "Help Hope Live supports fundraising campaigns in all 50 states and Puerto Rico. Certain recommended treatments outside the United States may qualify, but the campaign itself remains a U.S./Puerto Rico program." },
+    "content": {
+      "summary": "Help Hope Live provides nonprofit-administered medical fundraising for verified transplant, catastrophic injury, and illness expenses in the United States and Puerto Rico.",
+      "how_it_works": "An individual or representative requests help, completes medical and financial verification, works with a coordinator to raise tax-deductible donations through online and community activity, and submits documented requests for eligible expenses held by Help Hope Live.",
+      "best_for": ["Individuals and families with significant verified medical need who want sustained community fundraising, tax-deductible gifts, personalized support, and nonprofit administration of the funds."],
+      "considerations": ["Acceptance is case-by-case and requires medical and financial documentation plus an active support community.", "Funds are restricted to eligible medical and related expenses and are not unrestricted personal income."]
+    },
+    "sources": [
+      { "url": "https://helphopelive.org/about/faqs/", "source_type": "official-program", "title": "Help Hope Live FAQs", "supports": ["classification", "economics", "programs.medical-fundraising-campaign.requirements", "programs.medical-fundraising-campaign.timing", "programs.medical-fundraising-campaign.logistics", "geography"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://helphopelive.org/get-started/request-help/", "source_type": "official-program", "title": "Create a Fundraising Campaign — Apply Now", "supports": ["identity", "programs.medical-fundraising-campaign.summary", "programs.medical-fundraising-campaign.requirements"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://helphopelive.org/we-reduced-our-admin-fee/", "source_type": "terms-or-fees", "title": "Help Hope Live Reduced Administrative Fee", "supports": ["economics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://helphopelive.org/what-is-a-501c3/", "source_type": "official-provider", "title": "Help Hope Live — What Is a 501(c)(3)?", "supports": ["economics", "programs.medical-fundraising-campaign.logistics", "content.considerations"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 3 research", "verifier": "FRD batch 3 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 3 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "GrantStation",
+      "slug": "grantstation",
+      "website": "https://grantstation.com/",
+      "fundraising_url": "https://grantstation.com/product/grantstation-membership-just-write-grants"
+    },
+    "classification": {
+      "methods": ["grant-seeking"],
+      "products_services": [],
+      "organizations": ["schools", "churches-faith", "nonprofits-charities", "clubs-community", "arts-music-performance", "animal-rescue"],
+      "beneficiary_types": ["own-organization", "own-project-or-program"],
+      "capabilities": ["grant-search", "grant-management", "reporting-analytics"],
+      "outcomes": ["grants"]
+    },
+    "economics": {
+      "status": "known",
+      "arrangements": [
+        { "type": "platform-fee", "value": { "kind": "amount", "amount": 139, "currency": "USD" }, "basis": "One-year GrantStation Membership purchased through the reviewed official membership offer", "conditions": [], "caveats": ["Webinars and courses are sold separately", "Additional memberships and organizational licensing may use different terms"] }
+      ],
+      "notes": ["Annual subscriptions renew on the expiration date unless canceled through the member profile. The reviewed product page accepts card payment and directs purchase-order or invoice buyers to contact GrantStation."]
+    },
+    "programs": [
+      {
+        "name": "GrantStation Membership",
+        "slug": "grantstation-membership",
+        "url": "https://grantstation.com/why-join/member-benefits-old",
+        "method": "grant-seeking",
+        "products_services": [],
+        "channels": ["online"],
+        "online_ordering": true,
+        "fulfillment": ["digital"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "required",
+        "summary": "An online membership providing expert-vetted grantmaker profiles, U.S., Canadian, and international databases, advanced search, saved results, alerts, planning tools, and proposal-writing guidance.",
+        "economics_mode": "inherit-provider",
+        "requirements": {
+          "status": "known",
+          "legal_status": [],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": ["A member purchases and activates an individual membership and uses the online services under the membership terms."],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": ["One membership is for one person, except a nonprofit with a budget under $100,000 may share the login with one other staff or board member solely for that organization's research.", "Larger organizations and consulting firms must obtain memberships for each staff user; public resource centers and libraries require permission or an applicable program."],
+          "editorial_summary": "The service is available to nonprofit and grant professionals, consultants, educators, and libraries under user-specific licensing rules; it does not award grants."
+        },
+        "timing": { "status": "not-applicable", "setup_lead_time": null, "campaign_duration": null, "fulfillment_time": null, "funds_available_time": null, "payout_time": null, "payout_schedules": [], "notes": [] },
+        "logistics": {
+          "status": "known",
+          "notes": ["Members search current grantmaker profiles by geography, interest, and support type, save and prioritize leads in a dashboard, receive profile alerts, build a grants calendar, and use proposal tutorials and templates. Applications and awards remain with the individual funder."]
+        },
+        "beneficiary_types": ["own-organization", "own-project-or-program"],
+        "capabilities": ["grant-search", "grant-management", "reporting-analytics"],
+        "outcomes": ["grants"]
+      }
+    ],
+    "geography": { "scope": ["international"], "countries": [], "states": [], "regions": [], "notes": "GrantStation documents searchable private and government grantmakers in the United States, Canada, and internationally. A universal list of membership-purchase countries was not published on the reviewed pages." },
+    "content": {
+      "summary": "GrantStation is a subscription grant-research service with funder databases, search tools, planning resources, and proposal guidance.",
+      "how_it_works": "A member buys access, searches expert-vetted grantmaker profiles and active opportunities, saves and prioritizes leads, builds a grant strategy and calendar, and uses educational resources to prepare proposals.",
+      "best_for": ["Small and midsize nonprofits or grant professionals seeking a comparatively focused, lower-cost grant research and planning tool."],
+      "considerations": ["GrantStation identifies and organizes opportunities but does not determine eligibility, submit every application, or award funds.", "Licensing is user-specific and training products may cost extra."]
+    },
+    "sources": [
+      { "url": "https://grantstation.com/product/grantstation-membership-just-write-grants", "source_type": "terms-or-fees", "title": "GrantStation Membership for Just Write Grants", "supports": ["identity", "economics", "programs.grantstation-membership.summary"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://grantstation.com/why-join/member-benefits-old", "source_type": "official-program", "title": "GrantStation Member Benefits", "supports": ["classification", "programs.grantstation-membership.summary", "programs.grantstation-membership.logistics", "geography"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://grantstation.com/eula", "source_type": "terms-or-fees", "title": "GrantStation Terms of Use", "supports": ["economics", "programs.grantstation-membership.requirements"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 3 research", "verifier": "FRD batch 3 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 3 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "Read-A-Thon",
+      "slug": "read-a-thon",
+      "website": "https://www.read-a-thon.com/",
+      "fundraising_url": "https://www.read-a-thon.com/info/landing_page/"
+    },
+    "classification": {
+      "methods": ["pledge-athon", "peer-to-peer", "events-activities"],
+      "products_services": ["peer-to-peer-platform", "event-fundraising-platform"],
+      "organizations": ["schools", "pto-pta", "youth-organizations"],
+      "beneficiary_types": ["own-organization", "own-project-or-program"],
+      "cause_areas": ["education-literacy", "children-families", "youth-development-prevention"],
+      "activity_subtypes": ["readathon", "peer-fundraising-challenge"],
+      "capabilities": ["peer-to-peer-pages", "participant-pages", "leaderboards", "reporting-analytics", "fulfillment"],
+      "outcomes": ["cash", "supplies"]
+    },
+    "programs": [
+      {
+        "name": "School Read-A-Thon",
+        "slug": "school-read-a-thon",
+        "url": "https://www.read-a-thon.com/info/landing_page/",
+        "method": "pledge-athon",
+        "products_services": ["peer-to-peer-platform", "event-fundraising-platform"],
+        "channels": ["online", "hybrid"],
+        "online_ordering": null,
+        "fulfillment": ["digital", "provider-delivery", "group-distribution"],
+        "inventory_model": "no-inventory",
+        "upfront_cost": "none",
+        "summary": "A full-service school reading fundraiser with student pages, minute tracking, sponsor outreach, dashboards, payment processing, printed materials, and either school-managed rewards or a provider-run student prize store.",
+        "economics_mode": "program-specific",
+        "economics": {
+          "status": "known",
+          "arrangements": [
+            { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Program signup", "conditions": [], "caveats": ["No contract or fundraising minimum is required"] },
+            { "type": "proceeds", "value": { "kind": "percentage", "percent": 80 }, "basis": "Total donations under the School-Sponsored Rewards model", "conditions": ["The school selects, funds, and distributes its own student rewards"], "caveats": ["Read-A-Thon includes payment processing and program materials"] },
+            { "type": "proceeds", "value": { "kind": "percentage", "percent": 75 }, "basis": "Total donations under the Student Reward Store model", "conditions": ["Read-A-Thon manages the online prize store and reward fulfillment"], "caveats": ["Readers earn an additional 15% of their individual donations as prize-store credit without reducing the school's stated 75% share"] }
+          ],
+          "notes": []
+        },
+        "requirements": {
+          "status": "known",
+          "legal_status": ["school-or-education"],
+          "age_range": null,
+          "grade_range": { "minimum": "pre-k", "maximum": "12" },
+          "participation_requirements": ["An authorized school or organization coordinator creates and operates the fundraiser.", "A reader under age 18 needs an adult parent or guardian to activate the reader account."],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": ["The school or organization must be legally permitted to use the service and comply with applicable laws."],
+          "editorial_summary": "Read-A-Thon says minute-based tracking works for all grade levels and requires no contract or fundraising minimum."
+        },
+        "timing": {
+          "status": "known",
+          "setup_lead_time": { "maximum": { "value": 5, "unit": "minutes" } },
+          "campaign_duration": { "typical": { "value": 2, "unit": "weeks" } },
+          "fulfillment_time": null,
+          "funds_available_time": null,
+          "payout_time": { "typical": { "value": 10, "unit": "days" } },
+          "payout_schedules": [],
+          "notes": ["Read-A-Thon recommends a two-week event. The first payment, representing 80% of earned profit, is paid approximately 10 days after the organizer ends the fundraiser; the remaining balance is paid 20 days after the first payment and is held as a chargeback reserve. These are two event-triggered payouts, not a recurring schedule."]
+        },
+        "logistics": {
+          "status": "known",
+          "notes": ["Read-A-Thon sets up the fundraiser and provides printed and digital materials, sponsor messages, student and classroom dashboards, minute and donation reports, and payment processing. Under the reward-store model, prizes are packed by class and shipped to the school after the event closes."]
+        },
+        "beneficiary_types": ["own-organization", "own-project-or-program"],
+        "cause_areas": ["education-literacy", "children-families", "youth-development-prevention"],
+        "activity_subtypes": ["readathon", "peer-fundraising-challenge"],
+        "capabilities": ["peer-to-peer-pages", "participant-pages", "leaderboards", "reporting-analytics", "fulfillment"],
+        "outcomes": ["cash", "supplies"]
+      }
+    ],
+    "geography": { "scope": ["international"], "countries": [], "states": [], "regions": [], "notes": "Official pages describe schools around the globe and donors participating from anywhere, but the reviewed pages do not publish a definitive organization-eligibility country list." },
+    "content": {
+      "summary": "Read-A-Thon is a dedicated school literacy fundraiser with reading-minute tracking, student fundraising pages, communications, reporting, and optional prize fulfillment.",
+      "how_it_works": "A school chooses a reward model, creates the event, enrolls readers, shares student sponsor pages, tracks minutes and donations, closes the fundraiser, and receives its earned proceeds in two post-event payments.",
+      "best_for": ["Schools and PTO/PTAs seeking a short, literacy-aligned, no-product-sale event with participant pages and optional outsourced prizes."],
+      "considerations": ["The school receives 75% or 80% depending on who manages student rewards.", "Profit is split into two payments so a reserve can cover chargebacks and bad checks."]
+    },
+    "sources": [
+      { "url": "https://www.read-a-thon.com/info/landing_page/", "source_type": "official-program", "title": "How Read-A-Thon School Fundraising Works", "supports": ["identity", "classification", "programs.school-read-a-thon.summary", "programs.school-read-a-thon.economics", "programs.school-read-a-thon.requirements", "programs.school-read-a-thon.timing", "programs.school-read-a-thon.logistics", "geography"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.read-a-thon.com/info/faqs", "source_type": "official-program", "title": "Read-A-Thon Frequently Asked Questions", "supports": ["programs.school-read-a-thon.economics", "programs.school-read-a-thon.requirements", "programs.school-read-a-thon.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.read-a-thon.com/terms.php", "source_type": "terms-or-fees", "title": "Read-A-Thon Terms and Conditions", "supports": ["programs.school-read-a-thon.requirements", "programs.school-read-a-thon.timing"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 3 research", "verifier": "FRD batch 3 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 3 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "Give InKind",
+      "slug": "give-inkind",
+      "website": "https://www.giveinkind.com/",
+      "fundraising_url": "https://www.giveinkind.com/how-inkind-works"
+    },
+    "classification": {
+      "methods": ["in-kind-resource-fundraising", "direct-donations"],
+      "products_services": ["gift-cards"],
+      "organizations": ["schools", "churches-faith", "nonprofits-charities", "clubs-community", "individuals-personal-causes"],
+      "beneficiary_types": ["individual-or-family", "own-organization", "community-cause"],
+      "cause_areas": ["children-families", "health-medical", "disaster-emergency-relief", "community-neighborhood", "mental-health", "disability-support"],
+      "capabilities": ["online-store"],
+      "outcomes": ["food", "services", "volunteer-support", "donated-goods", "cash"]
+    },
+    "programs": [
+      {
+        "name": "InKind Support Page",
+        "slug": "inkind-support-page",
+        "url": "https://www.giveinkind.com/how-inkind-works",
+        "method": "in-kind-resource-fundraising",
+        "products_services": ["gift-cards"],
+        "channels": ["online", "hybrid"],
+        "online_ordering": true,
+        "fulfillment": ["digital", "direct-to-supporter", "on-site"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "A free support-coordination page combining a care calendar, meal and service requests, wishlists, secure gift cards, updates, and links to outside fundraising accounts for an individual, family, group, or organization.",
+        "economics_mode": "program-specific",
+        "economics": {
+          "status": "known",
+          "arrangements": [
+            { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Creating, accessing, or supporting a standard InKind Page", "conditions": [], "caveats": ["An optional Premium Page is mentioned, but universal current premium pricing was not established from the reviewed pages"] },
+            { "type": "platform-fee", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Contributions sent through connected fundraising links and Give InKind gift cards", "conditions": [], "caveats": ["Third-party fundraising services may charge their own fees", "Supporters may leave an optional tip on direct gift-card purchases"] },
+            { "type": "proceeds", "value": { "kind": "percentage", "percent": 100 }, "basis": "Face value of a gift card purchased for the recipient through Give InKind", "conditions": [], "caveats": [] }
+          ],
+          "notes": ["Give InKind does not collect or manage cash donations sent through connected GoFundMe, PayPal, Venmo, or Cash App links."]
+        },
+        "requirements": {
+          "status": "known",
+          "legal_status": [],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": ["A page organizer creates an account and designates whether the page supports the organizer, another person, or an organization.", "Supporters create or use an account for certain calendar claims, gifting, and page interactions."],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": ["Connected fundraising depends on the recipient's separate eligible account with the selected third-party service.", "Give InKind facilitates coordination and gifting but does not itself deliver meals, services, or linked cash donations."],
+          "editorial_summary": "Individuals, families, faith groups, schools, employers, and community organizations can coordinate support; the recipient and organizer control requests and privacy."
+        },
+        "timing": {
+          "status": "known",
+          "setup_lead_time": { "maximum": { "value": 5, "unit": "minutes" } },
+          "campaign_duration": { "open_ended": true },
+          "fulfillment_time": { "exact": { "value": 24, "unit": "hours" } },
+          "funds_available_time": null,
+          "payout_time": null,
+          "payout_schedules": [],
+          "notes": ["The five-minute setup is the provider's stated page-creation time. Gift cards enter the recipient's InKind Wallet and become redeemable after a 24-hour security delay; meal, ride, childcare, and other service timing is chosen in the care calendar."]
+        },
+        "logistics": {
+          "status": "known",
+          "notes": ["The organizer publishes needs, preferences, a care calendar, wishlist, and optional outside fundraising links. Supporters claim dated tasks, arrange their own in-person or third-party delivery, purchase trackable gift cards, or follow a connected fundraising button. Automated confirmations and reminders coordinate fulfillment."]
+        },
+        "beneficiary_types": ["individual-or-family", "own-organization", "community-cause"],
+        "cause_areas": ["children-families", "health-medical", "disaster-emergency-relief", "community-neighborhood", "mental-health", "disability-support"],
+        "capabilities": ["online-store"],
+        "outcomes": ["food", "services", "volunteer-support", "donated-goods", "cash"]
+      }
+    ],
+    "geography": { "scope": ["international"], "countries": [], "states": [], "regions": [], "notes": "Give InKind presents the service as a way to organize support for anyone, anywhere. Individual gifts, third-party fundraising accounts, merchants, and delivery services remain subject to their own geographic availability." },
+    "content": {
+      "summary": "Give InKind is a free support-coordination service for meals, rides, childcare, tasks, wishlists, gift cards, updates, and connected fundraising.",
+      "how_it_works": "An organizer creates a page for a recipient or organization, publishes requested help and preferences, and shares the page; supporters claim calendar tasks, send gift cards or wishlist items, or follow connected donation links.",
+      "best_for": ["Families and community groups coordinating several kinds of practical support around illness, caregiving, loss, disaster, birth, or another major life event."],
+      "considerations": ["Give InKind coordinates help but does not provide the meals, services, or linked cash itself.", "Fees and payout rules for connected cash fundraising belong to the third-party service, not Give InKind."]
+    },
+    "sources": [
+      { "url": "https://www.giveinkind.com/how-inkind-works", "source_type": "official-program", "title": "How Give InKind Works", "supports": ["identity", "classification", "programs.inkind-support-page.summary", "programs.inkind-support-page.requirements", "programs.inkind-support-page.timing", "programs.inkind-support-page.logistics", "geography"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.giveinkind.com/faq", "source_type": "official-program", "title": "Give InKind Common Questions", "supports": ["classification", "programs.inkind-support-page.economics", "programs.inkind-support-page.requirements", "programs.inkind-support-page.timing", "programs.inkind-support-page.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://help.giveinkind.com/en/articles/4044399-is-there-a-fee-for-using-give-inkind", "source_type": "platform-documentation", "title": "Is There a Fee for Using Give InKind?", "supports": ["programs.inkind-support-page.economics"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 3 research", "verifier": "FRD batch 3 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 3 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "Graham-Pelton",
+      "slug": "graham-pelton",
+      "website": "https://grahampelton.com/",
+      "fundraising_url": "https://grahampelton.com/contact/"
+    },
+    "classification": {
+      "methods": ["direct-donations"],
+      "products_services": ["fundraising-consulting"],
+      "organizations": ["schools", "churches-faith", "nonprofits-charities", "arts-music-performance"],
+      "beneficiary_types": ["own-organization", "own-project-or-program"],
+      "cause_areas": ["health-medical", "education-literacy", "environment-conservation", "arts-culture", "faith-missions", "community-neighborhood"],
+      "capabilities": ["donor-crm", "email-marketing", "reporting-analytics"],
+      "outcomes": ["cash", "services"]
+    },
+    "programs": [
+      {
+        "name": "Fundraising Consulting Services",
+        "slug": "fundraising-consulting-services",
+        "url": "https://grahampelton.com/",
+        "method": "direct-donations",
+        "products_services": ["fundraising-consulting"],
+        "channels": ["online", "in-person", "hybrid"],
+        "online_ordering": false,
+        "fulfillment": ["varies"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "required",
+        "summary": "Bespoke nonprofit fundraising consulting covering campaign feasibility and planning, capital-campaign management, prospect and data intelligence, fundraising communications, growth strategy, interim staffing, and capacity building.",
+        "economics_mode": "program-specific",
+        "economics": {
+          "status": "known",
+          "arrangements": [
+            { "type": "platform-fee", "value": { "kind": "variable", "description": "Custom engagement quote based on project size, staffing requirements, scope, and timeframe" }, "basis": "Fundraising consulting engagement", "conditions": ["The nonprofit and Graham-Pelton agree to a tailored scope of work"], "caveats": ["No universal rate or package price is published"] }
+          ],
+          "notes": []
+        },
+        "requirements": {
+          "status": "known",
+          "legal_status": ["nonprofit"],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": ["An organization contacts Graham-Pelton, describes its sector, goals, and requested service areas, and receives a proposal for a tailored engagement."],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": ["Graham-Pelton states that it exclusively serves nonprofits and primarily works with large nonprofit institutions."],
+          "editorial_summary": "The service is aimed at established nonprofit institutions, including higher education, independent schools, health organizations, and social or international-impact organizations."
+        },
+        "timing": { "status": "researched-unknown", "setup_lead_time": null, "campaign_duration": null, "fulfillment_time": null, "funds_available_time": null, "payout_time": null, "payout_schedules": [], "notes": [] },
+        "logistics": {
+          "status": "known",
+          "notes": ["Consultants work as an extension of the nonprofit's development team through strategic counsel, research and analysis, planning, communications, training, interim staffing, or hands-on campaign support. Delivery and staffing are tailored to the engagement."]
+        },
+        "beneficiary_types": ["own-organization", "own-project-or-program"],
+        "cause_areas": ["health-medical", "education-literacy", "environment-conservation", "arts-culture", "faith-missions", "community-neighborhood"],
+        "capabilities": ["donor-crm", "email-marketing", "reporting-analytics"],
+        "outcomes": ["cash", "services"]
+      }
+    ],
+    "geography": { "scope": ["us-nationwide", "international"], "countries": ["US", "GB", "AU"], "states": [], "regions": [], "notes": "Graham-Pelton describes serving leading nonprofits worldwide and documents work in North America, Europe, and Australia, with offices in several U.S. cities and London." },
+    "content": {
+      "summary": "Graham-Pelton provides custom fundraising consulting exclusively to nonprofit institutions worldwide.",
+      "how_it_works": "A nonprofit requests a proposal, defines campaign, data, communications, growth, staffing, or operational goals, and works with a tailored consulting team on an agreed scope and timeframe.",
+      "best_for": ["Established nonprofit institutions planning major campaigns or needing specialized development strategy, staffing, data, communications, or organizational growth support."],
+      "considerations": ["Pricing and timing are fully quote-based and engagement-specific.", "The firm says it primarily serves large nonprofits, so it may not fit small volunteer-led groups seeking a self-service fundraiser."]
+    },
+    "sources": [
+      { "url": "https://grahampelton.com/", "source_type": "official-provider", "title": "Graham-Pelton Fundraising Consulting Services", "supports": ["identity", "classification", "programs.fundraising-consulting-services.summary", "programs.fundraising-consulting-services.logistics", "geography"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://grahampelton.com/llm-info/", "source_type": "official-provider", "title": "Graham-Pelton Facts and Service FAQ", "supports": ["programs.fundraising-consulting-services.economics", "programs.fundraising-consulting-services.requirements", "programs.fundraising-consulting-services.logistics", "content.considerations"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://grahampelton.com/contact/", "source_type": "official-provider", "title": "Contact Graham-Pelton", "supports": ["programs.fundraising-consulting-services.requirements", "geography"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 3 research", "verifier": "FRD batch 3 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 3 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "Patronicity",
+      "legal_name": "Catalaunch, LLC",
+      "slug": "patronicity",
+      "website": "https://www.patronicity.com/home",
+      "fundraising_url": "https://impact.patronicity.com/crowdfunding"
+    },
+    "classification": {
+      "methods": ["crowdfunding", "grant-seeking", "giving-matching"],
+      "products_services": ["crowdfunding-platform"],
+      "organizations": ["schools", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance", "individuals-personal-causes"],
+      "beneficiary_types": ["own-organization", "own-project-or-program", "community-cause", "local-nonprofit-or-charity", "open-or-unspecified-cause"],
+      "cause_areas": ["community-neighborhood", "environment-conservation", "arts-culture", "youth-development-prevention", "disability-support"],
+      "capabilities": ["crowdfunding-pages", "reporting-analytics"],
+      "outcomes": ["cash", "grants", "volunteer-support"]
+    },
+    "economics": {
+      "status": "known",
+      "arrangements": [
+        { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Creating and launching an approved campaign", "conditions": [], "caveats": [] },
+        { "type": "platform-fee", "value": { "kind": "percentage", "percent": 5 }, "basis": "Funds raised through a Patronicity campaign", "conditions": ["The campaign raises funds"], "caveats": ["Patrons may elect to cover fees at checkout"] },
+        { "type": "processing-fee", "value": { "kind": "percentage", "percent": 2.6 }, "basis": "Online contributions processed by Stripe", "conditions": [], "caveats": [] },
+        { "type": "transaction-fee", "value": { "kind": "amount", "amount": 0.3, "currency": "USD" }, "basis": "Each online contribution processed by Stripe", "conditions": [], "caveats": [] }
+      ],
+      "notes": ["Patronicity offers all-or-nothing and partial-funding crowdfunding under the same standard platform price. Matching-grant amount and terms are set by each crowdgranting partner program."]
+    },
+    "programs": [
+      {
+        "name": "Civic Crowdfunding",
+        "slug": "civic-crowdfunding",
+        "url": "https://impact.patronicity.com/crowdfunding",
+        "method": "crowdfunding",
+        "products_services": ["crowdfunding-platform"],
+        "channels": ["online", "hybrid"],
+        "online_ordering": null,
+        "fulfillment": ["digital", "not-applicable"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "A coached crowdfunding platform for place-based community projects using either all-or-nothing or partial funding, online and recorded offline contributions, giving levels, project updates, reporting, and optional volunteer recruitment.",
+        "economics_mode": "inherit-provider",
+        "requirements": {
+          "status": "known",
+          "legal_status": [],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": ["The project creator submits a campaign for Patronicity review and approval and provides banking or check-payment information before funds are transferred.", "The campaign sets a project goal, deadline, pitch, budget, and community outreach plan."],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": ["Campaigns for personal foreclosure relief, individual homeownership, personal bills, health care costs, vet bills, political campaigns, or advocacy are not allowed.", "Projects generally need to improve a community and fit Patronicity's approved project scope."],
+          "editorial_summary": "Individuals, entrepreneurs, student groups, nonprofits, civic groups, municipalities, and businesses may propose a community project, subject to approval."
+        },
+        "timing": { "status": "known", "setup_lead_time": null, "campaign_duration": null, "fulfillment_time": null, "funds_available_time": null, "payout_time": null, "payout_schedules": [], "notes": ["Crowdfunding uses a constrained campaign timeframe chosen for the project. The reviewed general pages do not establish one universal campaign or post-campaign transfer duration."] },
+        "logistics": { "status": "known", "notes": ["A project coach helps develop the campaign and outreach strategy. Creators can add offline contributions, export patron data, monitor financial and daily performance, post updates, and collect volunteer interest. Online funds move to the creator's bank account or are sent by check after the campaign under the selected funding model."] },
+        "beneficiary_types": ["own-organization", "own-project-or-program", "community-cause", "local-nonprofit-or-charity", "open-or-unspecified-cause"],
+        "cause_areas": ["community-neighborhood", "environment-conservation", "arts-culture", "youth-development-prevention", "disability-support"],
+        "capabilities": ["crowdfunding-pages", "reporting-analytics"],
+        "outcomes": ["cash", "volunteer-support"]
+      },
+      {
+        "name": "Crowdgranting Matching Grants",
+        "slug": "crowdgranting-matching-grants",
+        "url": "https://www.patronicity.com/home",
+        "method": "giving-matching",
+        "products_services": ["crowdfunding-platform"],
+        "channels": ["online", "hybrid"],
+        "online_ordering": null,
+        "fulfillment": ["digital", "not-applicable"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "Partner-specific programs in which an approved community project crowdfunds toward a goal and receives a public, foundation, nonprofit, bank, or corporate matching grant after satisfying the program's funding and eligibility conditions.",
+        "economics_mode": "inherit-provider",
+        "requirements": {
+          "status": "known",
+          "legal_status": [],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": ["The creator applies to a specific matching-grant program and passes Patronicity and funding-partner review.", "The approved project completes its crowdfunding campaign and reaches the required funding goal or other partner milestone before receiving the match."],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": { "kind": "variable", "description": "The crowdfunding target or threshold required by the selected matching-grant program" },
+          "other_restrictions": ["Eligible project types, locations, applicants, grant amounts, deadlines, and implementation/reporting duties vary by partner program."],
+          "editorial_summary": "Crowdgranting is not one nationally uniform grant: each public or private partner defines a local or regional program and match conditions."
+        },
+        "timing": { "status": "known", "setup_lead_time": null, "campaign_duration": null, "fulfillment_time": null, "funds_available_time": null, "payout_time": null, "payout_schedules": [], "notes": ["The fundraising window and grant-award timing vary by matching program and project agreement; no universal duration is asserted."] },
+        "logistics": { "status": "known", "notes": ["Patronicity screens projects, coaches the crowdfunding effort, tracks online and offline support, and administers the grantmaking workflow while the funding partner approves and supplies the match under its program rules."] },
+        "beneficiary_types": ["own-organization", "own-project-or-program", "community-cause", "local-nonprofit-or-charity"],
+        "cause_areas": ["community-neighborhood", "environment-conservation", "arts-culture", "youth-development-prevention", "disability-support"],
+        "capabilities": ["crowdfunding-pages", "reporting-analytics"],
+        "outcomes": ["cash", "grants", "volunteer-support"]
+      }
+    ],
+    "geography": { "scope": ["us-nationwide", "canada"], "countries": ["US", "CA"], "states": [], "regions": [], "notes": "General project creators may be located in the United States or Canada and contributions can come from anywhere. Matching-grant availability is tied to specific partner geographies, commonly state or local programs in the United States; no location entities are modeled here." },
+    "content": {
+      "summary": "Patronicity combines coached civic crowdfunding with partner-specific matching grants for community-led projects.",
+      "how_it_works": "A creator submits a community project, works with a coach to launch a time-limited campaign, gathers online and offline support, and—if enrolled in crowdgranting—earns a partner match after meeting the program's threshold and other requirements.",
+      "best_for": ["Community groups, nonprofits, municipalities, small businesses, and local changemakers raising for a visible place-based project."],
+      "considerations": ["Personal bills, medical costs, political campaigns, and several other personal-use categories are excluded.", "Matching grants are location- and program-specific; a provider-level profile cannot show current ZIP-level availability."]
+    },
+    "sources": [
+      { "url": "https://www.patronicity.com/about-us", "source_type": "official-provider", "title": "About Patronicity", "supports": ["identity", "classification", "programs.crowdgranting-matching-grants.summary", "geography"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://impact.patronicity.com/crowdfunding", "source_type": "official-program", "title": "Patronicity Crowdfunding", "supports": ["economics", "programs.civic-crowdfunding.summary", "programs.civic-crowdfunding.logistics", "programs.civic-crowdfunding.outcomes"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.patronicity.com/home", "source_type": "official-program", "title": "Patronicity Civic Crowdfunding and Crowdgranting", "supports": ["classification", "programs.crowdgranting-matching-grants.summary", "programs.crowdgranting-matching-grants.requirements", "programs.crowdgranting-matching-grants.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.patronicity.com/faq", "source_type": "platform-documentation", "title": "Patronicity FAQ", "supports": ["economics", "programs.civic-crowdfunding.requirements", "programs.civic-crowdfunding.timing", "programs.civic-crowdfunding.logistics", "programs.crowdgranting-matching-grants.requirements", "programs.crowdgranting-matching-grants.timing", "geography", "content.considerations"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 3 research", "verifier": "FRD batch 3 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 3 brief", "approved_at": "2026-09-20" }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "GlobalGiving",
+      "slug": "globalgiving",
+      "website": "https://www.globalgiving.org/",
+      "fundraising_url": "https://www.globalgiving.org/nonprofits/"
+    },
+    "classification": {
+      "methods": ["direct-donations", "crowdfunding", "peer-to-peer", "giving-matching"],
+      "products_services": ["donation-platform", "crowdfunding-platform", "peer-to-peer-platform"],
+      "organizations": ["schools", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance", "animal-rescue"],
+      "beneficiary_types": ["own-organization", "own-project-or-program", "local-nonprofit-or-charity", "national-nonprofit-or-charity", "community-cause"],
+      "cause_areas": ["disaster-emergency-relief", "community-neighborhood", "environment-conservation", "education-literacy", "health-medical", "children-families", "hunger-food-security"],
+      "capabilities": ["donation-forms", "recurring-giving", "crowdfunding-pages", "peer-to-peer-pages", "matching-gifts", "workplace-giving", "reporting-analytics"],
+      "outcomes": ["cash", "grants"]
+    },
+    "economics": {
+      "status": "known",
+      "arrangements": [
+        { "type": "upfront-cost", "value": { "kind": "amount", "amount": 0, "currency": "USD" }, "basis": "Application, setup, monthly, and annual access", "conditions": ["The organization passes due diligence and is admitted"], "caveats": [] },
+        { "type": "platform-fee", "value": { "kind": "percentage", "percent": 12 }, "basis": "Initial $5,000 raised by any organization and GlobalGiving-managed donations", "conditions": [], "caveats": [] },
+        { "type": "platform-fee", "value": { "kind": "percentage", "percent": 5 }, "basis": "Direct project donations after the initial $5,000 for U.S.- or U.K.-registered organizations", "conditions": ["The organization maintains active due diligence and qualifying partner status"], "caveats": [] },
+        { "type": "platform-fee", "value": { "kind": "percentage", "percent": 7 }, "basis": "Direct project donations after the initial $5,000 for organizations registered outside the United States and United Kingdom", "conditions": ["The organization maintains active due diligence and qualifying partner status"], "caveats": [] },
+        { "type": "processing-fee", "value": { "kind": "percentage", "percent": 3 }, "basis": "Donations", "conditions": [], "caveats": ["Fees are negotiable for larger commitments"] },
+        { "type": "minimum-payout", "value": { "kind": "amount", "amount": 250, "currency": "USD" }, "basis": "International organization disbursement threshold under the documented FXecute process", "conditions": ["The partner is outside the United States and receives funds through the applicable international process"], "caveats": ["Location and disbursement method affect delivery and transfer costs"] }
+      ],
+      "notes": ["GlobalGiving states that at least 85 cents of each donated dollar reaches nonprofit partners across the documented fee tiers. Gift Aid and managed projects have separate published treatment."]
+    },
+    "programs": [
+      {
+        "name": "GlobalGiving Nonprofit Partnership",
+        "slug": "globalgiving-nonprofit-partnership",
+        "url": "https://www.globalgiving.org/nonprofits/",
+        "method": "crowdfunding",
+        "products_services": ["donation-platform", "crowdfunding-platform", "peer-to-peer-platform"],
+        "channels": ["online"],
+        "online_ordering": null,
+        "fulfillment": ["digital", "not-applicable"],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "summary": "A vetted worldwide nonprofit fundraising community with project pages, individual fundraisers, recurring gifts, matching campaigns, corporate and employee-giving access, training, donor communication, reporting, and country-sensitive disbursement.",
+        "economics_mode": "inherit-provider",
+        "requirements": {
+          "status": "known",
+          "legal_status": ["registered-nonprofit", "nonprofit"],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": ["The organization demonstrates a track record of project implementation and passes GlobalGiving due diligence using legal, financial, program, leadership, and compliance documentation.", "Partners maintain current due diligence and submit public project reports at least quarterly."],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": ["GlobalGiving primarily accepts registered nonprofits; some unregistered groups participate through an accepted fiscal sponsor.", "Disbursement may be delayed or redirected when law, compliance, banking, project status, account information, or fraud review prevents the intended transfer."],
+          "editorial_summary": "Registered nonprofits worldwide may apply, including organizations outside the United States with translated documentation, but admission depends on due diligence and program compliance."
+        },
+        "timing": {
+          "status": "known",
+          "setup_lead_time": null,
+          "campaign_duration": { "open_ended": true },
+          "fulfillment_time": null,
+          "funds_available_time": null,
+          "payout_time": { "maximum": { "value": 2, "unit": "weeks" } },
+          "payout_schedules": [
+            { "frequency": "monthly", "delivery_method": null, "anchor": "On or around the 25th of the month after the donation", "conditions": ["The partner has cleared donations and remains eligible for disbursement"], "caveats": ["Delivery can be ACH, check, FXecute, or wire depending on location; the frozen delivery enum cannot express FXecute or wire"] },
+            { "frequency": "quarterly", "delivery_method": null, "anchor": null, "conditions": ["The partner is registered in China and the required regulatory approval is in place"], "caveats": ["China-specific disbursement timing follows local regulatory requirements"] }
+          ],
+          "notes": ["Most partners enter the monthly cycle. After GlobalGiving sends a disbursement, ACH commonly takes one to three business days, checks one to five days, and FXecute or international wire can take up to two weeks."]
+        },
+        "logistics": {
+          "status": "known",
+          "notes": ["Partners publish projects, receive one-time and recurring donations, create supporter fundraisers, participate in campaigns and matching opportunities, communicate through project reports and appeals, and download donation and disbursement reports. GlobalGiving vets partners and processes eligible funds through location-appropriate payment methods."]
+        },
+        "beneficiary_types": ["own-organization", "own-project-or-program", "local-nonprofit-or-charity", "national-nonprofit-or-charity", "community-cause"],
+        "cause_areas": ["disaster-emergency-relief", "community-neighborhood", "environment-conservation", "education-literacy", "health-medical", "children-families", "hunger-food-security"],
+        "capabilities": ["donation-forms", "recurring-giving", "crowdfunding-pages", "peer-to-peer-pages", "matching-gifts", "workplace-giving", "reporting-analytics"],
+        "outcomes": ["cash", "grants"]
+      }
+    ],
+    "geography": { "scope": ["international"], "countries": [], "states": [], "regions": [], "notes": "GlobalGiving says it has supported vetted nonprofits in more than 175 countries and accepts registered organizations worldwide, subject to due diligence, local law, banking, and country-specific disbursement constraints." },
+    "content": {
+      "summary": "GlobalGiving is a vetted international nonprofit fundraising community connecting local projects with individual, corporate, workplace, matching, and grant funding.",
+      "how_it_works": "A nonprofit applies and passes due diligence, publishes one or more projects, raises through project pages and supporter campaigns, reports progress at least quarterly, and receives cleared net funds on the applicable monthly or country-specific schedule.",
+      "best_for": ["Registered nonprofits seeking international reach, vetted-project credibility, corporate and matching opportunities, donor acquisition, training, and multi-country disbursement support."],
+      "considerations": ["The fee depends on amount raised, registration country, and donation type, with a 3% processing fee added.", "Admission and continued visibility require substantial due diligence and recurring project reporting."]
+    },
+    "sources": [
+      { "url": "https://www.globalgiving.org/aboutus/how-it-works/", "source_type": "official-provider", "title": "How GlobalGiving Works", "supports": ["identity", "classification", "programs.globalgiving-nonprofit-partnership.summary", "geography", "content.summary"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.globalgiving.org/aboutus/fee/", "source_type": "terms-or-fees", "title": "GlobalGiving Fees", "supports": ["economics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.globalgiving.org/nonprofits/", "source_type": "official-program", "title": "GlobalGiving for Nonprofits", "supports": ["programs.globalgiving-nonprofit-partnership.requirements", "geography", "content.best_for"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.globalgiving.org/aboutus/how-it-works/vetting/", "source_type": "official-program", "title": "GlobalGiving Nonprofit Vetting", "supports": ["programs.globalgiving-nonprofit-partnership.requirements", "programs.globalgiving-nonprofit-partnership.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://www.globalgiving.org/nonprofit-partner-handbook/start-fundraising/", "source_type": "platform-documentation", "title": "GlobalGiving Nonprofit Partner Handbook — Start Fundraising", "supports": ["economics", "programs.globalgiving-nonprofit-partnership.timing", "programs.globalgiving-nonprofit-partnership.logistics"], "checked_at": "2026-09-20", "status": "current" },
+      { "url": "https://support.globalgiving.org/hc/en-us/articles/8407592519444-When-will-my-organization-receive-the-money-we-raised-for-organizations-registered-in-China", "source_type": "platform-documentation", "title": "GlobalGiving China Partner Disbursement Timing", "supports": ["programs.globalgiving-nonprofit-partnership.timing"], "checked_at": "2026-09-20", "status": "current" }
+    ],
+    "verification": { "status": "verified", "review_status": "current", "first_researched_at": "2026-09-20", "first_verified_at": "2026-09-20", "last_verified_at": "2026-09-20", "reviewer": "FRD batch 3 research", "verifier": "FRD batch 3 research" },
+    "completeness": "anchor-quality",
+    "workflow": { "approved": true, "approved_by": "FRD bulk ingestion batch 3 brief", "approved_at": "2026-09-20" }
+  }
+]

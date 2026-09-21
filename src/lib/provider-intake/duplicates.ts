@@ -26,6 +26,7 @@ function signalsFor(record: Record<string, any>, existing: ExistingProviderRecor
   const incomingName = normalizedName(record.identity?.name);
   const existingName = normalizedName(existing.data.identity.name);
   const aliases = (record.identity?.aliases ?? []).map(normalizedName).filter(Boolean);
+  const existingAliases = existing.data.identity.aliases.map(normalizedName).filter(Boolean);
   const incomingDomain = canonicalDomain(record.identity?.website ?? record.identity?.fundraising_url);
   const existingDomains = new Set([
     canonicalDomain(existing.data.identity.website),
@@ -43,6 +44,13 @@ function signalsFor(record: Record<string, any>, existing: ExistingProviderRecor
   }
   if (existingName && aliases.includes(existingName)) {
     signals.push({ kind: "alias", value: existing.data.identity.name });
+  }
+  if (incomingName && existingAliases.includes(incomingName)) {
+    signals.push({ kind: "alias", value: record.identity.name });
+  }
+  const sharedAlias = aliases.find((alias) => existingAliases.includes(alias));
+  if (sharedAlias) {
+    signals.push({ kind: "alias", value: sharedAlias });
   }
 
   const existingPrograms = existing.data.programs;

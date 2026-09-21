@@ -1,0 +1,246 @@
+meta:
+  id: "prov_000031"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Box Tops for Education"
+  slug: "box-tops-for-education"
+  legal_name: "General Mills, Inc."
+  aliases:
+    - "Box Tops"
+  website: "https://boxtops4education.com/"
+  fundraising_url: "https://boxtops4education.com/How-To-Earn"
+  logo: null
+classification:
+  methods:
+    - "everyday-passive-fundraising"
+  products_services:
+    - "shopping-rewards"
+  organizations:
+    - "schools"
+    - "pto-pta"
+  outcomes:
+    - "cash"
+  capabilities:
+    - "reporting-analytics"
+  beneficiary_types:
+    - "own-organization"
+programs:
+  - id: "prog_000048"
+    name: "Box Tops for Education Program"
+    slug: "box-tops-for-education-program"
+    url: "https://boxtops4education.com/How-To-Earn"
+    method: "everyday-passive-fundraising"
+    products_services:
+      - "shopping-rewards"
+    channels:
+      - "online"
+      - "in-person"
+      - "hybrid"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+      - "not-applicable"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "Adult supporters buy participating products and scan paper receipts, submit digital receipts, or use connected retailer accounts so validated earnings are credited to an enrolled Pre-K–8 school."
+    economics_mode: "program-specific"
+    economics:
+      status: "known"
+      arrangements:
+        - type: "upfront-cost"
+          value:
+            kind: "amount"
+            amount: 0
+            currency: "USD"
+          basis: "School enrollment and supporter membership"
+          conditions: []
+          caveats:
+            - "Supporters purchase participating products in the ordinary course"
+        - type: "fixed-payout"
+          value:
+            kind: "variable"
+            description: "Cash credit varies by participating product and any applicable bonus offer displayed in the app"
+          basis: "Validated eligible purchase or bonus activity"
+          conditions:
+            - "Receipt or connected-account transaction is validated and credited to an active eligible school"
+          caveats: []
+        - type: "other"
+          value:
+            kind: "amount"
+            amount: 20000
+            currency: "USD"
+          basis: "Maximum cash earnings per enrolled school per program year"
+          conditions: []
+          caveats:
+            - "The program year runs March 2 through March 1"
+      notes:
+        - "The current official rules do not publish one universal per-product earning amount. December payments below $20 carry into the April payment."
+    requirements:
+      status: "known"
+      legal_status:
+        - "school-or-education"
+      age_range: null
+      grade_range:
+        minimum: "pre-k"
+        maximum: "8"
+      participation_requirements:
+        - "A school administrator enrolls the school, and the school must remain active and eligible."
+        - "Individual app users must be legal U.S. residents, at least 18, and register one account per email address and device."
+        - "Paper receipts must be scanned within 14 days of purchase unless earnings come through an eligible connected account or another permitted digital path."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Preschool-only programs are not eligible."
+        - "Private and parochial schools must qualify as 501(c)(3) educational organizations."
+        - "Eligible home-school associations must be IRS-recognized 501(c)(3) organizations with at least 15 students in Pre-K through grade 8."
+        - "Receipt reproduction, alteration, purchase, sale, trade, and other fraudulent submissions are prohibited."
+      editorial_summary: "Eligible beneficiaries are public, qualifying private or parochial, military-operated, Puerto Rico accredited private or parochial, and qualifying home-school associations serving Pre-K through grade 8 under the published rules."
+    timing:
+      status: "known"
+      setup_lead_time:
+        maximum:
+          value: 30
+          unit: "days"
+      campaign_duration:
+        open_ended: true
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "School enrollment may take up to 30 days. Schools receive checks twice per school year, by December 31 and April 30. Semiannual anchored payments cannot be expressed by the frozen monthly/quarterly payout-schedule enum."
+    logistics:
+      status: "known"
+      notes:
+        - "Supporters use the Box Tops app to scan a full receipt within 14 days, email eligible digital receipts, or link participating retailer accounts. Validated earnings post to the selected school's account, and General Mills mails checks to the school or an approved school PTO payee."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "reporting-analytics"
+    beneficiary_types:
+      - "own-organization"
+geography:
+  scope:
+    - "us-nationwide"
+  countries:
+    - "US"
+  states: []
+  regions: []
+  notes: "Eligible schools include the United States and most U.S. territories, accredited private or parochial schools in Puerto Rico, and qualifying U.S. military-operated schools worldwide. Individual app users must be adult U.S. legal residents."
+content:
+  summary: "Box Tops for Education turns validated purchases of participating products into cash for enrolled Pre-K–8 schools."
+  how_it_works: "Adult supporters select an eligible school in the app, buy participating products, and submit receipts or connect eligible retailer accounts; validated earnings accumulate for twice-yearly school checks."
+  best_for:
+    - "Eligible Pre-K–8 schools and their PTOs seeking a passive purchase-linked program supported by family shopping."
+  considerations:
+    - "School and supporter eligibility is tightly defined, and receipt submissions generally have a 14-day window."
+    - "Earning amounts vary by product and promotion, annual school earnings are capped at $20,000, and payments are made on two anchored school-year dates."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 2 research"
+  verified_by: "FRD batch 2 research"
+  sources:
+    - id: "src_000102"
+      type: "terms-or-fees"
+      url: "https://boxtops4education.com/official-rules"
+      title: "Box Tops for Education Official Rules"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.box-tops-for-education-program.economics"
+          status: "current"
+          notes: null
+        - path: "programs.box-tops-for-education-program.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.box-tops-for-education-program.timing"
+          status: "current"
+          notes: null
+        - path: "programs.box-tops-for-education-program.logistics"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000103"
+      type: "official-program"
+      url: "https://boxtops4education.com/How-To-Earn"
+      title: "How To Earn Cash for Schools — Box Tops for Education"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.box-tops-for-education-program.summary"
+          status: "current"
+          notes: null
+        - path: "programs.box-tops-for-education-program.logistics"
+          status: "current"
+          notes: null
+        - path: "classification.products_services"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000104"
+      type: "official-program"
+      url: "https://boxtops4education.com/enroll"
+      title: "Enroll Your School — Box Tops for Education"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.box-tops-for-education-program.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.box-tops-for-education-program.timing"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

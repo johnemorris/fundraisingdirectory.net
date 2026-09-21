@@ -1,0 +1,245 @@
+meta:
+  id: "prov_000033"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  legal_name: "Charitable Adult Rides & Services, Inc."
+  aliases:
+    - "Charitable Adult Rides & Services"
+    - "CARS Vehicle Donation Program"
+  fundraising_url: "https://careasy.org/services"
+  logo: null
+  name: "CARS"
+  slug: "cars-vehicle-donation"
+  website: "https://careasy.org/"
+classification:
+  products_services: []
+  methods:
+    - "in-kind-resource-fundraising"
+    - "collection-reuse-fundraising"
+  organizations:
+    - "schools"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "animal-rescue"
+  outcomes:
+    - "cash"
+    - "donated-goods"
+  capabilities:
+    - "collection-logistics"
+    - "reporting-analytics"
+    - "email-marketing"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+economics:
+  status: "known"
+  arrangements:
+    - type: "upfront-cost"
+      value:
+        kind: "amount"
+        amount: 0
+        currency: "USD"
+      basis: "Nonprofit vehicle-donation program setup and ongoing monthly or annual charges"
+      conditions: []
+      caveats: []
+    - type: "revenue-share"
+      value:
+        kind: "variable"
+        description: "Partner receives a negotiated percentage of net vehicle-sale proceeds"
+      basis: "Vehicle sale proceeds after tow, auction, title, and other operating expenses"
+      conditions:
+        - "The donated vehicle is accepted, processed, and sold"
+      caveats:
+        - "The partner percentage is not universally published"
+        - "CARS absorbs any rare negative-result vehicle so the nonprofit does not incur a loss"
+  notes: []
+programs:
+  - id: "prog_000050"
+    products_services: []
+    online_ordering: null
+    fulfillment:
+      - "not-applicable"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status:
+        - "nonprofit"
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The organization becomes an approved CARS nonprofit partner and supplies authorized organization contacts and branded program information."
+        - "Database users need an email address associated with the nonprofit's domain unless CARS makes another arrangement."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Vehicle acceptance, pickup expectations, vendor selection, sale method, and final net proceeds depend on the vehicle and local market."
+      editorial_summary: "The program is a managed fundraising service for nonprofit partners rather than a direct-to-individual cash fundraiser."
+    timing:
+      status: "known"
+      setup_lead_time:
+        typical:
+          value: 3
+          unit: "days"
+      campaign_duration:
+        open_ended: true
+      fulfillment_time:
+        minimum:
+          value: 4
+          unit: "weeks"
+        maximum:
+          value: 12
+          unit: "weeks"
+      funds_available_time: null
+      payout_time:
+        maximum:
+          value: 5
+          unit: "business-days"
+      payout_schedules: []
+      notes:
+        - "CARS says many partners can be set up within a few days. The vehicle sale process is approximately four to twelve weeks and may exceed twelve weeks. After CARS receives vendor funds, it distributes partner proceeds within five business days."
+        - "CARS schedules disbursements once or twice each week. Weekly and twice-weekly cadences are preserved here because the frozen payout-schedule enum supports only monthly and quarterly."
+    logistics:
+      status: "known"
+      notes:
+        - "CARS handles donor calls, title issues, free pickup, vendor dispatch, auction or alternate sale channels, donor tax documents, weekly intake reports, final sales reports, marketing materials, and partner support. Partners can receive funds by ACH/EFT or mailed check."
+    name: "Nonprofit Vehicle Donation Program"
+    slug: "nonprofit-vehicle-donation-program"
+    url: "https://careasy.org/services"
+    method: "in-kind-resource-fundraising"
+    channels:
+      - "online"
+      - "in-person"
+      - "hybrid"
+    summary: "CARS establishes and operates a branded vehicle-donation program for a nonprofit, manages donor intake, nationwide pickup, title and tax documentation, vehicle sale, reporting, and remittance of net proceeds."
+    outcomes:
+      - "cash"
+      - "donated-goods"
+    capabilities:
+      - "collection-logistics"
+      - "reporting-analytics"
+      - "email-marketing"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+geography:
+  countries:
+    - "US"
+  states: []
+  regions: []
+  notes: "CARS provides vehicle-donation processing throughout the contiguous 48 states and District of Columbia, within stated service areas in Alaska, and on Oahu and Hawaii Island."
+  scope:
+    - "us-nationwide"
+content:
+  best_for:
+    - "U.S. nonprofits seeking a year-round vehicle-donation program without building towing, title, auction, donor-service, and tax-document operations."
+  considerations:
+    - "Revenue varies with vehicle condition, location, sale result, operating expenses, and the partner's percentage agreement."
+    - "The sale can take four to twelve weeks or longer before proceeds become available."
+  summary: "CARS provides turnkey vehicle-donation fundraising, pickup, sale, compliance, reporting, and proceeds remittance for nonprofit partners."
+  how_it_works: "A nonprofit launches a branded donation page and phone line, supporters offer vehicles, CARS evaluates and arranges pickup and sale, operating costs are deducted, and the nonprofit receives its negotiated share of net proceeds with transaction reporting."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 3 research"
+  verified_by: "FRD batch 3 research"
+  sources:
+    - id: "src_000109"
+      title: "Vehicle Donation Partner Services — CARS"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.nonprofit-vehicle-donation-program.summary"
+          status: "current"
+          notes: null
+        - path: "programs.nonprofit-vehicle-donation-program.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.nonprofit-vehicle-donation-program.timing"
+          status: "current"
+          notes: null
+        - path: "programs.nonprofit-vehicle-donation-program.logistics"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+      type: "official-program"
+      url: "https://careasy.org/services"
+      checked_at: "2026-09-20"
+    - id: "src_000110"
+      title: "CARS Partners FAQ"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.nonprofit-vehicle-donation-program.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.nonprofit-vehicle-donation-program.timing"
+          status: "current"
+          notes: null
+        - path: "programs.nonprofit-vehicle-donation-program.logistics"
+          status: "current"
+          notes: null
+        - path: "content.considerations"
+          status: "current"
+          notes: null
+      notes: null
+      type: "platform-documentation"
+      url: "https://partner-faq.careasy.org/partners-faq"
+      checked_at: "2026-09-20"
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

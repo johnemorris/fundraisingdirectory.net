@@ -1,0 +1,215 @@
+meta:
+  id: "prov_000023"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Instrumentl"
+  slug: "instrumentl"
+  legal_name: null
+  aliases: []
+  website: "https://www.instrumentl.com/"
+  fundraising_url: "https://www.instrumentl.com/solutions/nonprofits"
+  logo: null
+classification:
+  methods:
+    - "grant-seeking"
+  products_services: []
+  organizations:
+    - "schools"
+    - "nonprofits-charities"
+  outcomes:
+    - "grants"
+  capabilities:
+    - "grant-search"
+    - "grant-management"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+economics:
+  status: "known"
+  arrangements:
+    - type: "platform-fee"
+      value:
+        kind: "variable"
+        description: "Discover is $299/month billed annually or $349 month-to-month; Pre-Award is $499/month billed annually or $579 month-to-month; Full Lifecycle is $999/month billed annually or $1,159 month-to-month; Enterprise is custom priced"
+      basis: "Software subscription plan"
+      conditions: []
+      caveats:
+        - "Included users and features vary by plan"
+  notes:
+    - "A 14-day free trial is available without a credit card."
+programs:
+  - id: "prog_000033"
+    name: "Grant Discovery and Management Platform"
+    slug: "grant-discovery-and-management-platform"
+    url: "https://www.instrumentl.com/solutions/nonprofits"
+    method: "grant-seeking"
+    products_services: []
+    channels:
+      - "online"
+    online_ordering: true
+    fulfillment:
+      - "digital"
+    inventory_model: "not-applicable"
+    upfront_cost: "required"
+    ease_to_raise: null
+    summary: "A subscription platform for finding funders and active grant opportunities, organizing deadlines and applications, collaborating on proposals, and managing awards and grant spending according to plan."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "Users create projects or workspaces describing their organization and funding needs to receive matched opportunities."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions: []
+      editorial_summary: "Instrumentl publishes plans for nonprofits, grant consultants, universities, municipalities, health systems, and other grant teams; each funder sets its own applicant eligibility."
+    timing:
+      status: "known"
+      setup_lead_time:
+        maximum:
+          value: 30
+          unit: "days"
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "Most teams are fully up and running within 30 days; searching for funders and tracking deadlines can begin on day one."
+    logistics:
+      status: "known"
+      notes:
+        - "The platform matches projects to funding opportunities, tracks pipelines and deadlines, supports reports and collaboration, and adds proposal, CRM, accounting, and award-management functions on higher plans."
+    outcomes:
+      - "grants"
+    capabilities:
+      - "grant-search"
+      - "grant-management"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+geography:
+  scope:
+    - "us-nationwide"
+  countries:
+    - "US"
+  states: []
+  regions: []
+  notes: "The reviewed official database and help materials establish United States grant and IRS 990 coverage. Broader international opportunity coverage was not established."
+content:
+  summary: "Instrumentl is a grant discovery and grant-management platform for nonprofits and other grant teams."
+  how_it_works: "A team describes its programs, receives matched funders and opportunities, organizes deadlines and application work, and can add collaboration, proposal, CRM, award, and spend-management features through higher plans."
+  best_for:
+    - "Nonprofits and grant teams seeking a centralized workflow from prospect research through award and spend tracking."
+  considerations:
+    - "Instrumentl helps identify and manage opportunities but does not award grants; each funder controls eligibility, applications, and decisions."
+    - "Plan prices, users, and pre-award or post-award capabilities differ materially."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 2 research"
+  verified_by: "FRD batch 2 research"
+  sources:
+    - id: "src_000073"
+      type: "terms-or-fees"
+      url: "https://www.instrumentl.com/pricing"
+      title: "Pricing Plans — Instrumentl Grant Platform"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.grant-discovery-and-management-platform.summary"
+          status: "current"
+          notes: null
+        - path: "programs.grant-discovery-and-management-platform.timing"
+          status: "current"
+          notes: null
+        - path: "programs.grant-discovery-and-management-platform.capabilities"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000074"
+      type: "official-program"
+      url: "https://www.instrumentl.com/solutions/nonprofits"
+      title: "Grant Management Platform for Nonprofits"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.grant-discovery-and-management-platform.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.grant-discovery-and-management-platform.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000075"
+      type: "platform-documentation"
+      url: "https://help.instrumentl.com/en/articles/3723776-which-kinds-of-funding-opportunities-does-instrumentl-have"
+      title: "Which kinds of funding opportunities does Instrumentl have?"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "classification.methods"
+          status: "current"
+          notes: null
+        - path: "classification.outcomes"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

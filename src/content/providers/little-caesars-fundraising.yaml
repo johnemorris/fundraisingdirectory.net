@@ -1,0 +1,348 @@
+meta:
+  id: "prov_000020"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Little Caesars Fundraising"
+  slug: "little-caesars-fundraising"
+  legal_name: null
+  aliases:
+    - "Little Caesars Pizza Kit Fundraising Program"
+  website: "https://fundraising.littlecaesars.com/"
+  fundraising_url: "https://fundraising.littlecaesars.com/how-it-works"
+  logo: null
+classification:
+  methods:
+    - "product-sales"
+  products_services:
+    - "frozen-prepared-foods"
+  organizations:
+    - "schools"
+    - "pto-pta"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+  outcomes:
+    - "cash"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+economics:
+  status: "known"
+  arrangements:
+    - type: "product-sale-profit"
+      value:
+        kind: "variable"
+        description: "Official pages currently conflict between $6 and $7 profit per standard kit or meal-deal sale; Slice of Giving and bundle profit varies"
+      basis: "Eligible item sold"
+      conditions: []
+      caveats:
+        - "Confirm the current per-item profit before launch because official pages checked on the same date publish different amounts"
+  notes: []
+programs:
+  - id: "prog_000028"
+    name: "Brochure Pizza Kit Fundraiser"
+    slug: "brochure-pizza-kit-fundraiser"
+    url: "https://fundraising.littlecaesars.com/how-it-works"
+    method: "product-sales"
+    products_services:
+      - "frozen-prepared-foods"
+    channels:
+      - "in-person"
+    online_ordering: false
+    fulfillment:
+      - "provider-delivery"
+      - "group-distribution"
+    inventory_model: "preorder"
+    upfront_cost: "varies"
+    ease_to_raise: null
+    summary: "A group takes brochure orders for Pizza Kits and Meal Deal Codes, submits a consolidated order, receives delivery at one location, distributes items, and retains collected profit before paying the balance to the driver."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The group books the fundraiser, distributes selling materials, submits its consolidated order, receives delivery, and coordinates supporter pickup."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions: []
+      editorial_summary: "No reliable current minimum order was established from the reviewed pages."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "The group retains its profit from collected brochure-order cash at fundraiser close and pays the remaining amount to the delivery driver; no separate elapsed funds-availability interval applies."
+    logistics:
+      status: "known"
+      notes:
+        - "The consolidated order is delivered to one group location for organizer-managed distribution; the group pays the order balance to the driver on delivery day."
+    outcomes:
+      - "cash"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+  - id: "prog_000029"
+    name: "Online Pizza Kit Fundraiser"
+    slug: "online-pizza-kit-fundraiser"
+    url: "https://fundraising.littlecaesars.com/how-it-works"
+    method: "product-sales"
+    products_services:
+      - "frozen-prepared-foods"
+    channels:
+      - "online"
+    online_ordering: true
+    fulfillment:
+      - "direct-to-supporter"
+      - "provider-delivery"
+    inventory_model: "preorder"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "Supporters order Pizza Kits and Meal Deal Codes online, physical products ship by FedEx to buyers, and the group receives its profit by mailed check after the fundraiser."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The group registers, shares its online fundraiser, and supplies accurate organization and mailing information."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions: []
+      editorial_summary: "The official page states that the online fundraiser has no minimum order."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time:
+        minimum:
+          value: 2
+          unit: "weeks"
+        maximum:
+          value: 4
+          unit: "weeks"
+      payout_schedules: []
+      notes:
+        - "The profit check is mailed after the fundraiser ends."
+    logistics:
+      status: "known"
+      notes:
+        - "Physical Pizza Kit orders ship directly to buyers by FedEx; digital Meal Deal Codes are emailed."
+    outcomes:
+      - "cash"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+  - id: "prog_000030"
+    name: "Meal Deal Fundraiser"
+    slug: "meal-deal-fundraiser"
+    url: "https://fundraising.littlecaesars.com/how-it-works"
+    method: "product-sales"
+    products_services:
+      - "frozen-prepared-foods"
+    channels:
+      - "online"
+      - "in-person"
+    online_ordering: true
+    fulfillment:
+      - "digital"
+      - "local-pickup"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "Supporters buy digital Meal Deal Codes through the fundraiser, receive them by email, and redeem them through Little Caesars for restaurant pickup without shipping."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The group registers and shares the online fundraiser; supporters redeem emailed codes according to the Meal Deal terms."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions: []
+      editorial_summary: "The official page states that the Meal Deal fundraiser has no minimum order."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time:
+        minimum:
+          value: 2
+          unit: "weeks"
+        maximum:
+          value: 4
+          unit: "weeks"
+      payout_schedules: []
+      notes:
+        - "Codes are delivered by email, but the reviewed overview does not publish an exact delivery-time guarantee."
+    logistics:
+      status: "known"
+      notes:
+        - "Meal Deal Codes are emailed to buyers and redeemed through the Little Caesars app or website for restaurant pickup; no product shipping is required."
+    outcomes:
+      - "cash"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+geography:
+  scope:
+    - "us-nationwide"
+    - "canada"
+  countries:
+    - "US"
+    - "CA"
+  states: []
+  regions: []
+  notes: "Little Caesars Fundraising states that it serves schools, teams, and nonprofit organizations in the United States and Canada; product and restaurant availability may vary by postal code."
+content:
+  summary: "Little Caesars Fundraising offers brochure, direct-shipped online, and digital Meal Deal product-sale fundraisers."
+  how_it_works: "A group chooses a fundraiser format, registers, promotes its store or brochure, and earns item-based profit while fulfillment and payment flow depend on the chosen format."
+  best_for:
+    - "Schools, teams, and nonprofit groups seeking a recognized prepared-food product fundraiser with group-delivery or direct-to-supporter options."
+  considerations:
+    - "Official pages checked together conflict on whether standard profit is $6 or $7 per item; confirm current economics before launch."
+    - "Brochure campaigns require delivery and group distribution, while online and Meal Deal campaigns use mailed profit checks."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "partially-verified"
+  review_status: "needs-recheck"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 1 research"
+  verified_by: "FRD batch 1 research"
+  sources:
+    - id: "src_000062"
+      type: "official-program"
+      url: "https://fundraising.littlecaesars.com/how-it-works"
+      title: "How It Works — Little Caesars Fundraising"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "needs-recheck"
+          notes: "This official page publishes $6 profit while other current official pages publish $7."
+        - path: "programs.brochure-pizza-kit-fundraiser.summary"
+          status: "current"
+          notes: null
+        - path: "programs.brochure-pizza-kit-fundraiser.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.brochure-pizza-kit-fundraiser.timing"
+          status: "current"
+          notes: null
+        - path: "programs.brochure-pizza-kit-fundraiser.logistics"
+          status: "current"
+          notes: null
+        - path: "programs.online-pizza-kit-fundraiser.summary"
+          status: "current"
+          notes: null
+        - path: "programs.online-pizza-kit-fundraiser.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.online-pizza-kit-fundraiser.timing"
+          status: "current"
+          notes: null
+        - path: "programs.online-pizza-kit-fundraiser.logistics"
+          status: "current"
+          notes: null
+        - path: "programs.meal-deal-fundraiser.summary"
+          status: "current"
+          notes: null
+        - path: "programs.meal-deal-fundraiser.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.meal-deal-fundraiser.timing"
+          status: "current"
+          notes: null
+        - path: "programs.meal-deal-fundraiser.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000063"
+      type: "official-program"
+      url: "https://fundraising.littlecaesars.com/fundraiser-info?referralsource=we-are-teachers"
+      title: "Little Caesars Fundraising — Fundraiser Information"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "needs-recheck"
+          notes: "This official page publishes $7 profit while the current How It Works page publishes $6."
+        - path: "classification.products_services"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000064"
+      type: "official-provider"
+      url: "https://www.fundraising.littlecaesars.com/about-us"
+      title: "About Little Caesars Fundraising"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "needs-recheck"
+          notes: "This official page publishes $7 profit while the current How It Works page publishes $6."
+        - path: "classification.organizations"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

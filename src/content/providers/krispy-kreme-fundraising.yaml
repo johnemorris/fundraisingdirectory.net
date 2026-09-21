@@ -1,0 +1,360 @@
+meta:
+  id: "prov_000028"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Krispy Kreme Fundraising"
+  slug: "krispy-kreme-fundraising"
+  legal_name: "Krispy Kreme Doughnut Corporation"
+  aliases: []
+  website: "https://www.krispykreme.com/"
+  fundraising_url: "https://www.krispykreme.com/fundraising/home"
+  logo: null
+classification:
+  methods:
+    - "product-sales"
+  products_services:
+    - "baked-goods"
+  organizations:
+    - "schools"
+    - "pto-pta"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+  outcomes:
+    - "cash"
+  capabilities:
+    - "online-store"
+    - "fulfillment"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+    - "community-cause"
+economics:
+  status: "known"
+  arrangements:
+    - type: "product-sale-profit"
+      value:
+        kind: "variable"
+        description: "Up to 50% profit on eligible fundraising products"
+      basis: "Fundraising products sold"
+      conditions: []
+      caveats:
+        - "Local assortment, product cost, and pricing vary by participating shop and fundraiser format"
+  notes: []
+programs:
+  - id: "prog_000042"
+    name: "Classic Pre-Sell Fundraiser"
+    slug: "classic-pre-sell-fundraiser"
+    url: "https://www.krispykreme.com/fundraising/pre-sell-order"
+    method: "product-sales"
+    products_services:
+      - "baked-goods"
+    channels:
+      - "in-person"
+    online_ordering: false
+    fulfillment:
+      - "local-pickup"
+      - "provider-delivery"
+      - "group-distribution"
+    inventory_model: "preorder"
+    upfront_cost: "varies"
+    ease_to_raise: null
+    summary: "A group collects supporter orders before requesting only the doughnuts and other participating-shop fundraising products it needs, then picks up or arranges delivery and distributes them."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The organizer selects a participating local shop, downloads its current forms and assortment, collects orders, and submits an order request."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Fundraising pricing is for approved organization or cause fundraising and not for personal gain or commercial resale."
+      editorial_summary: "Product selection, prices, pickup, and delivery availability depend on the participating local shop."
+    timing:
+      status: "known"
+      setup_lead_time:
+        minimum:
+          value: 3
+          unit: "days"
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "Fundraising orders require at least three days' lead time; delivery requests require five days."
+    logistics:
+      status: "known"
+      notes:
+        - "The group coordinates local pickup or approved delivery and then distributes pre-sold products to supporters."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "fulfillment"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+      - "community-cause"
+  - id: "prog_000043"
+    name: "Classic One-Day Sale Fundraiser"
+    slug: "classic-one-day-sale-fundraiser"
+    url: "https://www.krispykreme.com/fundraising/one-day-sale-order"
+    method: "product-sales"
+    products_services:
+      - "baked-goods"
+    channels:
+      - "in-person"
+    online_ordering: false
+    fulfillment:
+      - "local-pickup"
+      - "on-site"
+    inventory_model: "upfront-inventory"
+    upfront_cost: "required"
+    ease_to_raise: null
+    summary: "A group orders fresh doughnuts in advance, picks them up from a participating shop, and sells them during a one-day event or community sale."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The organizer chooses a participating shop, requests the fundraising order in advance, buys the products, and manages the sale."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Fundraising pricing is not intended for personal gain or commercial profit."
+      editorial_summary: "The group takes inventory risk because products are bought before the one-day sale."
+    timing:
+      status: "known"
+      setup_lead_time:
+        minimum:
+          value: 72
+          unit: "hours"
+      campaign_duration:
+        exact:
+          value: 1
+          unit: "days"
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes: []
+    logistics:
+      status: "known"
+      notes:
+        - "The group purchases and collects fresh product from its local shop and is responsible for on-site selling and any unsold inventory."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "fulfillment"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+      - "community-cause"
+  - id: "prog_000044"
+    name: "Digital Dozens Fundraiser"
+    slug: "digital-dozens-fundraiser"
+    url: "https://www.krispykreme.com/fundraising/digital-dozens"
+    method: "product-sales"
+    products_services:
+      - "baked-goods"
+    channels:
+      - "online"
+    online_ordering: true
+    fulfillment:
+      - "digital"
+      - "local-pickup"
+    inventory_model: "no-inventory"
+    upfront_cost: "unknown"
+    ease_to_raise: null
+    summary: "A group shares a custom fundraising link, supporters purchase Digital Dozens coupons delivered by email, and supporters later redeem them in person for Original Glazed dozens at participating shops."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The organizer creates and shares the Digital Dozens link; supporters use emailed coupons according to the redemption terms."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Coupons are redeemable only at participating U.S. Krispy Kreme shops, in shop or drive-thru, and not for online orders or delivery."
+        - "Coupons exclude Times Square, Puerto Rico, grocery and convenience stores, and locations outside dedicated Krispy Kreme shops."
+      editorial_summary: "The reviewed current page does not publish a universal minimum or fixed per-coupon profit."
+    timing:
+      status: "researched-unknown"
+      setup_lead_time: null
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes: []
+    logistics:
+      status: "known"
+      notes:
+        - "Krispy Kreme emails digital coupons to buyers; supporters handle later in-shop redemption, so the group has no product delivery or inventory."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "online-store"
+      - "fulfillment"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+      - "community-cause"
+geography:
+  scope:
+    - "us-nationwide"
+  countries:
+    - "US"
+  states: []
+  regions: []
+  notes: "Programs depend on participating U.S. shops. Digital Dozens explicitly excludes Puerto Rico, Times Square, grocery and convenience stores, and non-dedicated locations."
+content:
+  summary: "Krispy Kreme Fundraising offers pre-sold, one-day inventory, and digital-coupon doughnut fundraisers."
+  how_it_works: "A group selects a participating shop and either pre-sells local orders, buys fresh product for a one-day sale, or shares a Digital Dozens link for emailed coupon redemption."
+  best_for:
+    - "Schools, charities, teams, and community causes with access to a participating Krispy Kreme shop or supporters who can redeem Digital Dozens."
+  considerations:
+    - "Local assortment, product cost, delivery, and pricing vary by participating shop."
+    - "The one-day format creates inventory risk; Digital Dozens redemption is restricted to participating dedicated U.S. shops."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 2 research"
+  verified_by: "FRD batch 2 research"
+  sources:
+    - id: "src_000090"
+      type: "official-program"
+      url: "https://www.krispykreme.com/fundraising/home"
+      title: "Fundraise with Krispy Kreme"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.classic-pre-sell-fundraiser.summary"
+          status: "current"
+          notes: null
+        - path: "programs.classic-one-day-sale-fundraiser.summary"
+          status: "current"
+          notes: null
+        - path: "programs.digital-dozens-fundraiser.summary"
+          status: "current"
+          notes: null
+        - path: "programs.digital-dozens-fundraiser.requirements"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000091"
+      type: "official-program"
+      url: "https://www.krispykreme.com/fundraising/pre-sell-order"
+      title: "Pre-Sell Order Request — Krispy Kreme Fundraising"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.classic-pre-sell-fundraiser.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.classic-pre-sell-fundraiser.timing"
+          status: "current"
+          notes: null
+        - path: "programs.classic-pre-sell-fundraiser.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000092"
+      type: "official-program"
+      url: "https://www.krispykreme.com/fundraising/one-day-sale-order"
+      title: "One-Day Sale Order Request — Krispy Kreme Fundraising"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.classic-one-day-sale-fundraiser.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.classic-one-day-sale-fundraiser.timing"
+          status: "current"
+          notes: null
+        - path: "programs.classic-one-day-sale-fundraiser.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000093"
+      type: "official-program"
+      url: "https://www.krispykreme.com/fundraising/digital-dozens"
+      title: "Digital Dozens — Krispy Kreme Fundraising"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.digital-dozens-fundraiser.summary"
+          status: "current"
+          notes: null
+        - path: "programs.digital-dozens-fundraiser.logistics"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

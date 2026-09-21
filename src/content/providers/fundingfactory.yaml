@@ -1,0 +1,284 @@
+meta:
+  id: "prov_000032"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  legal_name: null
+  aliases: []
+  fundraising_url: "https://www.fundingfactory.com/"
+  logo: null
+  name: "FundingFactory"
+  slug: "fundingfactory"
+  website: "https://www.fundingfactory.com/"
+classification:
+  products_services: []
+  methods:
+    - "collection-reuse-fundraising"
+    - "in-kind-resource-fundraising"
+  organizations:
+    - "schools"
+    - "pto-pta"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "animal-rescue"
+  outcomes:
+    - "cash"
+  capabilities:
+    - "collection-logistics"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+    - "local-nonprofit-or-charity"
+    - "community-cause"
+  cause_areas:
+    - "environment-conservation"
+    - "community-neighborhood"
+    - "education-literacy"
+  activity_subtypes:
+    - "electronics-drive"
+    - "recycling-drive"
+economics:
+  status: "known"
+  arrangements:
+    - type: "upfront-cost"
+      value:
+        kind: "amount"
+        amount: 0
+        currency: "USD"
+      basis: "Program registration and participation"
+      conditions: []
+      caveats: []
+    - type: "fixed-payout"
+      value:
+        kind: "variable"
+        description: "Current buyback value assigned by FundingFactory to each qualifying cartridge"
+      basis: "Accepted qualifying toner or inkjet cartridge"
+      conditions:
+        - "The item appears on the current qualifying list and meets the stated condition rules"
+      caveats:
+        - "Qualifying items and values may change without advance notice"
+    - type: "minimum-payout"
+      value:
+        kind: "amount"
+        amount: 25
+        currency: "USD"
+      basis: "Account balance required to request payment by check"
+      conditions: []
+      caveats: []
+  notes:
+    - "FundingFactory describes the program as free, with no selling, participation minimum, or obligation. Underfilled prepaid-label boxes may incur a $12 deduction under the program terms."
+programs:
+  - id: "prog_000049"
+    products_services: []
+    online_ordering: null
+    fulfillment:
+      - "not-applicable"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The group registers a Cause account, collects only items on the current qualifying list, and follows packing and shipping instructions."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Cartridges must be undamaged and not previously remanufactured unless the qualifying list says otherwise."
+        - "Accounts may be closed after 12 months without an eligible shipment."
+      editorial_summary: "The program is open to many types of U.S. groups; cash credit depends on accepted cartridge type and condition."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration:
+        open_ended: true
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "A participant requests a check after the account reaches $25; the reviewed terms do not publish a universal check-delivery time."
+    logistics:
+      status: "known"
+      notes:
+        - "Participants collect qualifying cartridges, pack them under current shipping rules, use FundingFactory shipping materials or labels, and track shipments and earnings in the online account. Nonqualifying items receive no credit and are not returned."
+    name: "Cartridge Recycling Fundraiser"
+    slug: "cartridge-recycling-fundraiser"
+    url: "https://www.fundingfactory.com/"
+    method: "collection-reuse-fundraising"
+    channels:
+      - "in-person"
+      - "hybrid"
+    summary: "Schools, nonprofits, churches, troops, and community groups collect eligible used toner and inkjet cartridges, ship them to FundingFactory, and receive the current accepted-item value as cash."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "collection-logistics"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+      - "local-nonprofit-or-charity"
+      - "community-cause"
+    cause_areas:
+      - "environment-conservation"
+      - "community-neighborhood"
+      - "education-literacy"
+    activity_subtypes:
+      - "electronics-drive"
+      - "recycling-drive"
+geography:
+  countries:
+    - "US"
+  states: []
+  regions: []
+  notes: "FundingFactory describes its fundraising-through-recycling network as serving Causes around the United States and calls itself a continental United States program."
+  scope:
+    - "us-nationwide"
+content:
+  best_for:
+    - "U.S. groups with access to a recurring stream of qualifying printer cartridges and volunteers or businesses able to consolidate shipments."
+  considerations:
+    - "The qualifying list and per-item values change, and unlisted or damaged items do not earn credit."
+    - "Shipping rules matter because an underfilled box using a prepaid label may create a deduction."
+  summary: "FundingFactory converts qualifying used printer cartridges into cash for U.S. schools, nonprofits, churches, troops, and community groups."
+  how_it_works: "A group registers a Cause, recruits community or business supporters to collect accepted toner and inkjet cartridges, ships the items to FundingFactory, tracks credits online, and requests a check after reaching the payout minimum."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 3 research"
+  verified_by: "FRD batch 3 research"
+  sources:
+    - id: "src_000105"
+      title: "Toner and Inkjet Cartridge Recycling — FundingFactory"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.cartridge-recycling-fundraiser.summary"
+          status: "current"
+          notes: null
+        - path: "programs.cartridge-recycling-fundraiser.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.cartridge-recycling-fundraiser.logistics"
+          status: "current"
+          notes: null
+      notes: null
+      type: "official-program"
+      url: "https://www.fundingfactory.com/"
+      checked_at: "2026-09-20"
+    - id: "src_000106"
+      title: "FundingFactory Program Terms and Conditions"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.cartridge-recycling-fundraiser.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.cartridge-recycling-fundraiser.timing"
+          status: "current"
+          notes: null
+        - path: "programs.cartridge-recycling-fundraiser.logistics"
+          status: "current"
+          notes: null
+      notes: null
+      type: "terms-or-fees"
+      url: "https://www.fundingfactory.com/terms.aspx"
+      checked_at: "2026-09-20"
+    - id: "src_000107"
+      title: "FundingFactory Qualifying List"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.cartridge-recycling-fundraiser.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.cartridge-recycling-fundraiser.logistics"
+          status: "current"
+          notes: null
+      notes: null
+      type: "official-program"
+      url: "https://www.fundingfactory.com/qualifying-list-detail.aspx"
+      checked_at: "2026-09-20"
+    - id: "src_000108"
+      title: "About FundingFactory"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+        - path: "content.summary"
+          status: "current"
+          notes: null
+      notes: null
+      type: "official-provider"
+      url: "https://www.fundingfactory.com/about.aspx"
+      checked_at: "2026-09-20"
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

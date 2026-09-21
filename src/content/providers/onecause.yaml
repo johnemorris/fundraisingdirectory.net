@@ -1,0 +1,290 @@
+meta:
+  id: "prov_000014"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "OneCause"
+  slug: "onecause"
+  legal_name: null
+  aliases: []
+  website: "https://www.onecause.com/"
+  fundraising_url: "https://www.onecause.com/solutions/fundraising-platform/"
+  logo: null
+classification:
+  methods:
+    - "direct-donations"
+    - "peer-to-peer"
+    - "events-activities"
+    - "auctions"
+  products_services:
+    - "donation-platform"
+    - "peer-to-peer-platform"
+    - "auction-platform"
+    - "event-fundraising-platform"
+    - "text-mobile-giving"
+  organizations:
+    - "schools"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "animal-rescue"
+  outcomes:
+    - "cash"
+    - "sponsorship"
+  capabilities:
+    - "donation-forms"
+    - "recurring-giving"
+    - "peer-to-peer-pages"
+    - "participant-pages"
+    - "leaderboards"
+    - "ticketing-registration"
+    - "auctions-mobile-bidding"
+    - "raffles-prize-drawings"
+    - "text-to-give"
+    - "digital-wallets"
+    - "sponsorship-management"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+  activity_subtypes:
+    - "fun-run"
+    - "walkathon"
+    - "bike-ride"
+    - "fitness-challenge"
+    - "giving-day"
+    - "gala"
+    - "golf-event"
+    - "raffle"
+    - "silent-auction"
+    - "live-auction"
+    - "peer-fundraising-challenge"
+programs:
+  - id: "prog_000021"
+    name: "OneCause Fundraising Platform"
+    slug: "onecause-fundraising-platform"
+    url: "https://www.onecause.com/solutions/fundraising-platform/"
+    method: "auctions"
+    products_services:
+      - "donation-platform"
+      - "peer-to-peer-platform"
+      - "auction-platform"
+      - "event-fundraising-platform"
+      - "text-mobile-giving"
+    channels:
+      - "online"
+      - "in-person"
+      - "hybrid"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+      - "on-site"
+      - "not-applicable"
+    inventory_model: "not-applicable"
+    upfront_cost: "varies"
+    ease_to_raise: null
+    summary: "OneCause combines online giving, text giving, ticketing, event management, auctions and mobile bidding, sponsorships, and peer-to-peer fundraising in packages for nonprofit organizations."
+    economics_mode: "program-specific"
+    economics:
+      status: "known"
+      arrangements:
+        - type: "upfront-cost"
+          value:
+            kind: "amount"
+            amount: 200
+            currency: "USD"
+          basis: "Published starting price for Pay-As-You-Go"
+          conditions:
+            - "Pay-As-You-Go package"
+          caveats:
+            - "The final package price and fee cap are quote-dependent"
+        - type: "platform-fee"
+          value:
+            kind: "percentage"
+            percent: 5
+          basis: "Funds raised under Pay-As-You-Go"
+          conditions:
+            - "Pay-As-You-Go package"
+          caveats:
+            - "OneCause states that the percentage fee is capped but does not publish the cap on the general plans page"
+        - type: "upfront-cost"
+          value:
+            kind: "amount"
+            amount: 2995
+            currency: "USD"
+          basis: "Professional Auction & Event annual package"
+          conditions:
+            - "Flat annual subscription selected instead of percentage pricing"
+          caveats: []
+      notes:
+        - "Package availability and pricing vary by fundraising solution and organization needs; payment-processing terms were not established from the cited general plan pages."
+    requirements:
+      status: "known"
+      legal_status:
+        - "registered-nonprofit"
+        - "tax-exempt"
+      age_range:
+        minimum: 18
+      grade_range: null
+      participation_requirements:
+        - "The customer must be a registered nonprofit, charitable organization, or other qualified donee in the United States or Canada."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Users must satisfy the age and account requirements in the OneCause terms."
+      editorial_summary: "OneCause is designed for registered nonprofit and charitable organizations in the United States and Canada."
+    timing:
+      status: "researched-unknown"
+      setup_lead_time: null
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes: []
+    logistics:
+      status: "known"
+      notes:
+        - "Organizations select a package and configure online or hybrid campaigns, supporter pages, ticketing, auction inventory, bidding, event checkout, and reporting in the platform."
+    outcomes:
+      - "cash"
+      - "sponsorship"
+    capabilities:
+      - "donation-forms"
+      - "recurring-giving"
+      - "peer-to-peer-pages"
+      - "participant-pages"
+      - "leaderboards"
+      - "ticketing-registration"
+      - "auctions-mobile-bidding"
+      - "raffles-prize-drawings"
+      - "text-to-give"
+      - "digital-wallets"
+      - "sponsorship-management"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+    activity_subtypes:
+      - "fun-run"
+      - "walkathon"
+      - "bike-ride"
+      - "fitness-challenge"
+      - "giving-day"
+      - "gala"
+      - "golf-event"
+      - "raffle"
+      - "silent-auction"
+      - "live-auction"
+      - "peer-fundraising-challenge"
+geography:
+  scope:
+    - "us-nationwide"
+    - "canada"
+  countries:
+    - "US"
+    - "CA"
+  states: []
+  regions: []
+  notes: "OneCause terms describe qualified nonprofit and charitable users in the United States and Canada."
+content:
+  summary: "OneCause provides fundraising software for nonprofit auctions, events, online giving, text giving, and peer-to-peer campaigns."
+  how_it_works: "A nonprofit selects a plan and configures fundraising sites, participant experiences, event registration, auctions, donation appeals, or peer-to-peer campaigns in a shared platform."
+  best_for:
+    - "Nonprofits running auctions, galas, golf events, giving campaigns, or supporter-led peer-to-peer programs."
+  considerations:
+    - "Pricing is package-dependent and some material terms require a sales quote."
+    - "No reliable standardized setup, funds-available, or payout timing was established from the reviewed official pages."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "standard"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 1 research"
+  verified_by: "FRD batch 1 research"
+  sources:
+    - id: "src_000041"
+      type: "official-program"
+      url: "https://www.onecause.com/solutions/fundraising-platform/"
+      title: "OneCause Fundraising Platform"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.onecause-fundraising-platform.summary"
+          status: "current"
+          notes: null
+        - path: "programs.onecause-fundraising-platform.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000042"
+      type: "terms-or-fees"
+      url: "https://www.onecause.com/plans/"
+      title: "OneCause Plans & Pricing"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.onecause-fundraising-platform.economics"
+          status: "current"
+          notes: null
+        - path: "classification.organizations"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000043"
+      type: "terms-or-fees"
+      url: "https://www.onecause.com/general/user-terms/"
+      title: "OneCause User Terms"
+      checked_at: "2026-09-20"
+      status: "current"
+      supports:
+        - path: "programs.onecause-fundraising-platform.requirements"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false
