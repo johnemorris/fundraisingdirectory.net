@@ -1,0 +1,122 @@
+---
+import type { CanonicalProgram, CanonicalProvider } from "../data/providerSchema";
+import {
+  formatAgeRange,
+  formatDuration,
+  formatEconomicValue,
+  formatGradeRange,
+  formatLegalStatus,
+  formatPayoutSchedule,
+  resolveProgramPresentation,
+} from "../data/providerPresentation";
+import { formatProviderLabel } from "../data/providerLabels";
+
+interface Props {
+  provider: CanonicalProvider;
+  program: CanonicalProgram;
+  outboundRel: string;
+  sharedEconomicsShown: boolean;
+}
+
+const { provider, program, outboundRel, sharedEconomicsShown } = Astro.props;
+const presentation = resolveProgramPresentation(provider, program);
+const programFulfillment = program.fulfillment.filter((value) => value !== "unknown");
+const formatList = (values: string[]) => new Intl.ListFormat("en-US", { style: "long", type: "conjunction" }).format(values);
+
+const requirementFacts = [
+  program.requirements.legal_status.length > 0 && {
+    label: "Eligible organization status",
+    value: formatList(program.requirements.legal_status.map(formatLegalStatus)),
+  },
+  program.requirements.age_range && { label: "Age range", value: formatAgeRange(program.requirements.age_range) },
+  program.requirements.grade_range && { label: "Grade range", value: formatGradeRange(program.requirements.grade_range) },
+  program.requirements.minimum_group_size && { label: "Minimum group size", value: `${program.requirements.minimum_group_size} participants` },
+  program.requirements.minimum_order && { label: "Minimum order", value: formatEconomicValue(program.requirements.minimum_order) },
+  program.requirements.minimum_sales && { label: "Minimum sales", value: formatEconomicValue(program.requirements.minimum_sales) },
+].filter(Boolean) as { label: string; value: string }[];
+
+const timingFacts = [
+  { label: "Setup / lead time", value: formatDuration(program.timing.setup_lead_time) },
+  { label: "Campaign / event duration", value: formatDuration(program.timing.campaign_duration) },
+  { label: "Fulfillment timing", value: formatDuration(program.timing.fulfillment_time) },
+  { label: "Funds available", value: formatDuration(program.timing.funds_available_time) },
+  { label: "Payout timing", value: formatDuration(program.timing.payout_time) },
+].filter((fact): fact is { label: string; value: string } => Boolean(fact.value));
+
+const operationalFacts = [
+  program.inventory_model !== "unknown" && { label: "Inventory", value: formatProviderLabel(program.inventory_model) },
+  program.upfront_cost !== "unknown" && { label: "Upfront commitment", value: formatProviderLabel(program.upfront_cost) },
+  programFulfillment.length > 0 && { label: "Fulfillment", value: formatList(programFulfillment.map(formatProviderLabel)) },
+  program.online_ordering !== null && { label: "Online ordering", value: program.online_ordering ? "Available" : "Not available" },
+].filter(Boolean) as { label: string; value: string }[];
+---
+
+<article class="program-card">
+  <header class="program-overview">
+    <div class="program-title-row">
+      <div>
+        <a class="program-kicker" href={`/providers/?method=${program.method}`}>{formatProviderLabel(program.method)}</a>
+        <h3>{program.name}</h3>
+      </div>
+      {program.ease_to_raise && <span class={`ease-badge ease-${program.ease_to_raise}`}><span class="ease-dot" aria-hidden="true" />{formatProviderLabel(program.ease_to_raise)}</span>}
+    </div>
+    <p>{program.summary}</p>
+    <dl class="program-overview-facts">
+      <div><dt>Channels</dt><dd>{formatList(program.channels.map(formatProviderLabel))}</dd></div>
+      {program.products_services.length > 0 && <div><dt>Products / services</dt><dd><span class="tags">{program.products_services.map((item) => <a class="product-link" href={`/providers/?product=${item}`}>{formatProviderLabel(item)}</a>)}</span></dd></div>}
+    </dl>
+    {presentation.programUrl && <a class="button program-cta" href={presentation.programUrl} target="_blank" rel={outboundRel} aria-label={`View ${program.name} on ${provider.identity.name} (opens in a new tab)`}>View program <span aria-hidden="true">↗</span></a>}
+  </header>
+
+  <div class="program-decision-sections">
+    <section class="program-decision-section financial-terms" aria-labelledby={`${program.id}-financial-title`}>
+      <h4 id={`${program.id}-financial-title`}>Financial terms</h4>
+      {presentation.economicsInherited && sharedEconomicsShown ? (
+        <p class="inherited-terms">Provider-wide financial terms shown above apply to this program.</p>
+      ) : presentation.economicsRows.length > 0 ? (
+        <div class="financial-list">
+          {presentation.economicsRows.map((row) => (
+            <div class="financial-item">
+              <p><span>{row.label}</span><strong>{row.value}</strong></p>
+              {row.basis && <p class="fact-context"><b>Basis:</b> {row.basis}</p>}
+              {row.conditions.length > 0 && <ul class="compact-notes"><li><b>Conditions:</b> {formatList(row.conditions)}</li></ul>}
+              {row.caveats.length > 0 && <ul class="compact-notes caveat-list">{row.caveats.map((item) => <li>{item}</li>)}</ul>}
+            </div>
+          ))}
+          {presentation.economics?.notes.map((note) => <p class="section-note">{note}</p>)}
+        </div>
+      ) : (
+        <p class="missing-state">{presentation.economicsMissing ?? "No structured financial terms are available."}</p>
+      )}
+    </section>
+
+    <section class="program-decision-section" aria-labelledby={`${program.id}-requirements-title`}>
+      <h4 id={`${program.id}-requirements-title`}>Eligibility &amp; requirements</h4>
+      {program.requirements.status === "known" ? (
+        <>
+          {requirementFacts.length > 0 && <dl class="fact-list">{requirementFacts.map((fact) => <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>}
+          {program.requirements.editorial_summary && <p class="section-note">{program.requirements.editorial_summary}</p>}
+          {program.requirements.participation_requirements.length > 0 && <div class="detail-list"><strong>Participation</strong><ul>{program.requirements.participation_requirements.map((item) => <li>{item}</li>)}</ul></div>}
+          {program.requirements.other_restrictions.length > 0 && <div class="detail-list restriction-list"><strong>Restrictions</strong><ul>{program.requirements.other_restrictions.map((item) => <li>{item}</li>)}</ul></div>}
+        </>
+      ) : <p class="missing-state">{presentation.requirementsMissing}</p>}
+    </section>
+
+    <section class="program-decision-section" aria-labelledby={`${program.id}-timing-title`}>
+      <h4 id={`${program.id}-timing-title`}>Timing &amp; payout</h4>
+      {program.timing.status === "known" ? (
+        <>
+          {timingFacts.length > 0 && <dl class="fact-list">{timingFacts.map((fact) => <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>}
+          {program.timing.payout_schedules.length > 0 && <div class="schedule-list"><strong>Recurring payout schedule</strong>{program.timing.payout_schedules.map((schedule) => <div><p>{formatPayoutSchedule(schedule)}</p>{schedule.conditions.length > 0 && <small><b>Conditions:</b> {formatList(schedule.conditions)}</small>}{schedule.caveats.length > 0 && <small>{formatList(schedule.caveats)}</small>}</div>)}</div>}
+          {program.timing.notes.map((note) => <p class="section-note">{note}</p>)}
+        </>
+      ) : <p class="missing-state">{presentation.timingMissing}</p>}
+    </section>
+
+    <section class="program-decision-section" aria-labelledby={`${program.id}-operations-title`}>
+      <h4 id={`${program.id}-operations-title`}>Operations &amp; logistics</h4>
+      {operationalFacts.length > 0 && <dl class="fact-list">{operationalFacts.map((fact) => <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>}
+      {program.logistics.status === "known" ? program.logistics.notes.map((note) => <p class="section-note">{note}</p>) : <p class="missing-state">{presentation.logisticsMissing}</p>}
+    </section>
+  </div>
+</article>

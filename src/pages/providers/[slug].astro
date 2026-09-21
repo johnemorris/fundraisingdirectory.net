@@ -1,9 +1,11 @@
 ---
 import { getCollection } from "astro:content";
 import ProviderLogo from "../../components/ProviderLogo.astro";
+import ProviderProgramCard from "../../components/ProviderProgramCard.astro";
 import ProviderVisual from "../../components/ProviderVisual.astro";
 import { formatProviderLabel } from "../../data/providerLabels";
 import { providerOutboundRel } from "../../data/providerLinks";
+import { formatEconomicArrangement, RESEARCH_STATE_COPY } from "../../data/providerPresentation";
 import { semanticClass } from "../../data/semanticTaxonomy";
 import { getProviderVisual } from "../../data/visuals";
 import SiteLayout from "../../layouts/SiteLayout.astro";
@@ -24,7 +26,6 @@ const visual = getProviderVisual(identity.slug);
 const hasVisual = Boolean(visual);
 const hasCompactName = identity.name.length > 14 || (!identity.name.includes(" ") && identity.name.length > 10);
 const formatDate = (value: string) => new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${value.slice(0, 10)}T12:00:00Z`));
-const easeLabel = { easy: "Easy", moderate: "Moderate", "hands-on": "Hands-On" } as const;
 const statusLabel = { active: "Active", inactive: "Inactive", uncertain: "Status uncertain", historical: "Historical" } as const;
 const hasEaseRatings = programs.some((program) => program.ease_to_raise !== null);
 const channels = [...new Set(programs.flatMap((program) => program.channels))];
@@ -47,6 +48,11 @@ const availabilitySummary = availabilityAreas.length > 0
 const researchColumnCount = Number(content.best_for.length > 0) + Number(content.considerations.length > 0) + 1;
 const outboundUrl = identity.fundraising_url ?? identity.website;
 const outboundRel = providerOutboundRel(affiliation.type);
+const inheritedPrograms = programs.filter((program) => program.economics_mode === "inherit-provider");
+const sharedEconomicsShown = Boolean(provider.data.economics && inheritedPrograms.length > 0);
+const sharedEconomicsRows = provider.data.economics?.status === "known"
+  ? provider.data.economics.arrangements.map(formatEconomicArrangement)
+  : [];
 ---
 
 <SiteLayout title={`${identity.name} Fundraising | FundraisingDirectory.net`} description={content.summary} socialImage={false} bodyClass="provider-profile">
@@ -115,6 +121,41 @@ const outboundRel = providerOutboundRel(affiliation.type);
         </aside>
       </header>
 
+      {sharedEconomicsShown && (
+        <section class="provider-financial-section" aria-labelledby="provider-financial-title">
+          <div class="section-heading">
+            <div><p class="eyebrow">Provider-wide terms</p><h2 id="provider-financial-title">Financial terms that apply across programs</h2></div>
+          </div>
+          {sharedEconomicsRows.length > 0 ? (
+            <div class="provider-financial-grid">
+              {sharedEconomicsRows.map((row) => (
+                <article>
+                  <p class="financial-label">{row.label}</p>
+                  <strong>{row.value}</strong>
+                  {row.basis && <p><b>Basis:</b> {row.basis}</p>}
+                  {row.conditions.length > 0 && <p><b>Conditions:</b> {formatList(row.conditions)}</p>}
+                  {row.caveats.length > 0 && <ul>{row.caveats.map((item) => <li>{item}</li>)}</ul>}
+                </article>
+              ))}
+              {provider.data.economics?.notes.map((note) => <p class="provider-financial-note">{note}</p>)}
+            </div>
+          ) : provider.data.economics && provider.data.economics.status !== "known" ? (
+            <p class="missing-state">{RESEARCH_STATE_COPY[provider.data.economics.status]}</p>
+          ) : null}
+        </section>
+      )}
+
+      <section class="programs-section" aria-labelledby="programs-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">Fundraising options</p><h2 id="programs-title">{programs.length === 1 ? "Program details" : "Compare programs"}</h2></div>
+          {hasEaseRatings && <div class="ease-legend" aria-label="Ease to Raise legend"><span><span class="legend-dot ease-easy" />Easy</span><span><span class="legend-dot ease-moderate" />Moderate</span><span><span class="legend-dot ease-hands-on" />Hands-On</span></div>}
+        </div>
+        {programs.length > 1 && <p class="program-comparison-intro">These programs work differently. Compare financial terms, eligibility, timing, inventory, fulfillment, and payout before choosing.</p>}
+        <div class:list={["program-grid", { "program-grid-single": programs.length === 1 }]}>
+          {programs.map((program) => <ProviderProgramCard provider={provider.data} program={program} outboundRel={outboundRel} sharedEconomicsShown={sharedEconomicsShown} />)}
+        </div>
+      </section>
+
       <section class="audience-band" aria-labelledby="audience-title">
         <div>
           <p class="eyebrow">Who it may work for</p>
@@ -139,37 +180,6 @@ const outboundRel = providerOutboundRel(affiliation.type);
         </dl>
       </section>
 
-      <section class="programs-section" aria-labelledby="programs-title">
-        <div class="section-heading">
-          <div><p class="eyebrow">Fundraising options</p><h2 id="programs-title">Programs in this profile</h2></div>
-          {hasEaseRatings && <div class="ease-legend" aria-label="Ease to Raise legend"><span><span class="legend-dot ease-easy" />Easy</span><span><span class="legend-dot ease-moderate" />Moderate</span><span><span class="legend-dot ease-hands-on" />Hands-On</span></div>}
-        </div>
-        <div class:list={["program-grid", { "program-grid-single": programs.length === 1 }]}>
-          {programs.map((program) => {
-            const programFulfillment = program.fulfillment.filter((value) => value !== "unknown");
-            const hasInventory = program.inventory_model !== "unknown";
-            const hasUpfrontCost = program.upfront_cost !== "unknown";
-            return (
-              <article class="program-card">
-                <div class="program-overview">
-                  <div class="program-title-row"><h3>{program.name}</h3>{program.ease_to_raise && <span class={`ease-badge ease-${program.ease_to_raise}`}><span class="ease-dot" aria-hidden="true" />{easeLabel[program.ease_to_raise]}</span>}</div>
-                  <p>{program.summary}</p>
-                  {program.products_services.length > 0 && <div class="program-products"><strong>Products / services</strong><div class="tags">{program.products_services.map((item) => <a class="product-link" href={`/providers/?product=${item}`}>{formatProviderLabel(item)}</a>)}</div></div>}
-                </div>
-                <dl class="program-details">
-                  <div><dt>Method</dt><dd><a class={semanticClass("method", program.method)} href={`/providers/?method=${program.method}`}>{formatProviderLabel(program.method)}</a></dd></div>
-                  <div><dt>Format</dt><dd>{formatList(program.channels.map(formatProviderLabel))}</dd></div>
-                  {hasInventory && <div><dt>Inventory</dt><dd>{formatProviderLabel(program.inventory_model)}</dd></div>}
-                  {hasUpfrontCost && <div><dt>Upfront cost</dt><dd>{formatProviderLabel(program.upfront_cost)}</dd></div>}
-                  {programFulfillment.length > 0 && <div><dt>Fulfillment</dt><dd>{formatList(programFulfillment.map(formatProviderLabel))}</dd></div>}
-                  {program.online_ordering !== null && <div><dt>Online ordering</dt><dd>{program.online_ordering ? "Yes" : "No"}</dd></div>}
-                </dl>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
       <section class:list={["research-columns", `research-columns-${researchColumnCount}`]} aria-label="Provider decision details">
         {content.best_for.length > 0 && <div><p class="eyebrow">Potential fit</p><h2>Best for</h2><ul class="clean-list">{content.best_for.map((item) => <li>{item}</li>)}</ul></div>}
         {content.considerations.length > 0 && <div><p class="eyebrow eyebrow-purple">Before you choose</p><h2>Requirements &amp; considerations</h2><ul class="clean-list">{content.considerations.map((item) => <li>{item}</li>)}</ul></div>}
@@ -180,7 +190,7 @@ const outboundRel = providerOutboundRel(affiliation.type);
         <summary><span><small>Research disclosure</small><strong>{verification.sources.length} source{verification.sources.length === 1 ? "" : "s"} checked · Last reviewed {formatDate(status.last_verified_at)}</strong></span><i aria-hidden="true"></i></summary>
         <div class="sources-content">
           <p>Provider details are summarized from the sources below. Confirm current pricing, terms, availability, and requirements directly with the provider.</p>
-          <ol>{verification.sources.map((source) => <li><a href={source.url} target="_blank" rel="noopener noreferrer">{formatProviderLabel(source.type)}</a><span>Checked {formatDate(source.checked_at)}</span>{source.notes && <p>{source.notes}</p>}</li>)}</ol>
+          <ol>{verification.sources.map((source) => <li><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title ?? formatProviderLabel(source.type)}</a><span>Checked {formatDate(source.checked_at)}</span>{source.notes && <p>{source.notes}</p>}</li>)}</ol>
         </div>
       </details>
 
