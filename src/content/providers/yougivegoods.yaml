@@ -1,0 +1,300 @@
+meta:
+  id: "prov_000042"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  legal_name: null
+  aliases: []
+  fundraising_url: "https://yougivegoods.com/starting-a-goodsdrive"
+  logo: null
+  name: "YouGiveGoods"
+  slug: "yougivegoods"
+  website: "https://yougivegoods.com/"
+classification:
+  products_services: []
+  methods:
+    - "in-kind-resource-fundraising"
+  organizations:
+    - "schools"
+    - "pto-pta"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "animal-rescue"
+    - "individuals-personal-causes"
+  outcomes:
+    - "supplies"
+    - "food"
+    - "donated-goods"
+  capabilities:
+    - "online-store"
+    - "reporting-analytics"
+    - "fulfillment"
+  beneficiary_types:
+    - "local-nonprofit-or-charity"
+    - "national-nonprofit-or-charity"
+    - "community-cause"
+  cause_areas:
+    - "children-families"
+    - "education-literacy"
+    - "hunger-food-security"
+    - "homelessness-housing"
+    - "veterans-military"
+    - "disaster-emergency-relief"
+    - "community-neighborhood"
+  activity_subtypes:
+    - "supply-drive"
+    - "food-drive"
+    - "clothing-drive"
+programs:
+  - id: "prog_000060"
+    products_services: []
+    online_ordering: true
+    fulfillment:
+      - "provider-delivery"
+    inventory_model: "no-inventory"
+    upfront_cost: "none"
+    ease_to_raise: null
+    economics_mode: "program-specific"
+    economics:
+      status: "known"
+      arrangements:
+        - type: "upfront-cost"
+          value:
+            kind: "amount"
+            amount: 0
+            currency: "USD"
+          basis: "Starting and using a GoodsDrive"
+          conditions: []
+          caveats:
+            - "Donors purchase goods at the prices shown in the selected drive"
+        - type: "proceeds"
+          value:
+            kind: "percentage"
+            percent: 100
+          basis: "Goods purchased through the GoodsDrive"
+          conditions: []
+          caveats:
+            - "The recipient receives the purchased goods, not cash proceeds"
+        - type: "other"
+          value:
+            kind: "percentage"
+            percent: 5
+          basis: "Annual Charity Partner Giveback Program cash gift"
+          conditions:
+            - "The nonprofit partner receives at least $5,000 in donated goods during the year"
+          caveats: []
+      notes:
+        - "YouGiveGoods states there are no organizer fees or subscriptions and that all purchased goods are delivered to the selected charity."
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The organizer selects a charity in the United States, chooses the goods to raise, creates the drive, and shares its page."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Goods available for purchase and delivery come from the platform's current new-goods selection."
+      editorial_summary: "Individuals, companies, schools, groups, and charities can create a drive for a selected U.S. charity."
+    timing:
+      status: "researched-unknown"
+      setup_lead_time: null
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes: []
+    logistics:
+      status: "known"
+      notes:
+        - "Supporters choose and purchase brand-new goods through the drive. YouGiveGoods and its foundation handle receipt, tax acknowledgments, logistics, and direct delivery to the selected charity, so the organizer does not maintain collection bins or inventory."
+    name: "Online GoodsDrive"
+    slug: "online-goodsdrive"
+    url: "https://yougivegoods.com/starting-a-goodsdrive"
+    method: "in-kind-resource-fundraising"
+    channels:
+      - "online"
+    summary: "An organizer chooses a U.S. charity and needed new goods, supporters purchase items through a custom online drive, and YouGiveGoods ships every purchased item directly to the recipient charity."
+    outcomes:
+      - "supplies"
+      - "food"
+      - "donated-goods"
+    capabilities:
+      - "online-store"
+      - "reporting-analytics"
+      - "fulfillment"
+    beneficiary_types:
+      - "local-nonprofit-or-charity"
+      - "national-nonprofit-or-charity"
+      - "community-cause"
+    cause_areas:
+      - "children-families"
+      - "education-literacy"
+      - "hunger-food-security"
+      - "homelessness-housing"
+      - "veterans-military"
+      - "disaster-emergency-relief"
+      - "community-neighborhood"
+    activity_subtypes:
+      - "supply-drive"
+      - "food-drive"
+      - "clothing-drive"
+geography:
+  countries:
+    - "US"
+  states: []
+  regions: []
+  notes: "Organizers can start an online drive from anywhere, but the reviewed program pages state that the selected recipient charity and delivery destination are within the United States."
+  scope:
+    - "us-nationwide"
+content:
+  best_for:
+    - "Individuals, schools, employee teams, companies, and charities seeking an online goods drive without physical collection bins or organizer-managed shipping."
+  considerations:
+    - "The program raises new goods rather than unrestricted cash."
+    - "Available items and prices are those shown in the platform catalog for the drive."
+  summary: "YouGiveGoods is a free online platform for food, school-supply, clothing, hygiene, disaster-relief, and other new-goods drives delivered directly to U.S. charities."
+  how_it_works: "An organizer chooses a cause, charity, and requested goods; supporters buy listed items online; the platform tracks progress and handles delivery to the charity."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 4 research"
+  verified_by: "FRD batch 4 research"
+  sources:
+    - id: "src_000139"
+      title: "YouGiveGoods Online GoodsDrives"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.online-goodsdrive.summary"
+          status: "current"
+          notes: null
+        - path: "programs.online-goodsdrive.logistics"
+          status: "current"
+          notes: null
+        - path: "content.summary"
+          status: "current"
+          notes: null
+      notes: null
+      type: "official-provider"
+      url: "https://yougivegoods.com/"
+      checked_at: "2026-09-20"
+    - id: "src_000140"
+      title: "Starting a YouGiveGoods GoodsDrive"
+      status: "current"
+      supports:
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.online-goodsdrive.summary"
+          status: "current"
+          notes: null
+        - path: "programs.online-goodsdrive.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.online-goodsdrive.logistics"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+      type: "official-program"
+      url: "https://yougivegoods.com/starting-a-goodsdrive"
+      checked_at: "2026-09-20"
+    - id: "src_000141"
+      title: "YouGiveGoods for Individuals"
+      status: "current"
+      supports:
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.online-goodsdrive.economics"
+          status: "current"
+          notes: null
+        - path: "programs.online-goodsdrive.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.online-goodsdrive.logistics"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+        - path: "content.best_for"
+          status: "current"
+          notes: null
+      notes: null
+      type: "official-program"
+      url: "https://yougivegoods.com/individuals"
+      checked_at: "2026-09-20"
+    - id: "src_000142"
+      title: "YouGiveGoods Terms of Use"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "programs.online-goodsdrive.economics"
+          status: "current"
+          notes: null
+        - path: "programs.online-goodsdrive.requirements"
+          status: "current"
+          notes: null
+      notes: null
+      type: "terms-or-fees"
+      url: "https://yougivegoods.com/terms-of-use"
+      checked_at: "2026-09-20"
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

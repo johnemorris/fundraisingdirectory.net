@@ -1,0 +1,322 @@
+meta:
+  id: "prov_000043"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  legal_name: null
+  aliases: []
+  fundraising_url: "https://www.waggle.org/about-us/how-we-work"
+  logo: null
+  name: "Waggle"
+  slug: "waggle"
+  website: "https://www.waggle.org/"
+classification:
+  products_services:
+    - "crowdfunding-platform"
+    - "peer-to-peer-platform"
+  methods:
+    - "crowdfunding"
+    - "peer-to-peer"
+    - "giving-matching"
+    - "sponsorships"
+  organizations:
+    - "animal-rescue"
+    - "nonprofits-charities"
+    - "individuals-personal-causes"
+  outcomes:
+    - "cash"
+    - "services"
+  capabilities:
+    - "crowdfunding-pages"
+    - "peer-to-peer-pages"
+    - "matching-gifts"
+    - "sponsorship-management"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "individual-or-family"
+    - "own-organization"
+    - "own-project-or-program"
+  cause_areas:
+    - "animals-pets"
+economics:
+  status: "known"
+  arrangements:
+    - type: "upfront-cost"
+      value:
+        kind: "amount"
+        amount: 0
+        currency: "USD"
+      basis: "Creating a reviewed pet medical campaign"
+      conditions: []
+      caveats: []
+    - type: "processing-fee"
+      value:
+        kind: "percentage"
+        percent: 10
+      basis: "Donation to an animal rescue campaign"
+      conditions: []
+      caveats:
+        - "The fee is added at checkout instead of deducted from the chosen donation"
+    - type: "processing-fee"
+      value:
+        kind: "percentage"
+        percent: 15
+      basis: "Donation to a pet guardian campaign"
+      conditions: []
+      caveats:
+        - "The fee is added at checkout instead of deducted from the chosen donation"
+    - type: "transaction-fee"
+      value:
+        kind: "variable"
+        description: "For a U.S. veterinarian paid by physical check, the lesser of $50 or 15% of the payment"
+      basis: "Physical check processing"
+      conditions:
+        - "The veterinary provider chooses check instead of e-payment"
+      caveats:
+        - "E-payments to veterinary providers have no Waggle payment fee"
+  notes:
+    - "Standard campaign donations are applied to the selected pet's eligible veterinary care. Payment is limited to the documented invoice; unused amounts support other pets or the Waggle mission under the stated campaign rules."
+programs:
+  - id: "prog_000061"
+    products_services:
+      - "crowdfunding-platform"
+      - "peer-to-peer-platform"
+    online_ordering: null
+    fulfillment:
+      - "not-applicable"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The organizer provides veterinarian contact information, a medical estimate, and clear pet photos for Waggle review."
+        - "After the campaign closes, the organizer posts an update and ensures the veterinarian submits the required invoice or treatment estimate."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Waggle approves campaigns before publication and verifies the veterinary practice and invoice."
+        - "Funds are paid to the veterinary provider or approved animal welfare organization, not to the organizer's personal account, and cannot exceed the documented eligible invoice."
+      editorial_summary: "The program is for pet guardians and rescues facing eligible veterinary treatment costs and able to document the provider and estimated care."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time:
+        typical:
+          value: 15
+          unit: "business-days"
+      payout_schedules: []
+      notes:
+        - "Waggle typically processes veterinary payment net 15 business days after receiving the provider's required invoice or estimate. Campaign review and campaign duration are not published as one universal elapsed time."
+    logistics:
+      status: "known"
+      notes:
+        - "The organizer shares the approved campaign; Waggle verifies the practice and documentation, requests the final invoice after closure, and pays the hospital through e-payment, virtual card, or—at U.S. hospitals—check."
+    name: "Pet Medical Crowdfunding"
+    slug: "pet-medical-crowdfunding"
+    url: "https://www.waggle.org/about-us/how-we-work"
+    method: "crowdfunding"
+    channels:
+      - "online"
+    summary: "Pet guardians and rescue organizations submit a veterinary estimate for review, share an approved campaign, may receive sponsor or matching support, and have eligible funds paid directly to the veterinary provider."
+    outcomes:
+      - "cash"
+      - "services"
+    capabilities:
+      - "crowdfunding-pages"
+      - "peer-to-peer-pages"
+      - "matching-gifts"
+      - "sponsorship-management"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "individual-or-family"
+      - "own-organization"
+      - "own-project-or-program"
+    cause_areas:
+      - "animals-pets"
+geography:
+  countries:
+    - "US"
+    - "CA"
+  states: []
+  regions: []
+  notes: "Waggle documents veterinary partners in the United States and Canada. Physical checks are available only to U.S. veterinary hospitals; payment options otherwise depend on the provider."
+  scope:
+    - "us-nationwide"
+    - "canada"
+content:
+  best_for:
+    - "Pet guardians and animal rescue organizations with a documented veterinary treatment need and a provider able to submit an invoice."
+  considerations:
+    - "Campaign acceptance is reviewed, and funds cannot be withdrawn as unrestricted personal cash."
+    - "Donation processing fees differ between rescue and pet-guardian campaigns and are added to the donor's checkout amount."
+  summary: "Waggle is a nonprofit pet-medical crowdfunding platform that verifies veterinary cases and pays eligible funds directly to veterinary providers."
+  how_it_works: "A pet guardian or rescue submits the animal's veterinary estimate and provider details, Waggle reviews and publishes an approved campaign, supporters donate and share it, and Waggle pays the verified final invoice directly to the hospital."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 4 research"
+  verified_by: "FRD batch 4 research"
+  sources:
+    - id: "src_000143"
+      title: "How Waggle Works"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.pet-medical-crowdfunding.summary"
+          status: "current"
+          notes: null
+        - path: "programs.pet-medical-crowdfunding.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.pet-medical-crowdfunding.logistics"
+          status: "current"
+          notes: null
+        - path: "content.summary"
+          status: "current"
+          notes: null
+      notes: null
+      type: "official-program"
+      url: "https://www.waggle.org/about-us/how-we-work"
+      checked_at: "2026-09-20"
+    - id: "src_000144"
+      title: "Waggle Campaign Processing Fees"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "content.considerations"
+          status: "current"
+          notes: null
+      notes: null
+      type: "terms-or-fees"
+      url: "https://support.waggle.org/hc/en-us/articles/44255793446164-Does-Waggle-take-a-fee-from-donations"
+      checked_at: "2026-09-20"
+    - id: "src_000145"
+      title: "What Happens After a Waggle Campaign Closes"
+      status: "current"
+      supports:
+        - path: "programs.pet-medical-crowdfunding.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.pet-medical-crowdfunding.timing"
+          status: "current"
+          notes: null
+        - path: "programs.pet-medical-crowdfunding.logistics"
+          status: "current"
+          notes: null
+      notes: null
+      type: "platform-documentation"
+      url: "https://support.waggle.org/hc/en-us/articles/50075583215124-What-Happens-After-My-Pet-s-Campaign-Closes"
+      checked_at: "2026-09-20"
+    - id: "src_000146"
+      title: "Waggle Veterinary Payments Through BILL"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.pet-medical-crowdfunding.logistics"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+      type: "platform-documentation"
+      url: "https://support.waggle.org/hc/en-us/articles/31713562952852-How-does-BILL-work"
+      checked_at: "2026-09-20"
+    - id: "src_000147"
+      title: "Waggle Veterinary Provider Requirements and Payment Fees"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.pet-medical-crowdfunding.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.pet-medical-crowdfunding.logistics"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+      type: "platform-documentation"
+      url: "https://support.waggle.org/hc/en-us/articles/360033474531-Does-my-veterinarian-need-to-partner-with-Waggle"
+      checked_at: "2026-09-20"
+    - id: "src_000148"
+      title: "How Waggle Applies Campaign Donations"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.pet-medical-crowdfunding.requirements"
+          status: "current"
+          notes: null
+        - path: "content.considerations"
+          status: "current"
+          notes: null
+      notes: null
+      type: "terms-or-fees"
+      url: "https://support.waggle.org/hc/en-us/articles/360033479551-Does-my-full-donation-really-go-to-the-pet-s-care"
+      checked_at: "2026-09-20"
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

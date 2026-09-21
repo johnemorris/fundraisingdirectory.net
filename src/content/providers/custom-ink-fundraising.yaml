@@ -1,0 +1,336 @@
+meta:
+  id: "prov_000044"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  legal_name: "CustomInk, LLC"
+  aliases:
+    - "Custom Ink"
+  fundraising_url: "https://www.customink.com/fundraising/how-it-works"
+  logo: null
+  name: "Custom Ink Fundraising"
+  slug: "custom-ink-fundraising"
+  website: "https://www.customink.com/fundraising/"
+classification:
+  products_services:
+    - "apparel-spirit-wear"
+    - "merchandise-online-store"
+    - "crowdfunding-platform"
+    - "donation-platform"
+  methods:
+    - "product-sales"
+    - "direct-donations"
+    - "crowdfunding"
+  organizations:
+    - "schools"
+    - "pto-pta"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "animal-rescue"
+    - "individuals-personal-causes"
+  outcomes:
+    - "cash"
+  capabilities:
+    - "online-store"
+    - "print-on-demand"
+    - "fulfillment"
+    - "crowdfunding-pages"
+    - "donation-forms"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+    - "individual-or-family"
+    - "local-nonprofit-or-charity"
+    - "national-nonprofit-or-charity"
+    - "community-cause"
+    - "open-or-unspecified-cause"
+economics:
+  status: "known"
+  arrangements:
+    - type: "upfront-cost"
+      value:
+        kind: "amount"
+        amount: 0
+        currency: "USD"
+      basis: "Launching and running a fundraising page"
+      conditions: []
+      caveats: []
+    - type: "product-sale-profit"
+      value:
+        kind: "variable"
+        description: "Organizer-set sale price minus product, design, production, platform, and selected delivery costs"
+      basis: "Merchandise sold after the campaign reaches its print minimum"
+      conditions:
+        - "The campaign meets the product-specific print minimum"
+      caveats:
+        - "Product, print locations, colors, sale price, volume, and shipping selection change the amount raised per item"
+    - type: "processing-fee"
+      value:
+        kind: "percentage"
+        percent: 2.9
+      basis: "Additional or donation-only contributions"
+      conditions: []
+      caveats:
+        - "The fee is deducted from the donation, not merchandise proceeds"
+  notes:
+    - "If a merchandise campaign does not reach its print minimum, purchase amounts are refunded and merchandise is not produced; monetary donations over $20 are still passed to the beneficiary under the reviewed FAQ."
+programs:
+  - id: "prog_000062"
+    products_services:
+      - "apparel-spirit-wear"
+      - "merchandise-online-store"
+      - "crowdfunding-platform"
+      - "donation-platform"
+    online_ordering: true
+    fulfillment:
+      - "direct-to-supporter"
+      - "group-distribution"
+      - "provider-delivery"
+    inventory_model: "no-inventory"
+    upfront_cost: "none"
+    ease_to_raise: null
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range:
+        minimum: 13
+      grade_range: null
+      participation_requirements:
+        - "The organizer creates or supplies an authorized design, sets the sales price, goal, beneficiary, and campaign close date, and complies with campaign and content rules."
+        - "A merchandise campaign must reach its displayed product-specific print minimum for the merchandise order to proceed."
+      minimum_group_size: null
+      minimum_order:
+        kind: "variable"
+        description: "Product- and design-specific print minimum shown during setup"
+      minimum_sales:
+        kind: "variable"
+        description: "Enough sales to reach the displayed print minimum"
+      other_restrictions:
+        - "Users age 13 through 17 require the consent and supervision of a parent or legal guardian who is at least 18."
+        - "Only an eligible U.S. 501(c)(3) can be designated under the platform's verified charity beneficiary option; organizers may otherwise select themselves or another third party under the applicable payout options."
+      editorial_summary: "Individuals and organizations can run campaigns for themselves, groups, third parties, or eligible U.S. charities, subject to age, content, and beneficiary rules."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration: null
+      fulfillment_time:
+        typical:
+          value: 12
+          unit: "business-days"
+      funds_available_time: null
+      payout_time:
+        maximum:
+          value: 4
+          unit: "weeks"
+      payout_schedules: []
+      notes:
+        - "The organizer chooses the campaign close date. Orders typically arrive about 12 working days after close. PayPal or online beneficiary payments take no more than two weeks; checks take about four weeks."
+    logistics:
+      status: "known"
+      notes:
+        - "Custom Ink handles checkout, payment processing, printing, customer service, and delivery. Campaigns may use paid individual shipping, free bulk shipment to the organizer, or hybrid delivery; international individual shipments carry higher delivery charges, customs, and longer turn times."
+    name: "Custom Apparel Fundraising Campaign"
+    slug: "custom-apparel-fundraising-campaign"
+    url: "https://www.customink.com/fundraising/how-it-works"
+    method: "product-sales"
+    channels:
+      - "online"
+      - "hybrid"
+    summary: "An organizer designs custom apparel, sets the campaign price and close date, shares a hosted sales and donation page, and has Custom Ink process orders, print, deliver, and disburse the resulting funds."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "online-store"
+      - "print-on-demand"
+      - "fulfillment"
+      - "crowdfunding-pages"
+      - "donation-forms"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+      - "individual-or-family"
+      - "local-nonprofit-or-charity"
+      - "national-nonprofit-or-charity"
+      - "community-cause"
+      - "open-or-unspecified-cause"
+geography:
+  countries: []
+  states: []
+  regions: []
+  notes: "Custom Ink supports U.S. territories and APO addresses and publishes a current list of select international countries for individually shipped fundraiser orders. Charity-beneficiary verification is limited to eligible U.S. 501(c)(3) organizations, and international shipments have separate fees, duties, and restrictions."
+  scope:
+    - "us-nationwide"
+    - "international"
+content:
+  best_for:
+    - "Groups and individuals that want custom apparel to raise both money and awareness without buying or storing inventory upfront."
+  considerations:
+    - "Merchandise orders proceed only after the campaign reaches its displayed print minimum."
+    - "Profit varies with the product, design, price, volume, and delivery choice; international duties and taxes are paid by the recipient."
+  summary: "Custom Ink Fundraising provides risk-limited custom-apparel campaigns with hosted sales, optional donations, print-on-demand production, delivery, and beneficiary disbursement."
+  how_it_works: "The organizer designs merchandise and selects its price, goal, beneficiary, close date, and delivery options; supporters order or donate online; Custom Ink prints qualifying orders, handles fulfillment, and sends net funds after the campaign."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 4 research"
+  verified_by: "FRD batch 4 research"
+  sources:
+    - id: "src_000149"
+      title: "How Custom Ink Fundraising Campaigns Work"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.custom-apparel-fundraising-campaign.summary"
+          status: "current"
+          notes: null
+        - path: "programs.custom-apparel-fundraising-campaign.logistics"
+          status: "current"
+          notes: null
+        - path: "content.summary"
+          status: "current"
+          notes: null
+      notes: null
+      type: "official-program"
+      url: "https://www.customink.com/fundraising/how-it-works"
+      checked_at: "2026-09-20"
+    - id: "src_000150"
+      title: "How Custom Ink Fundraising Makes Money"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "content.considerations"
+          status: "current"
+          notes: null
+      notes: null
+      type: "terms-or-fees"
+      url: "https://www.customink.com/help_center/fundraising-how-does-custom-ink-fundraising-make-money"
+      checked_at: "2026-09-20"
+    - id: "src_000151"
+      title: "Custom Ink Fundraising Cost and Print Minimum"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.custom-apparel-fundraising-campaign.requirements"
+          status: "current"
+          notes: null
+        - path: "content.considerations"
+          status: "current"
+          notes: null
+      notes: null
+      type: "terms-or-fees"
+      url: "https://www.customink.com/help_center/fundraising-is-custom-ink-fundraising-free-to-use"
+      checked_at: "2026-09-20"
+    - id: "src_000152"
+      title: "Custom Ink Fundraising Disbursement Methods and Timing"
+      status: "current"
+      supports:
+        - path: "programs.custom-apparel-fundraising-campaign.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.custom-apparel-fundraising-campaign.timing"
+          status: "current"
+          notes: null
+        - path: "programs.custom-apparel-fundraising-campaign.logistics"
+          status: "current"
+          notes: null
+      notes: null
+      type: "platform-documentation"
+      url: "https://www.customink.com/help_center/fundraising-how-and-when-will-the-funds-be-sent"
+      checked_at: "2026-09-20"
+    - id: "src_000153"
+      title: "Custom Ink Fundraising Shipping Countries and Fees"
+      status: "current"
+      supports:
+        - path: "programs.custom-apparel-fundraising-campaign.logistics"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+        - path: "content.considerations"
+          status: "current"
+          notes: null
+      notes: null
+      type: "platform-documentation"
+      url: "https://www.customink.com/help_center/fundraising-where-does-custom-ink-fundraising-ship"
+      checked_at: "2026-09-20"
+    - id: "src_000154"
+      title: "Custom Ink Fundraising Terms of Service"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.custom-apparel-fundraising-campaign.requirements"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+      type: "terms-or-fees"
+      url: "https://www.customink.com/fundraising/user-agreement-policies"
+      checked_at: "2026-09-20"
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

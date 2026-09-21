@@ -1,0 +1,254 @@
+meta:
+  id: "prov_000041"
+  schema_version: 2
+  created_at: "2026-09-20"
+  created_by: "user_000001"
+  modified_at: "2026-09-20"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  legal_name: "TVI, Inc."
+  aliases:
+    - "FUNDrive"
+    - "Value Village FUNDrive"
+  fundraising_url: "https://fundrive.savers.com/Home/Faq"
+  logo: null
+  name: "Savers FUNDrive"
+  slug: "savers-fundrive"
+  website: "https://fundrive.savers.com/"
+classification:
+  products_services: []
+  methods:
+    - "collection-reuse-fundraising"
+    - "in-kind-resource-fundraising"
+  organizations:
+    - "schools"
+    - "pto-pta"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "animal-rescue"
+  outcomes:
+    - "cash"
+    - "donated-goods"
+  capabilities:
+    - "collection-logistics"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+    - "community-cause"
+  cause_areas:
+    - "environment-conservation"
+    - "community-neighborhood"
+  activity_subtypes:
+    - "clothing-drive"
+    - "recycling-drive"
+economics:
+  status: "known"
+  arrangements:
+    - type: "upfront-cost"
+      value:
+        kind: "amount"
+        amount: 0
+        currency: "USD"
+      basis: "FUNDrive platform and generic template tools"
+      conditions:
+        - "The organization is approved for a local FUNDrive opportunity"
+      caveats: []
+    - type: "fixed-payout"
+      value:
+        kind: "variable"
+        description: "Purchase payment for accepted clothing, books, and household goods under the local FUNDrive agreement"
+      basis: "Accepted collected goods delivered and sold to Savers, Value Village, Unique, or 2nd Ave."
+      conditions:
+        - "The organization completes the agreed event and scheduled delivery"
+      caveats:
+        - "Accepted goods and purchase terms depend on the local store opportunity"
+        - "The official FAQ says most organizations earn at least $700 per event but does not state that amount as a guarantee"
+  notes:
+    - "FUNDrive payment is purchase consideration for goods sold by the nonprofit, not a donation from Savers or its retail brands."
+programs:
+  - id: "prog_000059"
+    products_services: []
+    online_ordering: false
+    fulfillment:
+      - "not-applicable"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status:
+        - "nonprofit"
+        - "tax-exempt"
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The organization applies and is approved for an available local FUNDrive opportunity."
+        - "The organization signs the applicable agreement, supplies required tax documentation, reports accurate bag and box counts, and schedules a delivery appointment."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "U.S. groups must be tax-exempt with the IRS; Canadian groups must provide applicable government nonprofit recognition."
+        - "Personal assistance and goods left from thrift, secondhand, or textile-recycling operations are ineligible unless Savers agrees otherwise."
+      editorial_summary: "The program is for compliant nonprofit or charitable organizations whose proceeds support a community served by Savers."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "Collection and delivery dates are arranged with the local FUNDrive representative. The reviewed official pages do not publish a universal event length or payment-delivery time."
+    logistics:
+      status: "known"
+      notes:
+        - "The organization runs and promotes the drive, collects accepted goods, supplies advance bag and box counts, and delivers the goods at a scheduled store appointment. Savers supplies generic templates but does not solicit or collect the goods on the organization's behalf."
+    name: "Clothing and Household Goods FUNDrive"
+    slug: "clothing-and-household-goods-fundrive"
+    url: "https://fundrive.savers.com/Home/Faq"
+    method: "collection-reuse-fundraising"
+    channels:
+      - "in-person"
+    summary: "An approved nonprofit collects gently used clothing, books, and household goods, schedules a delivery to a participating local store, and receives a purchase payment for accepted goods."
+    outcomes:
+      - "cash"
+      - "donated-goods"
+    capabilities:
+      - "collection-logistics"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+      - "community-cause"
+    cause_areas:
+      - "environment-conservation"
+      - "community-neighborhood"
+    activity_subtypes:
+      - "clothing-drive"
+      - "recycling-drive"
+geography:
+  countries:
+    - "US"
+    - "CA"
+  states: []
+  regions: []
+  notes: "FUNDrive is available near most participating Savers, Value Village, 2nd Ave., and Unique stores in the United States and Canada, but not in Minnesota, Puget Sound, or Quebec. Actual opportunity and accepted goods are store-specific."
+  scope:
+    - "local"
+    - "canada"
+content:
+  best_for:
+    - "Nonprofits near a participating Savers-family store that can mobilize volunteers and donors to collect reusable clothing and small household goods."
+  considerations:
+    - "Availability, accepted product, and purchase terms are location-specific."
+    - "The nonprofit—not Savers—operates and promotes the drive and handles collection and delivery."
+  summary: "Savers FUNDrive lets eligible nonprofits turn locally collected clothing and household goods into unrestricted purchase revenue."
+  how_it_works: "An eligible nonprofit coordinates a collection event, gathers approved used goods, reports bag and box counts, delivers at a scheduled participating store appointment, and receives the locally agreed purchase payment."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-09-20"
+  last_verified_at: "2026-09-20"
+  next_review_at: null
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-09-20"
+  reviewed_by: "FRD batch 4 research"
+  verified_by: "FRD batch 4 research"
+  sources:
+    - id: "src_000137"
+      title: "Savers FUNDrive Eligibility and Frequently Asked Questions"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.clothing-and-household-goods-fundrive.summary"
+          status: "current"
+          notes: null
+        - path: "programs.clothing-and-household-goods-fundrive.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.clothing-and-household-goods-fundrive.timing"
+          status: "current"
+          notes: null
+        - path: "programs.clothing-and-household-goods-fundrive.logistics"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+        - path: "content.summary"
+          status: "current"
+          notes: null
+      notes: null
+      type: "official-program"
+      url: "https://fundrive.savers.com/Home/Faq"
+      checked_at: "2026-09-20"
+    - id: "src_000138"
+      title: "Savers FUNDrive Philosophy and Program Guidelines"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.clothing-and-household-goods-fundrive.requirements"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+        - path: "content.considerations"
+          status: "current"
+          notes: null
+      notes: null
+      type: "terms-or-fees"
+      url: "https://fundrive.savers.com/Content/PhilosophyAndGuidelines"
+      checked_at: "2026-09-20"
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "unknown"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: null
+  approved_destination_url: null
+  internal_notes: null
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false
