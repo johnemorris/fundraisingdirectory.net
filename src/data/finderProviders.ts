@@ -22,6 +22,14 @@ export function serializeFinderProvider(data: CanonicalProvider) {
       upfront_cost: program.upfront_cost,
       ease_to_raise: program.ease_to_raise,
       outcomes: program.outcomes,
+      requirements: {
+        status: program.requirements.status,
+        minimum_group_size: program.requirements.minimum_group_size,
+      },
+      timing: {
+        status: program.timing.status,
+        setup_lead_time: program.timing.setup_lead_time,
+      },
     })),
     geography: data.geography,
   };
