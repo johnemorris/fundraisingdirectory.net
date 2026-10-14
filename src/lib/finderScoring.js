@@ -43,6 +43,11 @@ export const SCORING_WEIGHTS = Object.freeze({
     effortMismatch: -6,
     constraintMatch: 10,
     geographyMatch: 10,
+    groupSizeMatch: 10,
+    groupSizeOverlap: 4,
+    timingMatch: 10,
+    timingOverlap: 4,
+    passiveMatch: 10,
   }),
   method: Object.freeze({
     outcomeMatch: 24,
@@ -81,6 +86,27 @@ export const METHOD_PROFILES = [
 ];
 
 const normalizeList = (value) => Array.isArray(value) ? [...new Set(value.filter(Boolean))] : value ? [value] : [];
+const GROUP_SIZE_RANGES = Object.freeze({
+  small: Object.freeze({ minimum: 1, maximum: 24, label: "groups under 25" }),
+  medium: Object.freeze({ minimum: 25, maximum: 100, label: "groups of 25–100" }),
+  large: Object.freeze({ minimum: 101, maximum: Number.POSITIVE_INFINITY, label: "groups over 100" }),
+});
+const TIME_WINDOWS_IN_DAYS = Object.freeze({ fast: 7, "few-weeks": 28, longer: Number.POSITIVE_INFINITY });
+const TIME_WINDOW_LABELS = Object.freeze({ fast: "within one week", "few-weeks": "within a few weeks", longer: "with a month-or-more planning window" });
+const PASSIVE_METHOD = "everyday-passive-fundraising";
+
+const RESEARCH_GAPS = Object.freeze({
+  groupSize: Object.freeze({
+    "researched-unknown": "Provider research did not establish a minimum group size",
+    "not-researched": "Minimum group size has not been researched",
+    known: "A minimum group size is not established in current research",
+  }),
+  timing: Object.freeze({
+    "researched-unknown": "Provider research did not establish setup time",
+    "not-researched": "Setup time has not been researched",
+    known: "Setup time is not established in current research",
+  }),
+});
 
 export function normalizeFinderAnswers(answers = {}) {
   const outcomes = normalizeList(answers.outcomes ?? answers.outcome).filter((outcome) => APPROVED_OUTCOMES.has(outcome));
@@ -92,13 +118,93 @@ export function normalizeFinderAnswers(answers = {}) {
     products: answers.products ?? "any",
     events: answers.events ?? "any",
     budget: answers.budget ?? "any",
-    groupSize: answers.groupSize ?? "",
+    groupSize: GROUP_SIZE_RANGES[answers.groupSize] ? answers.groupSize : "",
     effort: answers.effort ?? "",
-    time: answers.time ?? "",
+    time: TIME_WINDOWS_IN_DAYS[answers.time] !== undefined ? answers.time : "",
     country: answers.country ?? "",
     zip: String(answers.zip ?? "").trim(),
     constraints: normalizeList(answers.constraints),
   };
+}
+
+/**
+ * Finder size answers are ranges, while canonical data stores a minimum.
+ * A range entirely above the minimum is compatible, a range entirely below it
+ * is incompatible, and a range containing the threshold is an overlap rather
+ * than a rejection. No exact participant count is inferred from the answer.
+ */
+export function evaluateGroupSizeFit(requirements, answer) {
+  const range = GROUP_SIZE_RANGES[answer];
+  if (!range) return { status: "not-requested", message: null };
+  const researchState = requirements?.status ?? "not-researched";
+  if (researchState === "not-applicable") return { status: "compatible", message: "No minimum group size applies" };
+  if (researchState !== "known") {
+    return { status: "unknown", message: RESEARCH_GAPS.groupSize[researchState] ?? RESEARCH_GAPS.groupSize["not-researched"] };
+  }
+
+  const minimum = requirements?.minimum_group_size;
+  if (!Number.isFinite(minimum)) return { status: "unknown", message: RESEARCH_GAPS.groupSize.known };
+  if (range.maximum < minimum) return { status: "incompatible", message: `Requires at least ${minimum} participants` };
+  if (range.minimum >= minimum) return { status: "compatible", message: `Works for ${range.label}` };
+  return { status: "overlap", message: `May fit ${range.label}; requires at least ${minimum} participants` };
+}
+
+const durationInDays = (duration) => {
+  if (!duration || !Number.isFinite(duration.value)) return null;
+  const unitInDays = {
+    minutes: 1 / 1440,
+    hours: 1 / 24,
+    days: 1,
+    "calendar-days": 1,
+    "business-days": 7 / 5,
+    weeks: 7,
+    months: 30,
+  }[duration.unit];
+  return unitInDays === undefined ? null : duration.value * unitInDays;
+};
+
+const setupBoundsInDays = (setup) => {
+  if (!setup) return null;
+  if (setup.exact) {
+    const exact = durationInDays(setup.exact);
+    return exact === null ? null : { minimum: exact, maximum: exact, typical: exact };
+  }
+  return {
+    minimum: durationInDays(setup.minimum),
+    maximum: durationInDays(setup.maximum),
+    typical: durationInDays(setup.typical),
+  };
+};
+
+/**
+ * Time answers represent the organizer's maximum planning window: one week,
+ * four weeks, or an open-ended month-plus window. Only setup_lead_time is used;
+ * campaign duration is deliberately excluded. Business days use a conservative
+ * 7/5 calendar-day conversion and months use a deterministic 30-day comparison.
+ */
+export function evaluateSetupTimingFit(timing, answer) {
+  const availableDays = TIME_WINDOWS_IN_DAYS[answer];
+  if (availableDays === undefined) return { status: "not-requested", message: null };
+  const researchState = timing?.status ?? "not-researched";
+  if (researchState === "not-applicable") return { status: "compatible", message: "No setup lead time applies" };
+  if (researchState !== "known") {
+    return { status: "unknown", message: RESEARCH_GAPS.timing[researchState] ?? RESEARCH_GAPS.timing["not-researched"] };
+  }
+
+  const bounds = setupBoundsInDays(timing?.setup_lead_time);
+  if (!bounds || [bounds.minimum, bounds.maximum, bounds.typical].every((value) => value === null)) {
+    return { status: "unknown", message: RESEARCH_GAPS.timing.known };
+  }
+  if (availableDays === Number.POSITIVE_INFINITY) {
+    return { status: "compatible", message: `Fits ${TIME_WINDOW_LABELS[answer]}` };
+  }
+  if (bounds.maximum !== null && bounds.maximum <= availableDays) {
+    return { status: "compatible", message: `Can be started ${TIME_WINDOW_LABELS[answer]}` };
+  }
+  if (bounds.minimum !== null && bounds.minimum > availableDays) {
+    return { status: "incompatible", message: `Requires more setup time than ${TIME_WINDOW_LABELS[answer]}` };
+  }
+  return { status: "overlap", message: `Setup timing may fit ${TIME_WINDOW_LABELS[answer]}` };
 }
 
 function formatMatches(answerFormat, channels) {
@@ -151,6 +257,11 @@ export function evaluateProviderProgram(provider, program, rawAnswers = {}) {
   const answers = normalizeFinderAnswers(rawAnswers);
   const conflict = hardConflict(program, answers, provider.geography ?? {});
   if (conflict) return { excluded: true, exclusionReason: conflict };
+  const groupSizeFit = evaluateGroupSizeFit(program.requirements, answers.groupSize);
+  if (groupSizeFit.status === "incompatible") return { excluded: true, exclusionReason: groupSizeFit.message };
+  const timingAnswer = answers.constraints.includes("fast") ? "fast" : answers.time;
+  const timingFit = evaluateSetupTimingFit(program.timing, timingAnswer);
+  if (timingFit.status === "incompatible") return { excluded: true, exclusionReason: timingFit.message };
 
   let score = 0;
   let confidence = 100;
@@ -259,17 +370,34 @@ export function evaluateProviderProgram(provider, program, rawAnswers = {}) {
     confidence -= confidencePenalty.zip;
     gaps.push("ZIP-level service is not documented");
   }
-  if (answers.groupSize) {
+  if (groupSizeFit.status === "compatible") {
+    score += weights.groupSizeMatch;
+    matchedConstraints.push(groupSizeFit.message);
+  } else if (groupSizeFit.status === "overlap") {
+    score += weights.groupSizeOverlap;
+    matchedConstraints.push(groupSizeFit.message);
+  } else if (groupSizeFit.status === "unknown") {
     confidence -= confidencePenalty.groupSize;
-    gaps.push("Participant-size fit is not documented in Finder data");
+    gaps.push(groupSizeFit.message);
   }
-  if (answers.time || constraints.has("fast")) {
+  if (timingFit.status === "compatible") {
+    score += weights.timingMatch;
+    matchedConstraints.push(timingFit.message);
+  } else if (timingFit.status === "overlap") {
+    score += weights.timingOverlap;
+    matchedConstraints.push(timingFit.message);
+  } else if (timingFit.status === "unknown") {
     confidence -= confidencePenalty.timing;
-    gaps.push("Provider timing is not documented in Finder data");
+    gaps.push(timingFit.message);
   }
   if (constraints.has("passive")) {
-    confidence -= confidencePenalty.passive;
-    gaps.push("Passive-fundraising requirements are not documented");
+    if (program.method === PASSIVE_METHOD) {
+      score += weights.passiveMatch;
+      matchedConstraints.push("Passive / ongoing fundraising model");
+    } else {
+      confidence -= confidencePenalty.passive;
+      gaps.push("Passive / ongoing fit is not established for this program");
+    }
   }
 
   return {

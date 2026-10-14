@@ -129,7 +129,7 @@ const providerJson = JSON.stringify(providers).replaceAll("<", "\\u003c");
 
             <fieldset class="finder-field" data-finder-step data-fields="groupSize" data-summary-label="Group size" data-auto-advance>
               <legend tabindex="-1">About how many people could participate?</legend>
-              <p class="finder-help">Current provider records do not fully structure size fit, so this may lower confidence rather than change rank.</p>
+              <p class="finder-help">Documented participant minimums help distinguish confirmed, possible, and incompatible fits.</p>
               <div class="finder-choices finder-choices-wrap">
                 {FINDER_SIZE_OPTIONS.map((option) => (
                   <label><input type="radio" name="groupSize" value={option.value} /><span>{option.label}</span></label>
@@ -457,7 +457,7 @@ const providerJson = JSON.stringify(providers).replaceAll("<", "\\u003c");
   const renderProviders = (answers: ReturnType<typeof answersFromForm>, providers: any[]) => {
     if (!providerList || !providerEmpty) return;
     providerList.replaceChildren();
-    const hasSupportedSignal = Boolean(answers.group || answers.outcomes.some((value) => value !== "open-to-ideas") || answers.methods.length || answers.format || answers.products !== "any" || answers.events !== "any" || answers.budget !== "any" || answers.effort || answers.country || answers.constraints.some((value) => !["passive", "fast"].includes(value)));
+    const hasSupportedSignal = Boolean(answers.group || answers.outcomes.some((value) => value !== "open-to-ideas") || answers.methods.length || answers.format || answers.products !== "any" || answers.events !== "any" || answers.budget !== "any" || answers.groupSize || answers.effort || answers.time || answers.country || answers.constraints.length);
     const matches = hasSupportedSignal ? rankProviderMatches(providers, answers).filter((match) => match.score > 0).slice(0, 5) : [];
     providerEmpty.hidden = matches.length > 0;
     providerEmpty.textContent = hasSupportedSignal
