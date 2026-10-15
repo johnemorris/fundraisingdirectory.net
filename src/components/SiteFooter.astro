@@ -72,7 +72,10 @@ const columns = [
     </p>
 
     <div class="footer-bottom">
-      <span>© {new Date().getFullYear()} FundraisingDirectory.net</span>
+      <span>
+        © {new Date().getFullYear()} FundraisingDirectory.net
+        <span class="footer-build">v{__BUILD_METADATA__.packageVersion} · {__BUILD_METADATA__.version}</span>
+      </span>
       <span>Independent fundraising discovery and information.</span>
     </div>
   </div>

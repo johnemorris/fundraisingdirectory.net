@@ -610,6 +610,11 @@ strong {
   font-size: 0.75rem;
 }
 
+.footer-build {
+  margin-left: 0.5rem;
+  color: inherit;
+}
+
 .footer-disclaimer {
   max-width: 820px;
   margin: 0 0 24px;

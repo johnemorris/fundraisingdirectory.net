@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/validate-build-metadata.mjs",
     "test": "node --test worker/*.test.js tests/*.test.js",
     "intake:validate": "node scripts/provider-intake.ts validate",
     "intake:review": "node scripts/provider-intake.ts review",
