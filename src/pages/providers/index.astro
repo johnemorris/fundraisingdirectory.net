@@ -3,10 +3,12 @@ import { getCollection } from "astro:content";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import DiscoveryHero from "../../components/DiscoveryHero.astro";
 import ProviderFilterFields from "../../components/ProviderFilterFields.astro";
+import ProviderSearch from "../../components/ProviderSearch.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import { DISCOVERY_GROUP_CONTEXTS } from "../../data/discovery";
 import { formatProviderLabel } from "../../data/providerLabels";
 import { providerProfilePath } from "../../data/providerLinks";
+import { buildProviderSearchText } from "../../lib/providerSearch";
 import { GROUP_OPTIONS, METHOD_OPTIONS, semanticClass, semanticToneClass } from "../../data/semanticTaxonomy";
 import { PRODUCTS_SERVICES } from "../../data/taxonomies/products-services";
 import "../../styles/providers.css";
@@ -54,16 +56,19 @@ const filterTones = Object.fromEntries([
           <p class="filter-summary" data-filter-summary aria-live="polite">Showing all {providers.length} researched providers.</p>
         </div>
 
-        <details class="filter-panel" data-filter-panel>
-          <summary><span aria-hidden="true">+</span> Filter <span class="filter-chevron" aria-hidden="true">⌄</span></summary>
-          <form class="filter-fields" action="/providers/" method="get" data-filter-form>
-            <div class="filter-options"><ProviderFilterFields idPrefix="compact-filter" /></div>
-            <div class="filter-actions">
-              <button class="button button-primary" type="submit">Apply filters</button>
-              <button class="filter-close" type="button" data-filter-close>Cancel</button>
-            </div>
-          </form>
-        </details>
+        <div class="directory-results-tools">
+          <ProviderSearch />
+          <details class="filter-panel" data-filter-panel>
+            <summary><span aria-hidden="true">+</span> Filter <span class="filter-chevron" aria-hidden="true">⌄</span></summary>
+            <form class="filter-fields" action="/providers/" method="get" data-filter-form>
+              <div class="filter-options"><ProviderFilterFields idPrefix="compact-filter" /></div>
+              <div class="filter-actions">
+                <button class="button button-primary" type="submit">Apply filters</button>
+                <button class="filter-close" type="button" data-filter-close>Cancel</button>
+              </div>
+            </form>
+          </details>
+        </div>
       </div>
 
       <div class="active-filter-row" data-active-filter-row hidden>
@@ -94,7 +99,7 @@ const filterTones = Object.fromEntries([
         const visibleOrganizations = classification.organizations.slice(0, 5);
         const extraOrganizations = classification.organizations.slice(5);
         return (
-          <article class:list={["provider-card", semanticToneClass("method", classification.methods[0])]} data-organizations={classification.organizations.join(",")} data-methods={classification.methods.join(",")} data-products={classification.products_services.join(",")}>
+          <article class:list={["provider-card", semanticToneClass("method", classification.methods[0])]} data-organizations={classification.organizations.join(",")} data-methods={classification.methods.join(",")} data-products={classification.products_services.join(",")} data-search-text={buildProviderSearchText(provider.data)}>
             <div class="provider-card-top">
               <div>
                 <p class="provider-research"><span aria-hidden="true">✓</span> {verificationLabel[provider.data.verification.level]}</p>
@@ -123,6 +128,15 @@ const filterTones = Object.fromEntries([
           </article>
         );
       })}
+        <div class="provider-empty-state" data-provider-empty-state hidden role="status">
+          <p class="eyebrow">No exact matches</p>
+          <h2>No providers match this search and filter combination.</h2>
+          <p>Try a shorter provider name or description, clear the search, or reset every refinement.</p>
+          <div>
+            <button class="button button-primary" type="button" data-empty-clear-search>Clear search</button>
+            <a href="/providers/#directory-results" data-directory-reset>Reset search and filters</a>
+          </div>
+        </div>
       </section>
     </div>
   </main>
@@ -137,6 +151,13 @@ const filterTones = Object.fromEntries([
   const activeFilters = document.querySelector("[data-active-filters]");
   const filterPanel = document.querySelector("[data-filter-panel]");
   const filterForms = Array.from(document.querySelectorAll("[data-filter-form]"));
+  const searchInput = document.querySelector("[data-provider-search]");
+  const searchClear = document.querySelector("[data-search-clear]");
+  const emptyState = document.querySelector("[data-provider-empty-state]");
+  const pendingSearchKey = "fdn_provider_search_pending";
+  const pendingSearch = window.sessionStorage.getItem(pendingSearchKey) ?? "";
+  window.sessionStorage.removeItem(pendingSearchKey);
+  if (searchInput) searchInput.value = pendingSearch;
   const params = new URLSearchParams(window.location.search);
   const groupValues = params.getAll("group");
   const methodValues = params.getAll("method");
@@ -149,36 +170,81 @@ const filterTones = Object.fromEntries([
   const hasFilters = Boolean(group || methods.length || products.length);
   const hasRefinements = Boolean(methods.length || products.length || (group && !hasCategoryContext));
 
-  const navigateWith = ({ nextGroup = group, nextMethods = methods, nextProducts = products, returnToResults = true } = {}) => {
+  const normalizeSearch = (value) => value.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase().trim().replace(/\s+/g, " ");
+  const normalizedSearchText = new Map(cards.map((card) => [card, normalizeSearch(card.dataset.searchText ?? "")]));
+  const searchMatches = (card, query) => !query || query.split(" ").every((term) => normalizedSearchText.get(card)?.includes(term));
+  const dispatchAnalytics = (eventName, parameters) => document.dispatchEvent(new CustomEvent("fdn:analytics", { detail: { eventName, parameters } }));
+
+  const navigateWith = ({ nextGroup = group, nextMethods = methods, nextProducts = products, returnToResults = true, source = "directory" } = {}) => {
     const url = new URL("/providers/", window.location.origin);
     if (nextGroup) url.searchParams.set("group", nextGroup);
     nextMethods.forEach((value) => url.searchParams.append("method", value));
     nextProducts.forEach((value) => url.searchParams.append("product", value));
     if (returnToResults) url.hash = "directory-results";
+    const currentSearch = searchInput?.value.trim() ?? "";
+    if (currentSearch) window.sessionStorage.setItem(pendingSearchKey, currentSearch);
+    dispatchAnalytics("directory_filter", {
+      source,
+      group_selected: Boolean(nextGroup),
+      method_count: nextMethods.length,
+      product_count: nextProducts.length,
+    });
     window.location.assign(`${url.pathname}${url.search}${url.hash}`);
   };
 
   const refinementLabels = [...methods.map((value) => filterLabels[value]), ...products.map((value) => filterLabels[value])].filter(Boolean);
   const refinementContext = refinementLabels.join(" + ");
   const generalContext = [group && !hasCategoryContext ? filterLabels[group] : null, ...refinementLabels].filter(Boolean).join(" + ");
-  const matches = cards.filter((card) => {
+  const filterMatches = cards.filter((card) => {
     const organizations = card.dataset.organizations?.split(",") ?? [];
     const providerMethods = card.dataset.methods?.split(",") ?? [];
     const providerProducts = card.dataset.products?.split(",") ?? [];
     return (!group || group === "other" || organizations.includes(group)) && (!methods.length || methods.some((method) => providerMethods.includes(method))) && (!products.length || products.some((product) => providerProducts.includes(product)));
   });
-  const showAll = !hasFilters || matches.length === 0;
-  cards.forEach((card) => { card.hidden = !showAll && !matches.includes(card); });
+  const updateDirectory = () => {
+    const query = normalizeSearch(searchInput?.value ?? "");
+    const matches = filterMatches.filter((card) => searchMatches(card, query));
+    const showAll = !query && (!hasFilters || filterMatches.length === 0);
+    const visibleCount = showAll ? cards.length : matches.length;
+    cards.forEach((card) => { card.hidden = !showAll && !matches.includes(card); });
+    if (searchClear) searchClear.hidden = !query;
+    if (emptyState) emptyState.hidden = visibleCount > 0;
 
-  if (heading && summary) {
+    if (!heading || !summary) return visibleCount;
     const groupLabel = group ? filterLabels[group] : null;
-    if (!hasFilters && hasUnknownFilters) { heading.textContent = "All providers"; summary.textContent = `Unknown filters were ignored. Showing all ${cards.length} researched providers.`; }
+    if (query && hasCategoryContext) { heading.textContent = `Fundraising providers for ${groupLabel}`; summary.textContent = `Showing ${visibleCount} of ${cards.length} providers matching your search and selected filters.`; }
+    else if (query && hasFilters) { heading.textContent = "Search results"; summary.textContent = `Showing ${visibleCount} of ${cards.length} providers matching your search and selected filters.`; }
+    else if (query) { heading.textContent = "Search results"; summary.textContent = `Showing ${visibleCount} of ${cards.length} providers matching your search.`; }
+    else if (!hasFilters && hasUnknownFilters) { heading.textContent = "All providers"; summary.textContent = `Unknown filters were ignored. Showing all ${cards.length} researched providers.`; }
     else if (!hasFilters) { heading.textContent = "All providers"; summary.textContent = `Showing all ${cards.length} researched providers.`; }
-    else if (matches.length === 0) { heading.textContent = hasCategoryContext ? `No exact provider matches for ${groupLabel}` : `No exact matches for ${generalContext}`; summary.textContent = `Showing all ${cards.length} providers so you can compare broader options.`; }
-    else if (hasCategoryContext && !refinementLabels.length) { heading.textContent = `Fundraising providers for ${groupLabel}`; summary.textContent = `Showing ${matches.length} providers for ${groupLabel.toLowerCase()}.${hasUnknownFilters ? " Unknown filters were ignored." : ""}`; }
-    else if (hasCategoryContext) { heading.textContent = `Fundraising providers for ${groupLabel}`; summary.textContent = `Showing ${matches.length} providers matching ${refinementContext}.${hasUnknownFilters ? " Unknown filters were ignored." : ""}`; }
-    else { heading.textContent = `Matches for ${generalContext}`; summary.textContent = `Showing ${matches.length} of ${cards.length} providers.${group === "other" ? " “Any Group Type” uses a broad match." : ""}${hasUnknownFilters ? " Unknown filters were ignored." : ""}`; }
-  }
+    else if (filterMatches.length === 0) { heading.textContent = hasCategoryContext ? `No exact provider matches for ${groupLabel}` : `No exact matches for ${generalContext}`; summary.textContent = `Showing all ${cards.length} providers so you can compare broader options.`; }
+    else if (hasCategoryContext && !refinementLabels.length) { heading.textContent = `Fundraising providers for ${groupLabel}`; summary.textContent = `Showing ${filterMatches.length} providers for ${groupLabel.toLowerCase()}.${hasUnknownFilters ? " Unknown filters were ignored." : ""}`; }
+    else if (hasCategoryContext) { heading.textContent = `Fundraising providers for ${groupLabel}`; summary.textContent = `Showing ${filterMatches.length} providers matching ${refinementContext}.${hasUnknownFilters ? " Unknown filters were ignored." : ""}`; }
+    else { heading.textContent = `Matches for ${generalContext}`; summary.textContent = `Showing ${filterMatches.length} of ${cards.length} providers.${group === "other" ? " “Any Group Type” uses a broad match." : ""}${hasUnknownFilters ? " Unknown filters were ignored." : ""}`; }
+    return visibleCount;
+  };
+
+  updateDirectory();
+  let searchAnalyticsTimer;
+  const clearSearch = () => {
+    if (!searchInput) return;
+    searchInput.value = "";
+    updateDirectory();
+    searchInput.focus();
+  };
+  searchInput?.addEventListener("input", () => {
+    const resultCount = updateDirectory();
+    window.clearTimeout(searchAnalyticsTimer);
+    const queryLength = normalizeSearch(searchInput.value).length;
+    if (queryLength) searchAnalyticsTimer = window.setTimeout(() => dispatchAnalytics("provider_search", {
+      query_length: queryLength,
+      result_count: resultCount,
+      active_filter_count: Number(Boolean(group)) + methods.length + products.length,
+    }), 600);
+  });
+  searchClear?.addEventListener("click", clearSearch);
+  document.querySelector("[data-empty-clear-search]")?.addEventListener("click", clearSearch);
+  document.querySelector("[data-directory-reset]")?.addEventListener("click", () => window.sessionStorage.removeItem(pendingSearchKey));
 
   if (hasRefinements && activeFilters && activeRow) {
     activeRow.hidden = false;
@@ -189,11 +255,15 @@ const filterTones = Object.fromEntries([
       button.className = `active-filter active-filter-${kind} semantic-${filterTones[value] ?? "teal"}`;
       button.textContent = `${filterLabels[value]} ×`;
       button.setAttribute("aria-label", `Remove ${filterLabels[value]} filter`);
-      button.addEventListener("click", () => navigateWith({ nextGroup: kind === "group" ? null : group, nextMethods: kind === "method" ? methods.filter((item) => item !== value) : methods, nextProducts: kind === "product" ? products.filter((item) => item !== value) : products }));
+      button.addEventListener("click", () => navigateWith({ nextGroup: kind === "group" ? null : group, nextMethods: kind === "method" ? methods.filter((item) => item !== value) : methods, nextProducts: kind === "product" ? products.filter((item) => item !== value) : products, source: "active_filter" }));
       activeFilters.append(button);
     });
     if (reset) { reset.hidden = false; reset.textContent = hasCategoryContext ? "Clear refinements" : "Clear all"; reset.href = `${hasCategoryContext ? `/providers/?group=${group}` : "/providers/"}#directory-results`; }
   }
+  reset?.addEventListener("click", () => {
+    const currentSearch = searchInput?.value.trim() ?? "";
+    if (currentSearch) window.sessionStorage.setItem(pendingSearchKey, currentSearch);
+  });
 
   filterForms.forEach((filterForm) => {
     const groupControl = filterForm.querySelector(`input[name="group"][value="${group ?? ""}"]`);
@@ -235,7 +305,7 @@ const filterTones = Object.fromEntries([
       }));
     });
 
-    filterForm.addEventListener("submit", (event) => { event.preventDefault(); const data = new FormData(filterForm); navigateWith({ nextGroup: data.get("group") || null, nextMethods: data.getAll("method"), nextProducts: products }); });
+    filterForm.addEventListener("submit", (event) => { event.preventDefault(); const data = new FormData(filterForm); navigateWith({ nextGroup: data.get("group") || null, nextMethods: data.getAll("method"), nextProducts: products, source: "filter_form" }); });
   });
   const facetGuidance = document.querySelector("[data-facet-guidance]");
   if (hasCategoryContext && facetGuidance) facetGuidance.textContent = "Change the group or refine by fundraising method.";
@@ -248,7 +318,7 @@ const filterTones = Object.fromEntries([
     if (kind === "group" && hasCategoryContext) { control.setAttribute("disabled", ""); control.setAttribute("title", "Group category shown for reference"); }
     control.classList.toggle("is-active", isActive);
     if (!(kind === "group" && hasCategoryContext)) control.setAttribute("aria-pressed", String(isActive));
-    control.addEventListener("click", () => { if (!isActive && !(kind === "group" && hasCategoryContext)) navigateWith({ nextGroup: kind === "group" ? value : group, nextMethods: kind === "method" ? [...methods, value] : methods, nextProducts: products }); });
+    control.addEventListener("click", () => { if (!isActive && !(kind === "group" && hasCategoryContext)) navigateWith({ nextGroup: kind === "group" ? value : group, nextMethods: kind === "method" ? [...methods, value] : methods, nextProducts: products, source: "provider_card" }); });
   });
   document.querySelectorAll("[data-metadata-more]").forEach((button) => button.addEventListener("click", () => {
     const expanded = button.getAttribute("aria-expanded") === "true";

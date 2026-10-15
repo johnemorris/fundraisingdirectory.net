@@ -12,16 +12,36 @@ import "../styles/information.css";
     eyebrow="Privacy"
     breadcrumbLabel="Privacy"
     title="Privacy information for the current site."
-    intro="This page describes the behavior present in the minimum launch implementation as of August 29, 2026."
+    intro="This page describes the site's current data-handling behavior as of October 15, 2026."
   >
     <section>
       <h2>Current site features</h2>
       <p>
-        The current site code does not include user accounts, a contact form,
-        payment processing, advertising technology, or an analytics script. The
-        Fundraiser Finder filters provider records in your browser from the
-        choices included in the page URL; it does not create an account or save a
+        The current site does not include user accounts, a contact form, payment
+        processing, or advertising technology. The Fundraiser Finder processes
+        your choices in your browser; it does not create an account or save a
         user profile.
+      </p>
+    </section>
+
+    <section>
+      <h2>Optional audience measurement</h2>
+      <p>
+        The site includes a consent-gated Google Analytics 4 integration that is
+        inactive unless a valid site measurement identifier is configured and
+        analytics consent has been granted. When inactive, the site does not
+        request the Google Analytics script. If enabled with consent, the site may
+        measure page use and general interactions such as provider searches,
+        directory filters, Finder completion, and outbound provider-link clicks.
+      </p>
+      <p>
+        Analytics events do not include the words entered into provider search,
+        Finder answers, form text, or provider ranking and commercial-affiliation
+        data. Google and hosting infrastructure may still process technical data
+        such as IP address, browser information, page URL, and request time under
+        their respective terms. Where consent is required, analytics should remain
+        disabled unless and until that consent is provided; withdrawing consent
+        disables further analytics events from this site.
       </p>
     </section>
 
@@ -47,9 +67,9 @@ import "../styles/information.css";
     <section>
       <h2>Future changes</h2>
       <p>
-        If contact forms, analytics, advertising, accounts, or other data-handling
-        features are added, this notice should be updated before those features
-        are enabled.
+        If contact forms, advertising, accounts, additional analytics uses, or
+        other data-handling features are added, this notice should be updated
+        before those features are enabled.
       </p>
     </section>
   </InformationPage>

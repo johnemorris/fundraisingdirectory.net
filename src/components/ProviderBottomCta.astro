@@ -1,0 +1,99 @@
+---
+interface Props {
+  providerName: string;
+  providerId: string;
+  providerSlug: string;
+  href?: string | null;
+  rel: string;
+}
+
+const { providerName, providerId, providerSlug, href, rel } = Astro.props;
+---
+
+{href && (
+  <aside class="provider-bottom-cta" aria-labelledby="provider-bottom-cta-title">
+    <div>
+      <p class="eyebrow">Next step</p>
+      <h2 id="provider-bottom-cta-title">Ready to explore {providerName}?</h2>
+      <p>Visit the provider's official website to review current fundraising programs, eligibility, and terms.</p>
+    </div>
+    <div class="provider-bottom-action">
+      <a
+        class="button button-primary"
+        href={href}
+        target="_blank"
+        rel={rel}
+        aria-label={`Visit ${providerName} website (opens in a new tab)`}
+        data-analytics-provider-outbound
+        data-provider-id={providerId}
+        data-provider-slug={providerSlug}
+        data-placement="profile_bottom"
+      >Visit {providerName} <span aria-hidden="true">↗</span></a>
+      <small>You're leaving FundraisingDirectory.net.</small>
+    </div>
+  </aside>
+)}
+
+<style lang="scss">
+  .provider-bottom-cta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.4rem 1.5rem;
+    border: 1px solid color-mix(in srgb, var(--teal) 35%, var(--border));
+    border-radius: 0.9rem;
+    background: linear-gradient(120deg, color-mix(in srgb, var(--teal) 8%, white), var(--surface-elevated));
+
+    h2 {
+      margin: 0.15rem 0 0.35rem;
+      color: var(--ink);
+      font-size: clamp(1.25rem, 2vw, 1.6rem);
+      line-height: 1.15;
+    }
+
+    p {
+      max-width: 47rem;
+      margin: 0;
+    }
+
+    .eyebrow {
+      font-size: 0.7rem;
+    }
+  }
+
+  .provider-bottom-action {
+    display: grid;
+    gap: 0.45rem;
+    justify-items: stretch;
+    min-width: min(100%, 14rem);
+
+    .button {
+      justify-content: center;
+      text-align: center;
+    }
+
+    small {
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 48.75rem) {
+    .provider-bottom-cta {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+      padding: 1.2rem;
+    }
+
+    .provider-bottom-action {
+      width: 100%;
+      min-width: 0;
+
+      .button {
+        width: 100%;
+      }
+    }
+  }
+</style>

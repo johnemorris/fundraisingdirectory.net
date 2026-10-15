@@ -1,6 +1,7 @@
 ---
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+import Analytics from "../components/Analytics.astro";
 import { SITE_ROUTES } from "../data/site";
 import "../styles/global.css";
 
@@ -62,6 +63,7 @@ const {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {socialImage && <meta name="twitter:image" content={socialImage} />}
+    <Analytics />
   </head>
 
   <body class={bodyClass}>

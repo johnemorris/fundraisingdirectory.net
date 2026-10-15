@@ -1,0 +1,15 @@
+---
+const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID?.trim();
+const configuredMeasurementId = measurementId && /^G-[A-Z0-9]+$/.test(measurementId)
+  ? measurementId
+  : undefined;
+---
+
+{configuredMeasurementId && <meta name="fdn-ga-measurement-id" content={configuredMeasurementId} />}
+
+<script>
+  import { initializeAnalytics } from "../lib/analytics";
+
+  const configuredMeasurementId = document.querySelector<HTMLMetaElement>('meta[name="fdn-ga-measurement-id"]')?.content;
+  initializeAnalytics(configuredMeasurementId);
+</script>

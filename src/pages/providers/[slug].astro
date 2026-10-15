@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import ProviderLogo from "../../components/ProviderLogo.astro";
+import ProviderBottomCta from "../../components/ProviderBottomCta.astro";
 import ProviderProgramCard from "../../components/ProviderProgramCard.astro";
 import ProviderVisual from "../../components/ProviderVisual.astro";
 import { formatProviderLabel } from "../../data/providerLabels";
@@ -97,7 +98,7 @@ const sharedEconomicsRows = provider.data.economics?.status === "known"
           </div>
           <div class="hero-actions">
             <div class="external-cta-group">
-              <a class="button button-primary provider-visit-link" href={outboundUrl} target="_blank" rel={outboundRel} aria-label={`Visit ${identity.name} website (opens in a new tab)`}>Visit Provider <span aria-hidden="true">↗</span></a>
+              <a class="button button-primary provider-visit-link" href={outboundUrl} target="_blank" rel={outboundRel} aria-label={`Visit ${identity.name} website (opens in a new tab)`} data-analytics-provider-outbound data-provider-id={provider.data.meta.id} data-provider-slug={identity.slug} data-placement="profile_top">Visit Provider <span aria-hidden="true">↗</span></a>
               <span class="external-note">Opens the provider's website. FundraisingDirectory.net is independent and is not the provider.</span>
               <span class="verified-date">Last verified {formatDate(status.last_verified_at)}</span>
             </div>
@@ -185,6 +186,14 @@ const sharedEconomicsRows = provider.data.economics?.status === "known"
         {content.considerations.length > 0 && <div><p class="eyebrow eyebrow-purple">Before you choose</p><h2>Requirements &amp; considerations</h2><ul class="clean-list">{content.considerations.map((item) => <li>{item}</li>)}</ul></div>}
         <div><p class="eyebrow">Availability</p><h2>Where it operates</h2><p>{availabilitySummary}</p>{geography.notes && <p class="muted-copy">{geography.notes}</p>}</div>
       </section>
+
+      <ProviderBottomCta
+        providerName={identity.name}
+        providerId={provider.data.meta.id}
+        providerSlug={identity.slug}
+        href={outboundUrl}
+        rel={outboundRel}
+      />
 
       <details class="sources-disclosure">
         <summary><span><small>Research disclosure</small><strong>{verification.sources.length} source{verification.sources.length === 1 ? "" : "s"} checked · Last reviewed {formatDate(status.last_verified_at)}</strong></span><i aria-hidden="true"></i></summary>
