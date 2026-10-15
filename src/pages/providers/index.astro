@@ -48,7 +48,7 @@ const filterTones = Object.fromEntries([
   <main class="directory-shell directory-index">
     <DiscoveryHero eyebrow="Fundraising provider directory" title="Find fundraising providers that fit your group" description="Compare independently researched fundraising companies and platforms by who they serve and how their programs work." tone="navy" visualLabel="Provider discovery" visualKey="provider-directory" dynamic compact />
 
-    <section class="directory-results" id="directory-results" aria-labelledby="provider-results-title">
+    <section class="directory-results" id="directory-results" aria-labelledby="provider-results-title" data-directory-results-panel>
       <div class="directory-results-heading">
         <div>
           <p class="eyebrow">Directory results</p>
@@ -57,7 +57,10 @@ const filterTones = Object.fromEntries([
         </div>
 
         <div class="directory-results-tools">
-          <ProviderSearch />
+          <div class="directory-search-home" data-directory-search-home>
+            <span class="directory-search-sentinel" data-directory-search-sentinel aria-hidden="true"></span>
+            <ProviderSearch />
+          </div>
           <details class="filter-panel" data-filter-panel>
             <summary><span aria-hidden="true">+</span> Filter <span class="filter-chevron" aria-hidden="true">⌄</span></summary>
             <form class="filter-fields" action="/providers/" method="get" data-filter-form>
@@ -77,6 +80,12 @@ const filterTones = Object.fromEntries([
       </div>
     </section>
 
+    <div class="directory-compact-toolbar" data-directory-compact-toolbar hidden aria-hidden="true">
+      <div class="directory-compact-toolbar-inner">
+        <p data-compact-filter-summary>Showing {providers.length} of {providers.length} providers</p>
+        <div class="directory-search-compact-host" data-directory-search-compact-host></div>
+      </div>
+    </div>
     <div class="directory-browser">
       <aside class="facet-rail" aria-labelledby="facet-title">
         <div class="facet-heading">
@@ -153,6 +162,16 @@ const filterTones = Object.fromEntries([
   const filterForms = Array.from(document.querySelectorAll("[data-filter-form]"));
   const searchInput = document.querySelector("[data-provider-search]");
   const searchClear = document.querySelector("[data-search-clear]");
+  const searchControl = searchInput?.closest(".provider-search");
+  const searchHome = document.querySelector("[data-directory-search-home]");
+  const compactSearchHost = document.querySelector("[data-directory-search-compact-host]");
+  const compactToolbar = document.querySelector("[data-directory-compact-toolbar]");
+  const compactSummary = document.querySelector("[data-compact-filter-summary]");
+  const searchSentinel = document.querySelector("[data-directory-search-sentinel]");
+  const providerGrid = document.querySelector("[data-provider-grid]");
+  const facetRail = document.querySelector(".facet-rail");
+  const siteHeader = document.querySelector("[data-site-header]");
+  const siteHeaderMain = siteHeader?.querySelector(".site-header-main");
   const emptyState = document.querySelector("[data-provider-empty-state]");
   const pendingSearchKey = "fdn_provider_search_pending";
   const pendingSearch = window.sessionStorage.getItem(pendingSearchKey) ?? "";
@@ -209,6 +228,7 @@ const filterTones = Object.fromEntries([
     cards.forEach((card) => { card.hidden = !showAll && !matches.includes(card); });
     if (searchClear) searchClear.hidden = !query;
     if (emptyState) emptyState.hidden = visibleCount > 0;
+    if (compactSummary) compactSummary.textContent = `Showing ${visibleCount} of ${cards.length} providers`;
 
     if (!heading || !summary) return visibleCount;
     const groupLabel = group ? filterLabels[group] : null;
@@ -226,14 +246,75 @@ const filterTones = Object.fromEntries([
 
   updateDirectory();
   let searchAnalyticsTimer;
+  let compactToolbarActive = false;
+  const moveSearchControl = (target) => {
+    if (!searchControl || !target || searchControl.parentElement === target) return;
+    const hadFocus = searchControl.contains(document.activeElement);
+    const selectionStart = hadFocus ? searchInput?.selectionStart : null;
+    const selectionEnd = hadFocus ? searchInput?.selectionEnd : null;
+    target.append(searchControl);
+    if (hadFocus && searchInput) {
+      searchInput.focus({ preventScroll: true });
+      if (selectionStart !== null && selectionEnd !== null) searchInput.setSelectionRange(selectionStart, selectionEnd);
+    }
+  };
+  const setCompactToolbar = (active) => {
+    if (!compactToolbar || active === compactToolbarActive) return;
+    compactToolbarActive = active;
+    if (active) {
+      if (searchHome && searchControl) searchHome.style.height = `${searchHome.getBoundingClientRect().height}px`;
+      compactToolbar.hidden = false;
+      compactToolbar.setAttribute("aria-hidden", "false");
+      siteHeader?.classList.add("has-directory-compact-toolbar");
+      moveSearchControl(compactSearchHost);
+    } else {
+      moveSearchControl(searchHome);
+      searchHome?.style.removeProperty("height");
+      compactToolbar.hidden = true;
+      compactToolbar.setAttribute("aria-hidden", "true");
+      siteHeader?.classList.remove("has-directory-compact-toolbar");
+    }
+  };
+  const updateCompactToolbar = () => {
+    if (!searchSentinel || !compactToolbar || !siteHeaderMain) return;
+    const navigationRect = siteHeaderMain.getBoundingClientRect();
+    compactToolbar.style.setProperty("--directory-toolbar-left", `${navigationRect.left}px`);
+    compactToolbar.style.setProperty("--directory-toolbar-width", `${navigationRect.width}px`);
+    compactToolbar.style.setProperty("--directory-toolbar-top", `${navigationRect.bottom}px`);
+
+    const shouldBeCompact = searchSentinel.getBoundingClientRect().top <= navigationRect.bottom;
+    if (shouldBeCompact !== compactToolbarActive) setCompactToolbar(shouldBeCompact);
+
+    const toolbarRect = compactToolbarActive ? compactToolbar.getBoundingClientRect() : null;
+    if (facetRail && toolbarRect) facetRail.style.setProperty("--directory-facet-sticky-top", `${toolbarRect.bottom + 14}px`);
+    else facetRail?.style.removeProperty("--directory-facet-sticky-top");
+  };
+  const returnToFilteredResults = () => {
+    if (!compactToolbarActive || !providerGrid || !compactToolbar || !siteHeaderMain) return;
+    const navigationBottom = siteHeaderMain.getBoundingClientRect().bottom;
+    const targetTop = Math.max(0, window.scrollY + providerGrid.getBoundingClientRect().top - navigationBottom - compactToolbar.offsetHeight - 16);
+    const previousScrollBehavior = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = "auto";
+    window.scrollTo({ top: targetTop, behavior: "auto" });
+    document.documentElement.style.scrollBehavior = previousScrollBehavior;
+  };
+  updateCompactToolbar();
+  window.addEventListener("scroll", updateCompactToolbar, { passive: true });
+  window.addEventListener("resize", updateCompactToolbar);
+  if (window.ResizeObserver && siteHeaderMain) {
+    const compactToolbarObserver = new ResizeObserver(updateCompactToolbar);
+    compactToolbarObserver.observe(siteHeaderMain);
+  }
   const clearSearch = () => {
     if (!searchInput) return;
     searchInput.value = "";
     updateDirectory();
+    returnToFilteredResults();
     searchInput.focus();
   };
   searchInput?.addEventListener("input", () => {
     const resultCount = updateDirectory();
+    returnToFilteredResults();
     window.clearTimeout(searchAnalyticsTimer);
     const queryLength = normalizeSearch(searchInput.value).length;
     if (queryLength) searchAnalyticsTimer = window.setTimeout(() => dispatchAnalytics("provider_search", {
@@ -341,3 +422,107 @@ const filterTones = Object.fromEntries([
     if (crumb) { crumb.hidden = false; const current = document.createElement("span"); current.setAttribute("aria-current", "page"); current.textContent = discovery.label; crumb.replaceChildren(current); }
   }
 </script>
+
+<style lang="scss">
+  .directory-search-home {
+    position: relative;
+    min-width: 0;
+  }
+
+  .directory-search-sentinel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+
+  .directory-compact-toolbar {
+    position: fixed;
+    top: var(--directory-toolbar-top, 4.5rem);
+    left: var(--directory-toolbar-left, 0);
+    z-index: 90;
+    width: var(--directory-toolbar-width, 100%);
+    padding: 0.625rem 0.75rem;
+    border: 1px solid var(--border-strong);
+    border-top: 0;
+    border-radius: 0 0 1.125rem 1.125rem;
+    background: color-mix(in srgb, var(--surface-elevated) 94%, var(--surface-alternate));
+    box-shadow: 0 0.5rem 1.25rem rgba(7, 30, 48, 0.13);
+    backdrop-filter: blur(0.75rem);
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  :global(.site-header.has-directory-compact-toolbar .site-header-main) {
+    border-bottom-color: rgba(255, 255, 255, 0.14);
+    border-radius: 1.125rem 1.125rem 0 0;
+  }
+
+  .directory-compact-toolbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    > p {
+      margin: 0;
+      color: var(--ink);
+      font-size: 0.86rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+  }
+
+  .directory-search-compact-host {
+    width: min(22rem, 48%);
+    min-width: 15rem;
+
+    :global(.provider-search) {
+      width: 100%;
+      min-width: 0;
+      gap: 0;
+    }
+
+    :global(.provider-search > label) {
+      position: absolute;
+      width: 0.0625rem;
+      height: 0.0625rem;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  }
+
+  @media (max-width: 48.75rem) {
+    .directory-compact-toolbar {
+      padding: 0.625rem;
+    }
+
+    .directory-compact-toolbar-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.5rem;
+
+      > p {
+        font-size: 0.78rem;
+        white-space: normal;
+      }
+    }
+
+    .directory-search-compact-host {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .directory-compact-toolbar {
+      backdrop-filter: none;
+    }
+  }
+</style>

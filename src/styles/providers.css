@@ -877,10 +877,10 @@ button.semantic-group:disabled {
   }
   .facet-rail {
     position: sticky;
-    top: 5.75rem;
+    top: var(--directory-facet-sticky-top, 5.75rem);
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
-    max-height: min(calc(100vh - 6.75rem), 31.25rem);
+    max-height: min(calc(100vh - var(--directory-facet-sticky-top, 5.75rem) - 1rem), 31.25rem);
     overflow: hidden;
     border: 1px solid var(--border-strong);
     border-radius: 1.125rem 1.125rem 1.875rem 1.125rem;

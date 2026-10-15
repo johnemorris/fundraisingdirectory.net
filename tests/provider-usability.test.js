@@ -63,3 +63,30 @@ test("analytics source excludes raw provider queries, Finder answers, and commer
   assert.doesNotMatch(finder, /parameters:\s*\{[^}]*answers:/s);
   assert.doesNotMatch(analytics, /affiliate|sponsor|commercial/i);
 });
+
+test("directory compact mode reuses the live search control and synchronized result count", async () => {
+  const directory = await readFile("src/pages/providers/index.astro", "utf8");
+
+  assert.equal(directory.match(/<ProviderSearch \/>/g)?.length, 1);
+  assert.match(directory, /data-directory-results-panel/);
+  assert.match(directory, /data-directory-search-sentinel/);
+  assert.match(directory, /data-directory-compact-toolbar hidden aria-hidden="true"/);
+  assert.match(directory, /data-compact-filter-summary/);
+  assert.match(directory, /target\.append\(searchControl\)/);
+  assert.match(directory, /searchHome\.style\.height = `\$\{searchHome\.getBoundingClientRect\(\)\.height\}px`/);
+  assert.match(directory, /searchHome\?\.style\.removeProperty\("height"\)/);
+  assert.match(directory, /compactSummary\.textContent = `Showing \$\{visibleCount\} of \$\{cards\.length\} providers`/);
+  assert.match(directory, /searchSentinel\.getBoundingClientRect\(\)\.top <= navigationRect\.bottom/);
+  assert.match(directory, /--directory-toolbar-width/);
+  assert.match(directory, /has-directory-compact-toolbar/);
+  assert.doesNotMatch(directory, /data-directory-compact-toolbar-spacer/);
+  assert.match(directory, /toolbarRect\.bottom \+ 14/);
+  assert.match(directory, /--directory-facet-sticky-top/);
+  assert.ok(directory.indexOf('compactToolbar.style.setProperty("--directory-toolbar-top"') < directory.indexOf("const shouldBeCompact"));
+  assert.doesNotMatch(directory, /transform:\s*translateY\(-0\.25rem\)/);
+  assert.doesNotMatch(directory, /animation:\s*compact-toolbar-in/);
+  assert.doesNotMatch(directory, /addEventListener\("animationend"/);
+  assert.doesNotMatch(directory, /requestCompactToolbarUpdate|compactToolbarFrame|requestAnimationFrame\(updateCompactToolbar\)/);
+  assert.match(directory, /window\.addEventListener\("scroll", updateCompactToolbar/);
+  assert.match(directory, /returnToFilteredResults\(\)/);
+});
