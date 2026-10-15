@@ -1,0 +1,307 @@
+meta:
+  id: "prov_000047"
+  schema_version: 2
+  created_at: "2026-10-14"
+  created_by: "user_000001"
+  modified_at: "2026-10-14"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "SupportNow"
+  slug: "supportnow"
+  legal_name: "SupportFamiliesNow, Inc."
+  aliases: []
+  website: "https://www.supportnow.org/"
+  fundraising_url: "https://www.supportnow.org/"
+  logo: null
+classification:
+  methods:
+    - "in-kind-resource-fundraising"
+    - "crowdfunding"
+    - "direct-donations"
+  products_services:
+    - "donation-platform"
+    - "gift-cards"
+  organizations:
+    - "individuals-personal-causes"
+    - "clubs-community"
+  outcomes:
+    - "cash"
+    - "food"
+    - "services"
+    - "volunteer-support"
+  capabilities:
+    - "donation-forms"
+    - "crowdfunding-pages"
+  beneficiary_types:
+    - "individual-or-family"
+    - "community-cause"
+  cause_areas:
+    - "children-families"
+    - "health-medical"
+    - "disability-support"
+    - "disaster-emergency-relief"
+    - "community-neighborhood"
+    - "other-cause"
+programs:
+  - id: "prog_000067"
+    name: "Family Support Registry"
+    slug: "family-support-registry"
+    url: "https://www.supportnow.org/"
+    method: "in-kind-resource-fundraising"
+    products_services:
+      - "donation-platform"
+      - "gift-cards"
+    channels:
+      - "online"
+      - "hybrid"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+      - "direct-to-supporter"
+      - "on-site"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "A personal or family support page combining cash fundraising, meal scheduling, gift cards, volunteer and errand coordination, and updates for supporters."
+    economics_mode: "program-specific"
+    economics:
+      status: "known"
+      arrangements:
+        - type: "upfront-cost"
+          value:
+            kind: "amount"
+            amount: 0
+            currency: "USD"
+          basis: "Creating and using a Support Registry"
+          conditions: []
+          caveats: []
+        - type: "platform-fee"
+          value:
+            kind: "amount"
+            amount: 0
+            currency: "USD"
+          basis: "Support Registry tools"
+          conditions: []
+          caveats: []
+        - type: "processing-fee"
+          value:
+            kind: "percentage"
+            percent: 2.7
+          basis: "Credit-card processing when the supporter removes the optional RoundUp"
+          conditions:
+            - "The supporter removes the optional RoundUp contribution at checkout"
+          caveats:
+            - "SupportNow states that the family receives 100% of the intended donation when the supporter keeps the optional RoundUp that covers processing costs"
+        - type: "proceeds"
+          value:
+            kind: "percentage"
+            percent: 100
+          basis: "The donor's intended gift"
+          conditions:
+            - "The donor keeps the optional RoundUp contribution that covers fees"
+          caveats: []
+      notes:
+        - "Supporters can remove the optional RoundUp; when they do, the published 2.7% credit-card processing cost is deducted from the intended gift."
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "An organizer creates a Support Registry for themselves or a recipient and provides accurate information about the recipient and intended use of contributions."
+        - "SupportNow's terms require U.S. residence and accurate account information. They state that users must be at least 18 or over the age of majority in their jurisdiction and separately state that anyone under the local age of majority may use the service only with parent or guardian approval."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Contributions must be used as described on the Support Registry and cannot be exchanged for goods or services."
+        - "If an organizer adds a separate recipient, the terms state that the organizer relinquishes control of the contributions to that recipient."
+        - "People outside the United States are not authorized to use the service under the reviewed terms."
+      editorial_summary: "Designed for U.S. individuals and families coordinating support around illness, disability, caregiving, loss, disaster, birth, or another difficult life event."
+    timing:
+      status: "known"
+      setup_lead_time:
+        typical:
+          value: 10
+          unit: "minutes"
+      campaign_duration:
+        open_ended: true
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "SupportNow describes a guided fundraiser setup taking about ten minutes and says cash is sent as gifts arrive rather than waiting for the goal. It does not publish one precise universal bank-settlement duration on the reviewed pages. Meal and volunteer timing is selected by the organizer and supporters."
+    logistics:
+      status: "known"
+      notes:
+        - "The organizer publishes one support page and specifies cash, meal, gift-card, volunteer, errand, and update needs. Supporters donate, claim dated meal or task slots, or follow updates; the family controls page visibility and the information shared."
+        - "SupportNow can display an existing GoFundMe campaign within its broader support options, but the GoFundMe campaign remains a separate third-party fundraiser."
+    outcomes:
+      - "cash"
+      - "food"
+      - "services"
+      - "volunteer-support"
+    capabilities:
+      - "donation-forms"
+      - "crowdfunding-pages"
+    beneficiary_types:
+      - "individual-or-family"
+      - "community-cause"
+    cause_areas:
+      - "children-families"
+      - "health-medical"
+      - "disability-support"
+      - "disaster-emergency-relief"
+      - "community-neighborhood"
+      - "other-cause"
+geography:
+  scope:
+    - "us-nationwide"
+  countries:
+    - "US"
+  states: []
+  regions: []
+  notes: "SupportNow's terms require registered users to reside in the United States and state that people outside the United States are not authorized to use the service."
+content:
+  summary: "SupportNow coordinates money, meals, gift cards, volunteers, errands, and updates for U.S. individuals and families through one support registry."
+  how_it_works: "An organizer creates a support page for themselves or another family, lists financial and practical needs, and shares one link so supporters can donate, schedule meals, volunteer for tasks, send gift cards, and follow updates."
+  best_for:
+    - "Individuals and families who need both cash and coordinated practical support during illness, disability, caregiving, bereavement, disaster, or another major life event."
+    - "Friends, relatives, coworkers, faith groups, or community members organizing help for a recipient."
+  considerations:
+    - "The organizer and recipient remain responsible for accurate claims and using contributions for the purposes described."
+    - "Families receive the full intended donation only when a supporter chooses enough optional RoundUp to cover processing costs; otherwise payment-processing costs may be deducted."
+    - "The reviewed terms limit use to the United States."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-10-14"
+  last_verified_at: "2026-10-14"
+  next_review_at: "2027-01-14"
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-10-14"
+  reviewed_by: "FRD landscape findings update"
+  verified_by: "FRD landscape findings update"
+  sources:
+    - id: "src_000170"
+      type: "official-program"
+      url: "https://www.supportnow.org/"
+      title: "SupportNow Family Support Platform"
+      checked_at: "2026-10-14"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.family-support-registry.summary"
+          status: "current"
+          notes: null
+        - path: "programs.family-support-registry.economics"
+          status: "current"
+          notes: null
+        - path: "programs.family-support-registry.logistics"
+          status: "current"
+          notes: null
+        - path: "content.summary"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000171"
+      type: "official-program"
+      url: "https://www.supportnow.org/medical-fundraising"
+      title: "Medical Fundraising"
+      checked_at: "2026-10-14"
+      status: "current"
+      supports:
+        - path: "programs.family-support-registry.summary"
+          status: "current"
+          notes: null
+        - path: "programs.family-support-registry.timing"
+          status: "current"
+          notes: null
+        - path: "programs.family-support-registry.cause_areas"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000172"
+      type: "official-program"
+      url: "https://www.supportnow.org/meals"
+      title: "SupportNow Meals and Meal Trains"
+      checked_at: "2026-10-14"
+      status: "current"
+      supports:
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.family-support-registry.logistics"
+          status: "current"
+          notes: null
+        - path: "programs.family-support-registry.outcomes"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000173"
+      type: "terms-or-fees"
+      url: "https://www.supportnow.org/terms_of_service"
+      title: "SupportNow Terms of Service"
+      checked_at: "2026-10-14"
+      status: "current"
+      supports:
+        - path: "identity.legal_name"
+          status: "current"
+          notes: null
+        - path: "programs.family-support-registry.requirements"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000174"
+      type: "terms-or-fees"
+      url: "https://www.supportnow.org/pricing"
+      title: "SupportNow Pricing"
+      checked_at: "2026-10-14"
+      status: "current"
+      supports:
+        - path: "programs.family-support-registry.economics"
+          status: "current"
+          notes: "The published 2.7% processing cost applies when a supporter removes the optional RoundUp; the platform fee remains 0%."
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+    - "web-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "none-found"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: "2026-10-14"
+  approved_destination_url: null
+  internal_notes: "No affiliate relationship was identified during this editorial update; this metadata is excluded from Finder scoring."
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false

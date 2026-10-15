@@ -1,0 +1,424 @@
+meta:
+  id: "prov_000046"
+  schema_version: 2
+  created_at: "2026-10-14"
+  created_by: "user_000001"
+  modified_at: "2026-10-14"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  name: "Every.org"
+  slug: "every-org"
+  legal_name: null
+  aliases: []
+  website: "https://www.every.org/"
+  fundraising_url: "https://www.every.org/nonprofits"
+  logo: null
+classification:
+  methods:
+    - "direct-donations"
+    - "peer-to-peer"
+    - "giving-matching"
+  products_services:
+    - "donation-platform"
+    - "peer-to-peer-platform"
+  organizations:
+    - "nonprofits-charities"
+  outcomes:
+    - "cash"
+  capabilities:
+    - "donation-forms"
+    - "recurring-giving"
+    - "peer-to-peer-pages"
+    - "digital-wallets"
+    - "matching-gifts"
+    - "workplace-giving"
+    - "reporting-analytics"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+    - "local-nonprofit-or-charity"
+    - "national-nonprofit-or-charity"
+economics:
+  status: "known"
+  arrangements:
+    - type: "upfront-cost"
+      value:
+        kind: "amount"
+        amount: 0
+        currency: "USD"
+      basis: "Claiming and using an eligible nonprofit profile"
+      conditions: []
+      caveats: []
+    - type: "platform-fee"
+      value:
+        kind: "amount"
+        amount: 0
+        currency: "USD"
+      basis: "Every.org platform access"
+      conditions: []
+      caveats: []
+    - type: "processing-fee"
+      value:
+        kind: "variable"
+        description: "Varies by donation and disbursement method; ACH, stock, DAF, and IRA gifts are listed as free, while cards, PayPal/Venmo, crypto, and some third-party disbursements have published fees"
+      basis: "Third-party payment processing and nonprofit disbursement"
+      conditions: []
+      caveats:
+        - "A nonprofit can avoid disbursement fees by connecting its bank account through Stripe or qualifying for PayPal Grants"
+  notes:
+    - "Every.org is funded by grants and optional donor contributions rather than platform fees."
+programs:
+  - id: "prog_000064"
+    name: "Nonprofit Giving Platform"
+    slug: "nonprofit-giving-platform"
+    url: "https://www.every.org/nonprofits"
+    method: "direct-donations"
+    products_services:
+      - "donation-platform"
+    channels:
+      - "online"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "A nonprofit giving platform that accepts card, bank, PayPal, Venmo, mobile-wallet, stock, cryptocurrency, donor-advised-fund, and IRA gifts, issues donor receipts, and grants funds to eligible nonprofits."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status:
+        - "501c3"
+        - "tax-exempt"
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "A U.S. organization claiming a profile must have eligible IRS 501(c)(3) public-charity status and remain in good standing under applicable charitable-solicitation rules."
+        - "A fiscally sponsored project works through its fiscal sponsor; non-U.S. charities need a U.S. entity, fiscal sponsor, or accepted equivalency determination."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Donations are legally made to Every.org, which retains discretion over distributions to the donor-recommended nonprofit."
+        - "IRA qualified charitable distributions are donor-eligibility dependent; the reviewed 2026 guidance describes initiation by donors age 70½ or older and a 2026 per-person limit of $111,000."
+      editorial_summary: "Designed primarily for eligible charitable organizations and their fiscally sponsored projects, with donation-method and distribution rules that vary by recipient and payment method."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration:
+        open_ended: true
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "Connected nonprofits receive weekly Stripe disbursements; PayPal Grants are generally sent every 4–5 weeks and third-party For Good disbursements every 4–6 weeks. Donation clearing time varies by payment method."
+    logistics:
+      status: "known"
+      notes:
+        - "Every.org receives the charitable contribution, issues the receipt, converts supported noncash assets when applicable, reviews the donor's recommendation, and disburses an aggregated grant to the eligible nonprofit. IRA gifts are initiated online and completed by a check from the IRA provider to Every.org."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "donation-forms"
+      - "recurring-giving"
+      - "digital-wallets"
+      - "reporting-analytics"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+      - "local-nonprofit-or-charity"
+      - "national-nonprofit-or-charity"
+  - id: "prog_000065"
+    name: "Peer-to-Peer and Matching Campaigns"
+    slug: "peer-to-peer-and-matching-campaigns"
+    url: "https://support.every.org/hc/en-us/articles/39785326747283-How-do-I-add-a-matching-campaign"
+    method: "peer-to-peer"
+    products_services:
+      - "peer-to-peer-platform"
+      - "donation-platform"
+    channels:
+      - "online"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    summary: "Nonprofits and supporters can create fundraisers for eligible nonprofits and optionally publish a one-to-one matching campaign funded and fulfilled by the nonprofit or supporter."
+    economics_mode: "inherit-provider"
+    requirements:
+      status: "known"
+      legal_status:
+        - "501c3"
+        - "tax-exempt"
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The fundraiser must support an eligible nonprofit listed on Every.org."
+        - "The nonprofit, supporter, or another identified funder supplies and fulfills any advertised matching funds."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "Every.org does not provide the matching funds. Matches are one-to-one, apply only to the specified fundraiser, and recurring donations are matched only for the first month."
+      editorial_summary: "A peer fundraiser may add a time- or budget-limited match, but the campaign owner remains responsible for supplying the matching contribution."
+    timing:
+      status: "known"
+      setup_lead_time: null
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes:
+        - "A matching campaign ends when its stated matching pool is exhausted or its end date is reached; the fundraiser may continue accepting ordinary donations."
+    logistics:
+      status: "known"
+      notes:
+        - "The campaign owner sets the total matching pool, optional per-donation limit, and dates. The funder then makes the matching contribution through Every.org, while ordinary donations follow the platform's standard nonprofit disbursement process."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "peer-to-peer-pages"
+      - "matching-gifts"
+      - "digital-wallets"
+    beneficiary_types:
+      - "own-organization"
+      - "local-nonprofit-or-charity"
+      - "national-nonprofit-or-charity"
+  - id: "prog_000066"
+    name: "Employee Giving and Employer Matching"
+    slug: "employee-giving-and-employer-matching"
+    url: "https://blog.every.org/every-org-partners-with-teleskope-to-enable-employee-giving-and-matching-programs/"
+    method: "giving-matching"
+    products_services:
+      - "donation-platform"
+    channels:
+      - "online"
+    online_ordering: null
+    fulfillment:
+      - "digital"
+    inventory_model: "not-applicable"
+    upfront_cost: "unknown"
+    ease_to_raise: null
+    summary: "Every.org processes and receipts employee gifts for participating workplace programs and can receive employer matches; a 2026 Teleskope partnership embeds giving and rule-based matching in that employee-experience platform."
+    economics_mode: "program-specific"
+    economics:
+      status: "researched-unknown"
+      arrangements: []
+      notes: []
+    requirements:
+      status: "known"
+      legal_status: []
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The employee's employer must offer a giving or matching program and determine that the donation and recipient are eligible under its rules."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales: null
+      other_restrictions:
+        - "A donor using an employer's existing match process must submit the Every.org receipt and identify Every.org so the matching funds can be associated with the original nonprofit recommendation."
+        - "Automated matching through Teleskope is limited to participating employers using that platform; the official announcement does not establish universal employer availability or public pricing."
+      editorial_summary: "Employer participation and rules control eligibility; Every.org can process the gift and route received matching funds but does not promise or supply the employer match."
+    timing:
+      status: "researched-unknown"
+      setup_lead_time: null
+      campaign_duration: null
+      fulfillment_time: null
+      funds_available_time: null
+      payout_time: null
+      payout_schedules: []
+      notes: []
+    logistics:
+      status: "known"
+      notes:
+        - "For a conventional employer match, the donor submits an Every.org receipt and the employer sends matching funds to Every.org with identifying information. In Teleskope, the employee discovers and supports a nonprofit inside Teleskope while Every.org verifies the nonprofit, processes the gift, delivers funds, and issues the receipt; eligible employer matches may be triggered under company rules."
+    outcomes:
+      - "cash"
+    capabilities:
+      - "matching-gifts"
+      - "workplace-giving"
+    beneficiary_types:
+      - "local-nonprofit-or-charity"
+      - "national-nonprofit-or-charity"
+geography:
+  scope:
+    - "us-nationwide"
+    - "international"
+  countries:
+    - "US"
+  states: []
+  regions: []
+  notes: "The claimable database centers on eligible U.S. 501(c)(3) organizations. Non-U.S. charities require a qualifying U.S. entity, fiscal sponsor, or equivalency determination; payment and distribution methods vary."
+content:
+  summary: "Every.org is a nonprofit giving platform for eligible charities, supporting cash, mobile-wallet, stock, cryptocurrency, DAF, IRA, peer-to-peer, matching, and workplace gifts."
+  how_it_works: "An eligible nonprofit claims its profile and selects donation methods; supporters give to Every.org and recommend the nonprofit, and Every.org issues the receipt, processes or converts the gift, and disburses an aggregated grant."
+  best_for:
+    - "Eligible nonprofits seeking one donation surface for cash, mobile payments, stock, crypto, DAF, and IRA gifts without a platform subscription."
+    - "Nonprofits and supporters creating peer fundraisers or externally funded matching campaigns."
+  considerations:
+    - "Every.org is the legal recipient and retains discretion over distributions; recipient eligibility and disbursement setup matter."
+    - "Employer matching remains subject to each employer's rules, and automated Teleskope availability is not universal."
+    - "Payment-processing and disbursement fees vary even though Every.org charges no platform fee."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-10-14"
+  last_verified_at: "2026-10-14"
+  next_review_at: "2027-01-14"
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-10-14"
+  reviewed_by: "FRD landscape findings update"
+  verified_by: "FRD landscape findings update"
+  sources:
+    - id: "src_000163"
+      type: "official-program"
+      url: "https://www.every.org/nonprofits"
+      title: "Nonprofit Fundraising Platform Overview"
+      checked_at: "2026-10-14"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.nonprofit-giving-platform.summary"
+          status: "current"
+          notes: null
+        - path: "programs.nonprofit-giving-platform.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000164"
+      type: "terms-or-fees"
+      url: "https://www.every.org/pricing"
+      title: "Every.org Pricing"
+      checked_at: "2026-10-14"
+      status: "current"
+      supports:
+        - path: "economics"
+          status: "current"
+          notes: null
+        - path: "programs.nonprofit-giving-platform.timing"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000165"
+      type: "public-press-release"
+      url: "https://blog.every.org/every-org-launches-ira-giving-for-nonprofits-and-donors/"
+      title: "Every.org Simplifies IRA Giving for Nonprofits and Donors"
+      checked_at: "2026-10-14"
+      status: "current"
+      supports:
+        - path: "programs.nonprofit-giving-platform.summary"
+          status: "current"
+          notes: null
+        - path: "programs.nonprofit-giving-platform.requirements"
+          status: "current"
+          notes: "Age and contribution limits are dated 2026 and require future re-verification."
+        - path: "programs.nonprofit-giving-platform.logistics"
+          status: "current"
+          notes: null
+      notes: "The announcement calls IRA giving new in October 2026; FRD records the checked capability and date without making a broader launch-history claim."
+    - id: "src_000166"
+      type: "platform-documentation"
+      url: "https://support.every.org/hc/en-us/articles/39785326747283-How-do-I-add-a-matching-campaign"
+      title: "How Do I Add a Matching Campaign?"
+      checked_at: "2026-10-14"
+      status: "current"
+      supports:
+        - path: "programs.peer-to-peer-and-matching-campaigns.summary"
+          status: "current"
+          notes: null
+        - path: "programs.peer-to-peer-and-matching-campaigns.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.peer-to-peer-and-matching-campaigns.timing"
+          status: "current"
+          notes: null
+        - path: "programs.peer-to-peer-and-matching-campaigns.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000167"
+      type: "public-press-release"
+      url: "https://blog.every.org/every-org-partners-with-teleskope-to-enable-employee-giving-and-matching-programs/"
+      title: "Every.org Partners with Teleskope to Enable Employee Giving and Matching Programs"
+      checked_at: "2026-10-14"
+      status: "current"
+      supports:
+        - path: "programs.employee-giving-and-employer-matching.summary"
+          status: "current"
+          notes: null
+        - path: "programs.employee-giving-and-employer-matching.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.employee-giving-and-employer-matching.logistics"
+          status: "current"
+          notes: null
+      notes: "Documents the October 2026 Teleskope partnership; public pricing and participating-employer availability were not established."
+    - id: "src_000168"
+      type: "platform-documentation"
+      url: "https://support.every.org/hc/en-us/articles/1500005442421-How-do-I-get-my-donation-matched-by-my-company"
+      title: "How Do I Get My Donation Matched by My Company?"
+      checked_at: "2026-10-14"
+      status: "current"
+      supports:
+        - path: "programs.employee-giving-and-employer-matching.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.employee-giving-and-employer-matching.logistics"
+          status: "current"
+          notes: null
+      notes: null
+    - id: "src_000169"
+      type: "terms-or-fees"
+      url: "https://www.every.org/terms"
+      title: "Every.org Terms of Service"
+      checked_at: "2026-10-14"
+      status: "current"
+      supports:
+        - path: "programs.nonprofit-giving-platform.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.nonprofit-giving-platform.logistics"
+          status: "current"
+          notes: null
+      notes: null
+provenance:
+  discovered_via:
+    - "editorial-research"
+    - "web-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "none-found"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: "2026-10-14"
+  approved_destination_url: null
+  internal_notes: "No affiliate relationship was identified during this editorial update; this metadata is excluded from Finder scoring."
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false
