@@ -2,6 +2,7 @@
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import Analytics from "../components/Analytics.astro";
+import AnalyticsConsent from "../components/AnalyticsConsent.astro";
 import { SITE_ROUTES } from "../data/site";
 import "../styles/global.css";
 
@@ -71,5 +72,6 @@ const {
 
     <slot />
     <SiteFooter />
+    <AnalyticsConsent />
   </body>
 </html>

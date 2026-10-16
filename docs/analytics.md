@@ -5,21 +5,30 @@ integration. It is inactive by default.
 
 ## Configure GA4
 
-1. Set `PUBLIC_GA_MEASUREMENT_ID` to the real GA4 web-stream Measurement ID in
-   the deployment environment. The accepted format is `G-` followed by uppercase
-   letters or digits. Do not put a Google Tag Manager container ID here.
-2. Connect the site's consent-management UI or platform to the browser API:
-   `window.fdnAnalytics?.setConsent(true)` after analytics consent is granted and
-   `window.fdnAnalytics?.setConsent(false)` when it is denied or withdrawn.
+1. In Cloudflare, open **Workers & Pages → fundraisingdirectory-net → Settings →
+   Build → Build variables and secrets**. Add `PUBLIC_GA_MEASUREMENT_ID` as a
+   production build variable with the real GA4 web-stream Measurement ID. This
+   must be a build variable, not only a runtime variable under **Variables &
+   Secrets** or `wrangler.jsonc`, because Astro embeds it into static HTML during
+   `npm run build`. The accepted format is `G-` followed by uppercase letters or
+   digits. Do not put a Google Tag Manager container ID here.
+2. Confirm the Worker build command is `npm run build`, the deploy command is
+   `npx wrangler deploy`, and the production branch is `main`. Workers Builds
+   supplies `WORKERS_CI_BRANCH`; production builds fail when the Measurement ID
+   is missing or malformed. `ANALYTICS_REQUIRED=1` can enforce the same check in
+   another CI or local release workflow.
 3. Build and verify the site in the review environment before production release.
    Confirm that no request to `googletagmanager.com` occurs before consent and
    that GA4 DebugView receives the events listed below after consent.
 
 The consent choice is stored in `localStorage` under
 `fdn_analytics_consent`. The Google tag is injected only when both a valid
-Measurement ID and stored `granted` consent are present. Advertising storage,
-signals, and personalization are disabled. If the ID is missing or malformed,
-the integration remains a no-op.
+Measurement ID and stored `granted` consent are present. The first-party consent
+banner and footer preference control call the existing analytics consent API.
+Advertising storage, signals, and personalization are disabled. Withdrawing
+consent disables future tracking and removes accessible first-party GA cookies.
+Development and preview builds may omit the ID and remain inactive; production
+builds fail instead of silently deploying without analytics configuration.
 
 ## Event contract
 

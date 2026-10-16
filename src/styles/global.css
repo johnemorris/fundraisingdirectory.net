@@ -615,6 +615,28 @@ strong {
   color: inherit;
 }
 
+.footer-preferences {
+  margin-left: 0.5rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.28);
+  text-underline-offset: 0.18em;
+}
+
+.footer-preferences[hidden] {
+  display: none;
+}
+
+.footer-preferences:hover,
+.footer-preferences:focus-visible {
+  color: #fff;
+}
+
 .footer-disclaimer {
   max-width: 820px;
   margin: 0 0 24px;
