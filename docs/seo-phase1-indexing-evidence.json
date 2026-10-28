@@ -1,0 +1,396 @@
+{
+  "reviewedAt": "2026-10-28",
+  "scope": "All 22 provisional noindex topic URLs",
+  "availableEvidence": {
+    "aggregateSnapshot": {
+      "through": "2026-10-22",
+      "indexed": 5,
+      "notIndexed": 96,
+      "discoveredNotIndexed": 89,
+      "sitemapURLs": 94
+    },
+    "audit": "docs/seo-phase1-release-audit.md",
+    "urlLevelExports": [
+      {
+        "file": "/Users/mojo/Downloads/fundraisingdirectory.net-Coverage-Valid-2026-10-28.zip",
+        "sha256": "e05c044901f7872ec0ef201067a470594402846b1a6301a66d2eaf419e87842b",
+        "table": "Table.csv",
+        "rows": [
+          {
+            "URL": "https://fundraisingdirectory.net/",
+            "Last crawled": "2026-10-21"
+          },
+          {
+            "URL": "https://fundraisingdirectory.net/providers/",
+            "Last crawled": "2026-10-21"
+          },
+          {
+            "URL": "https://fundraisingdirectory.net/providers/fundraising-com/",
+            "Last crawled": "2026-10-17"
+          },
+          {
+            "URL": "https://fundraisingdirectory.net/Candy.html",
+            "Last crawled": "2026-10-02"
+          },
+          {
+            "URL": "https://fundraisingdirectory.net/providers/worlds-finest-chocolate/",
+            "Last crawled": "2026-09-21"
+          }
+        ]
+      },
+      {
+        "file": "/Users/mojo/Downloads/fundraisingdirectory.net-Performance-on-Search-2026-10-28.zip",
+        "sha256": "c2557a9164203fd9bafa5ca2590933f6415565913130dde500839dc7bf56bafb",
+        "table": "Pages.csv",
+        "rows": [
+          {
+            "Top pages": "https://fundraisingdirectory.net/",
+            "Clicks": "4",
+            "Impressions": "40",
+            "CTR": "10%",
+            "Position": "9.72"
+          },
+          {
+            "Top pages": "https://fundraisingdirectory.net/providers/",
+            "Clicks": "1",
+            "Impressions": "341",
+            "CTR": "0.29%",
+            "Position": "66.34"
+          },
+          {
+            "Top pages": "https://fundraisingdirectory.net/providers/fundraising-com/",
+            "Clicks": "1",
+            "Impressions": "10",
+            "CTR": "10%",
+            "Position": "12.1"
+          },
+          {
+            "Top pages": "https://fundraisingdirectory.net/providers/worlds-finest-chocolate/",
+            "Clicks": "1",
+            "Impressions": "5",
+            "CTR": "20%",
+            "Position": "5.6"
+          },
+          {
+            "Top pages": "https://fundraisingdirectory.net/Candy.html",
+            "Clicks": "0",
+            "Impressions": "12",
+            "CTR": "0%",
+            "Position": "5"
+          },
+          {
+            "Top pages": "http://www.fundraisingdirectory.net/",
+            "Clicks": "0",
+            "Impressions": "2",
+            "CTR": "0%",
+            "Position": "16.5"
+          },
+          {
+            "Top pages": "https://fundraisingdirectory.net/Fundraising-Resources.html",
+            "Clicks": "0",
+            "Impressions": "1",
+            "CTR": "0%",
+            "Position": "4"
+          },
+          {
+            "Top pages": "https://fundraisingdirectory.net/about/",
+            "Clicks": "0",
+            "Impressions": "1",
+            "CTR": "0%",
+            "Position": "4"
+          },
+          {
+            "Top pages": "https://fundraisingdirectory.net/contact/",
+            "Clicks": "0",
+            "Impressions": "1",
+            "CTR": "0%",
+            "Position": "4"
+          },
+          {
+            "Top pages": "https://fundraisingdirectory.net/for-providers/",
+            "Clicks": "0",
+            "Impressions": "1",
+            "CTR": "0%",
+            "Position": "4"
+          },
+          {
+            "Top pages": "https://fundraisingdirectory.net/ideas/",
+            "Clicks": "0",
+            "Impressions": "1",
+            "CTR": "0%",
+            "Position": "4"
+          }
+        ]
+      }
+    ],
+    "connectorAvailability": "No connected GSC/backlink plugin; reviewed the existing signed-in Search Console domain property in Chrome, read-only.",
+    "repositorySearch": "No backlink export in the project or Downloads. October 28 indexing and performance archives were located in Downloads and read directly.",
+    "linksReport": {
+      "id": "gsc-links-2026-10-28",
+      "source": "https://search.google.com/search-console/links?resource_id=sc-domain%3Afundraisingdirectory.net",
+      "property": "sc-domain:fundraisingdirectory.net",
+      "reviewedAt": "2026-10-28T14:27:23.200151+00:00",
+      "externalLinksTotalDisplayed": 0,
+      "topLinkedPages": "No data",
+      "topLinkingSites": "No data",
+      "topLinkingText": "No data",
+      "internalLinksTotalDisplayed": 12,
+      "screenshot": "/private/tmp/seo-phase1-gsc-links-20261028.png",
+      "limitation": "GSC Links is sampled and may omit non-indexed or deduplicated URLs; this is not proof of zero backlinks or historical authority.",
+      "documentation": "https://support.google.com/webmasters/answer/9049606?hl=en",
+      "screenshotSha256": "7c297bd917d4dc02043def40b8364eb9d806ff91f82941f4091c014738fd66ea"
+    }
+  },
+  "unknownIsNotZero": true,
+  "urls": [
+    {
+      "url": "https://fundraisingdirectory.net/Christian-Fundraising.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/Hockey-Fundraising.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/Lacrosse-Fundraising.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/Boy-Scout-Fundraising.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/FFA-Fundraising.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/Candles.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/Coupon-Book.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/Cookbooks.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/Fundraising-Consultants.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/Fundraising-Software.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/Educational-Resources.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/Girl-Scout-Fundraising.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/FBLA-Fundraising.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/FCCLA-Fundraising.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/Fire-Department-Fundraising.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/Field-Hockey-Fundraising.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/Gymnastics-Fundraising.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/Capital-Campaigns.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/Bottled-Water.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/Chocolate-Bars.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/Fruit.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    },
+    {
+      "url": "https://fundraisingdirectory.net/Eco-Friendly.html",
+      "searchConsoleIndexing": "absent-from-indexed-export",
+      "searchConsoleTraffic": "absent-from-performance-export",
+      "backlinks": "not-reported-in-gsc-links",
+      "observations": "Absent from the five indexed URLs and eleven performance URLs in the Oct 28 exports. Domain-wide Links report has no external target rows. No material exception identified in available evidence; neither export absence nor Links sampling establishes zero backlinks, impressions, or historical equity.",
+      "backlinkReviewSource": "gsc-links-2026-10-28",
+      "materialException": false,
+      "historicalAuthority": "unmeasured",
+      "disposition": "temporary-noindex-retain-route"
+    }
+  ],
+  "ownerDecision": {
+    "approvedAt": "2026-10-28",
+    "approvedBy": "Site owner, final release-preparation instructions",
+    "disposition": "Temporary noindex for all 22 incomplete topics; retain routes; no deletion or redirects.",
+    "condition": "Final backlink review; stop for material exceptions.",
+    "conditionReview": "GSC Links reviewed directly; no reported URL-specific backlink or authority exception found. Sampling limits retained; no zero-authority claim."
+  }
+}
