@@ -7,19 +7,23 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/validate-build-metadata.mjs",
+    "build": "astro build && node scripts/validate-build-metadata.mjs && node scripts/validate-topic-seo.mjs",
     "test": "node --test worker/*.test.js tests/*.test.js",
     "intake:validate": "node scripts/provider-intake.ts validate",
     "intake:review": "node scripts/provider-intake.ts review",
     "intake:publish": "node scripts/provider-intake.ts publish",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "seo:release-check": "node scripts/seo-release-gate.mjs",
+    "preview:worker": "wrangler dev --local --ip 127.0.0.1 --port 8789",
+    "validate:worker": "node scripts/validate-worker-preview.mjs"
   },
   "dependencies": {
     "astro": "^7.2.4",
     "js-yaml": "^4.3.2"
   },
   "devDependencies": {
-    "sass": "^1.104.0"
+    "sass": "^1.104.0",
+    "wrangler": "4.154.0"
   }
 }
