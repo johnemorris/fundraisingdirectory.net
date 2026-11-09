@@ -1,5 +1,6 @@
 ---
 import Brand from "./Brand.astro";
+import { getLegacyDiscoveryContext } from "../data/discovery";
 import { legacyRoutes } from "../data/legacyRoutes";
 import {
   PRIMARY_NAVIGATION,
@@ -8,25 +9,25 @@ import {
   SITE_ROUTES,
 } from "../data/site";
 
-// Astro static .html routes use directory output internally.
-const currentPath = Astro.url.pathname.replace(/\.html\/$/, ".html");
+const currentPath = Astro.url.pathname;
 const currentGroup = Astro.url.searchParams.get("group");
 const currentMethods = Astro.url.searchParams.getAll("method");
 const currentOrganization = PROVIDER_ORGANIZATION_NAVIGATION.find((item) => item.group === currentGroup);
 const currentMethod = PROVIDER_METHOD_NAVIGATION.find((item) => currentMethods.includes(item.method));
 const legacyRoute = legacyRoutes.find((route) => `/${route.path}.html` === currentPath);
-const currentProviderChildKey = currentOrganization?.key ?? (!currentGroup ? currentMethod?.key : undefined);
-const isProviderSection = currentPath.startsWith(SITE_ROUTES.directory);
+const legacyContext = legacyRoute ? getLegacyDiscoveryContext(legacyRoute) : null;
+const legacyOrganization = PROVIDER_ORGANIZATION_NAVIGATION.find((item) => item.group === legacyContext?.group);
+const currentProviderChildKey = currentOrganization?.key ?? (!currentGroup ? currentMethod?.key : undefined) ?? legacyOrganization?.key;
+const isProviderSection = currentPath.startsWith(SITE_ROUTES.directory) || Boolean(legacyContext?.group);
 const exactPrimary = PRIMARY_NAVIGATION.find((item) => item.href === currentPath);
 const currentTopKey = isProviderSection
   ? "providers"
   : exactPrimary?.key
     ? exactPrimary.key
-  : legacyRoute
+  : legacyRoute && (legacyRoute.type === "resource" || legacyRoute.type === "product")
     ? "ideas"
     : undefined;
-const providerParentIsPage = currentPath === SITE_ROUTES.directory && !currentProviderChildKey;
-const primaryCurrent = (key: string, href: string) => key !== currentTopKey ? undefined : currentPath === href ? "page" : "location";
+const providerParentIsPage = currentTopKey === "providers" && !currentProviderChildKey;
 ---
 
 <header class="site-header" data-site-header>
@@ -36,7 +37,7 @@ const primaryCurrent = (key: string, href: string) => key !== currentTopKey ? un
     <nav class="desktop-primary-nav" aria-label="Primary navigation">
       <div class:list={["provider-menu", { "is-current-section": currentTopKey === "providers" }]} data-provider-menu>
         <div class="provider-menu-parent">
-          <a class="site-nav-link provider-parent-link" href={SITE_ROUTES.directory} aria-current={providerParentIsPage ? "page" : currentTopKey === "providers" && !currentProviderChildKey ? "location" : undefined} aria-label={currentTopKey === "providers" && !providerParentIsPage ? "Fundraising Providers, current section" : undefined}>Fundraising Providers</a>
+          <a class="site-nav-link provider-parent-link" href={SITE_ROUTES.directory} aria-current={providerParentIsPage ? "page" : undefined} aria-label={currentTopKey === "providers" && !providerParentIsPage ? "Fundraising Providers, current section" : undefined}>Fundraising Providers</a>
           <button class="provider-menu-toggle" type="button" aria-expanded="false" aria-controls="provider-discovery-menu" aria-label="Open Fundraising Providers menu" data-provider-menu-toggle><span aria-hidden="true">⌄</span></button>
         </div>
 
@@ -64,7 +65,7 @@ const primaryCurrent = (key: string, href: string) => key !== currentTopKey ? un
       </div>
 
       {PRIMARY_NAVIGATION.map((item) => (
-        <a class="site-nav-link" href={item.href} aria-current={primaryCurrent(item.key, item.href)}>{item.label}</a>
+        <a class="site-nav-link" href={item.href} aria-current={item.key === currentTopKey ? "page" : undefined}>{item.label}</a>
       ))}
     </nav>
 
@@ -75,7 +76,7 @@ const primaryCurrent = (key: string, href: string) => key !== currentTopKey ? un
           <details class:list={["mobile-provider-disclosure", { "is-current-section": currentTopKey === "providers" }]} data-mobile-provider-menu>
             <summary aria-label={currentTopKey === "providers" ? "Fundraising Providers, current section" : undefined}>Fundraising Providers <span aria-hidden="true">⌄</span></summary>
             <div class="mobile-provider-links">
-              <a href={SITE_ROUTES.directory} aria-current={providerParentIsPage ? "page" : currentTopKey === "providers" && !currentProviderChildKey ? "location" : undefined}>All Fundraising Providers</a>
+              <a href={SITE_ROUTES.directory} aria-current={providerParentIsPage ? "page" : undefined}>All Fundraising Providers</a>
               <p>By organization</p>
               {PROVIDER_ORGANIZATION_NAVIGATION.map((item) => (
                 <a href={item.href} aria-current={item.key === currentProviderChildKey ? "page" : undefined} data-nav-group={item.group}>{item.label}</a>
@@ -88,7 +89,7 @@ const primaryCurrent = (key: string, href: string) => key !== currentTopKey ? un
           </details>
           <div class="mobile-top-links">
             {PRIMARY_NAVIGATION.map((item) => (
-              <a href={item.href} aria-current={primaryCurrent(item.key, item.href)}>{item.label}<span aria-hidden="true">→</span></a>
+              <a href={item.href} aria-current={item.key === currentTopKey ? "page" : undefined}>{item.label}<span aria-hidden="true">→</span></a>
             ))}
           </div>
         </nav>

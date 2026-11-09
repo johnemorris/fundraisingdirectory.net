@@ -9,27 +9,19 @@ import { providerOutboundRel } from "../../data/providerLinks";
 import { formatEconomicArrangement, RESEARCH_STATE_COPY } from "../../data/providerPresentation";
 import { semanticClass } from "../../data/semanticTaxonomy";
 import { getProviderVisual } from "../../data/visuals";
-import { legacyRoutes } from "../../data/legacyRoutes";
-import { topicPath } from "../../data/topics";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import "../../styles/providers.css";
-import RelatedTopics from "../../components/RelatedTopics.astro";
 
 export async function getStaticPaths() {
   const providers = (await getCollection("providers")).filter((provider) => !provider.data.meta.deleted);
-  const topics = await getCollection("topics");
   const providerOptions = providers
     .map(({ data }) => ({ name: data.identity.name, slug: data.identity.slug }))
     .sort((a, b) => a.name.localeCompare(b.name));
 
-  return providers.map((provider) => ({ params: { slug: provider.data.identity.slug }, props: {
-    provider,
-    providerOptions,
-    relatedTopics: topics.filter((topic) => topic.data.providers.some((reference) => reference.provider.id === provider.id)).map((topic) => legacyRoutes.find((route) => route.path === topic.data.legacyPath)!),
-  } }));
+  return providers.map((provider) => ({ params: { slug: provider.data.identity.slug }, props: { provider, providerOptions } }));
 }
 
-const { provider, providerOptions, relatedTopics } = Astro.props;
+const { provider, providerOptions } = Astro.props;
 const { identity, classification, programs, geography, content, status, verification, affiliation } = provider.data;
 const visual = getProviderVisual(identity.slug);
 const hasVisual = Boolean(visual);
@@ -194,8 +186,6 @@ const sharedEconomicsRows = provider.data.economics?.status === "known"
         {content.considerations.length > 0 && <div><p class="eyebrow eyebrow-purple">Before you choose</p><h2>Requirements &amp; considerations</h2><ul class="clean-list">{content.considerations.map((item) => <li>{item}</li>)}</ul></div>}
         <div><p class="eyebrow">Availability</p><h2>Where it operates</h2><p>{availabilitySummary}</p>{geography.notes && <p class="muted-copy">{geography.notes}</p>}</div>
       </section>
-
-      {relatedTopics.length > 0 && <RelatedTopics title="Related fundraising guides" items={relatedTopics.map((route) => ({ title: route.title, href: topicPath(route.path) }))} />}
 
       <ProviderBottomCta
         providerName={identity.name}
