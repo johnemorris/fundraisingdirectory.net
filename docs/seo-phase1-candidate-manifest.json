@@ -1,9 +1,9 @@
 {
-  "branch": "codex/seo-phase1",
+  "branch": "codex/seo-phase1-lockfile-repair",
   "baselineCommit": "e5e619fdb34a00e38e4372b327bf9ecfe5031a13",
   "committed": true,
   "candidateCommit": "Commit containing this manifest; resolve with git log -1 --format=%H -- docs/seo-phase1-candidate-manifest.json",
-  "sourceFingerprint": "a6280e7fd27a5e0d898287188cc4dbf77e1c719b8d13162538c0fd3f80efa9c7",
+  "sourceFingerprint": "5a9b92cc0a7988b02ce1116ffe4045b279fad9da7568165eec3a89a020ae4938",
   "fingerprintScope": "Sorted changed source paths and SHA-256 hashes, excluding the release report and this manifest.",
   "sourceFiles": {
     ".gitignore": "9a32fcb0746e1c2149ef13fc0ea49204bdee458c994e2bdb3748ff6f63341c55",
@@ -11,8 +11,9 @@
     "astro.config.mjs": "dfa6d38065e56d4c5eef4cf663e41e066a190a9b8b6800a703b8c6a53397d3c9",
     "docs/indexing-review.md": "a721bd55a0f5b6a3624f29170d27428ba11d276aaca58447346d4e8aaeab0af7",
     "docs/seo-phase1-indexing-evidence.json": "7b6ebeaaa02ac883e894110e391b38285514e0e9c3b8a15b3bfe5a6419cc48ad",
+    "docs/seo-phase1-lockfile-repair.md": "e13f8d09d721d883a245e7d34f02d3d1b085436edbb26e57860e40751b9f03c1",
     "docs/seo-phase1-release-audit.md": "4c17fc3eed638456aea60f69e403850d972d3b1e28c06ac9b6069233189b0fc4",
-    "package-lock.json": "c91fd1cfb4044ecaabce9e35f197a37693bd3e583644d3e102fd5c72344a8eea",
+    "package-lock.json": "3023ee53273283ab5d10750b10cecacf50d38d95320dde46265a49ca7178e008",
     "package.json": "fea9ed074125533340439ed0863eafa45499d3a14daa90340aa7cd8c60ce5539",
     "scripts/seo-release-gate.mjs": "bf6e94e8ebcb8e32c32d4d142f962a8071037b5d6f94be5e9ba90589cfc67e4a",
     "scripts/validate-topic-seo.mjs": "edf6cea40ba94d380cd2fe1094c210a3477d7075b63118e977b3c476f0d68126",
@@ -57,5 +58,6 @@
     "src/lib/analytics.ts",
     "tests/analytics.test.js"
   ],
-  "productionDecision": "CONDITIONAL GO: validated isolated candidate; final owner production approval required; GSC sampling limits and inherited dependency findings recorded."
+  "productionDecision": "NO-GO for deployment until replacement approval and Linux CI validation; local clean install/build/tests/routing pass.",
+  "repairParentCommit": "119f0f6ab8f26451ddd02739b4411bc4057f9981"
 }
