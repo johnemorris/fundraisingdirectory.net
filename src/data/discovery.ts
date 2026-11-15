@@ -1,3 +1,4 @@
+import { isTopicIndexable } from "./topicPublication.js";
 import { formatProviderLabel } from "./providerLabels";
 
 export type DiscoveryTone = "teal" | "blue" | "purple" | "navy" | "warm";
@@ -50,10 +51,8 @@ const LEGACY_PRODUCTS: Record<string, string> = {
   "Gift-Wrap": "gifts-seasonal",
   "Coupon-Book": "discount-cards-coupon-books",
   "Discount-Card": "discount-cards-coupon-books",
-  Cookbooks: "books-educational",
   "Chocolate-Bars": "candy-chocolate",
   "Fundraising-Consultants": "fundraising-consulting",
-  "Fundraising-Software": "crowdfunding-platform",
 };
 
 export function getLegacyDiscoveryContext(route: { path: string; title: string; description: string; type: string }) {
@@ -81,7 +80,6 @@ export function getLegacyDiscoveryContext(route: { path: string; title: string; 
   };
 }
 
-export function isLegacySitemapEligible(route: { path: string; title: string; description: string; type: string }) {
-  const context = getLegacyDiscoveryContext(route);
-  return Boolean(context.group || context.method || context.product);
+export function isLegacySitemapEligible(route: { path: string }) {
+  return route.path === "Fundraising-Resources" || route.path === "Fundraising-Articles" || isTopicIndexable(route.path);
 }

@@ -1,42 +1,57 @@
 ---
-import InformationPage from "../components/InformationPage.astro";
+import { getCollection } from "astro:content";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import DiscoveryHero from "../components/DiscoveryHero.astro";
 import SiteLayout from "../layouts/SiteLayout.astro";
 import { SITE_ROUTES } from "../data/site";
-import "../styles/information.css";
+import { getTopicCategory, TOPIC_CATEGORIES, topicPath, topicRoutes } from "../data/topics";
+import "../styles/historical.css";
+import TopicLinkList from "../components/TopicLinkList.astro";
+import { topicPublication, validateTopicPublication } from "../data/topicPublication.js";
+
+const topics = await getCollection("topics");
+validateTopicPublication(topics, topicRoutes);
+const groups = TOPIC_CATEGORIES.map((category) => ({
+  title: category,
+  routes: topicRoutes.filter((route) => getTopicCategory(route) === category).sort((a, b) => a.title.localeCompare(b.title)),
+})).filter((group) => group.routes.length > 0);
 ---
 
 <SiteLayout
   title="Fundraising Ideas | FundraisingDirectory.net"
-  description="Explore fundraising ideas by approach and group, then compare relevant providers and practical guides."
+  description="Browse every fundraising topic by category: schools, sports, youth clubs, churches, products, and planning. Compare practical guides and provider options."
 >
-  <InformationPage
-    eyebrow="Fundraising ideas"
-    breadcrumbLabel="Fundraising Ideas"
-    title="Find a fundraising approach that fits."
-    intro="Start with the way you want to raise money or the kind of group you support. These paths lead to current provider research and practical guidance."
-  >
-    <section>
-      <h2>Explore by approach</h2>
-      <div>
-        <p>Compare product sales, online fundraising, events, direct donations, and other established approaches.</p>
-        <a class="information-link" href={SITE_ROUTES.directory}>Browse all fundraising approaches →</a>
-      </div>
+  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Fundraising Ideas" }]} />
+  <main class="historical-shell">
+    <DiscoveryHero eyebrow="Fundraising ideas" title="Find a fundraising approach that fits." description="Browse every topic by group or product. Planning guides explain choices, costs, and workload. Topics still being researched are marked as incomplete." tone="teal" visualLabel="Explore the possibilities" visualKey="guides" compact>
+      <a class="button button-primary" href={SITE_ROUTES.finder}>Find an approach for your group <span aria-hidden="true">→</span></a>
+      <a class="text-link" href={SITE_ROUTES.directory}>Compare providers</a>
+    </DiscoveryHero>
+    <nav class="topic-category-nav" aria-label="Fundraising idea categories">
+      {groups.map((group, index) => <a href={`#category-${index}`}>{group.title}</a>)}
+    </nav>
+    {groups.map((group, index) => (
+      <section class="topic-section" aria-labelledby={`category-${index}`}>
+        <h2 id={`category-${index}`}>{group.title}</h2>
+        <TopicLinkList links={group.routes.map((route) => ({ title: route.title, href: topicPath(route.path), label: topicPublication[route.path].publication === "guide" ? "Planning guide" : "Incomplete guide", description: topicPublication[route.path].publication === "guide" ? route.description : "Planning guidance is still being researched. Review the available resources and broader alternatives." }))} />
+      </section>
+    ))}
+    <section class="historical-context">
+      <div><p class="eyebrow">Before you choose</p><h2>Compare proceeds, timing, and volunteer work.</h2></div>
+      <p>Start with your goal and payment deadline. Check current provider terms, who handles orders or donations, and what remains after costs. A smaller campaign your group can manage well may be a better fit.</p>
+      <a href={SITE_ROUTES.resources}>Explore fundraising resources <span aria-hidden="true">→</span></a>
     </section>
-
-    <section>
-      <h2>Explore by group</h2>
-      <div>
-        <p>Find provider options for schools and PTOs, sports teams, churches, nonprofits, and community groups.</p>
-        <a class="information-link" href={SITE_ROUTES.schools}>Start with school fundraising →</a>
-      </div>
-    </section>
-
-    <section>
-      <h2>Use practical resources</h2>
-      <div>
-        <p>Review available guides and research tools before choosing a program or contacting a provider.</p>
-        <a class="information-link" href={SITE_ROUTES.resources}>Open Fundraising Resources →</a>
-      </div>
-    </section>
-  </InformationPage>
+  </main>
 </SiteLayout>
+
+<style lang="scss">
+  .topic-category-nav {
+    display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 20px 0;
+    a { display: inline-flex; align-items: center; min-height: 44px; color: var(--teal-dark); text-underline-offset: 4px; }
+  }
+  .topic-section {
+    padding: 24px 0; border-bottom: 1px solid var(--border);
+    h2 { margin: 0 0 16px; scroll-margin-top: 120px; color: var(--ink); font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.2; letter-spacing: -.025em; }
+  }
+  @media (max-width: 680px) { .topic-category-nav { gap: 0 20px; } }
+</style>
