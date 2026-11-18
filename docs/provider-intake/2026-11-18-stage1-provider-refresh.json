@@ -1,0 +1,1287 @@
+[
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "Fundraise Up",
+      "slug": "fundraise-up",
+      "legal_name": "Fundraise Up Inc.",
+      "aliases": [],
+      "website": "https://fundraiseup.com/",
+      "fundraising_url": "https://fundraiseup.com/pricing/",
+      "logo": null
+    },
+    "classification": {
+      "methods": [
+        "direct-donations",
+        "crowdfunding",
+        "peer-to-peer",
+        "events-activities",
+        "giving-matching"
+      ],
+      "products_services": [
+        "donation-platform",
+        "crowdfunding-platform",
+        "peer-to-peer-platform",
+        "event-fundraising-platform",
+        "text-mobile-giving"
+      ],
+      "organizations": [
+        "schools",
+        "sports-athletics",
+        "churches-faith",
+        "nonprofits-charities",
+        "youth-organizations",
+        "clubs-community",
+        "arts-music-performance",
+        "animal-rescue"
+      ],
+      "outcomes": [
+        "cash"
+      ],
+      "capabilities": [
+        "donation-forms",
+        "recurring-giving",
+        "crowdfunding-pages",
+        "peer-to-peer-pages",
+        "participant-pages",
+        "leaderboards",
+        "qr-giving",
+        "tap-to-pay",
+        "digital-wallets",
+        "matching-gifts",
+        "reporting-analytics"
+      ],
+      "beneficiary_types": [
+        "own-organization",
+        "own-project-or-program",
+        "local-nonprofit-or-charity",
+        "national-nonprofit-or-charity",
+        "community-cause"
+      ],
+      "cause_areas": [
+        "animals-pets",
+        "children-families",
+        "education-literacy",
+        "hunger-food-security",
+        "disaster-emergency-relief",
+        "environment-conservation",
+        "faith-missions"
+      ]
+    },
+    "economics": {
+      "status": "known",
+      "arrangements": [
+        {
+          "type": "upfront-cost",
+          "value": {
+            "kind": "amount",
+            "amount": 0,
+            "currency": "USD"
+          },
+          "basis": "Platform onboarding, setup, and subscription access",
+          "conditions": [],
+          "caveats": [
+            "No setup fees, fixed subscriptions, or mandatory long-term contracts are required under the standard usage-based model; fixed-term agreements apply only when specified in a separate Order Form"
+          ]
+        },
+        {
+          "type": "platform-fee",
+          "value": {
+            "kind": "variable",
+            "description": "Usage-based transaction fee governed by the organization's Order Form, written agreement, or platform fee schedule; averages approximately 1% effective cost after supporter fee coverage"
+          },
+          "basis": "Each completed online or in-person donation processed through Fundraise Up",
+          "conditions": [],
+          "caveats": [
+            "The ~1% figure is an average effective cost after optional supporter fee coverage (Adaptive, Preselected, Opt-in, Mandatory, or Disabled modes) and is not a contracted or guaranteed rate"
+          ]
+        },
+        {
+          "type": "processing-fee",
+          "value": {
+            "kind": "variable",
+            "description": "Connected payment processor fees (such as Stripe or PayPal) apply separately; in-person app donations are charged at the organization's Stripe Terminal rate on the initial transaction"
+          },
+          "basis": "Payment method, currency, and online versus in-person terminal processing",
+          "conditions": [],
+          "caveats": [
+            "The Stripe nonprofit discount applies to online card payments and subsequent recurring installments, not initial in-person Terminal transactions"
+          ]
+        }
+      ],
+      "notes": [
+        "Transaction fees do not include applicable federal, state, local, or foreign taxes, which remain the customer's responsibility under the Terms of Service."
+      ]
+    },
+    "programs": [
+      {
+        "name": "Online Giving Checkout, Campaign Pages, and Gift Cart",
+        "slug": "online-giving-and-gift-cart",
+        "url": "https://fundraiseup.com/docs/gift-cart/",
+        "method": "direct-donations",
+        "products_services": [
+          "donation-platform",
+          "crowdfunding-platform"
+        ],
+        "channels": [
+          "online"
+        ],
+        "online_ordering": null,
+        "fulfillment": [
+          "digital",
+          "not-applicable"
+        ],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "ease_to_raise": null,
+        "summary": "Nonprofits embed conversion-optimized Checkout modals, hosted Campaign Pages, Elements, and the Gift Cart multi-program giving catalog on their websites to accept one-time and recurring donations, tributes, and employer-matched gifts.",
+        "availability_state": "generally-available",
+        "feature_availability": [
+          {
+            "feature": "Gift Cart multi-program catalog (up to 50 items per checkout)",
+            "status": "generally-available",
+            "notes": "Generally available; November 2026 updates added per-gift custom field values (via Dashboard or CSV), embedded translatable FAQ blocks, and dedicated full-page Dashboard gift and sponsorship editing."
+          },
+          {
+            "feature": "Donor Portal and Campaign Page integrated cookie banner",
+            "status": "generally-available",
+            "notes": "Automatically displays in jurisdictions requiring cookie consent (such as the EU, UK, Switzerland, California, and Quebec), restricting Donor Portal to strictly necessary cookies until answered and remembering choices for 400 days."
+          }
+        ],
+        "economics_mode": "inherit-provider",
+        "requirements": {
+          "status": "known",
+          "legal_status": [
+            "nonprofit",
+            "tax-exempt"
+          ],
+          "age_range": {
+            "minimum": 18
+          },
+          "grade_range": null,
+          "participation_requirements": [
+            "The organization must register for a Fundraise Up account, connect a supported payment processor such as Stripe or PayPal, and install the Fundraise Up script or use hosted Campaign Pages.",
+            "Organizations accepting donations from EU, EEA, or UK supporters through an embedded Checkout Modal must implement a compliant cookie banner on their own website that loads before Fundraise Up's script."
+          ],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": [
+            "End users must be at least 18 years old and authorized to bind the customer entity.",
+            "Gift Cart is designed for charitable program designations, symbolic gifts, and sponsorships rather than physical retail merchandise fulfillment."
+          ],
+          "editorial_summary": "Built for nonprofit and tax-exempt organizations with a connected payment processor; website cookie-banner obligations depend on whether checkout is embedded or hosted."
+        },
+        "timing": {
+          "status": "researched-unknown",
+          "setup_lead_time": null,
+          "campaign_duration": null,
+          "fulfillment_time": null,
+          "funds_available_time": null,
+          "payout_time": null,
+          "payout_schedules": [],
+          "notes": []
+        },
+        "logistics": {
+          "status": "known",
+          "notes": [
+            "Gift Cart embeds a searchable, filterable catalog directly on the nonprofit's website where supporters can add up to 50 gifts with separate amounts, frequencies, and dedications in one checkout, or use Give now for single-gift checkout.",
+            "Each gift in Gift Cart can carry its own custom field values (such as appeal or fund codes) via Dashboard or CSV upload, falling back to catalog-level values when unset, and catalogs can include a translatable FAQ block below the gifts.",
+            "Tribute giving supports In Honor and In Memory dedications with separate customizable e-cards or organization-fulfilled postal mail notifications, plus Donor Portal self-service.",
+            "Checkout supports general or channel-specific marketing consent (including location-detected UK and France checkout opt-out flows) and integrated cookie-consent banners on Campaign Pages and Donor Portal."
+          ]
+        },
+        "outcomes": [
+          "cash"
+        ],
+        "capabilities": [
+          "donation-forms",
+          "recurring-giving",
+          "crowdfunding-pages",
+          "digital-wallets",
+          "matching-gifts",
+          "reporting-analytics"
+        ],
+        "beneficiary_types": [
+          "own-organization",
+          "own-project-or-program"
+        ]
+      },
+      {
+        "name": "DIY Peer-to-Peer Fundraising",
+        "slug": "diy-peer-to-peer-fundraising",
+        "url": "https://fundraiseup.com/features/peer-to-peer-fundraising/",
+        "method": "peer-to-peer",
+        "products_services": [
+          "peer-to-peer-platform",
+          "donation-platform"
+        ],
+        "channels": [
+          "online"
+        ],
+        "online_ordering": null,
+        "fulfillment": [
+          "digital",
+          "not-applicable"
+        ],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "ease_to_raise": null,
+        "summary": "Supporters create individual or team fundraising pages on a nonprofit's behalf—including In Memory, In Honor, custom occasion, and organization-represented campaigns—with automated tribute dedication tracking, optional AI Coach assistance in early access, and embedded galleries and leaderboards.",
+        "availability_state": "early-access",
+        "feature_availability": [
+          {
+            "feature": "DIY Peer-to-Peer fundraising",
+            "status": "early-access",
+            "notes": "Available in early access as a live working product; participants run at least one real campaign and share structured feedback with no contract or extra fee."
+          },
+          {
+            "feature": "AI Coach for individual P2P fundraisers",
+            "status": "early-access",
+            "notes": "Available in early access at no additional charge for nonprofits using DIY P2P; defaults to off on new campaigns and must be enabled on the organization's account by its Customer Success Manager before campaign activation."
+          },
+          {
+            "feature": "P2P tribute tracking, fundraiser marketing consent, and organization-on-behalf-of pages",
+            "status": "generally-available",
+            "notes": "Generally available within P2P campaigns as of November 2026."
+          },
+          {
+            "feature": "P2P Events (walks, runs, and rides)",
+            "status": "announced",
+            "notes": "Announced as in discovery with future early access planned for select organizations; not yet generally available."
+          }
+        ],
+        "economics_mode": "inherit-provider",
+        "requirements": {
+          "status": "known",
+          "legal_status": [
+            "nonprofit",
+            "tax-exempt"
+          ],
+          "age_range": {
+            "minimum": 18
+          },
+          "grade_range": null,
+          "participation_requirements": [
+            "The nonprofit must have peer-to-peer fundraising enabled on its Fundraise Up account; Early Access participation requires running at least one live campaign and providing structured feedback.",
+            "To enable AI Coach on a P2P campaign, the organization's Customer Success Manager must first add AI Coach to the account, after which the organization can toggle it on per campaign."
+          ],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": [
+            "AI Coach assists individual P2P fundraisers and does not independently publish content, change fundraising pages, or send messages without the fundraiser's review and approval.",
+            "On In Memory fundraiser pages, checkout opens with the tribute dedication preselected and the honoree's name locked unless the donor removes the dedication; on In Honor pages, donors can edit the honoree name.",
+            "Customers are solely responsible for reviewing, verifying, and approving any AI-generated content under Fundraise Up's Terms of Service."
+          ],
+          "editorial_summary": "DIY Peer-to-Peer and AI Coach are offered in Early Access at no extra platform fee, requiring account enablement; P2P walks, runs, and rides remain announced rather than live."
+        },
+        "timing": {
+          "status": "known",
+          "setup_lead_time": null,
+          "campaign_duration": {
+            "open_ended": true
+          },
+          "fulfillment_time": null,
+          "funds_available_time": null,
+          "payout_time": null,
+          "payout_schedules": [],
+          "notes": [
+            "Campaign target dates are informational and pages continue accepting donations after a target date or goal is reached. AI Coach provides proactive email check-ins during the first 48 hours after page creation if no outside donation has arrived."
+          ]
+        },
+        "logistics": {
+          "status": "known",
+          "notes": [
+            "In campaigns that allow tributes, donations on In Memory and In Honor P2P pages automatically prefill the dedication and honoree name at checkout and record as tributes in Dashboard exports and CRM integrations.",
+            "AI Coach lives on individual P2P pages to help fundraisers draft stories, titles, outreach messages, and next steps; fundraisers can turn AI Coach off in page settings or pause proactive prompts for 7 days.",
+            "P2P sign-up supports optional fundraiser marketing-consent checkboxes (globally or restricted to regions requiring explicit consent), optional or required fundraiser mailing addresses, and fundraising on behalf of a named company, school, church, or club.",
+            "Administrators can lock campaign-wide goals and target dates, allow fundraisers to select their display currency before the first donation, and hand a team page over to another team member as admin from the Dashboard."
+          ]
+        },
+        "outcomes": [
+          "cash"
+        ],
+        "capabilities": [
+          "peer-to-peer-pages",
+          "participant-pages",
+          "leaderboards",
+          "qr-giving",
+          "digital-wallets",
+          "matching-gifts",
+          "reporting-analytics"
+        ],
+        "beneficiary_types": [
+          "own-organization",
+          "own-project-or-program",
+          "local-nonprofit-or-charity",
+          "national-nonprofit-or-charity"
+        ]
+      },
+      {
+        "name": "In-Person Giving (Tap to Donate & Giving Station)",
+        "slug": "in-person-giving",
+        "url": "https://fundraiseup.com/docs/mobile-app/",
+        "method": "direct-donations",
+        "products_services": [
+          "donation-platform",
+          "event-fundraising-platform",
+          "text-mobile-giving"
+        ],
+        "channels": [
+          "in-person",
+          "hybrid"
+        ],
+        "online_ordering": null,
+        "fulfillment": [
+          "on-site",
+          "not-applicable"
+        ],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "varies",
+        "ease_to_raise": null,
+        "summary": "Organizations in the United States, Canada, and the United Kingdom use the Fundraise Up mobile app on compatible phones or tablets to collect contactless in-person donations via staffed Tap to Donate or self-serve Giving Station kiosks.",
+        "availability_state": "generally-available",
+        "geographic_restriction": {
+          "countries": [
+            "US",
+            "CA",
+            "GB"
+          ],
+          "location_participation_required": false,
+          "notes": "Available only to organizations based in the United States (USD), Canada (CAD), or the United Kingdom (GBP), and the in-person event must take place in the same country as the organization."
+        },
+        "feature_availability": [
+          {
+            "feature": "Tap to Donate and Giving Station in the United Kingdom (GBP with on-screen Gift Aid)",
+            "status": "generally-available",
+            "countries": [
+              "GB"
+            ],
+            "notes": "Launched in November 2026 for UK-registered organizations collecting GBP; captures supporter Gift Aid declarations and mailing addresses in the app while the charity still submits claims to HMRC."
+          },
+          {
+            "feature": "Hide supporter personal details from in-person staff and volunteers",
+            "status": "generally-available",
+            "countries": [
+              "US",
+              "CA",
+              "GB"
+            ],
+            "notes": "Added November 16, 2026; masks saved supporter names, emails, and phone numbers for In-Person Giving Specialists, logs changes in the Audit log, and blocks screenshots and screen recording on personal-detail screens."
+          }
+        ],
+        "economics_mode": "inherit-provider",
+        "requirements": {
+          "status": "known",
+          "legal_status": [
+            "nonprofit",
+            "registered-nonprofit",
+            "tax-exempt"
+          ],
+          "age_range": {
+            "minimum": 18
+          },
+          "grade_range": null,
+          "participation_requirements": [
+            "The organization must be an existing Fundraise Up customer based in the United States, Canada, or the United Kingdom with a connected Stripe account and matching domestic campaign currency (USD, CAD, or GBP).",
+            "The event must take place in the same country as the organization, with an active internet connection and a separate Fundraise Up user account for each person collecting donations.",
+            "Compatible hardware is required: NFC-capable iPhone (iPhone XS or newer on iOS 18.7+) or supported Android phone (Android 13+ with NFC), or a tablet (10 inches or larger recommended for Giving Station; iPads and non-NFC tablets require an external Stripe card reader such as Stripe Reader M2 in the US or BBPOS WisePad 3 in Canada and the UK)."
+          ],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": [
+            "Only an Organization Administrator can enable In-Person Giving on the account.",
+            "On iPhone, Apple blocks Tap to Pay for the remainder of the day if a single iPhone is used with more than three organizations within 24 hours.",
+            "In Canada and the UK, an external card reader with a keypad/chip slot (BBPOS WisePad 3) is recommended for donations above 100 CAD or 100 GBP, and Canadian contactless taps cannot complete donations above 250 CAD."
+          ],
+          "editorial_summary": "Restricted to US, Canadian, and UK organizations operating domestic events in local currency with Stripe Terminal hardware or supported NFC devices."
+        },
+        "timing": {
+          "status": "researched-unknown",
+          "setup_lead_time": null,
+          "campaign_duration": null,
+          "fulfillment_time": null,
+          "funds_available_time": null,
+          "payout_time": null,
+          "payout_schedules": [],
+          "notes": []
+        },
+        "logistics": {
+          "status": "known",
+          "notes": [
+            "Tap to Donate runs on phones or tablets held by staff or volunteers; Giving Station locks a tablet (8+ inches required, 10+ inches recommended) to a self-serve donation screen with a 4-digit PIN.",
+            "In the UK, the app runs in UK English, lists GBP campaigns, collects supporter name and email before payment for UK receipting, and can capture on-screen Gift Aid declarations and mailing addresses; the charity remains responsible for submitting Gift Aid claims to HMRC.",
+            "Administrators can assign In-Person Giving Specialists to specific Tap to Donate or Giving Station campaigns and optionally mask saved supporter names, email addresses, and phone numbers in the app.",
+            "The app blocks screenshots and screen recording on screens showing supporter personal details, encrypts card data directly to Stripe without storing card numbers on the device, and syncs all gifts and post-payment questions to the Dashboard, exports, and CRM integrations."
+          ]
+        },
+        "outcomes": [
+          "cash"
+        ],
+        "capabilities": [
+          "tap-to-pay",
+          "qr-giving",
+          "recurring-giving",
+          "digital-wallets",
+          "reporting-analytics"
+        ],
+        "beneficiary_types": [
+          "own-organization",
+          "own-project-or-program"
+        ]
+      }
+    ],
+    "geography": {
+      "scope": [
+        "us-nationwide",
+        "canada",
+        "international"
+      ],
+      "countries": [
+        "US",
+        "CA",
+        "GB"
+      ],
+      "states": [],
+      "regions": [],
+      "notes": "Online giving supports 25+ languages, multiple currencies, and international payment methods (including ACH, Bacs, SEPA, BECS, PAD, cards, wallets, DAFpay, and crypto), while the In-Person Giving mobile app is restricted to domestic events for organizations based in the United States (USD), Canada (CAD), and the United Kingdom (GBP)."
+    },
+    "content": {
+      "summary": "Fundraise Up is a donor-experience and fundraising platform for nonprofits offering AI-optimized online checkout, multi-item Gift Cart catalogs, Early Access DIY peer-to-peer fundraising with AI Coach, and in-person giving in the US, Canada, and the UK.",
+      "how_it_works": "An eligible nonprofit connects Stripe or PayPal, embeds Fundraise Up Checkout, Elements, or Gift Cart on its website or launches hosted Campaign Pages, P2P campaigns, or mobile In-Person Giving, and manages donations, tributes, privacy consent, and CRM syncs from one Dashboard.",
+      "best_for": [
+        "Nonprofits seeking conversion-optimized online checkout, recurring giving, or an embedded multi-program Gift Cart catalog without fixed subscription contracts.",
+        "Organizations running supporter-driven peer-to-peer campaigns or collecting contactless in-person donations in the US, Canada, or the UK."
+      ],
+      "considerations": [
+        "DIY Peer-to-Peer fundraising and the AI Coach companion are in Early Access (requiring Customer Success Manager enablement for AI Coach), and P2P walk/run/ride events are announced rather than generally available.",
+        "The ~1% effective platform cost is an average after optional donor fee coverage rather than a guaranteed flat rate, and processor or Stripe Terminal fees apply separately.",
+        "In-Person Giving is limited to organizations and events in the US, Canada, and the UK, and embedded Checkout Modal users serving European or UK donors must supply their own pre-loading website cookie banner."
+      ]
+    },
+    "publication": {
+      "lifecycle": "active",
+      "next_review_at": "2027-02-18",
+      "inactive_since": null,
+      "inactive_reason": null
+    },
+    "sources": [
+      {
+        "url": "https://fundraiseup.com/pricing/",
+        "source_type": "terms-or-fees",
+        "title": "Nonprofit Fundraising Pricing | Fundraise Up",
+        "supports": [
+          "identity",
+          "economics",
+          "programs.online-giving-and-gift-cart.summary"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Establishes usage-based pricing with $0 upfront, no setup or fixed subscription fees, and the ~1% average effective cost caveat."
+      },
+      {
+        "url": "https://fundraiseup.com/docs/transaction-costs/",
+        "source_type": "platform-documentation",
+        "title": "Transaction Costs: Coverage Modes and Fee Details | Fundraise Up Documentation",
+        "supports": [
+          "economics",
+          "programs.online-giving-and-gift-cart.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Documents the five supporter cost-coverage modes (Adaptive, Preselected, Opt-in, Mandatory, and Disabled) and separate Stripe/PayPal processing fees."
+      },
+      {
+        "url": "https://fundraiseup.com/terms/",
+        "source_type": "terms-or-fees",
+        "title": "Terms of service | Fundraise Up",
+        "supports": [
+          "identity",
+          "economics",
+          "programs.online-giving-and-gift-cart.requirements",
+          "programs.diy-peer-to-peer-fundraising.requirements"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Last updated September 16, 2026; establishes age 18+ eligibility, billing priority (Order Form, written agreement, or platform schedule), tax responsibility, and customer responsibility for reviewing AI-generated content."
+      },
+      {
+        "url": "https://fundraiseup.com/blog/introducing-ai-coach/",
+        "source_type": "public-press-release",
+        "title": "Introducing AI Coach: No P2P fundraiser goes it alone. | Fundraise Up Blog",
+        "supports": [
+          "programs.diy-peer-to-peer-fundraising.summary",
+          "programs.diy-peer-to-peer-fundraising.availability_state",
+          "programs.diy-peer-to-peer-fundraising.feature_availability",
+          "programs.diy-peer-to-peer-fundraising.requirements",
+          "programs.diy-peer-to-peer-fundraising.timing",
+          "programs.diy-peer-to-peer-fundraising.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Published November 11, 2026; verifies AI Coach early-access availability for DIY P2P users at no extra charge, default-off behavior, Customer Success Manager account enablement requirement, 48-hour check-ins, and fundraiser opt-out controls."
+      },
+      {
+        "url": "https://fundraiseup.com/features/peer-to-peer-fundraising/",
+        "source_type": "official-program",
+        "title": "Peer-to-Peer Fundraising Early Access | Fundraise Up",
+        "supports": [
+          "classification",
+          "programs.diy-peer-to-peer-fundraising.summary",
+          "programs.diy-peer-to-peer-fundraising.availability_state",
+          "programs.diy-peer-to-peer-fundraising.feature_availability",
+          "programs.diy-peer-to-peer-fundraising.requirements"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Confirms DIY P2P is in Early Access (requiring at least one real campaign and structured feedback) while P2P Events (walks, runs, rides) are in discovery and announced for future early access."
+      },
+      {
+        "url": "https://fundraiseup.com/docs/set-up-p2p-campaign/",
+        "source_type": "platform-documentation",
+        "title": "Set up a P2P campaign | Fundraise Up Documentation",
+        "supports": [
+          "programs.diy-peer-to-peer-fundraising.requirements",
+          "programs.diy-peer-to-peer-fundraising.timing",
+          "programs.diy-peer-to-peer-fundraising.logistics",
+          "programs.online-giving-and-gift-cart.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Documents P2P campaign configuration, the conditional AI Coach tab, In Memory and In Honor prefilled tribute behavior, fundraiser and supporter marketing-consent modes (including UK/France auto opt-in), and P2P Elements."
+      },
+      {
+        "url": "https://fundraiseup.com/docs/changelog/p2p-fundraiser-consent-tributes-team-admins/",
+        "source_type": "platform-documentation",
+        "title": "P2P fundraisers: marketing consent, tributes, and team admin changes | Fundraise Up",
+        "supports": [
+          "programs.diy-peer-to-peer-fundraising.feature_availability",
+          "programs.diy-peer-to-peer-fundraising.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Published November 11, 2026; verifies P2P sign-up marketing consent checkboxes, automatic tribute dedication mapping on In Memory and In Honor P2P pages, and Dashboard team-admin handoff."
+      },
+      {
+        "url": "https://fundraiseup.com/docs/changelog/p2p-fundraise-on-behalf-of-organizations/",
+        "source_type": "platform-documentation",
+        "title": "P2P fundraisers: fundraise on behalf of a company, school, or club, and other updates | Fundraise Up",
+        "supports": [
+          "classification.organizations",
+          "programs.diy-peer-to-peer-fundraising.feature_availability",
+          "programs.diy-peer-to-peer-fundraising.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Published November 18, 2026; verifies fundraising on behalf of companies, schools, or clubs, locked campaign goals/dates, mailing-address collection, supporter currency choice, and per-page update unsubscribes."
+      },
+      {
+        "url": "https://fundraiseup.com/docs/gift-cart/",
+        "source_type": "platform-documentation",
+        "title": "Gift Cart: How It Works and When to Use It | Fundraise Up Documentation",
+        "supports": [
+          "programs.online-giving-and-gift-cart.summary",
+          "programs.online-giving-and-gift-cart.feature_availability",
+          "programs.online-giving-and-gift-cart.requirements",
+          "programs.online-giving-and-gift-cart.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Documents embedded Gift Catalog, Gift Page upsells, 50-item Gift Cart capacity, and single-checkout completion."
+      },
+      {
+        "url": "https://fundraiseup.com/docs/changelog/custom-field-values-for-gifts/",
+        "source_type": "platform-documentation",
+        "title": "Custom field values for each gift in Gift Cart | Fundraise Up",
+        "supports": [
+          "programs.online-giving-and-gift-cart.feature_availability",
+          "programs.online-giving-and-gift-cart.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Published November 12, 2026; verifies per-gift custom field values in Gift Cart via Dashboard or CSV upload."
+      },
+      {
+        "url": "https://fundraiseup.com/docs/changelog/faq-block-in-gift-cart/",
+        "source_type": "platform-documentation",
+        "title": "FAQ block in Gift Cart | Fundraise Up",
+        "supports": [
+          "programs.online-giving-and-gift-cart.feature_availability",
+          "programs.online-giving-and-gift-cart.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Published November 10, 2026; verifies embedded, translatable FAQ blocks in Gift Cart catalogs."
+      },
+      {
+        "url": "https://fundraiseup.com/docs/changelog/edit-gifts-on-own-dashboard-page/",
+        "source_type": "platform-documentation",
+        "title": "Edit gifts on their own Dashboard page in Gift Cart | Fundraise Up",
+        "supports": [
+          "programs.online-giving-and-gift-cart.feature_availability"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Published November 3, 2026; verifies dedicated Dashboard editing pages for Gift Cart items and sponsorship profiles."
+      },
+      {
+        "url": "https://fundraiseup.com/docs/mobile-app/",
+        "source_type": "platform-documentation",
+        "title": "Fundraise Up App for In-Person Donations: Setup and Use | Fundraise Up Documentation",
+        "supports": [
+          "economics",
+          "geography",
+          "programs.in-person-giving.summary",
+          "programs.in-person-giving.geographic_restriction",
+          "programs.in-person-giving.requirements",
+          "programs.in-person-giving.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Documents US, Canada, and UK availability, Tap to Donate and Giving Station modes, hardware and OS requirements, Stripe Terminal fees, and specialist privacy/security controls."
+      },
+      {
+        "url": "https://fundraiseup.com/blog/in-person-giving-available-in-uk-with-gift-aid/",
+        "source_type": "public-press-release",
+        "title": "In-person giving is now available in the UK, with Gift Aid built in | Fundraise Up Blog",
+        "supports": [
+          "geography",
+          "programs.in-person-giving.summary",
+          "programs.in-person-giving.geographic_restriction",
+          "programs.in-person-giving.feature_availability",
+          "programs.in-person-giving.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Published November 9, 2026; verifies UK In-Person Giving availability in GBP with on-screen Gift Aid declarations and charity HMRC claim responsibility."
+      },
+      {
+        "url": "https://fundraiseup.com/docs/changelog/tap-to-donate-and-giving-station-in-the-uk/",
+        "source_type": "platform-documentation",
+        "title": "Tap to Donate and Giving Station are now available in the United Kingdom | Fundraise Up",
+        "supports": [
+          "programs.in-person-giving.geographic_restriction",
+          "programs.in-person-giving.feature_availability",
+          "programs.in-person-giving.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Published November 5, 2026; verifies UK English localization, GBP campaign listing, pre-payment name/email collection for UK receipts, and Gift Aid address capture."
+      },
+      {
+        "url": "https://fundraiseup.com/docs/changelog/in-person-giving-hide-supporter-details/",
+        "source_type": "platform-documentation",
+        "title": "In-person giving: hide supporter details from staff and volunteers | Fundraise Up",
+        "supports": [
+          "programs.in-person-giving.feature_availability",
+          "programs.in-person-giving.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Published November 16, 2026; verifies masking supporter personal details from in-person team members, Audit log tracking, and Giving Station specialist access."
+      },
+      {
+        "url": "https://fundraiseup.com/docs/cookies/",
+        "source_type": "platform-documentation",
+        "title": "Cookies Used by Fundraise Up | Fundraise Up Documentation",
+        "supports": [
+          "programs.online-giving-and-gift-cart.feature_availability",
+          "programs.online-giving-and-gift-cart.requirements",
+          "programs.online-giving-and-gift-cart.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Documents first-party cookies, integrated Campaign Page and Donor Portal cookie banners, and website cookie-banner requirements for Checkout Modal."
+      },
+      {
+        "url": "https://fundraiseup.com/docs/changelog/donor-portal-cookie-consent/",
+        "source_type": "platform-documentation",
+        "title": "Cookie banner in Donor Portal | Fundraise Up",
+        "supports": [
+          "programs.online-giving-and-gift-cart.feature_availability",
+          "programs.online-giving-and-gift-cart.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Published November 11, 2026; verifies built-in Donor Portal cookie consent banner in applicable jurisdictions and 400-day preference retention."
+      }
+    ],
+    "verification": {
+      "status": "verified",
+      "review_status": "current",
+      "first_researched_at": "2026-11-18",
+      "first_verified_at": "2026-11-18",
+      "last_verified_at": "2026-11-18",
+      "reviewer": "FRD Stage 1 provider content refresh",
+      "verifier": "FRD Stage 1 provider content refresh",
+      "record_level_recheck": true
+    },
+    "completeness": "anchor-quality",
+    "commercial_research": {
+      "affiliate_status": "none-found",
+      "checked_at": "2026-11-18",
+      "internal_notes": "No public affiliate program was identified during the Stage 1 provider content refresh; excluded from Finder scoring."
+    },
+    "workflow": {
+      "approved": true,
+      "approved_by": "FRD Stage 1 provider content refresh",
+      "approved_at": "2026-11-18"
+    }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "Givebutter",
+      "slug": "givebutter",
+      "website": "https://givebutter.com/",
+      "fundraising_url": "https://givebutter.com/features/fundraising-pages"
+    },
+    "programs": [
+      {
+        "id": "prog_000005",
+        "name": "Online Fundraising Platform",
+        "slug": "online-fundraising-platform",
+        "url": "https://help.givebutter.com/en/articles/1726586-what-is-givebutter-and-how-does-it-work",
+        "feature_availability": [
+          {
+            "feature": "Givebutter Portal multi-page fundraiser management",
+            "status": "generally-available",
+            "notes": "Supporters can register multiple participants in a single ticketed registration-fundraising checkout (with optional email and phone for additional registrants such as children) and oversee all owned or managed pages under one portal login."
+          },
+          {
+            "feature": "Ticket-linked fundraiser page assignment and release transfers",
+            "status": "generally-available",
+            "notes": "Assigning a ticketed registration-fundraising page or reassigning its event ticket in the Givebutter Portal moves both the ticket and its linked fundraising page together; assignees can also release a page and ticket back to the purchaser."
+          },
+          {
+            "feature": "Administrator AI Connector controls (Settings > AI)",
+            "status": "generally-available",
+            "notes": "Account admins can globally disable OAuth/MCP AI Connectors across the account, inspect active user connections and last-active timestamps, disconnect individual or per-user connectors, and toggle AI contact summaries."
+          }
+        ],
+        "requirements": {
+          "status": "known",
+          "legal_status": [],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": [
+            "The campaign operator must connect payout information before publishing and raising funds.",
+            "The campaign operator needs a United States bank account, a United States government-issued EIN or Social Security number, and a United States phone number.",
+            "The operator must be physically located in the United States or Puerto Rico and satisfy Stripe Connect verification."
+          ],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": null,
+          "other_restrictions": [
+            "Givebutter processes donations in USD; organizations without a United States presence may not be able to complete registration.",
+            "Individual personal-fundraising accounts are not supported; individuals may participate on behalf of a verified organization or as team members.",
+            "Registering multiple fundraisers from a single checkout and managing multiple fundraising pages on the same campaign under one login requires registration fundraising with event tickets; minimum-donation registrations and standard P2P sign-ups allow one fundraising page per email address per campaign.",
+            "AI Connectors are scoped to a single Givebutter account per connection, have read-only access within the user's permissions, and cannot create, edit, or delete records or move funds."
+          ],
+          "editorial_summary": "A 501(c)(3) is not stated as universally required, but United States identity, banking, phone, and payout verification requirements apply."
+        },
+        "logistics": {
+          "status": "known",
+          "notes": [
+            "Campaign operators connect a United States bank account or debit card through Stripe Connect.",
+            "Withdrawals are manually initiated and subject to approval; standard withdrawals are free.",
+            "Givebutter offers Form, Page, and Event campaign types; peer-to-peer fundraising is available on Page and Event campaigns, and auctions are available on Page and Event campaigns.",
+            "Through the Givebutter Portal (Fundraising > Manage pages), supporters can oversee every fundraising page they own or manage under one login, view per-campaign page stats, change teams, send up to 10 personalized email or SMS donor invites at a time with automatic reminders, and edit page stories.",
+            "When a fundraising page is linked to an event ticket via registration fundraising, assigning the page or reassigning the ticket in the Givebutter Portal transfers both the ticket and the fundraising page to the new person while keeping the original purchaser able to reassign it; an assignee who did not purchase the ticket can also release the page and ticket back to the original buyer.",
+            "Users can connect external AI assistants (such as Claude or ChatGPT) via OAuth/MCP for live read-only queries, while account administrators can globally turn off AI Connectors under Settings > AI (immediately disconnecting all active connectors and blocking new ones), audit active connectors by user and tool, disconnect individual or user-wide connections, and toggle AI contact summaries."
+          ]
+        }
+      }
+    ],
+    "content": {
+      "summary": "Givebutter is an online fundraising platform for nonprofits and community organizations, with donation pages, events, auctions, and peer-to-peer tools.",
+      "how_it_works": "An organization creates a campaign or donation form, shares it with supporters, and manages donations, peer-to-peer pages, event tickets, and account settings through Givebutter.",
+      "best_for": [
+        "Nonprofits and community organizations that want several online fundraising formats in one platform.",
+        "Groups running donation campaigns, events, auctions, or peer-to-peer fundraising."
+      ],
+      "considerations": [
+        "Available features, payment processing, and pricing can vary by plan and campaign setup.",
+        "Multi-page supporter management on a single campaign under one login requires ticketed registration fundraising, and organizations connecting external AI assistants should review Settings > AI controls and third-party AI training policies.",
+        "Organizations should confirm current eligibility and terms directly with Givebutter."
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://help.givebutter.com/en/articles/3270211-how-to-manage-your-fundraising-page",
+        "source_type": "platform-documentation",
+        "title": "How to manage your fundraising page",
+        "supports": [
+          "programs.online-fundraising-platform.feature_availability",
+          "programs.online-fundraising-platform.requirements",
+          "programs.online-fundraising-platform.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Documents Givebutter Portal multi-page management under one login, team changes, donor invites, and assigning or releasing fundraising pages linked to event tickets."
+      },
+      {
+        "url": "https://help.givebutter.com/en/articles/7668929-how-to-use-registration-fundraising",
+        "source_type": "platform-documentation",
+        "title": "How to use registration fundraising",
+        "supports": [
+          "programs.online-fundraising-platform.feature_availability",
+          "programs.online-fundraising-platform.requirements",
+          "programs.online-fundraising-platform.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Verifies multi-participant checkout on ticketed registration fundraising (including optional email/phone for children), single-person limits on minimum-donation registration, and linked ticket/fundraising-page transfers."
+      },
+      {
+        "url": "https://help.givebutter.com/en/articles/17234450-how-to-manage-your-event-tickets",
+        "source_type": "platform-documentation",
+        "title": "How to manage your event tickets",
+        "supports": [
+          "programs.online-fundraising-platform.feature_availability",
+          "programs.online-fundraising-platform.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Confirms that assigning a registration-fundraiser event ticket in the Givebutter Portal moves its linked fundraising page with the ticket and allows assignees to release tickets back to the original owner."
+      },
+      {
+        "url": "https://help.givebutter.com/en/articles/15891040-how-to-connect-an-ai-assistant-to-your-account",
+        "source_type": "platform-documentation",
+        "title": "How to connect an AI assistant to your account",
+        "supports": [
+          "programs.online-fundraising-platform.feature_availability",
+          "programs.online-fundraising-platform.requirements",
+          "programs.online-fundraising-platform.logistics",
+          "content.considerations"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Verifies read-only OAuth/MCP AI Connectors and administrator controls under Settings > AI to disable connectors account-wide, inspect active connections, disconnect users, and toggle AI contact summaries."
+      }
+    ],
+    "verification": {
+      "status": "verified",
+      "review_status": "current",
+      "first_verified_at": "2026-08-29",
+      "last_verified_at": "2026-11-18",
+      "reviewer": "FRD Stage 1 provider content refresh",
+      "verifier": "FRD Stage 1 provider content refresh",
+      "record_level_recheck": true
+    },
+    "completeness": "anchor-quality",
+    "workflow": {
+      "approved": true,
+      "approved_by": "FRD Stage 1 provider content refresh",
+      "approved_at": "2026-11-18"
+    }
+  },
+  {
+    "record_type": "provider",
+    "origin": "internal-research",
+    "identity": {
+      "name": "Panera Bread Fundraising",
+      "slug": "panera-bread-fundraising",
+      "legal_name": "Panera Bread",
+      "aliases": [
+        "Panera Bread",
+        "Panera Fundraising",
+        "Raising Dough for Good"
+      ],
+      "website": "https://www.panerabread.com/",
+      "fundraising_url": "https://fundraising.panerabread.com/",
+      "logo": null
+    },
+    "classification": {
+      "methods": [
+        "restaurant-business-partnerships",
+        "events-activities"
+      ],
+      "products_services": [],
+      "organizations": [
+        "schools",
+        "pto-pta",
+        "sports-athletics",
+        "booster-clubs",
+        "churches-faith",
+        "nonprofits-charities",
+        "youth-organizations",
+        "clubs-community",
+        "arts-music-performance",
+        "animal-rescue"
+      ],
+      "outcomes": [
+        "cash"
+      ],
+      "beneficiary_types": [
+        "own-organization",
+        "own-project-or-program",
+        "local-nonprofit-or-charity",
+        "community-cause"
+      ],
+      "activity_subtypes": [
+        "restaurant-night"
+      ]
+    },
+    "programs": [
+      {
+        "name": "Panera Bread Bakery-Cafe Fundraiser Night",
+        "slug": "bakery-cafe-fundraiser-night",
+        "url": "https://fundraising.panerabread.com/",
+        "method": "restaurant-business-partnerships",
+        "products_services": [],
+        "channels": [
+          "in-person",
+          "online",
+          "hybrid"
+        ],
+        "online_ordering": true,
+        "fulfillment": [
+          "on-site",
+          "local-pickup",
+          "provider-delivery"
+        ],
+        "inventory_model": "not-applicable",
+        "upfront_cost": "none",
+        "ease_to_raise": null,
+        "summary": "Approved tax-exempt 501(c)(3) organizations schedule a fundraising event at a participating U.S. Panera Bread bakery-cafe, where qualifying in-cafe and promo-coded online orders generate a standard 20%–25% give-back (or 30% during the December 1–21, 2026 promotional window at participating cafes) once the cafe's $100–$150 minimum sales threshold is met.",
+        "availability_state": "generally-available",
+        "geographic_restriction": {
+          "countries": [
+            "US"
+          ],
+          "location_participation_required": true,
+          "notes": "Available only at participating U.S. Panera Bread bakery-cafes; organizers must verify participation, available dates, standard 20% or 25% give-back rate, $100–$150 minimum sales threshold, and December 1–21, 2026 30% promotional participation for the specific bakery-cafe location."
+        },
+        "feature_availability": [
+          {
+            "feature": "Standard Bakery-Cafe Fundraiser Night (20%–25% of net sales)",
+            "status": "generally-available",
+            "countries": [
+              "US"
+            ],
+            "notes": "Ongoing program at participating U.S. bakery-cafes; exact give-back percentage (20% or 25%) and minimum sales threshold ($100–$150) vary by bakery-cafe location."
+          },
+          {
+            "feature": "December 30% Fundraiser Night Special Offer (December 1–21, 2026)",
+            "status": "generally-available",
+            "countries": [
+              "US"
+            ],
+            "notes": "Dated promotional offer available December 1–21, 2026 at participating U.S. bakery-cafes with a $150 minimum net sales requirement and 10-day booking cutoff; expires automatically after December 21, 2026."
+          }
+        ],
+        "economics_mode": "program-specific",
+        "economics": {
+          "status": "known",
+          "arrangements": [
+            {
+              "type": "upfront-cost",
+              "value": {
+                "kind": "amount",
+                "amount": 0,
+                "currency": "USD"
+              },
+              "basis": "Submitting a fundraising request and hosting an approved bakery-cafe event",
+              "conditions": [
+                "The event request is approved by Panera Bread or the participating franchisee"
+              ],
+              "caveats": [
+                "The organization is responsible for its own flyer printing and advertising expenses"
+              ]
+            },
+            {
+              "type": "restaurant-give-back",
+              "value": {
+                "kind": "percentage-range",
+                "minimum": 20,
+                "maximum": 25
+              },
+              "basis": "Total net food and beverage sales from qualifying supporter orders during the registered event",
+              "conditions": [
+                "The bakery-cafe's minimum net sales requirement ($100–$150 depending on location) is met",
+                "Supporters present the physical or digital event flyer in cafe or enter the event promo code for eligible online/app orders"
+              ],
+              "caveats": [
+                "Whether a location donates 20% or 25% of net sales is determined by the selected bakery-cafe and shown during event registration",
+                "Net sales exclude taxes, tips, delivery and similar fees, discounts, gift card purchases, catering orders, retail items, and orders placed on third-party delivery sites"
+              ],
+              "geographic_restriction": {
+                "countries": [
+                  "US"
+                ],
+                "location_participation_required": true,
+                "notes": "Applies at participating U.S. bakery-cafes; exact standard rate (20% or 25%) varies by cafe location."
+              }
+            },
+            {
+              "type": "restaurant-give-back",
+              "value": {
+                "kind": "percentage",
+                "percent": 30
+              },
+              "basis": "Total net food and beverage sales from qualifying supporter orders during an approved December 1–21, 2026 promotional event",
+              "conditions": [
+                "The event is scheduled at a participating U.S. bakery-cafe offering the December 1–21, 2026 30% special offer",
+                "The event generates at least $150 in qualifying net sales",
+                "Supporters show the event flyer in cafe or apply the event promo code on eligible online/app orders"
+              ],
+              "caveats": [
+                "Limited-time promotional rate valid only for events held December 1–21, 2026 at participating bakery-cafes; standard 20%–25% location rates apply outside this window or at locations not offering the promotion",
+                "Requires booking at least 10 days in advance on participating location schedules; gift cards, catering, retail items, and third-party delivery orders are excluded"
+              ],
+              "effective_window": {
+                "start_date": "2026-12-01",
+                "end_date": "2026-12-21"
+              },
+              "geographic_restriction": {
+                "countries": [
+                  "US"
+                ],
+                "location_participation_required": true,
+                "notes": "Offered only at participating U.S. bakery-cafes for events between December 1 and December 21, 2026; verify availability on the specific cafe's fundraising page."
+              }
+            },
+            {
+              "type": "minimum-sales",
+              "value": {
+                "kind": "amount-range",
+                "minimum": 100,
+                "maximum": 150,
+                "currency": "USD"
+              },
+              "basis": "Total qualifying net food and beverage sales per fundraising event",
+              "conditions": [
+                "Minimum net sales threshold must be met for the organization to receive a donation check"
+              ],
+              "caveats": [
+                "Standard events require $100 to $150 in qualifying net sales depending on the bakery-cafe location; the December 1–21, 2026 30% promotional offer requires $150 in qualifying net sales"
+              ]
+            }
+          ],
+          "notes": [
+            "Panera Bread also participates in third-party gift-card (scrip) fundraising through RaiseRight and UnitedScrip, which is administered separately from bakery-cafe fundraiser nights."
+          ]
+        },
+        "requirements": {
+          "status": "known",
+          "legal_status": [
+            "501c3",
+            "tax-exempt"
+          ],
+          "age_range": null,
+          "grade_range": null,
+          "participation_requirements": [
+            "The applying organization must be a tax-exempt 501(c)(3) organization and upload a completed W-9 or acceptable tax-exempt documentation with its registration.",
+            "The organizer must verify that the chosen U.S. bakery-cafe participates, confirm the cafe's specific give-back rate and minimum sales requirement during registration, and receive a confirmation email accepting the request.",
+            "Supporters dining in cafe must show a physical or digital copy of the event flyer to the cashier, and supporters ordering online or in the Panera app must enter the flyer promo code before payment."
+          ],
+          "minimum_group_size": null,
+          "minimum_order": null,
+          "minimum_sales": {
+            "kind": "amount-range",
+            "minimum": 100,
+            "maximum": 150,
+            "currency": "USD"
+          },
+          "other_restrictions": [
+            "Tax-exempt organizations are limited to one fundraising event every 30 days at participating bakery-cafes (subject to location rules and past event success).",
+            "Distributing flyers in or near the participating bakery-cafe during the event voids the offer, and issuing a local media press release requires Panera Bread's prior written approval.",
+            "Gift card purchases, catering orders, retail merchandise, and orders placed through third-party delivery sites are excluded from qualifying net sales."
+          ],
+          "editorial_summary": "Restricted to tax-exempt 501(c)(3) organizations with valid W-9/tax documentation; participation, rates (20%–25% standard or 30% December 1–21, 2026 promo), and $100–$150 sales minimums must be verified per bakery-cafe location."
+        },
+        "timing": {
+          "status": "known",
+          "setup_lead_time": {
+            "minimum": {
+              "value": 2,
+              "unit": "weeks"
+            },
+            "maximum": {
+              "value": 3,
+              "unit": "weeks"
+            }
+          },
+          "campaign_duration": {
+            "exact": {
+              "value": 4,
+              "unit": "hours"
+            }
+          },
+          "fulfillment_time": null,
+          "funds_available_time": {
+            "maximum": {
+              "value": 7,
+              "unit": "business-days"
+            }
+          },
+          "payout_time": {
+            "minimum": {
+              "value": 45,
+              "unit": "business-days"
+            },
+            "maximum": {
+              "value": 60,
+              "unit": "business-days"
+            }
+          },
+          "payout_schedules": [],
+          "notes": [
+            "Panera asks organizations to book at least 2–3 weeks in advance (some participating location formats set a 10-to-21-day cutoff), and event requests are reviewed within 10 business days.",
+            "Standard in-cafe fundraising hours are 4:00 p.m. to 8:00 p.m., while eligible online and mobile orders placed using the event promo code count all day on the scheduled event date.",
+            "Event sales results are emailed within 7 business days. The FAQ states that checks arrive within 45 business days in the step-by-step overview and 45–60 business days in the check-delivery FAQ, while the Terms & Conditions state approximately 45 days after the event."
+          ]
+        },
+        "logistics": {
+          "status": "known",
+          "notes": [
+            "Organizers search for a participating bakery-cafe on the Panera Fundraising portal (powered by DonationScout) and receive downloadable flyers and social media assets once approved; organizers do not need to be present on site during the event.",
+            "If an approved event is at a franchisee bakery-cafe, the organization coordinates directly with the participating franchisee, and cancellations are requested at least 72 hours before the event.",
+            "If an eligible online Rapid Pick-Up or first-party delivery order is missing from the donation calculation, the organization must submit transaction receipts within 5 business days of receiving the donation."
+          ]
+        },
+        "outcomes": [
+          "cash"
+        ],
+        "beneficiary_types": [
+          "own-organization",
+          "own-project-or-program",
+          "local-nonprofit-or-charity",
+          "community-cause"
+        ],
+        "activity_subtypes": [
+          "restaurant-night"
+        ]
+      }
+    ],
+    "geography": {
+      "scope": [
+        "local"
+      ],
+      "countries": [
+        "US"
+      ],
+      "states": [],
+      "regions": [],
+      "notes": "Available only at participating U.S. Panera Bread bakery-cafes (1,922 participating locations listed across 48 states and D.C. at verification). Participation, available dates, standard give-back percentage (20% or 25%), minimum sales threshold ($100–$150), and participation in the December 1–21, 2026 30% promotion vary by individual bakery-cafe and must be verified per location."
+    },
+    "content": {
+      "summary": "Panera Bread Fundraising lets approved 501(c)(3) organizations host local bakery-cafe fundraising nights that return 20%–25% of qualifying net sales (or 30% during the December 1–21, 2026 promotional window at participating cafes) once a $100–$150 minimum sales threshold is met.",
+      "how_it_works": "An eligible tax-exempt organization selects a participating U.S. Panera Bread bakery-cafe, submits a request and W-9, promotes the provided flyer and online promo code to supporters, and receives a mailed check after qualifying in-cafe and online orders meet the cafe's minimum sales threshold.",
+      "best_for": [
+        "Tax-exempt 501(c)(3) schools, PTOs/PTAs, sports teams, youth groups, faith groups, and local nonprofits near a participating U.S. Panera Bread bakery-cafe."
+      ],
+      "considerations": [
+        "Participation, standard give-back rates (20% or 25%), minimum net sales thresholds ($100–$150), and availability of the December 1–21, 2026 30% promotion are location-specific and must be verified for the chosen bakery-cafe.",
+        "Only tax-exempt 501(c)(3) organizations with valid W-9/tax documentation qualify, and groups are limited to one event every 30 days.",
+        "Gift cards, catering orders, retail items, third-party delivery orders, and any event where flyers are distributed on or near cafe premises do not qualify."
+      ]
+    },
+    "publication": {
+      "lifecycle": "active",
+      "next_review_at": "2027-01-15",
+      "inactive_since": null,
+      "inactive_reason": null
+    },
+    "sources": [
+      {
+        "url": "https://fundraising.panerabread.com/",
+        "source_type": "official-program",
+        "title": "Panera Fundraising",
+        "supports": [
+          "identity",
+          "classification",
+          "programs.bakery-cafe-fundraiser-night.summary",
+          "programs.bakery-cafe-fundraiser-night.economics",
+          "programs.bakery-cafe-fundraiser-night.requirements",
+          "geography"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Establishes standard 20% or 25% net-sales donation rates, $100–$150 location-specific minimum sales requirement, one-event-per-30-days rule, order channels, and excluded purchases."
+      },
+      {
+        "url": "https://fundraising.panerabread.com/faq",
+        "source_type": "official-program",
+        "title": "FAQ | Panera Fundraising",
+        "supports": [
+          "classification.organizations",
+          "programs.bakery-cafe-fundraiser-night.economics",
+          "programs.bakery-cafe-fundraiser-night.requirements",
+          "programs.bakery-cafe-fundraiser-night.timing",
+          "programs.bakery-cafe-fundraiser-night.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Confirms 501(c)(3) and W-9 requirement, 2–3 week advance booking guidance, 10-business-day review window, 4–8 p.m. in-cafe hours with all-day online promo-code eligibility, 7-business-day results email, and 45–60 business day check delivery."
+      },
+      {
+        "url": "https://fundraising.panerabread.com/terms-conditions",
+        "source_type": "terms-or-fees",
+        "title": "Terms & Conditions | Panera Fundraising",
+        "supports": [
+          "programs.bakery-cafe-fundraiser-night.economics",
+          "programs.bakery-cafe-fundraiser-night.requirements",
+          "programs.bakery-cafe-fundraiser-night.timing",
+          "programs.bakery-cafe-fundraiser-night.logistics"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Defines net food and beverage sales, franchisee coordination, flyer and media restrictions, excluded purchases (gift cards, catering, retail items, third-party delivery), and the 5-business-day receipt dispute window."
+      },
+      {
+        "url": "https://fundraising.panerabread.com/locations",
+        "source_type": "official-program",
+        "title": "Panera Bread Fundraising Locations",
+        "supports": [
+          "geography",
+          "programs.bakery-cafe-fundraiser-night.geographic_restriction"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Lists 1,922 participating U.S. Panera Bread bakery-cafe locations across 48 states and D.C. and requires selecting a participating location to view available fundraiser formats."
+      },
+      {
+        "url": "https://fundraising.panerabread.com/locations/sacramento-cw-net-plaza",
+        "source_type": "official-program",
+        "title": "Fundraising at Sacramento - CW Net Plaza | Sacramento, CA | Panera Bread",
+        "supports": [
+          "programs.bakery-cafe-fundraiser-night.summary",
+          "programs.bakery-cafe-fundraiser-night.feature_availability",
+          "programs.bakery-cafe-fundraiser-night.economics",
+          "programs.bakery-cafe-fundraiser-night.requirements",
+          "programs.bakery-cafe-fundraiser-night.timing"
+        ],
+        "checked_at": "2026-11-18",
+        "status": "current",
+        "notes": "Official location page documenting the 'DECEMBER 30% Fundraiser Night (12/1-12/21/26) Special Offer' alongside the standard 'Fundraiser Event' format, including the December 1–21, 2026 window, 30% give-back rate, $150 minimum net sales requirement, and 10-day cutoff."
+      }
+    ],
+    "verification": {
+      "status": "verified",
+      "review_status": "current",
+      "first_researched_at": "2026-11-18",
+      "first_verified_at": "2026-11-18",
+      "last_verified_at": "2026-11-18",
+      "reviewer": "FRD Stage 1 provider content refresh",
+      "verifier": "FRD Stage 1 provider content refresh",
+      "record_level_recheck": true
+    },
+    "completeness": "anchor-quality",
+    "commercial_research": {
+      "affiliate_status": "none-found",
+      "checked_at": "2026-11-18",
+      "internal_notes": "No restaurant-fundraising affiliate program was identified during the Stage 1 provider content refresh; excluded from Finder scoring."
+    },
+    "workflow": {
+      "approved": true,
+      "approved_by": "FRD Stage 1 provider content refresh",
+      "approved_at": "2026-11-18"
+    }
+  }
+]

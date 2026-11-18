@@ -14,9 +14,9 @@ const loadProviders = async () => Promise.all(
     .map(async (file) => providerSchema.parse(load(await readFile(`src/content/providers/${file}`, "utf8")))),
 );
 
-test("provider search covers all 47 active records, aliases, and descriptive content", async () => {
+test("provider search covers all 49 active records, aliases, and descriptive content", async () => {
   const providers = (await loadProviders()).filter((provider) => !provider.meta.deleted && provider.status.lifecycle === "active");
-  assert.equal(providers.length, 47);
+  assert.equal(providers.length, 49);
 
   const searchable = providers.map((provider) => ({
     provider,
@@ -38,7 +38,7 @@ test("bottom provider CTA uses canonical official destinations for every active 
   }));
 
   destinations.forEach(({ expected }) => assert.doesNotThrow(() => new URL(expected)));
-  assert.equal(new Set(destinations.map(({ slug }) => slug)).size, 47);
+  assert.equal(new Set(destinations.map(({ slug }) => slug)).size, 49);
 
   const [profilePage, bottomCta] = await Promise.all([
     readFile("src/pages/providers/[slug].astro", "utf8"),

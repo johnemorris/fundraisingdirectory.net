@@ -1,0 +1,378 @@
+meta:
+  id: "prov_000049"
+  schema_version: 2
+  created_at: "2026-11-18"
+  created_by: "user_000001"
+  modified_at: "2026-11-18"
+  modified_by: "user_000001"
+  deleted: false
+  deleted_at: null
+  deleted_by: null
+  deletion_reason: null
+identity:
+  legal_name: "Panera Bread"
+  aliases:
+    - "Panera Bread"
+    - "Panera Fundraising"
+    - "Raising Dough for Good"
+  fundraising_url: "https://fundraising.panerabread.com/"
+  logo: null
+  name: "Panera Bread Fundraising"
+  slug: "panera-bread-fundraising"
+  website: "https://www.panerabread.com/"
+classification:
+  products_services: []
+  methods:
+    - "restaurant-business-partnerships"
+    - "events-activities"
+  organizations:
+    - "schools"
+    - "pto-pta"
+    - "sports-athletics"
+    - "booster-clubs"
+    - "churches-faith"
+    - "nonprofits-charities"
+    - "youth-organizations"
+    - "clubs-community"
+    - "arts-music-performance"
+    - "animal-rescue"
+  outcomes:
+    - "cash"
+  beneficiary_types:
+    - "own-organization"
+    - "own-project-or-program"
+    - "local-nonprofit-or-charity"
+    - "community-cause"
+  activity_subtypes:
+    - "restaurant-night"
+programs:
+  - id: "prog_000071"
+    products_services: []
+    online_ordering: true
+    fulfillment:
+      - "on-site"
+      - "local-pickup"
+      - "provider-delivery"
+    inventory_model: "not-applicable"
+    upfront_cost: "none"
+    ease_to_raise: null
+    economics_mode: "program-specific"
+    economics:
+      status: "known"
+      arrangements:
+        - type: "upfront-cost"
+          value:
+            kind: "amount"
+            amount: 0
+            currency: "USD"
+          basis: "Submitting a fundraising request and hosting an approved bakery-cafe event"
+          conditions:
+            - "The event request is approved by Panera Bread or the participating franchisee"
+          caveats:
+            - "The organization is responsible for its own flyer printing and advertising expenses"
+        - type: "restaurant-give-back"
+          value:
+            kind: "percentage-range"
+            minimum: 20
+            maximum: 25
+          basis: "Total net food and beverage sales from qualifying supporter orders during the registered event"
+          conditions:
+            - "The bakery-cafe's minimum net sales requirement ($100–$150 depending on location) is met"
+            - "Supporters present the physical or digital event flyer in cafe or enter the event promo code for eligible online/app orders"
+          caveats:
+            - "Whether a location donates 20% or 25% of net sales is determined by the selected bakery-cafe and shown during event registration"
+            - "Net sales exclude taxes, tips, delivery and similar fees, discounts, gift card purchases, catering orders, retail items, and orders placed on third-party delivery sites"
+          geographic_restriction:
+            countries:
+              - "US"
+            location_participation_required: true
+            notes: "Applies at participating U.S. bakery-cafes; exact standard rate (20% or 25%) varies by cafe location."
+        - type: "restaurant-give-back"
+          value:
+            kind: "percentage"
+            percent: 30
+          basis: "Total net food and beverage sales from qualifying supporter orders during an approved December 1–21, 2026 promotional event"
+          conditions:
+            - "The event is scheduled at a participating U.S. bakery-cafe offering the December 1–21, 2026 30% special offer"
+            - "The event generates at least $150 in qualifying net sales"
+            - "Supporters show the event flyer in cafe or apply the event promo code on eligible online/app orders"
+          caveats:
+            - "Limited-time promotional rate valid only for events held December 1–21, 2026 at participating bakery-cafes; standard 20%–25% location rates apply outside this window or at locations not offering the promotion"
+            - "Requires booking at least 10 days in advance on participating location schedules; gift cards, catering, retail items, and third-party delivery orders are excluded"
+          effective_window:
+            start_date: "2026-12-01"
+            end_date: "2026-12-21"
+          geographic_restriction:
+            countries:
+              - "US"
+            location_participation_required: true
+            notes: "Offered only at participating U.S. bakery-cafes for events between December 1 and December 21, 2026; verify availability on the specific cafe's fundraising page."
+        - type: "minimum-sales"
+          value:
+            kind: "amount-range"
+            minimum: 100
+            maximum: 150
+            currency: "USD"
+          basis: "Total qualifying net food and beverage sales per fundraising event"
+          conditions:
+            - "Minimum net sales threshold must be met for the organization to receive a donation check"
+          caveats:
+            - "Standard events require $100 to $150 in qualifying net sales depending on the bakery-cafe location; the December 1–21, 2026 30% promotional offer requires $150 in qualifying net sales"
+      notes:
+        - "Panera Bread also participates in third-party gift-card (scrip) fundraising through RaiseRight and UnitedScrip, which is administered separately from bakery-cafe fundraiser nights."
+    requirements:
+      status: "known"
+      legal_status:
+        - "501c3"
+        - "tax-exempt"
+      age_range: null
+      grade_range: null
+      participation_requirements:
+        - "The applying organization must be a tax-exempt 501(c)(3) organization and upload a completed W-9 or acceptable tax-exempt documentation with its registration."
+        - "The organizer must verify that the chosen U.S. bakery-cafe participates, confirm the cafe's specific give-back rate and minimum sales requirement during registration, and receive a confirmation email accepting the request."
+        - "Supporters dining in cafe must show a physical or digital copy of the event flyer to the cashier, and supporters ordering online or in the Panera app must enter the flyer promo code before payment."
+      minimum_group_size: null
+      minimum_order: null
+      minimum_sales:
+        kind: "amount-range"
+        minimum: 100
+        maximum: 150
+        currency: "USD"
+      other_restrictions:
+        - "Tax-exempt organizations are limited to one fundraising event every 30 days at participating bakery-cafes (subject to location rules and past event success)."
+        - "Distributing flyers in or near the participating bakery-cafe during the event voids the offer, and issuing a local media press release requires Panera Bread's prior written approval."
+        - "Gift card purchases, catering orders, retail merchandise, and orders placed through third-party delivery sites are excluded from qualifying net sales."
+      editorial_summary: "Restricted to tax-exempt 501(c)(3) organizations with valid W-9/tax documentation; participation, rates (20%–25% standard or 30% December 1–21, 2026 promo), and $100–$150 sales minimums must be verified per bakery-cafe location."
+    timing:
+      status: "known"
+      setup_lead_time:
+        minimum:
+          value: 2
+          unit: "weeks"
+        maximum:
+          value: 3
+          unit: "weeks"
+      campaign_duration:
+        exact:
+          value: 4
+          unit: "hours"
+      fulfillment_time: null
+      funds_available_time:
+        maximum:
+          value: 7
+          unit: "business-days"
+      payout_time:
+        minimum:
+          value: 45
+          unit: "business-days"
+        maximum:
+          value: 60
+          unit: "business-days"
+      payout_schedules: []
+      notes:
+        - "Panera asks organizations to book at least 2–3 weeks in advance (some participating location formats set a 10-to-21-day cutoff), and event requests are reviewed within 10 business days."
+        - "Standard in-cafe fundraising hours are 4:00 p.m. to 8:00 p.m., while eligible online and mobile orders placed using the event promo code count all day on the scheduled event date."
+        - "Event sales results are emailed within 7 business days. The FAQ states that checks arrive within 45 business days in the step-by-step overview and 45–60 business days in the check-delivery FAQ, while the Terms & Conditions state approximately 45 days after the event."
+    logistics:
+      status: "known"
+      notes:
+        - "Organizers search for a participating bakery-cafe on the Panera Fundraising portal (powered by DonationScout) and receive downloadable flyers and social media assets once approved; organizers do not need to be present on site during the event."
+        - "If an approved event is at a franchisee bakery-cafe, the organization coordinates directly with the participating franchisee, and cancellations are requested at least 72 hours before the event."
+        - "If an eligible online Rapid Pick-Up or first-party delivery order is missing from the donation calculation, the organization must submit transaction receipts within 5 business days of receiving the donation."
+    name: "Panera Bread Bakery-Cafe Fundraiser Night"
+    slug: "bakery-cafe-fundraiser-night"
+    url: "https://fundraising.panerabread.com/"
+    method: "restaurant-business-partnerships"
+    channels:
+      - "in-person"
+      - "online"
+      - "hybrid"
+    summary: "Approved tax-exempt 501(c)(3) organizations schedule a fundraising event at a participating U.S. Panera Bread bakery-cafe, where qualifying in-cafe and promo-coded online orders generate a standard 20%–25% give-back (or 30% during the December 1–21, 2026 promotional window at participating cafes) once the cafe's $100–$150 minimum sales threshold is met."
+    availability_state: "generally-available"
+    geographic_restriction:
+      countries:
+        - "US"
+      location_participation_required: true
+      notes: "Available only at participating U.S. Panera Bread bakery-cafes; organizers must verify participation, available dates, standard 20% or 25% give-back rate, $100–$150 minimum sales threshold, and December 1–21, 2026 30% promotional participation for the specific bakery-cafe location."
+    feature_availability:
+      - feature: "Standard Bakery-Cafe Fundraiser Night (20%–25% of net sales)"
+        status: "generally-available"
+        countries:
+          - "US"
+        notes: "Ongoing program at participating U.S. bakery-cafes; exact give-back percentage (20% or 25%) and minimum sales threshold ($100–$150) vary by bakery-cafe location."
+      - feature: "December 30% Fundraiser Night Special Offer (December 1–21, 2026)"
+        status: "generally-available"
+        countries:
+          - "US"
+        notes: "Dated promotional offer available December 1–21, 2026 at participating U.S. bakery-cafes with a $150 minimum net sales requirement and 10-day booking cutoff; expires automatically after December 21, 2026."
+    outcomes:
+      - "cash"
+    beneficiary_types:
+      - "own-organization"
+      - "own-project-or-program"
+      - "local-nonprofit-or-charity"
+      - "community-cause"
+    activity_subtypes:
+      - "restaurant-night"
+geography:
+  countries:
+    - "US"
+  states: []
+  regions: []
+  notes: "Available only at participating U.S. Panera Bread bakery-cafes (1,922 participating locations listed across 48 states and D.C. at verification). Participation, available dates, standard give-back percentage (20% or 25%), minimum sales threshold ($100–$150), and participation in the December 1–21, 2026 30% promotion vary by individual bakery-cafe and must be verified per location."
+  scope:
+    - "local"
+content:
+  best_for:
+    - "Tax-exempt 501(c)(3) schools, PTOs/PTAs, sports teams, youth groups, faith groups, and local nonprofits near a participating U.S. Panera Bread bakery-cafe."
+  considerations:
+    - "Participation, standard give-back rates (20% or 25%), minimum net sales thresholds ($100–$150), and availability of the December 1–21, 2026 30% promotion are location-specific and must be verified for the chosen bakery-cafe."
+    - "Only tax-exempt 501(c)(3) organizations with valid W-9/tax documentation qualify, and groups are limited to one event every 30 days."
+    - "Gift cards, catering orders, retail items, third-party delivery orders, and any event where flyers are distributed on or near cafe premises do not qualify."
+  summary: "Panera Bread Fundraising lets approved 501(c)(3) organizations host local bakery-cafe fundraising nights that return 20%–25% of qualifying net sales (or 30% during the December 1–21, 2026 promotional window at participating cafes) once a $100–$150 minimum sales threshold is met."
+  how_it_works: "An eligible tax-exempt organization selects a participating U.S. Panera Bread bakery-cafe, submits a request and W-9, promotes the provided flyer and online promo code to supporters, and receives a mailed check after qualifying in-cafe and online orders meet the cafe's minimum sales threshold."
+status:
+  lifecycle: "active"
+  first_verified_at: "2026-11-18"
+  last_verified_at: "2026-11-18"
+  next_review_at: "2027-01-15"
+  inactive_since: null
+  inactive_reason: null
+verification:
+  level: "verified"
+  review_status: "current"
+  completeness: "anchor-quality"
+  first_researched_at: "2026-11-18"
+  reviewed_by: "FRD Stage 1 provider content refresh"
+  verified_by: "FRD Stage 1 provider content refresh"
+  sources:
+    - id: "src_000197"
+      title: "Panera Fundraising"
+      status: "current"
+      supports:
+        - path: "identity"
+          status: "current"
+          notes: null
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.bakery-cafe-fundraiser-night.summary"
+          status: "current"
+          notes: null
+        - path: "programs.bakery-cafe-fundraiser-night.economics"
+          status: "current"
+          notes: null
+        - path: "programs.bakery-cafe-fundraiser-night.requirements"
+          status: "current"
+          notes: null
+        - path: "geography"
+          status: "current"
+          notes: null
+      notes: "Establishes standard 20% or 25% net-sales donation rates, $100–$150 location-specific minimum sales requirement, one-event-per-30-days rule, order channels, and excluded purchases."
+      type: "official-program"
+      url: "https://fundraising.panerabread.com/"
+      checked_at: "2026-11-18"
+    - id: "src_000198"
+      title: "FAQ | Panera Fundraising"
+      status: "current"
+      supports:
+        - path: "classification.organizations"
+          status: "current"
+          notes: null
+        - path: "programs.bakery-cafe-fundraiser-night.economics"
+          status: "current"
+          notes: null
+        - path: "programs.bakery-cafe-fundraiser-night.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.bakery-cafe-fundraiser-night.timing"
+          status: "current"
+          notes: null
+        - path: "programs.bakery-cafe-fundraiser-night.logistics"
+          status: "current"
+          notes: null
+      notes: "Confirms 501(c)(3) and W-9 requirement, 2–3 week advance booking guidance, 10-business-day review window, 4–8 p.m. in-cafe hours with all-day online promo-code eligibility, 7-business-day results email, and 45–60 business day check delivery."
+      type: "official-program"
+      url: "https://fundraising.panerabread.com/faq"
+      checked_at: "2026-11-18"
+    - id: "src_000199"
+      title: "Terms & Conditions | Panera Fundraising"
+      status: "current"
+      supports:
+        - path: "programs.bakery-cafe-fundraiser-night.economics"
+          status: "current"
+          notes: null
+        - path: "programs.bakery-cafe-fundraiser-night.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.bakery-cafe-fundraiser-night.timing"
+          status: "current"
+          notes: null
+        - path: "programs.bakery-cafe-fundraiser-night.logistics"
+          status: "current"
+          notes: null
+      notes: "Defines net food and beverage sales, franchisee coordination, flyer and media restrictions, excluded purchases (gift cards, catering, retail items, third-party delivery), and the 5-business-day receipt dispute window."
+      type: "terms-or-fees"
+      url: "https://fundraising.panerabread.com/terms-conditions"
+      checked_at: "2026-11-18"
+    - id: "src_000200"
+      title: "Panera Bread Fundraising Locations"
+      status: "current"
+      supports:
+        - path: "geography"
+          status: "current"
+          notes: null
+        - path: "programs.bakery-cafe-fundraiser-night.geographic_restriction"
+          status: "current"
+          notes: null
+      notes: "Lists 1,922 participating U.S. Panera Bread bakery-cafe locations across 48 states and D.C. and requires selecting a participating location to view available fundraiser formats."
+      type: "official-program"
+      url: "https://fundraising.panerabread.com/locations"
+      checked_at: "2026-11-18"
+    - id: "src_000201"
+      title: "Fundraising at Sacramento - CW Net Plaza | Sacramento, CA | Panera Bread"
+      status: "current"
+      supports:
+        - path: "programs.bakery-cafe-fundraiser-night.summary"
+          status: "current"
+          notes: null
+        - path: "programs.bakery-cafe-fundraiser-night.feature_availability"
+          status: "current"
+          notes: null
+        - path: "programs.bakery-cafe-fundraiser-night.economics"
+          status: "current"
+          notes: null
+        - path: "programs.bakery-cafe-fundraiser-night.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.bakery-cafe-fundraiser-night.timing"
+          status: "current"
+          notes: null
+      notes: "Official location page documenting the 'DECEMBER 30% Fundraiser Night (12/1-12/21/26) Special Offer' alongside the standard 'Fundraiser Event' format, including the December 1–21, 2026 window, 30% give-back rate, $150 minimum net sales requirement, and 10-day cutoff."
+      type: "official-program"
+      url: "https://fundraising.panerabread.com/locations/sacramento-cw-net-plaza"
+      checked_at: "2026-11-18"
+provenance:
+  discovered_via:
+    - "editorial-research"
+  intake_origins:
+    - "internal-research"
+  legacy:
+    listed: false
+    name: null
+    url: null
+commercial_research:
+  affiliate_status: "none-found"
+  affiliate_program_url: null
+  affiliate_network: null
+  commission_structure: null
+  cookie_duration_days: null
+  eligibility_requirements: null
+  checked_at: "2026-11-18"
+  approved_destination_url: null
+  internal_notes: "No restaurant-fundraising affiliate program was identified during the Stage 1 provider content refresh; excluded from Finder scoring."
+affiliation:
+  type: "none"
+  disclosure_required: false
+editorial:
+  featured: false
