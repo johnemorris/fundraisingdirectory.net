@@ -1,7 +1,7 @@
 // Explicit editorial decisions, independent of content-file presence.
 // Owner approved temporary noindex on Oct 28, subject to the recorded backlink review.
 // This indexing decision is not approval to deploy; retain all historical routes.
-export const TOPIC_HUB_UPDATED = "2026-10-28";
+export const TOPIC_HUB_UPDATED = "2026-11-18";
 export const topicPublication = {
   "Elementary-School-Fundraising": {
     "publication": "guide",
@@ -362,6 +362,7 @@ export const providerTopicLinkUpdates = {
   "custom-ink-fundraising": "2026-10-28",
   "donorschoose": "2026-10-28",
   "double-good": "2026-10-28",
+  "dutch-mill-bulbs": "2026-11-18",
   "fundraising-com": "2026-10-28",
   "givebutter": "2026-10-28",
   "giving-bean": "2026-10-28",

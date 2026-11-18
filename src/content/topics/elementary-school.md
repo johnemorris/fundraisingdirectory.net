@@ -1,6 +1,6 @@
 ---
 legacyPath: Elementary-School-Fundraising
-updated: '2026-10-28'
+updated: '2026-11-18'
 providers:
   - provider: booster
     relationship: direct
@@ -10,6 +10,9 @@ providers:
     relationship: direct
   - provider: charleston-wrap
     relationship: direct
+  - provider: dutch-mill-bulbs
+    relationship: alternative
+    note: "Seasonal spring and fall flower-bulb campaigns; confirm planting and delivery windows."
 related: [High-School-Fundraising, Cookie-Dough, Gift-Wrap]
 ---
 ## Start with a specific school need
