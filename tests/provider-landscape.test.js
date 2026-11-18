@@ -170,6 +170,15 @@ test("Panera Bread separates standard 20%–25% give-back from the December 1–
   const afterPromo = resolveProgramPresentation(provider, program, { referenceDate: "2026-12-22" });
   assert.equal(afterPromo.economicsRows.some((row) => row.value === "30% of qualifying sales"), false);
   assert.ok(afterPromo.economicsRows.some((row) => row.value === "20–25% of qualifying sales"));
+
+  // Conflicting check-delivery timelines across FAQ and Terms are qualified in notes rather than asserted as a single guaranteed payout_time deadline
+  assert.equal(program.timing.payout_time, null);
+  assert.ok(program.timing.notes.some((note) => note.includes("rather than a single guaranteed payout deadline")));
+  assert.equal(provider.verification.review_status, "needs-recheck");
+  const faqSource = provider.verification.sources.find(({ url }) => url === "https://fundraising.panerabread.com/faq");
+  const termsSource = provider.verification.sources.find(({ url }) => url === "https://fundraising.panerabread.com/terms-conditions");
+  assert.equal(faqSource?.supports.find(({ path }) => path === "programs.bakery-cafe-fundraiser-night.timing")?.status, "needs-recheck");
+  assert.equal(termsSource?.supports.find(({ path }) => path === "programs.bakery-cafe-fundraiser-night.timing")?.status, "needs-recheck");
 });
 
 test("schema validates availability states, geographic restrictions, and dated promotion bounds", async () => {

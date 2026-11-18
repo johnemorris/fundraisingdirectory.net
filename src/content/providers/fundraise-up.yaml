@@ -10,26 +10,26 @@ meta:
   deleted_by: null
   deletion_reason: null
 identity:
-  legal_name: "Fundraise Up Inc."
-  aliases: []
-  fundraising_url: "https://fundraiseup.com/pricing/"
-  logo: null
   name: "Fundraise Up"
   slug: "fundraise-up"
+  legal_name: "Fundraise Up Inc."
+  aliases: []
   website: "https://fundraiseup.com/"
+  fundraising_url: "https://fundraiseup.com/pricing/"
+  logo: null
 classification:
-  products_services:
-    - "donation-platform"
-    - "crowdfunding-platform"
-    - "peer-to-peer-platform"
-    - "event-fundraising-platform"
-    - "text-mobile-giving"
   methods:
     - "direct-donations"
     - "crowdfunding"
     - "peer-to-peer"
     - "events-activities"
     - "giving-matching"
+  products_services:
+    - "donation-platform"
+    - "crowdfunding-platform"
+    - "peer-to-peer-platform"
+    - "event-fundraising-platform"
+    - "text-mobile-giving"
   organizations:
     - "schools"
     - "sports-athletics"
@@ -99,9 +99,15 @@ economics:
     - "Transaction fees do not include applicable federal, state, local, or foreign taxes, which remain the customer's responsibility under the Terms of Service."
 programs:
   - id: "prog_000068"
+    name: "Online Giving Checkout, Campaign Pages, and Gift Cart"
+    slug: "online-giving-and-gift-cart"
+    url: "https://fundraiseup.com/docs/gift-cart/"
+    method: "direct-donations"
     products_services:
       - "donation-platform"
       - "crowdfunding-platform"
+    channels:
+      - "online"
     online_ordering: null
     fulfillment:
       - "digital"
@@ -109,6 +115,15 @@ programs:
     inventory_model: "not-applicable"
     upfront_cost: "none"
     ease_to_raise: null
+    summary: "Nonprofits embed conversion-optimized Checkout modals, hosted Campaign Pages, Elements, and the Gift Cart multi-program giving catalog on their websites to accept one-time and recurring donations, tributes, and employer-matched gifts."
+    availability_state: "generally-available"
+    feature_availability:
+      - feature: "Gift Cart multi-program catalog (up to 50 items per checkout)"
+        status: "generally-available"
+        notes: "Generally available; November 2026 updates added per-gift custom field values (via Dashboard or CSV), embedded translatable FAQ blocks, and dedicated full-page Dashboard gift and sponsorship editing."
+      - feature: "Donor Portal and Campaign Page integrated cookie banner"
+        status: "generally-available"
+        notes: "Automatically displays in jurisdictions requiring cookie consent (such as the EU, UK, Switzerland, California, and Quebec), restricting Donor Portal to strictly necessary cookies until answered and remembering choices for 400 days."
     economics_mode: "inherit-provider"
     requirements:
       status: "known"
@@ -144,21 +159,6 @@ programs:
         - "Each gift in Gift Cart can carry its own custom field values (such as appeal or fund codes) via Dashboard or CSV upload, falling back to catalog-level values when unset, and catalogs can include a translatable FAQ block below the gifts."
         - "Tribute giving supports In Honor and In Memory dedications with separate customizable e-cards or organization-fulfilled postal mail notifications, plus Donor Portal self-service."
         - "Checkout supports general or channel-specific marketing consent (including location-detected UK and France checkout opt-out flows) and integrated cookie-consent banners on Campaign Pages and Donor Portal."
-    name: "Online Giving Checkout, Campaign Pages, and Gift Cart"
-    slug: "online-giving-and-gift-cart"
-    url: "https://fundraiseup.com/docs/gift-cart/"
-    method: "direct-donations"
-    channels:
-      - "online"
-    summary: "Nonprofits embed conversion-optimized Checkout modals, hosted Campaign Pages, Elements, and the Gift Cart multi-program giving catalog on their websites to accept one-time and recurring donations, tributes, and employer-matched gifts."
-    availability_state: "generally-available"
-    feature_availability:
-      - feature: "Gift Cart multi-program catalog (up to 50 items per checkout)"
-        status: "generally-available"
-        notes: "Generally available; November 2026 updates added per-gift custom field values (via Dashboard or CSV), embedded translatable FAQ blocks, and dedicated full-page Dashboard gift and sponsorship editing."
-      - feature: "Donor Portal and Campaign Page integrated cookie banner"
-        status: "generally-available"
-        notes: "Automatically displays in jurisdictions requiring cookie consent (such as the EU, UK, Switzerland, California, and Quebec), restricting Donor Portal to strictly necessary cookies until answered and remembering choices for 400 days."
     outcomes:
       - "cash"
     capabilities:
@@ -172,9 +172,15 @@ programs:
       - "own-organization"
       - "own-project-or-program"
   - id: "prog_000069"
+    name: "DIY Peer-to-Peer Fundraising"
+    slug: "diy-peer-to-peer-fundraising"
+    url: "https://fundraiseup.com/features/peer-to-peer-fundraising/"
+    method: "peer-to-peer"
     products_services:
       - "peer-to-peer-platform"
       - "donation-platform"
+    channels:
+      - "online"
     online_ordering: null
     fulfillment:
       - "digital"
@@ -182,6 +188,21 @@ programs:
     inventory_model: "not-applicable"
     upfront_cost: "none"
     ease_to_raise: null
+    summary: "Supporters create individual or team fundraising pages on a nonprofit's behalf—including In Memory, In Honor, custom occasion, and organization-represented campaigns—with automated tribute dedication tracking, optional AI Coach assistance in early access, and embedded galleries and leaderboards."
+    availability_state: "early-access"
+    feature_availability:
+      - feature: "DIY Peer-to-Peer fundraising"
+        status: "early-access"
+        notes: "Available in early access as a live working product; participants run at least one real campaign and share structured feedback with no contract or extra fee."
+      - feature: "AI Coach for individual P2P fundraisers"
+        status: "early-access"
+        notes: "Available in early access at no additional charge for nonprofits using DIY P2P; defaults to off on new campaigns and must be enabled on the organization's account by its Customer Success Manager before campaign activation."
+      - feature: "P2P tribute tracking, fundraiser marketing consent, and organization-on-behalf-of pages"
+        status: "generally-available"
+        notes: "Generally available within P2P campaigns as of November 2026."
+      - feature: "P2P Events (walks, runs, and rides)"
+        status: "announced"
+        notes: "Announced as in discovery with future early access planned for select organizations; not yet generally available."
     economics_mode: "inherit-provider"
     requirements:
       status: "known"
@@ -220,27 +241,6 @@ programs:
         - "AI Coach lives on individual P2P pages to help fundraisers draft stories, titles, outreach messages, and next steps; fundraisers can turn AI Coach off in page settings or pause proactive prompts for 7 days."
         - "P2P sign-up supports optional fundraiser marketing-consent checkboxes (globally or restricted to regions requiring explicit consent), optional or required fundraiser mailing addresses, and fundraising on behalf of a named company, school, church, or club."
         - "Administrators can lock campaign-wide goals and target dates, allow fundraisers to select their display currency before the first donation, and hand a team page over to another team member as admin from the Dashboard."
-    name: "DIY Peer-to-Peer Fundraising"
-    slug: "diy-peer-to-peer-fundraising"
-    url: "https://fundraiseup.com/features/peer-to-peer-fundraising/"
-    method: "peer-to-peer"
-    channels:
-      - "online"
-    summary: "Supporters create individual or team fundraising pages on a nonprofit's behalf—including In Memory, In Honor, custom occasion, and organization-represented campaigns—with automated tribute dedication tracking, optional AI Coach assistance in early access, and embedded galleries and leaderboards."
-    availability_state: "early-access"
-    feature_availability:
-      - feature: "DIY Peer-to-Peer fundraising"
-        status: "early-access"
-        notes: "Available in early access as a live working product; participants run at least one real campaign and share structured feedback with no contract or extra fee."
-      - feature: "AI Coach for individual P2P fundraisers"
-        status: "early-access"
-        notes: "Available in early access at no additional charge for nonprofits using DIY P2P; defaults to off on new campaigns and must be enabled on the organization's account by its Customer Success Manager before campaign activation."
-      - feature: "P2P tribute tracking, fundraiser marketing consent, and organization-on-behalf-of pages"
-        status: "generally-available"
-        notes: "Generally available within P2P campaigns as of November 2026."
-      - feature: "P2P Events (walks, runs, and rides)"
-        status: "announced"
-        notes: "Announced as in discovery with future early access planned for select organizations; not yet generally available."
     outcomes:
       - "cash"
     capabilities:
@@ -257,10 +257,17 @@ programs:
       - "local-nonprofit-or-charity"
       - "national-nonprofit-or-charity"
   - id: "prog_000070"
+    name: "In-Person Giving (Tap to Donate & Giving Station)"
+    slug: "in-person-giving"
+    url: "https://fundraiseup.com/docs/mobile-app/"
+    method: "direct-donations"
     products_services:
       - "donation-platform"
       - "event-fundraising-platform"
       - "text-mobile-giving"
+    channels:
+      - "in-person"
+      - "hybrid"
     online_ordering: null
     fulfillment:
       - "on-site"
@@ -268,6 +275,28 @@ programs:
     inventory_model: "not-applicable"
     upfront_cost: "varies"
     ease_to_raise: null
+    summary: "Organizations in the United States, Canada, and the United Kingdom use the Fundraise Up mobile app on compatible phones or tablets to collect contactless in-person donations via staffed Tap to Donate or self-serve Giving Station kiosks."
+    availability_state: "generally-available"
+    geographic_restriction:
+      countries:
+        - "US"
+        - "CA"
+        - "GB"
+      location_participation_required: false
+      notes: "Available only to organizations based in the United States (USD), Canada (CAD), or the United Kingdom (GBP), and the in-person event must take place in the same country as the organization."
+    feature_availability:
+      - feature: "Tap to Donate and Giving Station in the United Kingdom (GBP with on-screen Gift Aid)"
+        status: "generally-available"
+        countries:
+          - "GB"
+        notes: "Launched in November 2026 for UK-registered organizations collecting GBP; captures supporter Gift Aid declarations and mailing addresses in the app while the charity still submits claims to HMRC."
+      - feature: "Hide supporter personal details from in-person staff and volunteers"
+        status: "generally-available"
+        countries:
+          - "US"
+          - "CA"
+          - "GB"
+        notes: "Added November 16, 2026; masks saved supporter names, emails, and phone numbers for In-Person Giving Specialists, logs changes in the Audit log, and blocks screenshots and screen recording on personal-detail screens."
     economics_mode: "inherit-provider"
     requirements:
       status: "known"
@@ -306,35 +335,6 @@ programs:
         - "In the UK, the app runs in UK English, lists GBP campaigns, collects supporter name and email before payment for UK receipting, and can capture on-screen Gift Aid declarations and mailing addresses; the charity remains responsible for submitting Gift Aid claims to HMRC."
         - "Administrators can assign In-Person Giving Specialists to specific Tap to Donate or Giving Station campaigns and optionally mask saved supporter names, email addresses, and phone numbers in the app."
         - "The app blocks screenshots and screen recording on screens showing supporter personal details, encrypts card data directly to Stripe without storing card numbers on the device, and syncs all gifts and post-payment questions to the Dashboard, exports, and CRM integrations."
-    name: "In-Person Giving (Tap to Donate & Giving Station)"
-    slug: "in-person-giving"
-    url: "https://fundraiseup.com/docs/mobile-app/"
-    method: "direct-donations"
-    channels:
-      - "in-person"
-      - "hybrid"
-    summary: "Organizations in the United States, Canada, and the United Kingdom use the Fundraise Up mobile app on compatible phones or tablets to collect contactless in-person donations via staffed Tap to Donate or self-serve Giving Station kiosks."
-    availability_state: "generally-available"
-    geographic_restriction:
-      countries:
-        - "US"
-        - "CA"
-        - "GB"
-      location_participation_required: false
-      notes: "Available only to organizations based in the United States (USD), Canada (CAD), or the United Kingdom (GBP), and the in-person event must take place in the same country as the organization."
-    feature_availability:
-      - feature: "Tap to Donate and Giving Station in the United Kingdom (GBP with on-screen Gift Aid)"
-        status: "generally-available"
-        countries:
-          - "GB"
-        notes: "Launched in November 2026 for UK-registered organizations collecting GBP; captures supporter Gift Aid declarations and mailing addresses in the app while the charity still submits claims to HMRC."
-      - feature: "Hide supporter personal details from in-person staff and volunteers"
-        status: "generally-available"
-        countries:
-          - "US"
-          - "CA"
-          - "GB"
-        notes: "Added November 16, 2026; masks saved supporter names, emails, and phone numbers for In-Person Giving Specialists, logs changes in the Audit log, and blocks screenshots and screen recording on personal-detail screens."
     outcomes:
       - "cash"
     capabilities:
@@ -347,6 +347,10 @@ programs:
       - "own-organization"
       - "own-project-or-program"
 geography:
+  scope:
+    - "us-nationwide"
+    - "canada"
+    - "international"
   countries:
     - "US"
     - "CA"
@@ -354,11 +358,9 @@ geography:
   states: []
   regions: []
   notes: "Online giving supports 25+ languages, multiple currencies, and international payment methods (including ACH, Bacs, SEPA, BECS, PAD, cards, wallets, DAFpay, and crypto), while the In-Person Giving mobile app is restricted to domestic events for organizations based in the United States (USD), Canada (CAD), and the United Kingdom (GBP)."
-  scope:
-    - "us-nationwide"
-    - "canada"
-    - "international"
 content:
+  summary: "Fundraise Up is a donor-experience and fundraising platform for nonprofits offering AI-optimized online checkout, multi-item Gift Cart catalogs, Early Access DIY peer-to-peer fundraising with AI Coach, and in-person giving in the US, Canada, and the UK."
+  how_it_works: "An eligible nonprofit connects Stripe or PayPal, embeds Fundraise Up Checkout, Elements, or Gift Cart on its website or launches hosted Campaign Pages, P2P campaigns, or mobile In-Person Giving, and manages donations, tributes, privacy consent, and CRM syncs from one Dashboard."
   best_for:
     - "Nonprofits seeking conversion-optimized online checkout, recurring giving, or an embedded multi-program Gift Cart catalog without fixed subscription contracts."
     - "Organizations running supporter-driven peer-to-peer campaigns or collecting contactless in-person donations in the US, Canada, or the UK."
@@ -366,8 +368,6 @@ content:
     - "DIY Peer-to-Peer fundraising and the AI Coach companion are in Early Access (requiring Customer Success Manager enablement for AI Coach), and P2P walk/run/ride events are announced rather than generally available."
     - "The ~1% effective platform cost is an average after optional donor fee coverage rather than a guaranteed flat rate, and processor or Stripe Terminal fees apply separately."
     - "In-Person Giving is limited to organizations and events in the US, Canada, and the UK, and embedded Checkout Modal users serving European or UK donors must supply their own pre-loading website cookie banner."
-  summary: "Fundraise Up is a donor-experience and fundraising platform for nonprofits offering AI-optimized online checkout, multi-item Gift Cart catalogs, Early Access DIY peer-to-peer fundraising with AI Coach, and in-person giving in the US, Canada, and the UK."
-  how_it_works: "An eligible nonprofit connects Stripe or PayPal, embeds Fundraise Up Checkout, Elements, or Gift Cart on its website or launches hosted Campaign Pages, P2P campaigns, or mobile In-Person Giving, and manages donations, tributes, privacy consent, and CRM syncs from one Dashboard."
 status:
   lifecycle: "active"
   first_verified_at: "2026-11-18"
@@ -384,7 +384,10 @@ verification:
   verified_by: "FRD Stage 1 provider content refresh"
   sources:
     - id: "src_000175"
+      type: "terms-or-fees"
+      url: "https://fundraiseup.com/pricing/"
       title: "Nonprofit Fundraising Pricing | Fundraise Up"
+      checked_at: "2026-11-18"
       status: "current"
       supports:
         - path: "identity"
@@ -397,11 +400,11 @@ verification:
           status: "current"
           notes: null
       notes: "Establishes usage-based pricing with $0 upfront, no setup or fixed subscription fees, and the ~1% average effective cost caveat."
-      type: "terms-or-fees"
-      url: "https://fundraiseup.com/pricing/"
-      checked_at: "2026-11-18"
     - id: "src_000176"
+      type: "platform-documentation"
+      url: "https://fundraiseup.com/docs/transaction-costs/"
       title: "Transaction Costs: Coverage Modes and Fee Details | Fundraise Up Documentation"
+      checked_at: "2026-11-18"
       status: "current"
       supports:
         - path: "economics"
@@ -411,11 +414,11 @@ verification:
           status: "current"
           notes: null
       notes: "Documents the five supporter cost-coverage modes (Adaptive, Preselected, Opt-in, Mandatory, and Disabled) and separate Stripe/PayPal processing fees."
-      type: "platform-documentation"
-      url: "https://fundraiseup.com/docs/transaction-costs/"
-      checked_at: "2026-11-18"
     - id: "src_000177"
+      type: "terms-or-fees"
+      url: "https://fundraiseup.com/terms/"
       title: "Terms of service | Fundraise Up"
+      checked_at: "2026-11-18"
       status: "current"
       supports:
         - path: "identity"
@@ -431,11 +434,11 @@ verification:
           status: "current"
           notes: null
       notes: "Last updated September 16, 2026; establishes age 18+ eligibility, billing priority (Order Form, written agreement, or platform schedule), tax responsibility, and customer responsibility for reviewing AI-generated content."
-      type: "terms-or-fees"
-      url: "https://fundraiseup.com/terms/"
-      checked_at: "2026-11-18"
     - id: "src_000178"
+      type: "public-press-release"
+      url: "https://fundraiseup.com/blog/introducing-ai-coach/"
       title: "Introducing AI Coach: No P2P fundraiser goes it alone. | Fundraise Up Blog"
+      checked_at: "2026-11-18"
       status: "current"
       supports:
         - path: "programs.diy-peer-to-peer-fundraising.summary"
@@ -457,11 +460,11 @@ verification:
           status: "current"
           notes: null
       notes: "Published November 11, 2026; verifies AI Coach early-access availability for DIY P2P users at no extra charge, default-off behavior, Customer Success Manager account enablement requirement, 48-hour check-ins, and fundraiser opt-out controls."
-      type: "public-press-release"
-      url: "https://fundraiseup.com/blog/introducing-ai-coach/"
-      checked_at: "2026-11-18"
     - id: "src_000179"
+      type: "official-program"
+      url: "https://fundraiseup.com/features/peer-to-peer-fundraising/"
       title: "Peer-to-Peer Fundraising Early Access | Fundraise Up"
+      checked_at: "2026-11-18"
       status: "current"
       supports:
         - path: "classification"
@@ -480,11 +483,11 @@ verification:
           status: "current"
           notes: null
       notes: "Confirms DIY P2P is in Early Access (requiring at least one real campaign and structured feedback) while P2P Events (walks, runs, rides) are in discovery and announced for future early access."
-      type: "official-program"
-      url: "https://fundraiseup.com/features/peer-to-peer-fundraising/"
-      checked_at: "2026-11-18"
     - id: "src_000180"
+      type: "platform-documentation"
+      url: "https://fundraiseup.com/docs/set-up-p2p-campaign/"
       title: "Set up a P2P campaign | Fundraise Up Documentation"
+      checked_at: "2026-11-18"
       status: "current"
       supports:
         - path: "programs.diy-peer-to-peer-fundraising.requirements"
@@ -500,11 +503,11 @@ verification:
           status: "current"
           notes: null
       notes: "Documents P2P campaign configuration, the conditional AI Coach tab, In Memory and In Honor prefilled tribute behavior, fundraiser and supporter marketing-consent modes (including UK/France auto opt-in), and P2P Elements."
-      type: "platform-documentation"
-      url: "https://fundraiseup.com/docs/set-up-p2p-campaign/"
-      checked_at: "2026-11-18"
     - id: "src_000181"
+      type: "platform-documentation"
+      url: "https://fundraiseup.com/docs/changelog/p2p-fundraiser-consent-tributes-team-admins/"
       title: "P2P fundraisers: marketing consent, tributes, and team admin changes | Fundraise Up"
+      checked_at: "2026-11-18"
       status: "current"
       supports:
         - path: "programs.diy-peer-to-peer-fundraising.feature_availability"
@@ -514,11 +517,11 @@ verification:
           status: "current"
           notes: null
       notes: "Published November 11, 2026; verifies P2P sign-up marketing consent checkboxes, automatic tribute dedication mapping on In Memory and In Honor P2P pages, and Dashboard team-admin handoff."
-      type: "platform-documentation"
-      url: "https://fundraiseup.com/docs/changelog/p2p-fundraiser-consent-tributes-team-admins/"
-      checked_at: "2026-11-18"
     - id: "src_000182"
+      type: "platform-documentation"
+      url: "https://fundraiseup.com/docs/changelog/p2p-fundraise-on-behalf-of-organizations/"
       title: "P2P fundraisers: fundraise on behalf of a company, school, or club, and other updates | Fundraise Up"
+      checked_at: "2026-11-18"
       status: "current"
       supports:
         - path: "classification.organizations"
@@ -531,11 +534,11 @@ verification:
           status: "current"
           notes: null
       notes: "Published November 18, 2026; verifies fundraising on behalf of companies, schools, or clubs, locked campaign goals/dates, mailing-address collection, supporter currency choice, and per-page update unsubscribes."
-      type: "platform-documentation"
-      url: "https://fundraiseup.com/docs/changelog/p2p-fundraise-on-behalf-of-organizations/"
-      checked_at: "2026-11-18"
     - id: "src_000183"
+      type: "platform-documentation"
+      url: "https://fundraiseup.com/docs/gift-cart/"
       title: "Gift Cart: How It Works and When to Use It | Fundraise Up Documentation"
+      checked_at: "2026-11-18"
       status: "current"
       supports:
         - path: "programs.online-giving-and-gift-cart.summary"
@@ -551,11 +554,11 @@ verification:
           status: "current"
           notes: null
       notes: "Documents embedded Gift Catalog, Gift Page upsells, 50-item Gift Cart capacity, and single-checkout completion."
-      type: "platform-documentation"
-      url: "https://fundraiseup.com/docs/gift-cart/"
-      checked_at: "2026-11-18"
     - id: "src_000184"
+      type: "platform-documentation"
+      url: "https://fundraiseup.com/docs/changelog/custom-field-values-for-gifts/"
       title: "Custom field values for each gift in Gift Cart | Fundraise Up"
+      checked_at: "2026-11-18"
       status: "current"
       supports:
         - path: "programs.online-giving-and-gift-cart.feature_availability"
@@ -565,11 +568,11 @@ verification:
           status: "current"
           notes: null
       notes: "Published November 12, 2026; verifies per-gift custom field values in Gift Cart via Dashboard or CSV upload."
-      type: "platform-documentation"
-      url: "https://fundraiseup.com/docs/changelog/custom-field-values-for-gifts/"
-      checked_at: "2026-11-18"
     - id: "src_000185"
+      type: "platform-documentation"
+      url: "https://fundraiseup.com/docs/changelog/faq-block-in-gift-cart/"
       title: "FAQ block in Gift Cart | Fundraise Up"
+      checked_at: "2026-11-18"
       status: "current"
       supports:
         - path: "programs.online-giving-and-gift-cart.feature_availability"
@@ -579,22 +582,22 @@ verification:
           status: "current"
           notes: null
       notes: "Published November 10, 2026; verifies embedded, translatable FAQ blocks in Gift Cart catalogs."
-      type: "platform-documentation"
-      url: "https://fundraiseup.com/docs/changelog/faq-block-in-gift-cart/"
-      checked_at: "2026-11-18"
     - id: "src_000186"
+      type: "platform-documentation"
+      url: "https://fundraiseup.com/docs/changelog/edit-gifts-on-own-dashboard-page/"
       title: "Edit gifts on their own Dashboard page in Gift Cart | Fundraise Up"
+      checked_at: "2026-11-18"
       status: "current"
       supports:
         - path: "programs.online-giving-and-gift-cart.feature_availability"
           status: "current"
           notes: null
       notes: "Published November 3, 2026; verifies dedicated Dashboard editing pages for Gift Cart items and sponsorship profiles."
-      type: "platform-documentation"
-      url: "https://fundraiseup.com/docs/changelog/edit-gifts-on-own-dashboard-page/"
-      checked_at: "2026-11-18"
     - id: "src_000187"
+      type: "platform-documentation"
+      url: "https://fundraiseup.com/docs/mobile-app/"
       title: "Fundraise Up App for In-Person Donations: Setup and Use | Fundraise Up Documentation"
+      checked_at: "2026-11-18"
       status: "current"
       supports:
         - path: "economics"
@@ -616,11 +619,11 @@ verification:
           status: "current"
           notes: null
       notes: "Documents US, Canada, and UK availability, Tap to Donate and Giving Station modes, hardware and OS requirements, Stripe Terminal fees, and specialist privacy/security controls."
-      type: "platform-documentation"
-      url: "https://fundraiseup.com/docs/mobile-app/"
-      checked_at: "2026-11-18"
     - id: "src_000188"
+      type: "public-press-release"
+      url: "https://fundraiseup.com/blog/in-person-giving-available-in-uk-with-gift-aid/"
       title: "In-person giving is now available in the UK, with Gift Aid built in | Fundraise Up Blog"
+      checked_at: "2026-11-18"
       status: "current"
       supports:
         - path: "geography"
@@ -639,11 +642,11 @@ verification:
           status: "current"
           notes: null
       notes: "Published November 9, 2026; verifies UK In-Person Giving availability in GBP with on-screen Gift Aid declarations and charity HMRC claim responsibility."
-      type: "public-press-release"
-      url: "https://fundraiseup.com/blog/in-person-giving-available-in-uk-with-gift-aid/"
-      checked_at: "2026-11-18"
     - id: "src_000189"
+      type: "platform-documentation"
+      url: "https://fundraiseup.com/docs/changelog/tap-to-donate-and-giving-station-in-the-uk/"
       title: "Tap to Donate and Giving Station are now available in the United Kingdom | Fundraise Up"
+      checked_at: "2026-11-18"
       status: "current"
       supports:
         - path: "programs.in-person-giving.geographic_restriction"
@@ -656,11 +659,11 @@ verification:
           status: "current"
           notes: null
       notes: "Published November 5, 2026; verifies UK English localization, GBP campaign listing, pre-payment name/email collection for UK receipts, and Gift Aid address capture."
-      type: "platform-documentation"
-      url: "https://fundraiseup.com/docs/changelog/tap-to-donate-and-giving-station-in-the-uk/"
-      checked_at: "2026-11-18"
     - id: "src_000190"
+      type: "platform-documentation"
+      url: "https://fundraiseup.com/docs/changelog/in-person-giving-hide-supporter-details/"
       title: "In-person giving: hide supporter details from staff and volunteers | Fundraise Up"
+      checked_at: "2026-11-18"
       status: "current"
       supports:
         - path: "programs.in-person-giving.feature_availability"
@@ -670,11 +673,11 @@ verification:
           status: "current"
           notes: null
       notes: "Published November 16, 2026; verifies masking supporter personal details from in-person team members, Audit log tracking, and Giving Station specialist access."
-      type: "platform-documentation"
-      url: "https://fundraiseup.com/docs/changelog/in-person-giving-hide-supporter-details/"
-      checked_at: "2026-11-18"
     - id: "src_000191"
+      type: "platform-documentation"
+      url: "https://fundraiseup.com/docs/cookies/"
       title: "Cookies Used by Fundraise Up | Fundraise Up Documentation"
+      checked_at: "2026-11-18"
       status: "current"
       supports:
         - path: "programs.online-giving-and-gift-cart.feature_availability"
@@ -687,11 +690,11 @@ verification:
           status: "current"
           notes: null
       notes: "Documents first-party cookies, integrated Campaign Page and Donor Portal cookie banners, and website cookie-banner requirements for Checkout Modal."
-      type: "platform-documentation"
-      url: "https://fundraiseup.com/docs/cookies/"
-      checked_at: "2026-11-18"
     - id: "src_000192"
+      type: "platform-documentation"
+      url: "https://fundraiseup.com/docs/changelog/donor-portal-cookie-consent/"
       title: "Cookie banner in Donor Portal | Fundraise Up"
+      checked_at: "2026-11-18"
       status: "current"
       supports:
         - path: "programs.online-giving-and-gift-cart.feature_availability"
@@ -701,9 +704,6 @@ verification:
           status: "current"
           notes: null
       notes: "Published November 11, 2026; verifies built-in Donor Portal cookie consent banner in applicable jurisdictions and 400-day preference retention."
-      type: "platform-documentation"
-      url: "https://fundraiseup.com/docs/changelog/donor-portal-cookie-consent/"
-      checked_at: "2026-11-18"
 provenance:
   discovered_via:
     - "editorial-research"

@@ -1120,21 +1120,12 @@
               "unit": "business-days"
             }
           },
-          "payout_time": {
-            "minimum": {
-              "value": 45,
-              "unit": "business-days"
-            },
-            "maximum": {
-              "value": 60,
-              "unit": "business-days"
-            }
-          },
+          "payout_time": null,
           "payout_schedules": [],
           "notes": [
             "Panera asks organizations to book at least 2–3 weeks in advance (some participating location formats set a 10-to-21-day cutoff), and event requests are reviewed within 10 business days.",
             "Standard in-cafe fundraising hours are 4:00 p.m. to 8:00 p.m., while eligible online and mobile orders placed using the event promo code count all day on the scheduled event date.",
-            "Event sales results are emailed within 7 business days. The FAQ states that checks arrive within 45 business days in the step-by-step overview and 45–60 business days in the check-delivery FAQ, while the Terms & Conditions state approximately 45 days after the event."
+            "Event sales results are emailed within 7 business days. Official pages publish differing check-delivery estimates rather than a single guaranteed payout deadline: the FAQ step-by-step overview states within 45 business days, the check-delivery FAQ states 45–60 business days, and the Terms & Conditions state approximately 45 days after the event (subject to valid tax-exempt documentation)."
           ]
         },
         "logistics": {
@@ -1179,6 +1170,7 @@
       "considerations": [
         "Participation, standard give-back rates (20% or 25%), minimum net sales thresholds ($100–$150), and availability of the December 1–21, 2026 30% promotion are location-specific and must be verified for the chosen bakery-cafe.",
         "Only tax-exempt 501(c)(3) organizations with valid W-9/tax documentation qualify, and groups are limited to one event every 30 days.",
+        "Official pages publish differing check-arrival estimates (approximately 45 days in the Terms & Conditions versus within 45 or 45–60 business days in the FAQ) rather than a single guaranteed payout deadline.",
         "Gift cards, catering orders, retail items, third-party delivery orders, and any event where flyers are distributed on or near cafe premises do not qualify."
       ]
     },
@@ -1213,12 +1205,17 @@
           "classification.organizations",
           "programs.bakery-cafe-fundraiser-night.economics",
           "programs.bakery-cafe-fundraiser-night.requirements",
-          "programs.bakery-cafe-fundraiser-night.timing",
-          "programs.bakery-cafe-fundraiser-night.logistics"
+          {
+            "path": "programs.bakery-cafe-fundraiser-night.timing",
+            "status": "needs-recheck",
+            "notes": "The FAQ step-by-step overview states checks arrive within 45 business days, while the check-delivery FAQ states 45–60 business days and the Terms & Conditions state approximately 45 days."
+          },
+          "programs.bakery-cafe-fundraiser-night.logistics",
+          "content.considerations"
         ],
         "checked_at": "2026-11-18",
         "status": "current",
-        "notes": "Confirms 501(c)(3) and W-9 requirement, 2–3 week advance booking guidance, 10-business-day review window, 4–8 p.m. in-cafe hours with all-day online promo-code eligibility, 7-business-day results email, and 45–60 business day check delivery."
+        "notes": "Confirms 501(c)(3) and W-9 requirement, 2–3 week advance booking guidance, 10-business-day review window, 4–8 p.m. in-cafe hours with all-day online promo-code eligibility, 7-business-day results email, and differing 45 vs. 45–60 business day check-delivery estimates."
       },
       {
         "url": "https://fundraising.panerabread.com/terms-conditions",
@@ -1227,12 +1224,17 @@
         "supports": [
           "programs.bakery-cafe-fundraiser-night.economics",
           "programs.bakery-cafe-fundraiser-night.requirements",
-          "programs.bakery-cafe-fundraiser-night.timing",
-          "programs.bakery-cafe-fundraiser-night.logistics"
+          {
+            "path": "programs.bakery-cafe-fundraiser-night.timing",
+            "status": "needs-recheck",
+            "notes": "The Terms & Conditions state checks are mailed approximately 45 days following the event, while the FAQ states within 45 business days or 45–60 business days."
+          },
+          "programs.bakery-cafe-fundraiser-night.logistics",
+          "content.considerations"
         ],
         "checked_at": "2026-11-18",
         "status": "current",
-        "notes": "Defines net food and beverage sales, franchisee coordination, flyer and media restrictions, excluded purchases (gift cards, catering, retail items, third-party delivery), and the 5-business-day receipt dispute window."
+        "notes": "Defines net food and beverage sales, franchisee coordination, flyer and media restrictions, approximate 45-day check mailing estimate, excluded purchases (gift cards, catering, retail items, third-party delivery), and the 5-business-day receipt dispute window."
       },
       {
         "url": "https://fundraising.panerabread.com/locations",
@@ -1264,7 +1266,7 @@
     ],
     "verification": {
       "status": "verified",
-      "review_status": "current",
+      "review_status": "needs-recheck",
       "first_researched_at": "2026-11-18",
       "first_verified_at": "2026-11-18",
       "last_verified_at": "2026-11-18",
