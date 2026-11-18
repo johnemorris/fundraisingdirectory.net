@@ -4,12 +4,14 @@ import test from "node:test";
 import { load } from "js-yaml";
 import { legacyRoutes } from "../src/data/legacyRoutes.js";
 import {
+  getLocalSeasonForDate,
   getOrderedSeasonalPlans,
   getPublishedSeasonalGuides,
   getSeasonForDate,
   SEASON_IDS,
   SEASONAL_PLANS,
 } from "../src/data/seasonal.ts";
+import { applyActiveSeason } from "../src/lib/seasonalRuntime.ts";
 import { topicPublication } from "../src/data/topicPublication.js";
 
 test("seasonal rotation maps every UTC month deterministically to spring, summer, fall, or winter", () => {
@@ -125,4 +127,70 @@ test("seasonal provider links resolve to active source-backed profiles and disti
       `${file} should include contextual discovery link to dutch-mill-bulbs`,
     );
   }
+});
+
+test("runtime local-date selection rotates across season boundaries without rebuild", () => {
+  assert.equal(getLocalSeasonForDate(new Date(2026, 10, 30, 23, 59)), "fall");
+  assert.equal(getLocalSeasonForDate(new Date(2026, 11, 1, 0, 0)), "winter");
+  assert.equal(getLocalSeasonForDate(new Date(2026, 1, 28, 23, 59)), "winter");
+  assert.equal(getLocalSeasonForDate(new Date(2026, 2, 1, 0, 0)), "spring");
+  assert.equal(getLocalSeasonForDate(new Date(2026, 4, 31, 23, 59)), "spring");
+  assert.equal(getLocalSeasonForDate(new Date(2026, 5, 1, 0, 0)), "summer");
+  assert.equal(getLocalSeasonForDate(new Date(2026, 7, 31, 23, 59)), "summer");
+  assert.equal(getLocalSeasonForDate(new Date(2026, 8, 1, 0, 0)), "fall");
+
+  const makeLink = (id) => {
+    const classes = new Set(id === "fall" ? ["is-current"] : []);
+    const pill = { hidden: id !== "fall", dataset: {} };
+    return {
+      hidden: false,
+      dataset: { seasonLink: id },
+      classes,
+      pill,
+      classList: {
+        toggle(token, force) {
+          const next = force ?? !classes.has(token);
+          if (next) classes.add(token);
+          else classes.delete(token);
+          return next;
+        },
+      },
+      querySelector(selector) {
+        return selector === "[data-season-pill]" ? pill : null;
+      },
+    };
+  };
+
+  const features = SEASON_IDS.map((id) => ({
+    hidden: id !== "fall",
+    dataset: { seasonFeature: id },
+  }));
+  const links = SEASON_IDS.map(makeLink);
+  const root = {
+    dataset: { activeSeason: "fall" },
+    querySelectorAll(selector) {
+      if (selector === "[data-season-feature]") return features;
+      if (selector === "[data-season-link]") return links;
+      return [];
+    },
+  };
+
+  assert.equal(applyActiveSeason(root, new Date(2026, 10, 30, 12, 0)), "fall");
+  assert.equal(features.find((el) => el.dataset.seasonFeature === "fall").hidden, false);
+  assert.equal(features.find((el) => el.dataset.seasonFeature === "winter").hidden, true);
+
+  assert.equal(applyActiveSeason(root, new Date(2026, 11, 1, 12, 0)), "winter");
+  assert.equal(root.dataset.activeSeason, "winter");
+  assert.equal(features.find((el) => el.dataset.seasonFeature === "fall").hidden, true);
+  assert.equal(features.find((el) => el.dataset.seasonFeature === "winter").hidden, false);
+  assert.equal(links.find((el) => el.dataset.seasonLink === "winter").classes.has("is-current"), true);
+  assert.equal(links.find((el) => el.dataset.seasonLink === "winter").pill.hidden, false);
+  assert.equal(links.find((el) => el.dataset.seasonLink === "fall").classes.has("is-current"), false);
+  assert.equal(links.find((el) => el.dataset.seasonLink === "fall").pill.hidden, true);
+
+  assert.equal(applyActiveSeason(root, new Date(2026, 1, 28, 12, 0)), "winter");
+  assert.equal(applyActiveSeason(root, new Date(2026, 2, 1, 12, 0)), "spring");
+  assert.equal(root.dataset.activeSeason, "spring");
+  assert.equal(features.find((el) => el.dataset.seasonFeature === "spring").hidden, false);
+  assert.equal(features.find((el) => el.dataset.seasonFeature === "winter").hidden, true);
 });

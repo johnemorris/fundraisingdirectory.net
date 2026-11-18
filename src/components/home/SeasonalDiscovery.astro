@@ -6,35 +6,40 @@ import { getOrderedSeasonalPlans, getPublishedSeasonalGuides } from "../../data/
 import { SITE_ROUTES } from "../../data/site";
 import { topicPath } from "../../data/topics";
 
-const { currentSeason, seasons } = getOrderedSeasonalPlans(new Date());
+const { currentSeasonId, seasons } = getOrderedSeasonalPlans(new Date());
 const providers = (await getCollection("providers")).filter((provider) => !provider.data.meta.deleted && provider.data.status.lifecycle === "active");
 const providersBySlug = new Map(providers.map((provider) => [provider.data.identity.slug, provider]));
 const routesByPath = new Map(legacyRoutes.map((route) => [route.path, route]));
 
-const featuredGuides = getPublishedSeasonalGuides(currentSeason)
-  .slice(0, 2)
-  .map((entry) => {
-    const route = routesByPath.get(entry.legacyPath);
-    if (!route) throw new Error(`Missing route for seasonal guide: ${entry.legacyPath}`);
-    return { title: route.title, href: topicPath(route.path), kind: "Planning guide" };
-  });
+const seasonCards = seasons.map((season) => {
+  const featuredGuides = getPublishedSeasonalGuides(season)
+    .slice(0, 2)
+    .map((entry) => {
+      const route = routesByPath.get(entry.legacyPath);
+      if (!route) throw new Error(`Missing route for seasonal guide: ${entry.legacyPath}`);
+      return { title: route.title, href: topicPath(route.path), kind: "Planning guide" };
+    });
 
-const featuredProviders = currentSeason.programs
-  .slice(0, 2)
-  .map((entry) => {
-    const provider = providersBySlug.get(entry.providerSlug);
-    if (!provider) throw new Error(`Missing active provider for seasonal discovery: ${entry.providerSlug}`);
-    return {
-      title: provider.data.identity.name,
-      href: providerProfilePath(provider.data.identity.slug),
-      kind: entry.seasonality === "seasonal" ? "Seasonal window" : "Year-round fit",
-    };
-  });
+  const featuredProviders = season.programs
+    .slice(0, 2)
+    .map((entry) => {
+      const provider = providersBySlug.get(entry.providerSlug);
+      if (!provider) throw new Error(`Missing active provider for seasonal discovery: ${entry.providerSlug}`);
+      return {
+        title: provider.data.identity.name,
+        href: providerProfilePath(provider.data.identity.slug),
+        kind: entry.seasonality === "seasonal" ? "Seasonal window" : "Year-round fit",
+      };
+    });
 
-const quickLinks = [...featuredGuides, ...featuredProviders];
+  return {
+    ...season,
+    quickLinks: [...featuredGuides, ...featuredProviders],
+  };
+});
 ---
 
-<section class="section seasonal-section" aria-labelledby="seasonal-discovery-title">
+<section class="section seasonal-section" aria-labelledby="seasonal-discovery-title" data-seasonal-discovery data-active-season={currentSeasonId}>
   <div class="shell-wide">
     <div class="section-heading-row">
       <div>
@@ -45,40 +50,44 @@ const quickLinks = [...featuredGuides, ...featuredProviders];
     </div>
 
     <div class="seasonal-layout">
-      <div class="seasonal-feature" data-current-season={currentSeason.id}>
-        <div class="seasonal-feature-head">
-          <span class="season-badge">Current season · {currentSeason.windowLabel}</span>
-          <h3>{currentSeason.title}</h3>
-          <p>{currentSeason.timingGuidance}</p>
-        </div>
+      <div class="seasonal-feature-stack">
+        {seasonCards.map((season) => (
+          <div class="seasonal-feature" data-season-feature={season.id} hidden={season.id !== currentSeasonId}>
+            <div class="seasonal-feature-head">
+              <span class="season-badge">Current season · {season.windowLabel}</span>
+              <h3>{season.title}</h3>
+              <p>{season.timingGuidance}</p>
+            </div>
 
-        <ul class="seasonal-quick-links" aria-label={`${currentSeason.label} guides and providers`}>
-          {quickLinks.map((item) => (
-            <li>
-              <a href={item.href}>
-                <small>{item.kind}</small>
-                <strong>{item.title} <span aria-hidden="true">→</span></strong>
+            <ul class="seasonal-quick-links" aria-label={`${season.label} guides and providers`}>
+              {season.quickLinks.map((item) => (
+                <li>
+                  <a href={item.href}>
+                    <small>{item.kind}</small>
+                    <strong>{item.title} <span aria-hidden="true">→</span></strong>
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <div class="seasonal-feature-actions">
+              <a class="button button-primary" href={`${SITE_ROUTES.ideas}#${season.anchorId}`}>
+                Explore {season.label} planning <span aria-hidden="true">→</span>
               </a>
-            </li>
-          ))}
-        </ul>
-
-        <div class="seasonal-feature-actions">
-          <a class="button button-primary" href={`${SITE_ROUTES.ideas}#${currentSeason.anchorId}`}>
-            Explore {currentSeason.label} planning <span aria-hidden="true">→</span>
-          </a>
-        </div>
+            </div>
+          </div>
+        ))}
       </div>
 
       <nav class="season-switcher" aria-label="Browse all four fundraising seasons">
-        {seasons.map((season) => {
-          const isCurrent = season.id === currentSeason.id;
+        {seasonCards.map((season) => {
+          const isCurrent = season.id === currentSeasonId;
           return (
-            <a class:list={["season-link-card", { "is-current": isCurrent }]} href={`${SITE_ROUTES.ideas}#${season.anchorId}`}>
+            <a class:list={["season-link-card", { "is-current": isCurrent }]} href={`${SITE_ROUTES.ideas}#${season.anchorId}`} data-season-link={season.id}>
               <div>
                 <div class="season-link-meta">
                   <small>{season.windowLabel}</small>
-                  {isCurrent && <span class="season-current-pill">Current</span>}
+                  <span class="season-current-pill" data-season-pill hidden={!isCurrent}>Current</span>
                 </div>
                 <strong>{season.label} planning</strong>
               </div>
@@ -90,6 +99,13 @@ const quickLinks = [...featuredGuides, ...featuredProviders];
     </div>
   </div>
 </section>
+
+<script>
+  import { applyActiveSeason } from "../../lib/seasonalRuntime";
+
+  const root = document.querySelector<HTMLElement>("[data-seasonal-discovery]");
+  if (root) applyActiveSeason(root, new Date());
+</script>
 
 <style lang="scss">
   .seasonal-section {
@@ -104,6 +120,11 @@ const quickLinks = [...featuredGuides, ...featuredProviders];
     align-items: stretch;
   }
 
+  .seasonal-feature-stack {
+    display: grid;
+    min-width: 0;
+  }
+
   .seasonal-feature {
     display: grid;
     gap: 20px;
@@ -114,6 +135,10 @@ const quickLinks = [...featuredGuides, ...featuredProviders];
       linear-gradient(135deg, transparent 68%, var(--surface-teal) 68%, var(--surface-blue) 100%),
       var(--surface-elevated);
     box-shadow: var(--shadow-sm);
+
+    &[hidden] {
+      display: none;
+    }
   }
 
   .seasonal-feature-head {
@@ -260,6 +285,10 @@ const quickLinks = [...featuredGuides, ...featuredProviders];
     color: #fff;
     font-size: 0.7rem;
     font-weight: 700;
+
+    &[hidden] {
+      display: none;
+    }
   }
 
   @media (max-width: 900px) {

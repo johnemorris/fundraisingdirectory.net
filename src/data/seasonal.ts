@@ -245,12 +245,19 @@ export const SEASONAL_PLANS: readonly SeasonalPlan[] = [
   },
 ] as const;
 
-export function getSeasonForDate(date: Date = new Date()): SeasonId {
-  const month = date.getUTCMonth();
+export function getSeasonForMonth(month: number): SeasonId {
   if (month >= 2 && month <= 4) return "spring";
   if (month >= 5 && month <= 7) return "summer";
   if (month >= 8 && month <= 10) return "fall";
   return "winter";
+}
+
+export function getSeasonForDate(date: Date = new Date()): SeasonId {
+  return getSeasonForMonth(date.getUTCMonth());
+}
+
+export function getLocalSeasonForDate(date: Date = new Date()): SeasonId {
+  return getSeasonForMonth(date.getMonth());
 }
 
 export function getSeasonalPlan(seasonId: SeasonId): SeasonalPlan {
