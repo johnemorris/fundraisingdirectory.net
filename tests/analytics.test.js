@@ -95,6 +95,8 @@ test("analytics queues page views and custom events only after consent", async (
 
     analytics.setAnalyticsConsent(true);
     assert.equal(appendedScripts[0].src, "https://www.googletagmanager.com/gtag/js?id=G-TEST123");
+    assert.equal(Array.isArray(globalThis.window.dataLayer[0]), false);
+    assert.equal(Object.prototype.toString.call(globalThis.window.dataLayer[0]), "[object Arguments]");
     assert.ok(globalThis.window.dataLayer.some((entry) => entry[0] === "config" && entry[1] === "G-TEST123"));
 
     analytics.trackAnalyticsEvent("provider_search", { query_length: 5 });
