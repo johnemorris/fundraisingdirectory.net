@@ -19,7 +19,8 @@ interface Props {
 }
 
 const { provider, program, outboundRel, sharedEconomicsShown } = Astro.props;
-const presentation = resolveProgramPresentation(provider, program);
+// Preserve every dated offer in HTML; runtime date labels avoid a rebuild boundary.
+const presentation = resolveProgramPresentation(provider, program, { includeExpired: true });
 const programFulfillment = program.fulfillment.filter((value) => value !== "unknown");
 const formatList = (values: string[]) => new Intl.ListFormat("en-US", { style: "long", type: "conjunction" }).format(values);
 
@@ -76,7 +77,8 @@ const operationalFacts = [
       ) : presentation.economicsRows.length > 0 ? (
         <div class="financial-list">
           {presentation.economicsRows.map((row) => (
-            <div class="financial-item">
+            <div class="financial-item" data-dated-terms={row.effectiveWindow ? "" : undefined} data-start-date={row.effectiveWindow?.start_date} data-end-date={row.effectiveWindow?.end_date}>
+              {row.effectiveWindow && <p class="dated-offer" data-date-status>Dated offer — valid only within the stated dates; verify current terms with the provider.</p>}
               <p><span>{row.label}</span><strong>{row.value}</strong></p>
               {row.basis && <p class="fact-context"><b>Basis:</b> {row.basis}</p>}
               {row.conditions.length > 0 && <ul class="compact-notes"><li><b>Conditions:</b> {formatList(row.conditions)}</li></ul>}
@@ -120,3 +122,16 @@ const operationalFacts = [
     </section>
   </div>
 </article>
+
+<script>
+  import { initializeDatedTerms } from "../lib/dateWindow";
+  initializeDatedTerms();
+  // Reassess on a resumed or overnight-open page without waiting for a rebuild.
+  window.addEventListener("pageshow", () => initializeDatedTerms());
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) initializeDatedTerms(); });
+  window.setInterval(() => initializeDatedTerms(), 60_000);
+</script>
+
+<style lang="scss">
+  .dated-offer { padding: 0.625rem; border-left: 0.2rem solid var(--teal); font-weight: 650; }
+</style>
