@@ -126,3 +126,7 @@
     padding: 22px !important;
   }
 }
+
+.information-content section > div > p + p {
+  margin-top: 1rem;
+}
