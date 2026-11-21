@@ -15,16 +15,17 @@ const contactHref = `mailto:${SITE_CONTACT_EMAIL}`;
     eyebrow="Privacy"
     breadcrumbLabel="Privacy"
     title="How this site handles your information."
-    intro="Effective November 19, 2026. This page describes what FundraisingDirectory.net collects, why, and the choices you have."
+    intro="Effective November 20, 2026. This page describes what FundraisingDirectory.net collects, why, and the choices you have."
   >
     <section>
       <h2>What this site does not do</h2>
       <div>
         <p>
           The site has no user accounts, payment processing, newsletters, or
-          advertising technology, and we do not sell or rent personal information.
-          The Fundraiser Finder runs in your browser. Your answers are not saved to
-          a profile or sent to us.
+          advertising technology.
+          The Fundraiser Finder runs in your browser and does not create a saved
+          user profile. Shareable Finder URLs can contain your choices, as
+          explained below.
         </p>
       </div>
     </section>
@@ -49,8 +50,8 @@ const contactHref = `mailto:${SITE_CONTACT_EMAIL}`;
           We use what you send only to review your listing request, contact you
           about it, and keep your listing accurate. Submitting does not create or
           publish a listing automatically. Organization details may appear on a
-          public listing if one is published; your contact name, email, role, and
-          phone are never published.
+          public listing if one is published. Submitting the form does not
+          automatically publish your contact details.
         </p>
       </div>
     </section>
@@ -69,10 +70,10 @@ const contactHref = `mailto:${SITE_CONTACT_EMAIL}`;
       <h2>How long we keep it</h2>
       <div>
         <p>
-          We keep listing requests and other email for up to 24 months after our
-          last contact with you, or for as long as your listing is active,
-          whichever is longer, and then delete them. You can ask us to delete your
-          information sooner at any time.
+          We have not established a fixed retention period for listing requests
+          and other correspondence. Email services may also retain copies or
+          backups. Contact us to ask about retention or request deletion of
+          information you sent us.
         </p>
       </div>
     </section>
@@ -82,8 +83,7 @@ const contactHref = `mailto:${SITE_CONTACT_EMAIL}`;
       <div>
         <p>
           To see, correct, or delete information you sent us, email{" "}
-          <a href={contactHref}>{SITE_CONTACT_EMAIL}</a>. We respond within 30
-          days.
+          <a href={contactHref}>{SITE_CONTACT_EMAIL}</a>.
         </p>
       </div>
     </section>
@@ -100,9 +100,10 @@ const contactHref = `mailto:${SITE_CONTACT_EMAIL}`;
           directory filters, Finder completion, and outbound provider-link clicks.
         </p>
         <p>
-          Analytics events do not include the words entered into provider search,
-          Finder answers, form text, or provider ranking and commercial-affiliation
-          data. Google and hosting infrastructure may still process technical data
+          The site's custom interaction events do not attach provider search
+          words, Finder answers, form text, or provider ranking and
+          commercial-affiliation data as event parameters. Google and hosting
+          infrastructure may still process technical data
           such as IP address, browser information, page URL, and request time under
           their respective terms. Your choice is stored in your browser so it
           persists across visits. You can use <strong>Cookie preferences</strong>{" "}
@@ -117,7 +118,8 @@ const contactHref = `mailto:${SITE_CONTACT_EMAIL}`;
       <h2>Technical request data</h2>
       <div>
         <p>
-          As with most websites, hosting and security infrastructure may process
+          Cloudflare provides the site's hosting infrastructure. As with most
+          websites, hosting and security infrastructure may process
           technical request information needed to deliver and protect the site,
           such as an IP address, browser details, requested URL, and request time.
         </p>
@@ -137,11 +139,24 @@ const contactHref = `mailto:${SITE_CONTACT_EMAIL}`;
     </section>
 
     <section>
+      <h2>Information kept in your browser</h2>
+      <div><p>Finder choices appear in the page URL so you can share a shortlist.
+        The provider comparison keeps selected provider IDs in this tab's session
+        storage and in shareable URLs. These features do not create an account.
+        Requested page URLs reach our host and, if analytics is enabled, may be
+        processed by Google. This can include Finder choices or search terms in
+        shared URLs. Avoid putting sensitive information in URLs.</p>
+        <p>Your email app and the service receiving our mailbox process messages
+        you choose to send. Their storage and backup practices also apply; no
+        message is sent by the Get Listed form automatically.</p></div>
+    </section>
+
+    <section>
       <h2>Children</h2>
       <div>
         <p>
-          This site is meant for adults organizing fundraisers. We do not knowingly
-          collect personal information from children under 13.
+          This site is intended for adults organizing fundraisers and provider
+          representatives. Please avoid sending personal information about children.
         </p>
       </div>
     </section>
