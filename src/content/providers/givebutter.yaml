@@ -3,7 +3,7 @@ meta:
   schema_version: 2
   created_at: "2026-08-29"
   created_by: "user_000001"
-  modified_at: "2026-09-20"
+  modified_at: "2026-11-18"
   modified_by: "user_000001"
   deleted: false
   deleted_at: null
@@ -85,6 +85,16 @@ programs:
     upfront_cost: "none"
     ease_to_raise: null
     summary: "Organizations and affiliated fundraisers can run donation forms, crowdfunding pages, peer-to-peer campaigns, events, ticketing, and auctions while managing payments and supporters in one platform."
+    feature_availability:
+      - feature: "Givebutter Portal multi-page fundraiser management"
+        status: "generally-available"
+        notes: "Supporters can register multiple participants in a single ticketed registration-fundraising checkout (with optional email and phone for additional registrants such as children) and oversee all owned or managed pages under one portal login."
+      - feature: "Ticket-linked fundraiser page assignment and release transfers"
+        status: "generally-available"
+        notes: "Assigning a ticketed registration-fundraising page or reassigning its event ticket in the Givebutter Portal moves both the ticket and its linked fundraising page together; assignees can also release a page and ticket back to the purchaser."
+      - feature: "Administrator AI Connector controls (Settings > AI)"
+        status: "generally-available"
+        notes: "Account admins can globally disable OAuth/MCP AI Connectors across the account, inspect active user connections and last-active timestamps, disconnect individual or per-user connectors, and toggle AI contact summaries."
     economics_mode: "program-specific"
     economics:
       status: "known"
@@ -159,6 +169,8 @@ programs:
       other_restrictions:
         - "Givebutter processes donations in USD; organizations without a United States presence may not be able to complete registration."
         - "Individual personal-fundraising accounts are not supported; individuals may participate on behalf of a verified organization or as team members."
+        - "Registering multiple fundraisers from a single checkout and managing multiple fundraising pages on the same campaign under one login requires registration fundraising with event tickets; minimum-donation registrations and standard P2P sign-ups allow one fundraising page per email address per campaign."
+        - "AI Connectors are scoped to a single Givebutter account per connection, have read-only access within the user's permissions, and cannot create, edit, or delete records or move funds."
       editorial_summary: "A 501(c)(3) is not stated as universally required, but United States identity, banking, phone, and payout verification requirements apply."
     timing:
       status: "known"
@@ -179,15 +191,18 @@ programs:
         maximum:
           value: 5
           unit: "business-days"
+      payout_schedules: []
       notes:
         - "Eligible instant payouts are typically completed within 60 minutes; eligibility is dynamic."
-      payout_schedules: []
     logistics:
       status: "known"
       notes:
         - "Campaign operators connect a United States bank account or debit card through Stripe Connect."
         - "Withdrawals are manually initiated and subject to approval; standard withdrawals are free."
         - "Givebutter offers Form, Page, and Event campaign types; peer-to-peer fundraising is available on Page and Event campaigns, and auctions are available on Page and Event campaigns."
+        - "Through the Givebutter Portal (Fundraising > Manage pages), supporters can oversee every fundraising page they own or manage under one login, view per-campaign page stats, change teams, send up to 10 personalized email or SMS donor invites at a time with automatic reminders, and edit page stories."
+        - "When a fundraising page is linked to an event ticket via registration fundraising, assigning the page or reassigning the ticket in the Givebutter Portal transfers both the ticket and the fundraising page to the new person while keeping the original purchaser able to reassign it; an assignee who did not purchase the ticket can also release the page and ticket back to the original buyer."
+        - "Users can connect external AI assistants (such as Claude or ChatGPT) via OAuth/MCP for live read-only queries, while account administrators can globally turn off AI Connectors under Settings > AI (immediately disconnecting all active connectors and blocking new ones), audit active connectors by user and tool, disconnect individual or user-wide connections, and toggle AI contact summaries."
     outcomes:
       - "cash"
     capabilities:
@@ -220,17 +235,18 @@ geography:
   notes: "Campaign operators must have a United States presence and supported United States or Puerto Rico payout information; donors can contribute from most countries, with donations processed in USD."
 content:
   summary: "Givebutter is an online fundraising platform for nonprofits and community organizations, with donation pages, events, auctions, and peer-to-peer tools."
-  how_it_works: "An organization creates a campaign or donation form, shares it with supporters, and manages donations and campaign activity through Givebutter."
+  how_it_works: "An organization creates a campaign or donation form, shares it with supporters, and manages donations, peer-to-peer pages, event tickets, and account settings through Givebutter."
   best_for:
     - "Nonprofits and community organizations that want several online fundraising formats in one platform."
     - "Groups running donation campaigns, events, auctions, or peer-to-peer fundraising."
   considerations:
     - "Available features, payment processing, and pricing can vary by plan and campaign setup."
+    - "Multi-page supporter management on a single campaign under one login requires ticketed registration fundraising, and organizations connecting external AI assistants should review Settings > AI controls and third-party AI training policies."
     - "Organizations should confirm current eligibility and terms directly with Givebutter."
 status:
   lifecycle: "active"
   first_verified_at: "2026-08-29"
-  last_verified_at: "2026-09-20"
+  last_verified_at: "2026-11-18"
   next_review_at: null
   inactive_since: null
   inactive_reason: null
@@ -239,8 +255,8 @@ verification:
   review_status: "current"
   completeness: "anchor-quality"
   first_researched_at: "2026-09-20"
-  reviewed_by: "FRD pilot research"
-  verified_by: "FRD pilot research"
+  reviewed_by: "FRD Stage 1 provider content refresh"
+  verified_by: "FRD Stage 1 provider content refresh"
   sources:
     - id: "src_000011"
       type: "platform-documentation"
@@ -352,6 +368,74 @@ verification:
           status: "current"
           notes: null
       notes: null
+    - id: "src_000193"
+      type: "platform-documentation"
+      url: "https://help.givebutter.com/en/articles/3270211-how-to-manage-your-fundraising-page"
+      title: "How to manage your fundraising page"
+      checked_at: "2026-11-18"
+      status: "current"
+      supports:
+        - path: "programs.online-fundraising-platform.feature_availability"
+          status: "current"
+          notes: null
+        - path: "programs.online-fundraising-platform.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.online-fundraising-platform.logistics"
+          status: "current"
+          notes: null
+      notes: "Documents Givebutter Portal multi-page management under one login, team changes, donor invites, and assigning or releasing fundraising pages linked to event tickets."
+    - id: "src_000194"
+      type: "platform-documentation"
+      url: "https://help.givebutter.com/en/articles/7668929-how-to-use-registration-fundraising"
+      title: "How to use registration fundraising"
+      checked_at: "2026-11-18"
+      status: "current"
+      supports:
+        - path: "programs.online-fundraising-platform.feature_availability"
+          status: "current"
+          notes: null
+        - path: "programs.online-fundraising-platform.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.online-fundraising-platform.logistics"
+          status: "current"
+          notes: null
+      notes: "Verifies multi-participant checkout on ticketed registration fundraising (including optional email/phone for children), single-person limits on minimum-donation registration, and linked ticket/fundraising-page transfers."
+    - id: "src_000195"
+      type: "platform-documentation"
+      url: "https://help.givebutter.com/en/articles/17234450-how-to-manage-your-event-tickets"
+      title: "How to manage your event tickets"
+      checked_at: "2026-11-18"
+      status: "current"
+      supports:
+        - path: "programs.online-fundraising-platform.feature_availability"
+          status: "current"
+          notes: null
+        - path: "programs.online-fundraising-platform.logistics"
+          status: "current"
+          notes: null
+      notes: "Confirms that assigning a registration-fundraiser event ticket in the Givebutter Portal moves its linked fundraising page with the ticket and allows assignees to release tickets back to the original owner."
+    - id: "src_000196"
+      type: "platform-documentation"
+      url: "https://help.givebutter.com/en/articles/15891040-how-to-connect-an-ai-assistant-to-your-account"
+      title: "How to connect an AI assistant to your account"
+      checked_at: "2026-11-18"
+      status: "current"
+      supports:
+        - path: "programs.online-fundraising-platform.feature_availability"
+          status: "current"
+          notes: null
+        - path: "programs.online-fundraising-platform.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.online-fundraising-platform.logistics"
+          status: "current"
+          notes: null
+        - path: "content.considerations"
+          status: "current"
+          notes: null
+      notes: "Verifies read-only OAuth/MCP AI Connectors and administrator controls under Settings > AI to disable connectors account-wide, inspect active connections, disconnect users, and toggle AI contact summaries."
 provenance:
   discovered_via:
     - "web-research"

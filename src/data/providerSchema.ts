@@ -36,6 +36,48 @@ export const RESEARCH_STATES = [
 
 export const SOURCE_REVIEW_STATES = ["current", "stale", "disputed", "needs-recheck"] as const;
 
+export const AVAILABILITY_STATES = ["generally-available", "early-access", "announced"] as const;
+
+export const availabilityStateSchema = z.enum(AVAILABILITY_STATES);
+
+export const dateWindowSchema = z.object({
+  start_date: publicDateSchema.optional(),
+  end_date: publicDateSchema.optional(),
+}).refine((window) => window.start_date !== undefined || window.end_date !== undefined, {
+  message: "Provide a start_date or end_date for a dated promotion window",
+}).refine((window) => {
+  if (!window.start_date || !window.end_date) return true;
+  return window.start_date.slice(0, 10) <= window.end_date.slice(0, 10);
+}, {
+  message: "Promotion start_date cannot be after end_date",
+});
+
+export const geographicRestrictionSchema = z.object({
+  countries: z.array(z.string().length(2)).optional(),
+  location_participation_required: z.boolean().optional(),
+  notes: nullableText.optional(),
+}).refine((value) => (value.countries?.length ?? 0) > 0 || value.location_participation_required !== undefined || value.notes !== undefined && value.notes !== null, {
+  message: "Provide at least one geographic restriction detail",
+});
+
+export const featureAvailabilityItemSchema = z.object({
+  feature: z.string().min(1),
+  status: availabilityStateSchema,
+  countries: z.array(z.string().length(2)).optional(),
+  notes: nullableText.optional(),
+});
+
+export function isDateWindowActive(
+  window: z.infer<typeof dateWindowSchema> | undefined,
+  referenceDate: string = new Date().toISOString().slice(0, 10),
+): boolean {
+  if (!window) return true;
+  const ref = referenceDate.slice(0, 10);
+  if (window.start_date && ref < window.start_date.slice(0, 10)) return false;
+  if (window.end_date && ref > window.end_date.slice(0, 10)) return false;
+  return true;
+}
+
 export const researchStateSchema = z.enum(RESEARCH_STATES);
 
 const percentageSchema = z.number().finite().min(0).max(100);
@@ -138,6 +180,8 @@ export const programEconomicsSchema = z.object({
     basis: nullableText,
     conditions: z.array(z.string().min(1)),
     caveats: z.array(z.string().min(1)),
+    effective_window: dateWindowSchema.optional(),
+    geographic_restriction: geographicRestrictionSchema.optional(),
   })),
   notes: z.array(z.string().min(1)),
 }).superRefine((value, context) => {
@@ -365,6 +409,9 @@ export const providerProgramSchema = z.object({
   ease_to_raise: z.enum(EASE_TO_RAISE).nullable(),
   summary: z.string().min(1),
   beneficiary: beneficiaryRelationshipSchema.optional(),
+  availability_state: availabilityStateSchema.optional(),
+  geographic_restriction: geographicRestrictionSchema.optional(),
+  feature_availability: z.array(featureAvailabilityItemSchema).min(1).optional(),
   economics_mode: z.enum(PROGRAM_ECONOMICS_MODES),
   economics: programEconomicsSchema.optional(),
   requirements: programRequirementsSchema,
@@ -516,8 +563,17 @@ export const providerSchema = z.object({
 export function resolveProgramEconomics(
   provider: Pick<CanonicalProvider, "economics">,
   program: Pick<CanonicalProgram, "economics_mode" | "economics">,
+  options: { referenceDate?: string; includeExpired?: boolean } = {},
 ) {
-  return program.economics_mode === "inherit-provider" ? provider.economics : program.economics;
+  const economics = program.economics_mode === "inherit-provider" ? provider.economics : program.economics;
+  if (!economics || economics.status !== "known" || options.includeExpired) return economics;
+  const referenceDate = options.referenceDate ?? new Date().toISOString().slice(0, 10);
+  const filtered = economics.arrangements.filter((arrangement) => isDateWindowActive(arrangement.effective_window, referenceDate));
+  if (filtered.length === economics.arrangements.length) return economics;
+  return {
+    ...economics,
+    arrangements: filtered,
+  };
 }
 
 export type CanonicalProvider = z.infer<typeof providerSchema>;

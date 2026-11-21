@@ -5,7 +5,7 @@ const LABEL_OVERRIDES: Record<string, string> = {
   "nonprofits-charities": "Nonprofits / Charities",
   "clubs-community": "Clubs / Community",
   "arts-music-performance": "Arts / Music / Performance",
-  "individuals-personal-causes": "Individuals / Personal Causes",
+  "individuals-personal-causes": "Individuals & Families",
   "events-activities": "Events & Activities",
   "peer-to-peer": "Peer-to-peer",
   "pledge-athon": "Pledge-a-thon",

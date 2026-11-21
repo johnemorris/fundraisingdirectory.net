@@ -1,22 +1,31 @@
 ---
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import DiscoveryHero from "../components/DiscoveryHero.astro";
-import { getLegacyDiscoveryContext } from "../data/discovery";
+import TopicGuide from "../components/TopicGuide.astro";
+import TopicPlaceholder from "../components/TopicPlaceholder.astro";
+import { topicPublication, validateTopicPublication } from "../data/topicPublication.js";
+import { getCollection } from "astro:content";
+import { getLegacyDiscoveryContext, isLegacySitemapEligible } from "../data/discovery";
 import { legacyRoutes } from "../data/legacyRoutes";
 import { SITE_ROUTES } from "../data/site";
 import SiteLayout from "../layouts/SiteLayout.astro";
 import "../styles/historical.css";
 
-export function getStaticPaths() {
-  return legacyRoutes.map((route) => ({ params: { legacy: route.path }, props: { route } }));
+export async function getStaticPaths() {
+  const topics = await getCollection("topics");
+  validateTopicPublication(topics, legacyRoutes);
+  const topicsByPath = new Map(topics.map((topic) => [topic.data.legacyPath, topic]));
+  return legacyRoutes.map((route) => ({ params: { legacy: route.path }, props: { route, topic: topicsByPath.get(route.path), noindex: !isLegacySitemapEligible(route) } }));
 }
 
-const { route } = Astro.props;
+const { route, topic, noindex } = Astro.props;
 const context = getLegacyDiscoveryContext(route);
 const canonicalPath = `/${route.path}.html`;
 const isResourcesLanding = route.path === "Fundraising-Resources";
 const isGuidesLanding = route.path === "Fundraising-Articles";
-const isIdeasEditorial = (route.type === "resource" && !context.group) || route.type === "product";
+const isIdeasEditorial = !isResourcesLanding && !isGuidesLanding;
+const isPlaceholder = topicPublication[route.path]?.publication === "placeholder";
+const pageDescription = isPlaceholder ? `${route.title} guidance is being researched. Explore available planning resources and clearly identified broader alternatives.` : route.description;
 const displayTitle = route.title;
 const breadcrumbs = isResourcesLanding
   ? [{ label: "Home", href: "/" }, { label: "Fundraising Resources" }]
@@ -25,13 +34,6 @@ const breadcrumbs = isResourcesLanding
   : isIdeasEditorial
     ? [{ label: "Home", href: "/" }, { label: "Fundraising Ideas", href: SITE_ROUTES.ideas }, { label: route.title }]
     : [{ label: "Home", href: "/" }, { label: context.parentLabel, href: context.providerHref }, { label: route.title }];
-const actions = [
-  { label: `Find providers${context.group ? ` for ${context.parentLabel}` : ""}`, href: context.providerHref, primary: true },
-  { label: "Explore fundraising ideas", href: SITE_ROUTES.ideas },
-  { label: "Product fundraisers", href: SITE_ROUTES.productSales },
-  { label: "Online fundraising", href: SITE_ROUTES.onlineFundraising },
-  { label: "Fundraising guides", href: SITE_ROUTES.guides },
-].filter((action, index, list) => action.href !== canonicalPath && list.findIndex((candidate) => candidate.href === action.href) === index);
 const resourceDestinations = [
   {
     label: "Fundraising ideas",
@@ -94,7 +96,7 @@ const guideGroups = [
 ];
 ---
 
-<SiteLayout title={`${displayTitle} | FundraisingDirectory.net`} description={route.description} canonical={new URL(canonicalPath, SITE_ROUTES.origin).href}>
+<SiteLayout title={`${displayTitle} | FundraisingDirectory.net`} description={pageDescription} canonical={new URL(canonicalPath, SITE_ROUTES.origin).href} noindex={noindex}>
   <Breadcrumbs items={breadcrumbs} />
 
   {
@@ -210,28 +212,12 @@ const guideGroups = [
       </main>
     ) : (
       <main class="historical-shell">
-        <DiscoveryHero eyebrow={context.parentLabel} title={displayTitle} description={route.description} tone={context.tone} visualLabel={displayTitle.replace(" Fundraising", "")} visualKey={context.visualKey} compact>
-          <a class="button button-primary" href={context.providerHref}>Find matching providers <span aria-hidden="true">→</span></a>
+        <DiscoveryHero eyebrow={context.parentLabel} title={displayTitle} description={pageDescription} tone={context.tone} visualLabel={displayTitle.replace(" Fundraising", "")} visualKey={context.visualKey} compact>
+          <a class="button button-primary" href={isPlaceholder ? "#topic-status-title" : context.providerHref}>{isPlaceholder ? "See available research" : "Explore provider options"} <span aria-hidden="true">→</span></a>
           <a class="text-link" href={SITE_ROUTES.ideas}>Explore fundraising ideas</a>
         </DiscoveryHero>
 
-        <section class="historical-intro" aria-labelledby="start-title">
-          <div>
-            <p class="eyebrow">Start exploring</p>
-            <h2 id="start-title">Useful ways to move forward</h2>
-          </div>
-          <p>Compare current provider records, browse established fundraising approaches, and use the available guides to plan questions before choosing a program.</p>
-        </section>
-
-        <nav class="historical-actions" aria-label={`${route.title} discovery options`}>
-          {actions.map((action, index) => (
-            <a class:list={[{ "historical-action-primary": action.primary }]} href={action.href}>
-              <span>0{index + 1}</span>
-              <strong>{action.label}</strong>
-              <i aria-hidden="true">↗</i>
-            </a>
-          ))}
-        </nav>
+        {topic ? <TopicGuide topic={topic} /> : <TopicPlaceholder path={route.path} title={route.title} providerHref={context.providerHref} groupLabel={context.parentLabel} />}
 
         <section class="historical-context">
           <div>

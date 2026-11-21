@@ -3,12 +3,17 @@ import { legacyRoutes } from "../data/legacyRoutes";
 import { isLegacySitemapEligible } from "../data/discovery";
 import { SITE_ROUTES } from "../data/site";
 import { providerProfilePath } from "../data/providerLinks";
+import { topicModificationDates } from "../data/topicDates.js";
+import { validateTopicPublication } from "../data/topicPublication.js";
 
 export async function GET() {
+  const topics = await getCollection("topics");
+  validateTopicPublication(topics, legacyRoutes);
   const providers = (await getCollection("providers")).filter(
     (provider) =>
       !provider.data.meta.deleted && provider.data.status.lifecycle === "active",
   );
+  const modifiedDates = topicModificationDates(topics, providers);
 
   const paths = [
     "/",
@@ -28,8 +33,11 @@ export async function GET() {
       .map((route) => `/${route.path}.html`),
   ];
 
-  const urls = paths
-    .map((path) => `  <url><loc>${new URL(path, SITE_ROUTES.origin).href}</loc></url>`)
+  const urls = [...new Set(paths)]
+    .map((path) => {
+      const lastmod = modifiedDates.get(path);
+      return `  <url><loc>${new URL(path, SITE_ROUTES.origin).href}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ""}</url>`;
+    })
     .join("\n");
 
   return new Response(

@@ -1,0 +1,223 @@
+<section
+  class="analytics-consent"
+  data-analytics-consent
+  role="region"
+  aria-labelledby="analytics-consent-title"
+  aria-describedby="analytics-consent-description"
+  hidden
+>
+  <div class="analytics-consent-copy">
+    <p class="analytics-consent-eyebrow">Your privacy</p>
+    <h2 id="analytics-consent-title" tabindex="-1">Optional analytics</h2>
+    <p id="analytics-consent-description">
+      Help us understand which directory features are useful. Analytics stays off unless you accept.
+      <a href="/privacy/">Learn more</a>.
+    </p>
+  </div>
+  <div class="analytics-consent-actions" aria-label="Analytics preference">
+    <button class="analytics-consent-action" type="button" data-analytics-choice="denied">Decline</button>
+    <button class="analytics-consent-action" type="button" data-analytics-choice="granted">Accept analytics</button>
+  </div>
+  <p class="analytics-consent-status" data-analytics-consent-status aria-live="polite"></p>
+</section>
+
+<script>
+  import {
+    ANALYTICS_CONSENT_DENIED,
+    ANALYTICS_CONSENT_GRANTED,
+    ANALYTICS_CONSENT_KEY,
+    type AnalyticsConsent,
+  } from "../lib/analyticsConsent.ts";
+
+  const banner = document.querySelector<HTMLElement>("[data-analytics-consent]");
+  const preferenceButton = document.querySelector<HTMLButtonElement>("[data-analytics-preferences]");
+  const status = document.querySelector<HTMLElement>("[data-analytics-consent-status]");
+  const choiceButtons = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-analytics-choice]"));
+  const title = document.querySelector<HTMLElement>("#analytics-consent-title");
+  let returnFocus: HTMLElement | null = null;
+
+  const readPreference = (): AnalyticsConsent | null => {
+    try {
+      const value = window.localStorage.getItem(ANALYTICS_CONSENT_KEY);
+      return value === ANALYTICS_CONSENT_GRANTED || value === ANALYTICS_CONSENT_DENIED ? value : null;
+    } catch {
+      return null;
+    }
+  };
+
+  const updateCurrentChoice = () => {
+    const current = readPreference();
+    choiceButtons.forEach((button) => {
+      const label = button.dataset.analyticsChoice === ANALYTICS_CONSENT_GRANTED ? "Accept analytics" : "Decline";
+      button.setAttribute(
+        "aria-label",
+        button.dataset.analyticsChoice === current ? `${label} (current preference)` : label,
+      );
+    });
+    if (preferenceButton) {
+      preferenceButton.setAttribute(
+        "aria-label",
+        current ? `Cookie preferences. Analytics is currently ${current}.` : "Cookie preferences",
+      );
+    }
+  };
+
+  const openPreferences = (restoreFocus = false) => {
+    if (!banner) return;
+    returnFocus = restoreFocus && document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    updateCurrentChoice();
+    banner.hidden = false;
+    if (restoreFocus) title?.focus();
+  };
+
+  const closePreferences = () => {
+    if (!banner) return;
+    banner.hidden = true;
+    returnFocus?.focus();
+    returnFocus = null;
+  };
+
+  const initializeConsentUi = () => {
+    if (!window.fdnAnalytics || !banner || !preferenceButton) return false;
+    preferenceButton.hidden = false;
+    updateCurrentChoice();
+    if (!readPreference()) openPreferences();
+    return true;
+  };
+
+  if (!initializeConsentUi()) {
+    document.addEventListener("fdn:analytics-ready", initializeConsentUi, { once: true });
+  }
+
+  choiceButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const granted = button.dataset.analyticsChoice === ANALYTICS_CONSENT_GRANTED;
+      window.fdnAnalytics?.setConsent(granted);
+      updateCurrentChoice();
+      if (status) status.textContent = granted ? "Analytics accepted." : "Analytics declined.";
+      closePreferences();
+    });
+  });
+
+  preferenceButton?.addEventListener("click", () => openPreferences(true));
+  banner?.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && readPreference()) closePreferences();
+  });
+</script>
+
+<style>
+  .analytics-consent {
+    position: fixed;
+    z-index: 1200;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1.25rem;
+    width: min(68rem, calc(100% - 2rem));
+    margin-inline: auto;
+    padding: 1rem 1.125rem;
+    border: 1px solid rgba(18, 48, 74, 0.18);
+    border-radius: 0.875rem;
+    background: #fff;
+    box-shadow: 0 1rem 2.5rem rgba(10, 34, 55, 0.2);
+    color: var(--ink-deep);
+  }
+
+  .analytics-consent[hidden] {
+    display: none;
+  }
+
+  .analytics-consent-copy > * {
+    margin: 0;
+  }
+
+  .analytics-consent-eyebrow {
+    color: var(--teal-dark);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .analytics-consent h2 {
+    margin-top: 0.125rem;
+    font-size: 1.05rem;
+  }
+
+  .analytics-consent-copy p:last-child {
+    margin-top: 0.25rem;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .analytics-consent-copy a {
+    color: var(--teal-dark);
+    font-weight: 700;
+  }
+
+  .analytics-consent-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(8.5rem, 1fr));
+    gap: 0.625rem;
+  }
+
+  .analytics-consent-action {
+    min-height: 2.75rem;
+    padding: 0.625rem 0.875rem;
+    border: 2px solid var(--teal-dark);
+    border-radius: 0.625rem;
+    background: var(--teal-dark);
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 750;
+  }
+
+  .analytics-consent-action:first-child {
+    border-color: var(--ink-deep);
+    background: var(--ink-deep);
+  }
+
+  .analytics-consent-action:hover,
+  .analytics-consent-action:focus-visible {
+    filter: brightness(1.12);
+  }
+
+  .analytics-consent-action:focus-visible,
+  .analytics-consent h2:focus-visible {
+    outline: 3px solid var(--teal-bright);
+    outline-offset: 3px;
+  }
+
+  .analytics-consent-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 42rem) {
+    .analytics-consent {
+      grid-template-columns: 1fr;
+      gap: 0.875rem;
+      padding: 1rem;
+    }
+
+    .analytics-consent-actions {
+      grid-template-columns: 1fr;
+    }
+
+    .analytics-consent-action {
+      width: 100%;
+    }
+  }
+
+</style>

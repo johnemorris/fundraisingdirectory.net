@@ -1,3 +1,4 @@
+import { isTopicIndexable } from "./topicPublication.js";
 import { formatProviderLabel } from "./providerLabels";
 
 export type DiscoveryTone = "teal" | "blue" | "purple" | "navy" | "warm";
@@ -13,7 +14,7 @@ export const DISCOVERY_GROUP_CONTEXTS = {
   "clubs-community": { label: "Community Groups", eyebrow: "Community fundraising", title: "Fundraising providers for clubs & community groups", description: "Find approachable options for local organizations, shared projects, events, and causes.", tone: "warm", visualKey: "community" },
   "arts-music-performance": { label: "Arts & Music", eyebrow: "Arts fundraising", title: "Fundraising providers for arts & performance groups", description: "Explore options for bands, ensembles, productions, travel, equipment, and creative programs.", tone: "purple", visualKey: "arts" },
   "animal-rescue": { label: "Animal Rescue", eyebrow: "Animal-welfare fundraising", title: "Fundraising providers for animal rescue groups", description: "Compare fundraising approaches for shelters, rescues, veterinary needs, and community programs.", tone: "warm", visualKey: "animal" },
-  "individuals-personal-causes": { label: "Personal Causes", eyebrow: "Personal fundraising", title: "Fundraising providers for personal causes", description: "Explore public fundraising platforms that may support individual, family, and community needs.", tone: "blue", visualKey: "personal" },
+  "individuals-personal-causes": { label: "Individuals & Families", eyebrow: "Personal and family fundraising", title: "Fundraising providers for individuals & families", description: "Explore fundraising and practical-support platforms for personal, family, medical, caregiving, and community needs.", tone: "blue", visualKey: "personal" },
   other: { label: "Any Group Type", eyebrow: "Fundraising discovery", title: "Fundraising providers for many kinds of groups", description: "Browse broad fundraising options when your organization does not fit a single category.", tone: "navy", visualKey: "all" },
 } as const;
 
@@ -50,10 +51,8 @@ const LEGACY_PRODUCTS: Record<string, string> = {
   "Gift-Wrap": "gifts-seasonal",
   "Coupon-Book": "discount-cards-coupon-books",
   "Discount-Card": "discount-cards-coupon-books",
-  Cookbooks: "books-educational",
   "Chocolate-Bars": "candy-chocolate",
   "Fundraising-Consultants": "fundraising-consulting",
-  "Fundraising-Software": "crowdfunding-platform",
 };
 
 export function getLegacyDiscoveryContext(route: { path: string; title: string; description: string; type: string }) {
@@ -81,7 +80,6 @@ export function getLegacyDiscoveryContext(route: { path: string; title: string; 
   };
 }
 
-export function isLegacySitemapEligible(route: { path: string; title: string; description: string; type: string }) {
-  const context = getLegacyDiscoveryContext(route);
-  return Boolean(context.group || context.method || context.product);
+export function isLegacySitemapEligible(route: { path: string }) {
+  return route.path === "Fundraising-Resources" || route.path === "Fundraising-Articles" || isTopicIndexable(route.path);
 }

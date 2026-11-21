@@ -71,6 +71,24 @@ const ECONOMIC_LABELS: Record<EconomicArrangement["type"], string> = {
   other: "Other financial term",
 };
 
+const formatDateShort = (value: string) =>
+  new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${value.slice(0, 10)}T12:00:00Z`));
+
+export function formatEffectiveWindow(window: EconomicArrangement["effective_window"]): string | null {
+  if (!window) return null;
+  if (window.start_date && window.end_date) {
+    return `Effective ${formatDateShort(window.start_date)}–${formatDateShort(window.end_date)}`;
+  }
+  if (window.start_date) return `Effective starting ${formatDateShort(window.start_date)}`;
+  if (window.end_date) return `Effective through ${formatDateShort(window.end_date)}`;
+  return null;
+}
+
 const decorateEconomicValue = (arrangement: EconomicArrangement) => {
   const value = formatEconomicValue(arrangement.value);
   if (arrangement.value.kind === "variable" || arrangement.value.kind === "tiered") return value;
@@ -93,13 +111,16 @@ const decorateEconomicValue = (arrangement: EconomicArrangement) => {
   }
 };
 
-export const formatEconomicArrangement = (arrangement: EconomicArrangement) => ({
-  label: ECONOMIC_LABELS[arrangement.type],
-  value: decorateEconomicValue(arrangement),
-  basis: arrangement.basis,
-  conditions: arrangement.conditions,
-  caveats: arrangement.caveats,
-});
+export const formatEconomicArrangement = (arrangement: EconomicArrangement) => {
+  const windowLabel = formatEffectiveWindow(arrangement.effective_window);
+  return {
+    label: windowLabel ? `${ECONOMIC_LABELS[arrangement.type]} (${windowLabel})` : ECONOMIC_LABELS[arrangement.type],
+    value: decorateEconomicValue(arrangement),
+    basis: arrangement.basis,
+    conditions: arrangement.conditions,
+    caveats: arrangement.caveats,
+  };
+};
 
 const formatDurationPart = (duration: NonNullable<DurationRange>["exact"]) =>
   duration ? `${formatNumber(duration.value)} ${pluralizeUnit(duration.value, duration.unit)}` : "";
@@ -165,8 +186,12 @@ export const formatPayoutSchedule = (schedule: CanonicalProgram["timing"]["payou
   return `${formatProviderLabel(schedule.frequency)}${delivery}${anchor}`;
 };
 
-export const resolveProgramPresentation = (provider: CanonicalProvider, program: CanonicalProgram) => {
-  const economics = resolveProgramEconomics(provider, program);
+export const resolveProgramPresentation = (
+  provider: CanonicalProvider,
+  program: CanonicalProgram,
+  options: { referenceDate?: string; includeExpired?: boolean } = {},
+) => {
+  const economics = resolveProgramEconomics(provider, program, options);
   return {
     economics,
     economicsInherited: program.economics_mode === "inherit-provider",

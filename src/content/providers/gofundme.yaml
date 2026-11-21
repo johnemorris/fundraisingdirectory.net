@@ -3,7 +3,7 @@ meta:
   schema_version: 2
   created_at: "2026-08-29"
   created_by: "user_000001"
-  modified_at: "2026-08-29"
+  modified_at: "2026-10-14"
   modified_by: "user_000001"
   deleted: false
   deleted_at: null
@@ -21,6 +21,10 @@ classification:
   methods: ["crowdfunding", "direct-donations"]
   products_services: ["crowdfunding-platform", "donation-platform"]
   organizations: ["schools", "sports-athletics", "churches-faith", "nonprofits-charities", "youth-organizations", "clubs-community", "arts-music-performance", "animal-rescue", "individuals-personal-causes"]
+  outcomes: ["cash"]
+  capabilities: ["donation-forms", "crowdfunding-pages", "recurring-giving", "digital-wallets"]
+  beneficiary_types: ["individual-or-family", "own-organization", "community-cause", "open-or-unspecified-cause"]
+  cause_areas: ["children-families", "health-medical", "disaster-emergency-relief", "community-neighborhood", "other-cause"]
 programs:
   - id: "prog_000012"
     name: "Online Crowdfunding"
@@ -33,23 +37,44 @@ programs:
     inventory_model: "not-applicable"
     upfront_cost: "none"
     ease_to_raise: null
-    summary: "An organizer creates a public fundraiser, tells the story, shares the link, receives donations, posts updates, and sets up bank transfers."
+    summary: "An organizer creates a public fundraiser for an individual, family, organization, or community need, tells the story, shares the link, receives donations, posts updates, and sets up transfers. GoFundMe also embeds fundraising inside CaringBridge health-journal pages."
     economics_mode: "program-specific"
     economics:
-      status: "not-researched"
-      arrangements: []
-      notes: []
+      status: "known"
+      arrangements:
+        - type: "upfront-cost"
+          value:
+            kind: "amount"
+            amount: 0
+            currency: "USD"
+          basis: "Starting or managing a GoFundMe fundraiser"
+          conditions: []
+          caveats: []
+        - type: "transaction-fee"
+          value:
+            kind: "variable"
+            description: "For U.S. individual or business fundraisers, 2.9% plus $0.30 per donation; country and fundraiser-type pricing varies"
+          basis: "Payment processing and delivery of donations"
+          conditions: []
+          caveats:
+            - "Certified nonprofit and GoFundMe Pro pricing differs"
+            - "International transaction and currency-conversion fees may apply"
+      notes:
+        - "Donor contributions to support GoFundMe are optional. Recurring individual or charity donations carry a separate donor-paid fee documented on the pricing page."
     requirements:
-      status: "not-researched"
+      status: "known"
       legal_status: []
       age_range: null
       grade_range: null
-      participation_requirements: []
+      participation_requirements:
+        - "The organizer creates an account, accurately describes the fundraiser and beneficiary, and completes the identity and transfer setup required for the applicable country."
       minimum_group_size: null
       minimum_order: null
       minimum_sales: null
-      other_restrictions: []
-      editorial_summary: null
+      other_restrictions:
+        - "Fundraiser types, supported countries, transfer requirements, and nonprofit options vary by country."
+        - "CaringBridge supplies the health-journal surface; donations displayed there are processed through the integrated GoFundMe fundraiser."
+      editorial_summary: "Individuals and organizations may create eligible fundraisers where GoFundMe operates; exact transfer and verification rules depend on location and fundraiser type."
     timing:
       status: "not-researched"
       setup_lead_time: null
@@ -59,8 +84,13 @@ programs:
       payout_time: null
       notes: []
     logistics:
-      status: "not-researched"
-      notes: []
+      status: "known"
+      notes:
+        - "The organizer publishes and shares a campaign, donors contribute through GoFundMe, and the organizer or beneficiary completes transfer verification. Through GoFundMe APIs and embedded widgets, CaringBridge users can display and support a GoFundMe fundraiser within a health-journal experience."
+    outcomes: ["cash"]
+    capabilities: ["donation-forms", "crowdfunding-pages", "recurring-giving", "digital-wallets"]
+    beneficiary_types: ["individual-or-family", "own-organization", "community-cause", "open-or-unspecified-cause"]
+    cause_areas: ["children-families", "health-medical", "disaster-emergency-relief", "community-neighborhood", "other-cause"]
 geography:
   scope: ["international"]
   countries: ["US", "CA"]
@@ -68,10 +98,11 @@ geography:
   regions: []
   notes: "GoFundMe supports fundraiser types in multiple countries; eligibility, transfer, and nonprofit options vary by country."
 content:
-  summary: "GoFundMe is an online crowdfunding platform for personal causes, groups, community needs, and eligible nonprofit fundraising."
+  summary: "GoFundMe is an online crowdfunding platform for individuals, families, medical needs, groups, community causes, and eligible nonprofit fundraising."
   how_it_works: "An organizer creates a fundraiser with a story and goal, shares the campaign with supporters, posts updates, thanks donors, and completes the steps required to transfer funds."
   best_for:
-    - "Individuals and groups raising donations for a specific cause or need."
+    - "Individuals and families raising donations for medical costs, emergencies, memorials, or another specific need."
+    - "Groups and eligible nonprofits seeking a public crowdfunding campaign."
     - "Organizers prepared to tell their story and actively share a public campaign."
   considerations:
     - "GoFundMe states that it does not find donors for organizers; campaign outreach remains the organizer's responsibility."
@@ -79,17 +110,17 @@ content:
 status:
   lifecycle: "active"
   first_verified_at: "2026-08-29"
-  last_verified_at: "2026-08-29"
+  last_verified_at: "2026-10-14"
   next_review_at: null
   inactive_since: null
   inactive_reason: null
 verification:
   level: "verified"
   review_status: "current"
-  completeness: "unassessed"
-  first_researched_at: null
-  reviewed_by: null
-  verified_by: null
+  completeness: "standard"
+  first_researched_at: "2026-08-29"
+  reviewed_by: "FRD landscape findings update"
+  verified_by: "FRD landscape findings update"
   sources:
     - id: "src_000012"
       type: "official-program-page"
@@ -107,6 +138,51 @@ verification:
       status: "current"
       supports: []
       notes: "Documents personal and nonprofit fundraiser types and country-specific availability."
+    - id: "src_000160"
+      type: "terms-or-fees"
+      url: "https://www.gofundme.com/c/pricing"
+      checked_at: "2026-10-14"
+      title: "GoFundMe Pricing and Fees"
+      status: "current"
+      supports:
+        - path: "programs.online-crowdfunding.economics"
+          status: "current"
+          notes: null
+      notes: "Documents no setup fee, optional donor contributions, and country- and fundraiser-specific transaction fees."
+    - id: "src_000161"
+      type: "official-program"
+      url: "https://www.gofundme.com/c/partnerships"
+      checked_at: "2026-10-14"
+      title: "GoFundMe Partnerships"
+      status: "current"
+      supports:
+        - path: "programs.online-crowdfunding.summary"
+          status: "current"
+          notes: null
+        - path: "programs.online-crowdfunding.logistics"
+          status: "current"
+          notes: null
+        - path: "programs.online-crowdfunding.cause_areas"
+          status: "current"
+          notes: null
+      notes: "Documents the CaringBridge integration using GoFundMe APIs and embedded widgets for families facing medical challenges."
+    - id: "src_000162"
+      type: "official-program-page"
+      url: "https://www.gofundme.com/c/crowdfunding"
+      checked_at: "2026-10-14"
+      title: "What Is Crowdfunding?"
+      status: "current"
+      supports:
+        - path: "classification"
+          status: "current"
+          notes: null
+        - path: "programs.online-crowdfunding.summary"
+          status: "current"
+          notes: null
+        - path: "content.summary"
+          status: "current"
+          notes: null
+      notes: "Documents personal, education, and medical crowdfunding uses."
 provenance:
   discovered_via: ["web-research", "editorial-research"]
   intake_origins: []

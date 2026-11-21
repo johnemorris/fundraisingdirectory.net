@@ -1,5 +1,8 @@
 import { z } from "astro/zod";
 import {
+  availabilityStateSchema,
+  featureAvailabilityItemSchema,
+  geographicRestrictionSchema,
   programEconomicsSchema,
   programLogisticsSchema,
   programRequirementsSchema,
@@ -72,6 +75,9 @@ export const intakeProgramSchema = z.object({
   ease_to_raise: z.enum(EASE_TO_RAISE).nullable().optional(),
   summary: z.string().min(1).optional(),
   beneficiary: intakeBeneficiaryDraftSchema.optional(),
+  availability_state: availabilityStateSchema.optional(),
+  geographic_restriction: geographicRestrictionSchema.optional(),
+  feature_availability: z.array(featureAvailabilityItemSchema).min(1).optional(),
   economics_mode: z.enum(PROGRAM_ECONOMICS_MODES).optional(),
   economics: programEconomicsSchema.optional(),
   requirements: programRequirementsSchema.optional(),

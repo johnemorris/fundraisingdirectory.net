@@ -455,7 +455,7 @@ const providerJson = JSON.stringify(providers).replaceAll("<", "\\u003c");
   };
 
   const renderProviders = (answers: ReturnType<typeof answersFromForm>, providers: any[]) => {
-    if (!providerList || !providerEmpty) return;
+    if (!providerList || !providerEmpty) return 0;
     providerList.replaceChildren();
     const hasSupportedSignal = Boolean(answers.group || answers.outcomes.some((value) => value !== "open-to-ideas") || answers.methods.length || answers.format || answers.products !== "any" || answers.events !== "any" || answers.budget !== "any" || answers.groupSize || answers.effort || answers.time || answers.country || answers.constraints.length);
     const matches = hasSupportedSignal ? rankProviderMatches(providers, answers).filter((match) => match.score > 0).slice(0, 5) : [];
@@ -496,6 +496,7 @@ const providerJson = JSON.stringify(providers).replaceAll("<", "\\u003c");
       item.append(cardLink);
       providerList.append(item);
     });
+    return matches.length;
   };
 
   const render = () => {
@@ -503,11 +504,12 @@ const providerJson = JSON.stringify(providers).replaceAll("<", "\\u003c");
     const providers = JSON.parse(providerData.textContent ?? "[]");
     const answers = answersFromForm();
     renderMethods(answers);
-    renderProviders(answers, providers);
+    const providerResultCount = renderProviders(answers, providers);
     const suppliedAnswers = Array.from(new FormData(form).entries()).filter(([name, value]) => Boolean(value) && !(["products", "events", "budget"].includes(name) && value === "any")).length;
     if (resultsSummary) resultsSummary.textContent = suppliedAnswers
       ? `Recommendations updated from ${suppliedAnswers} selected ${suppliedAnswers === 1 ? "priority" : "priorities"}.`
       : "Start broad, then add priorities to make this shortlist more specific.";
+    return { providerResultCount, suppliedAnswers };
   };
 
   render();
@@ -520,7 +522,15 @@ const providerJson = JSON.stringify(providers).replaceAll("<", "\\u003c");
       if (value && !(["products", "events", "budget"].includes(key) && value === "any")) params.append(key, String(value));
     });
     window.history.replaceState({}, "", `${window.location.pathname}${params.size ? `?${params}` : ""}`);
-    render();
+    const result = render();
+    if (result) document.dispatchEvent(new CustomEvent("fdn:analytics", { detail: {
+      eventName: "finder_completion",
+      parameters: {
+        answered_question_count: answeredSteps.size,
+        selected_priority_count: result.suppliedAnswers,
+        provider_result_count: result.providerResultCount,
+      },
+    } }));
     resultsHeading?.focus({ preventScroll: true });
     resultsHeading?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
   });

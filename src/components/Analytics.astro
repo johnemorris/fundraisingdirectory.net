@@ -1,0 +1,12 @@
+---
+const configuredMeasurementId = __ANALYTICS_CONFIG__.measurementId;
+---
+
+{configuredMeasurementId && <meta name="fdn-ga-measurement-id" content={configuredMeasurementId} />}
+
+<script>
+  import { initializeAnalytics } from "../lib/analytics";
+
+  const configuredMeasurementId = document.querySelector<HTMLMetaElement>('meta[name="fdn-ga-measurement-id"]')?.content;
+  initializeAnalytics(configuredMeasurementId);
+</script>

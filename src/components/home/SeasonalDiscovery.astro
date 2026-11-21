@@ -1,0 +1,310 @@
+---
+import { getCollection } from "astro:content";
+import { legacyRoutes } from "../../data/legacyRoutes";
+import { providerProfilePath } from "../../data/providerLinks";
+import { getOrderedSeasonalPlans, getPublishedSeasonalGuides } from "../../data/seasonal";
+import { SITE_ROUTES } from "../../data/site";
+import { topicPath } from "../../data/topics";
+
+const { currentSeasonId, seasons } = getOrderedSeasonalPlans(new Date());
+const providers = (await getCollection("providers")).filter((provider) => !provider.data.meta.deleted && provider.data.status.lifecycle === "active");
+const providersBySlug = new Map(providers.map((provider) => [provider.data.identity.slug, provider]));
+const routesByPath = new Map(legacyRoutes.map((route) => [route.path, route]));
+
+const seasonCards = seasons.map((season) => {
+  const featuredGuides = getPublishedSeasonalGuides(season)
+    .slice(0, 2)
+    .map((entry) => {
+      const route = routesByPath.get(entry.legacyPath);
+      if (!route) throw new Error(`Missing route for seasonal guide: ${entry.legacyPath}`);
+      return { title: route.title, href: topicPath(route.path), kind: "Planning guide" };
+    });
+
+  const featuredProviders = season.programs
+    .slice(0, 2)
+    .map((entry) => {
+      const provider = providersBySlug.get(entry.providerSlug);
+      if (!provider) throw new Error(`Missing active provider for seasonal discovery: ${entry.providerSlug}`);
+      return {
+        title: provider.data.identity.name,
+        href: providerProfilePath(provider.data.identity.slug),
+        kind: entry.seasonality === "seasonal" ? "Seasonal window" : "Year-round fit",
+      };
+    });
+
+  return {
+    ...season,
+    quickLinks: [...featuredGuides, ...featuredProviders],
+  };
+});
+---
+
+<section class="section seasonal-section" aria-labelledby="seasonal-discovery-title" data-seasonal-discovery data-active-season={currentSeasonId}>
+  <div class="shell-wide">
+    <div class="section-heading-row">
+      <div>
+        <p class="eyebrow">Seasonal planning</p>
+        <h2 id="seasonal-discovery-title">Plan around the current season.</h2>
+      </div>
+      <a class="text-link" href={`${SITE_ROUTES.ideas}#seasonal-planning`}>All seasonal plans <span aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="seasonal-layout">
+      <div class="seasonal-feature-stack">
+        {seasonCards.map((season) => (
+          <div class="seasonal-feature" data-season-feature={season.id} hidden={season.id !== currentSeasonId}>
+            <div class="seasonal-feature-head">
+              <span class="season-badge">Current season · {season.windowLabel}</span>
+              <h3>{season.title}</h3>
+              <p>{season.timingGuidance}</p>
+            </div>
+
+            <ul class="seasonal-quick-links" aria-label={`${season.label} guides and providers`}>
+              {season.quickLinks.map((item) => (
+                <li>
+                  <a href={item.href}>
+                    <small>{item.kind}</small>
+                    <strong>{item.title} <span aria-hidden="true">→</span></strong>
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <div class="seasonal-feature-actions">
+              <a class="button button-primary" href={`${SITE_ROUTES.ideas}#${season.anchorId}`}>
+                Explore {season.label} planning <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <nav class="season-switcher" aria-label="Browse all four fundraising seasons">
+        {seasonCards.map((season) => {
+          const isCurrent = season.id === currentSeasonId;
+          return (
+            <a class:list={["season-link-card", { "is-current": isCurrent }]} href={`${SITE_ROUTES.ideas}#${season.anchorId}`} data-season-link={season.id}>
+              <div>
+                <div class="season-link-meta">
+                  <small>{season.windowLabel}</small>
+                  <span class="season-current-pill" data-season-pill hidden={!isCurrent}>Current</span>
+                </div>
+                <strong>{season.label} planning</strong>
+              </div>
+              <span aria-hidden="true">→</span>
+            </a>
+          );
+        })}
+      </nav>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { applyActiveSeason } from "../../lib/seasonalRuntime";
+
+  const root = document.querySelector<HTMLElement>("[data-seasonal-discovery]");
+  if (root) applyActiveSeason(root, new Date());
+</script>
+
+<style lang="scss">
+  .seasonal-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+  }
+
+  .seasonal-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.75fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .seasonal-feature-stack {
+    display: grid;
+    min-width: 0;
+  }
+
+  .seasonal-feature {
+    display: grid;
+    gap: 20px;
+    padding: clamp(22px, 3vw, 32px);
+    border: 1px solid var(--border);
+    border-radius: 24px 24px 44px 24px;
+    background:
+      linear-gradient(135deg, transparent 68%, var(--surface-teal) 68%, var(--surface-blue) 100%),
+      var(--surface-elevated);
+    box-shadow: var(--shadow-sm);
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  .seasonal-feature-head {
+    max-width: 64ch;
+
+    h3 {
+      margin: 10px 0 8px;
+      color: var(--ink);
+      font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--text-muted);
+      line-height: 1.68;
+    }
+  }
+
+  .season-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--surface-teal);
+    color: var(--teal-dark);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .seasonal-quick-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    a {
+      display: grid;
+      gap: 4px;
+      min-height: 44px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface-elevated);
+      color: var(--ink);
+      text-decoration: none;
+
+      &:hover strong {
+        color: var(--teal-dark);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+
+      small {
+        color: var(--purple-dark);
+        font-size: 0.76rem;
+        font-weight: 700;
+      }
+
+      strong {
+        font-size: 0.96rem;
+        line-height: 1.35;
+
+        span {
+          color: var(--teal);
+        }
+      }
+    }
+  }
+
+  .seasonal-feature-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .season-switcher {
+    display: grid;
+    gap: 10px;
+    align-content: stretch;
+  }
+
+  .season-link-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 64px;
+    padding: 14px 18px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--surface-elevated);
+    color: var(--ink);
+    text-decoration: none;
+
+    &:hover {
+      border-color: var(--teal);
+
+      strong {
+        color: var(--teal-dark);
+      }
+    }
+
+    &.is-current {
+      border-color: var(--teal);
+      background: linear-gradient(120deg, var(--surface-elevated) 60%, var(--surface-teal) 100%);
+    }
+
+    strong {
+      display: block;
+      margin-top: 2px;
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+
+    > span {
+      color: var(--teal-dark);
+      font-weight: 700;
+    }
+  }
+
+  .season-link-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    small {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+  }
+
+  .season-current-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--teal-dark);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .seasonal-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .season-switcher {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 600px) {
+    .seasonal-quick-links,
+    .season-switcher {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

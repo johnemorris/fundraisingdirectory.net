@@ -1,42 +1,152 @@
 ---
-import InformationPage from "../components/InformationPage.astro";
+import { getCollection } from "astro:content";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import DiscoveryHero from "../components/DiscoveryHero.astro";
 import SiteLayout from "../layouts/SiteLayout.astro";
+import { legacyRoutes } from "../data/legacyRoutes";
+import { providerProfilePath } from "../data/providerLinks";
+import { getPublishedSeasonalGuides, SEASONAL_PLANS } from "../data/seasonal";
 import { SITE_ROUTES } from "../data/site";
-import "../styles/information.css";
+import { getTopicCategory, TOPIC_CATEGORIES, topicPath, topicRoutes } from "../data/topics";
+import "../styles/historical.css";
+import TopicLinkList from "../components/TopicLinkList.astro";
+import { topicPublication, validateTopicPublication } from "../data/topicPublication.js";
+
+const topics = await getCollection("topics");
+validateTopicPublication(topics, topicRoutes);
+const providers = (await getCollection("providers")).filter((provider) => !provider.data.meta.deleted && provider.data.status.lifecycle === "active");
+const providersBySlug = new Map(providers.map((provider) => [provider.data.identity.slug, provider]));
+const routesByPath = new Map(legacyRoutes.map((route) => [route.path, route]));
+
+const groups = TOPIC_CATEGORIES.map((category) => ({
+  title: category,
+  routes: topicRoutes.filter((route) => getTopicCategory(route) === category).sort((a, b) => a.title.localeCompare(b.title)),
+})).filter((group) => group.routes.length > 0);
+
+const seasonalSections = SEASONAL_PLANS.map((plan) => {
+  const guideLinks = getPublishedSeasonalGuides(plan).map((entry) => {
+    const route = routesByPath.get(entry.legacyPath);
+    if (!route) throw new Error(`Missing route for seasonal guide: ${entry.legacyPath}`);
+    return {
+      title: route.title,
+      href: topicPath(route.path),
+      label: "Planning guide",
+      description: entry.note,
+    };
+  });
+  const providerLinks = plan.programs.map((entry) => {
+    const provider = providersBySlug.get(entry.providerSlug);
+    if (!provider) throw new Error(`Missing active provider for seasonal plan: ${entry.providerSlug}`);
+    return {
+      title: provider.data.identity.name,
+      href: providerProfilePath(provider.data.identity.slug),
+      label: entry.seasonality === "seasonal" ? "Seasonal window" : "Year-round fit",
+      description: entry.note,
+    };
+  });
+  return { ...plan, guideLinks, providerLinks };
+});
 ---
 
 <SiteLayout
   title="Fundraising Ideas | FundraisingDirectory.net"
-  description="Explore fundraising ideas by approach and group, then compare relevant providers and practical guides."
+  description="Browse every fundraising topic by category: schools, sports, youth clubs, churches, products, and planning. Compare practical guides and provider options."
 >
-  <InformationPage
-    eyebrow="Fundraising ideas"
-    breadcrumbLabel="Fundraising Ideas"
-    title="Find a fundraising approach that fits."
-    intro="Start with the way you want to raise money or the kind of group you support. These paths lead to current provider research and practical guidance."
-  >
-    <section>
-      <h2>Explore by approach</h2>
-      <div>
-        <p>Compare product sales, online fundraising, events, direct donations, and other established approaches.</p>
-        <a class="information-link" href={SITE_ROUTES.directory}>Browse all fundraising approaches →</a>
+  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Fundraising Ideas" }]} />
+  <main class="historical-shell">
+    <DiscoveryHero eyebrow="Fundraising ideas" title="Find a fundraising approach that fits." description="Browse every topic by group or product. Planning guides explain choices, costs, and workload. Topics still being researched are marked as incomplete." tone="teal" visualLabel="Explore the possibilities" visualKey="guides" compact>
+      <a class="button button-primary" href={SITE_ROUTES.finder}>Find an approach for your group <span aria-hidden="true">→</span></a>
+      <a class="text-link" href={SITE_ROUTES.directory}>Compare providers</a>
+    </DiscoveryHero>
+    <nav class="topic-category-nav" aria-label="Fundraising idea categories">
+      <a href="#seasonal-planning">Seasonal planning</a>
+      {groups.map((group, index) => <a href={`#category-${index}`}>{group.title}</a>)}
+    </nav>
+    <section class="topic-section seasonal-planning-section" id="seasonal-planning" aria-labelledby="seasonal-planning-title">
+      <div class="seasonal-planning-header">
+        <div>
+          <p class="eyebrow">Plan by calendar</p>
+          <h2 id="seasonal-planning-title">Seasonal planning &amp; timing</h2>
+          <p class="seasonal-intro">Compare programs with genuine seasonal selling windows against year-round fundraisers that fit each part of the school, sports, and community calendar.</p>
+        </div>
+        <nav class="season-jump-nav" aria-label="Jump to a season">
+          {seasonalSections.map((season) => (
+            <a href={`#${season.anchorId}`}>{season.label} <span>({season.windowLabel})</span></a>
+          ))}
+        </nav>
+      </div>
+      <div class="season-cards">
+        {seasonalSections.map((season) => (
+          <article class="season-card" id={season.anchorId} aria-labelledby={`${season.anchorId}-title`}>
+            <div class="season-card-head">
+              <p class="eyebrow">{season.eyebrow}</p>
+              <h3 id={`${season.anchorId}-title`}>{season.title}</h3>
+              <p>{season.timingGuidance}</p>
+            </div>
+            <div class="season-subsection">
+              <h4>Published guides for {season.label.toLowerCase()}</h4>
+              <TopicLinkList links={season.guideLinks} />
+            </div>
+            <div class="season-subsection">
+              <h4>Verified provider options</h4>
+              <TopicLinkList links={season.providerLinks} />
+            </div>
+          </article>
+        ))}
       </div>
     </section>
-
-    <section>
-      <h2>Explore by group</h2>
-      <div>
-        <p>Find provider options for schools and PTOs, sports teams, churches, nonprofits, and community groups.</p>
-        <a class="information-link" href={SITE_ROUTES.schools}>Start with school fundraising →</a>
-      </div>
+    {groups.map((group, index) => (
+      <section class="topic-section" aria-labelledby={`category-${index}`}>
+        <h2 id={`category-${index}`}>{group.title}</h2>
+        <TopicLinkList links={group.routes.map((route) => ({ title: route.title, href: topicPath(route.path), label: topicPublication[route.path].publication === "guide" ? "Planning guide" : "Incomplete guide", description: topicPublication[route.path].publication === "guide" ? route.description : "Planning guidance is still being researched. Review the available resources and broader alternatives." }))} />
+      </section>
+    ))}
+    <section class="historical-context">
+      <div><p class="eyebrow">Before you choose</p><h2>Compare proceeds, timing, and volunteer work.</h2></div>
+      <p>Start with your goal and payment deadline. Check current provider terms, who handles orders or donations, and what remains after costs. A smaller campaign your group can manage well may be a better fit.</p>
+      <a href={SITE_ROUTES.resources}>Explore fundraising resources <span aria-hidden="true">→</span></a>
     </section>
-
-    <section>
-      <h2>Use practical resources</h2>
-      <div>
-        <p>Review available guides and research tools before choosing a program or contacting a provider.</p>
-        <a class="information-link" href={SITE_ROUTES.resources}>Open Fundraising Resources →</a>
-      </div>
-    </section>
-  </InformationPage>
+  </main>
 </SiteLayout>
+
+<style lang="scss">
+  .topic-category-nav {
+    display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 20px 0;
+    a { display: inline-flex; align-items: center; min-height: 44px; color: var(--teal-dark); text-underline-offset: 4px; }
+  }
+  .topic-section {
+    padding: 24px 0; border-bottom: 1px solid var(--border);
+    h2 { margin: 0 0 16px; scroll-margin-top: 120px; color: var(--ink); font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.2; letter-spacing: -.025em; }
+  }
+  .seasonal-planning-section { scroll-margin-top: 120px; }
+  .seasonal-planning-header {
+    display: grid; gap: 16px; margin-bottom: 24px;
+    h2 { margin-bottom: 10px; }
+  }
+  .seasonal-intro { max-width: 70ch; margin: 0; color: var(--text-muted); line-height: 1.7; }
+  .season-jump-nav {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    a {
+      display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 8px 16px;
+      border: 1px solid var(--border-strong); border-radius: 999px; background: var(--surface-elevated);
+      color: var(--ink); font-weight: 600; font-size: .92rem; text-decoration: none;
+      span { color: var(--text-muted); font-weight: 400; font-size: .85rem; }
+      &:hover { border-color: var(--teal); color: var(--teal-dark); }
+    }
+  }
+  .season-cards { display: grid; gap: 28px; }
+  .season-card {
+    padding: clamp(22px, 3vw, 32px); border: 1px solid var(--border); border-radius: 22px;
+    background: var(--surface-elevated); scroll-margin-top: 120px;
+  }
+  .season-card-head {
+    max-width: 72ch; margin-bottom: 20px;
+    h3 { margin: 6px 0 10px; color: var(--ink); font-size: clamp(1.3rem, 2.4vw, 1.65rem); line-height: 1.2; letter-spacing: -.02em; }
+    p:last-child { margin: 0; color: var(--text-muted); line-height: 1.75; }
+  }
+  .season-subsection {
+    margin-top: 20px;
+    h4 { margin: 0 0 10px; color: var(--ink); font-size: .95rem; font-weight: 700; letter-spacing: .01em; text-transform: uppercase; }
+  }
+  @media (max-width: 680px) { .topic-category-nav { gap: 0 20px; } }
+</style>

@@ -116,6 +116,14 @@ export function normalizeIntakeRecord(record: IntakeRecord): {
     slug: program.slug ?? (program.name ? slugify(program.name) : undefined),
     url: normalizeUrl(program.url),
     beneficiary: program.beneficiary ?? record.beneficiary,
+    geographic_restriction: program.geographic_restriction ? {
+      ...program.geographic_restriction,
+      countries: unique(program.geographic_restriction.countries?.map((country: string) => country.toUpperCase())),
+    } : undefined,
+    feature_availability: program.feature_availability?.map((item: Record<string, any>) => ({
+      ...item,
+      countries: unique(item.countries?.map((country: string) => country.toUpperCase())),
+    })),
     channels: unique(program.channels),
     fulfillment: unique(program.fulfillment),
   }));

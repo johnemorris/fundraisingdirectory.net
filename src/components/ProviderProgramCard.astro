@@ -65,7 +65,7 @@ const operationalFacts = [
       <div><dt>Channels</dt><dd>{formatList(program.channels.map(formatProviderLabel))}</dd></div>
       {program.products_services.length > 0 && <div><dt>Products / services</dt><dd><span class="tags">{program.products_services.map((item) => <a class="product-link" href={`/providers/?product=${item}`}>{formatProviderLabel(item)}</a>)}</span></dd></div>}
     </dl>
-    {presentation.programUrl && <a class="button program-cta" href={presentation.programUrl} target="_blank" rel={outboundRel} aria-label={`View ${program.name} on ${provider.identity.name} (opens in a new tab)`}>View program <span aria-hidden="true">↗</span></a>}
+    {presentation.programUrl && <a class="button program-cta" href={presentation.programUrl} target="_blank" rel={outboundRel} aria-label={`View ${program.name} on ${provider.identity.name} (opens in a new tab)`} data-analytics-provider-outbound data-provider-id={provider.meta.id} data-provider-slug={provider.identity.slug} data-placement="program_card">View program <span aria-hidden="true">↗</span></a>}
   </header>
 
   <div class="program-decision-sections">
