@@ -1,0 +1,57 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { legacyRoutes } from "../data/legacyRoutes";
+import { topicPublication } from "../data/topicPublication.js";
+import { buildProviderSearchText } from "../lib/providerSearch";
+import type { SearchRecord } from "../lib/siteSearch";
+const providers = (await getCollection("providers")).filter(({ data }) => !data.meta.deleted && data.status.lifecycle === "active");
+const topics = await getCollection("topics");
+const records: SearchRecord[] = [
+  ...providers.map(({ data }) => ({ title: data.identity.name, href: `/providers/${data.identity.slug}/`, type: "Provider" as const, text: buildProviderSearchText(data) })),
+  ...topics.filter(({ data }) => topicPublication[data.legacyPath]?.indexing === "index").map(({ data, body }) => ({ title: legacyRoutes.find((route) => route.path === data.legacyPath)!.title, href: `/${data.legacyPath}.html`, type: "Guide" as const, text: body ?? "" })),
+];
+---
+<SiteLayout title="Search Providers & Planning Guides | FundraisingDirectory.net" description="Search researched providers and published fundraising planning guides." noindex>
+  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Search" }]} />
+  <main class="search-page interior-shell">
+    <h1>Search providers and planning guides</h1>
+    <form action="/search/" method="get" role="search" data-site-search-form>
+      <label for="site-query">Provider, product, group or fundraising idea</label>
+      <div><input id="site-query" name="q" type="search" autocomplete="off" maxlength="160" /><button class="button button-primary">Search</button></div>
+    </form>
+    <p role="status" data-search-status>Enter a topic to search published guides and active providers.</p>
+    <ul data-search-results></ul>
+    <noscript><p>Search needs JavaScript. Browse <a href="/providers/">all providers</a> or <a href="/ideas/">ideas and guides</a>.</p></noscript>
+    <script type="application/json" data-site-search-records set:html={JSON.stringify(records).replaceAll("<", "\\u003c")} />
+  </main>
+</SiteLayout>
+<script>
+  import { searchSite, type SearchRecord } from "../lib/siteSearch";
+  const records: SearchRecord[] = JSON.parse(document.querySelector("[data-site-search-records]")?.textContent ?? "[]");
+  const input = document.querySelector<HTMLInputElement>("#site-query")!;
+  const results = document.querySelector("[data-search-results]")!;
+  const render = () => {
+    const matches = searchSite(records, input.value);
+    document.querySelector("[data-search-status]")!.textContent = input.value.trim() ? `${matches.length} results. Providers and published guides are labeled below.` : "Enter a topic to search published guides and active providers.";
+    results.replaceChildren();
+    matches.forEach((record) => { const li = document.createElement("li"); const a = document.createElement("a"); a.href = record.href; a.textContent = record.title; const type = document.createElement("span"); type.textContent = record.type; li.append(type, a); results.append(li); });
+    const url = new URL(location.href); input.value.trim() ? url.searchParams.set("q", input.value.trim()) : url.searchParams.delete("q"); history.replaceState({}, "", url);
+  };
+  input.value = new URLSearchParams(location.search).get("q")?.slice(0, 160) ?? "";
+  render();
+  input.addEventListener("input", render);
+  document.querySelector("[data-site-search-form]")?.addEventListener("submit", (event) => { event.preventDefault(); render(); });
+</script>
+<style lang="scss">
+  .search-page { padding-block: 2rem 4rem; min-height: 60vh; }
+  h1 { max-width: 25ch; color: var(--ink); }
+  form { display: grid; gap: .75rem; max-width: 45rem; }
+  form > div { display: flex; flex-wrap: wrap; gap: .75rem; }
+  input { flex: 1; min-width: 10rem; min-height: 2.75rem; padding: .75rem; border: 1px solid var(--border); border-radius: .5rem; font: inherit; }
+  ul { padding: 0; list-style: none; max-width: 55rem; }
+  ul :global(li) { display: grid; gap: .25rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+  ul :global(li span) { color: var(--text-muted); font-size: .875rem; }
+  ul :global(a) { min-height: 2.75rem; display: inline-flex; align-items: center; font-weight: 650; }
+</style>

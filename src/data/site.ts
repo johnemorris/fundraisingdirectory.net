@@ -15,7 +15,7 @@ export const SITE_ROUTES = {
   candy: "/Candy.html",
   discountCards: "/Discount-Card.html",
   elementarySchool: "/Elementary-School-Fundraising.html",
-  schools: "/providers/?group=schools",
+  schools: "/providers/schools/",
   sports: "/providers/?group=sports-athletics",
   churches: "/providers/?group=churches-faith",
   nonprofits: "/providers/?group=nonprofits-charities",
@@ -35,7 +35,7 @@ export const PRIMARY_NAVIGATION = [
 ] as const;
 
 export const PROVIDER_ORGANIZATION_NAVIGATION = [
-  { key: "schools", label: "Schools / PTO", href: SITE_ROUTES.schools, group: "schools" },
+  { key: "schools", label: "Schools", href: SITE_ROUTES.schools, group: "schools" },
   { key: "sports", label: "Sports Teams", href: SITE_ROUTES.sports, group: "sports-athletics" },
   { key: "churches", label: "Churches / Faith", href: SITE_ROUTES.churches, group: "churches-faith" },
   { key: "nonprofits", label: "Nonprofits / Charities", href: SITE_ROUTES.nonprofits, group: "nonprofits-charities" },
@@ -44,7 +44,7 @@ export const PROVIDER_ORGANIZATION_NAVIGATION = [
 
 export const PROVIDER_METHOD_NAVIGATION = [
   { key: "product-sales", label: "Product Sales", href: SITE_ROUTES.productSales, method: "product-sales" },
-  { key: "online-fundraising", label: "Online Fundraising", href: SITE_ROUTES.onlineFundraising, method: "crowdfunding" },
+  { key: "online-fundraising", label: "Crowdfunding", href: SITE_ROUTES.onlineFundraising, method: "crowdfunding" },
   { key: "events-activities", label: "Events & Activities", href: "/providers/?method=events-activities", method: "events-activities" },
   { key: "direct-donations", label: "Direct Donations", href: "/providers/?method=direct-donations", method: "direct-donations" },
 ] as const;

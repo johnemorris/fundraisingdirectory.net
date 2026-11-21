@@ -19,6 +19,8 @@ export async function GET() {
     "/",
     SITE_ROUTES.finder,
     "/providers/",
+    "/providers/schools/",
+    "/how-we-research/",
     SITE_ROUTES.ideas,
     SITE_ROUTES.resources,
     SITE_ROUTES.guides,
@@ -35,7 +37,7 @@ export async function GET() {
 
   const urls = [...new Set(paths)]
     .map((path) => {
-      const lastmod = modifiedDates.get(path);
+      const lastmod = ["/providers/schools/", "/how-we-research/"].includes(path) ? "2026-11-20" : modifiedDates.get(path);
       return `  <url><loc>${new URL(path, SITE_ROUTES.origin).href}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ""}</url>`;
     })
     .join("\n");

@@ -14,6 +14,8 @@ import { topicPath } from "../../data/topics";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import "../../styles/providers.css";
 import RelatedTopics from "../../components/RelatedTopics.astro";
+import StructuredData from "../../components/StructuredData.astro";
+import { breadcrumbData } from "../../data/structuredData";
 
 export async function getStaticPaths() {
   const providers = (await getCollection("providers")).filter((provider) => !provider.data.meta.deleted);
@@ -64,7 +66,8 @@ const sharedEconomicsRows = provider.data.economics?.status === "known"
   : [];
 ---
 
-<SiteLayout title={`${identity.name} Fundraising | FundraisingDirectory.net`} description={content.summary} socialImage={false} bodyClass="provider-profile">
+<SiteLayout title={`${identity.name} Fundraising Programs & Requirements | FundraisingDirectory.net`} description={content.summary} socialImage={false} bodyClass="provider-profile">
+  <StructuredData value={breadcrumbData([{ label: "Home", href: "/" }, { label: "Fundraising Providers", href: "/providers/" }, { label: identity.name }], `/providers/${identity.slug}/`)} />
   <nav class="provider-breadcrumbs" aria-label="Breadcrumb">
     <ol>
       <li><a href="/">Home</a></li>
@@ -125,7 +128,7 @@ const sharedEconomicsRows = provider.data.economics?.status === "known"
             <div><dt>Programs listed</dt><dd>{programs.length}</dd></div>
             <div><dt>Availability</dt><dd>{geography.scope.map(formatProviderLabel).join(", ")}</dd></div>
             <div><dt>Channels</dt><dd>{channels.map(formatProviderLabel).join(", ")}</dd></div>
-            <div><dt>Source review</dt><dd>{verification.sources.length} official source{verification.sources.length === 1 ? "" : "s"}</dd></div>
+            <div><dt>Source review</dt><dd>{verification.sources.length} listed source{verification.sources.length === 1 ? "" : "s"}</dd></div>
           </dl>
         </aside>
       </header>
@@ -138,7 +141,8 @@ const sharedEconomicsRows = provider.data.economics?.status === "known"
           {sharedEconomicsRows.length > 0 ? (
             <div class="provider-financial-grid">
               {sharedEconomicsRows.map((row) => (
-                <article>
+                <article data-dated-terms={row.effectiveWindow ? "" : undefined} data-start-date={row.effectiveWindow?.start_date} data-end-date={row.effectiveWindow?.end_date}>
+                  {row.effectiveWindow && <p data-date-status>Dated offer — valid only within the stated dates; verify current terms with the provider.</p>}
                   <p class="financial-label">{row.label}</p>
                   <strong>{row.value}</strong>
                   {row.basis && <p><b>Basis:</b> {row.basis}</p>}
@@ -209,6 +213,7 @@ const sharedEconomicsRows = provider.data.economics?.status === "known"
         <summary><span><small>Research disclosure</small><strong>{verification.sources.length} source{verification.sources.length === 1 ? "" : "s"} checked · Last reviewed {formatDate(status.last_verified_at)}</strong></span><i aria-hidden="true"></i></summary>
         <div class="sources-content">
           <p>Provider details are summarized from the sources below. Confirm current pricing, terms, availability, and requirements directly with the provider.</p>
+          <p><a href="/how-we-research/">How we research and explain verification</a> · <a href={`/providers/?compare=${identity.slug}#comparison-title`}>Compare this provider</a></p>
           <ol>{verification.sources.map((source) => <li><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title ?? formatProviderLabel(source.type)}</a><span>Checked {formatDate(source.checked_at)}</span>{source.notes && <p>{source.notes}</p>}</li>)}</ol>
         </div>
       </details>
@@ -235,3 +240,13 @@ const sharedEconomicsRows = provider.data.economics?.status === "known"
     });
   </script>
 </SiteLayout>
+
+<style lang="scss">
+  // Text-only profiles need no reserved hero-image row.
+  @media (min-width: 64rem) {
+    .provider-hero:not(.provider-hero-with-visual) {
+      .provider-identity, .provider-hero-main { grid-column: 1; }
+      .quick-facts { grid-column: 2; grid-row: 1 / span 2; }
+    }
+  }
+</style>

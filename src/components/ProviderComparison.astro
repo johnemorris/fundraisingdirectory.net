@@ -1,0 +1,78 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { comparisonRecord, COMPARISON_FIELDS } from "../data/providerComparison";
+interface Props { providers: CollectionEntry<"providers">[] }
+const records = Astro.props.providers.map(({ data }) => comparisonRecord(data));
+---
+<section class="comparison" aria-labelledby="comparison-title">
+  <h2 id="comparison-title">Compare your shortlist</h2>
+  <p>Select up to four providers using the Compare checkboxes. Terms are grouped by program; platform fees, processing fees and product profits describe different costs. Missing terms are unknown, not zero. Dated offers apply only within their stated dates; confirm current terms.</p>
+  <div class="compare-controls" data-compare-controls hidden>
+    <p role="status" data-compare-status></p>
+    <button type="button" class="button button-primary" data-compare-open>Compare selected</button>
+    <button type="button" class="button" data-compare-clear>Clear selection</button>
+    <a data-compare-share href="#comparison-title">Share selection</a>
+  </div>
+  <div class="compare-table-wrap" role="region" aria-label="Selected provider comparison, scroll horizontally" tabindex="0" data-compare-view hidden>
+    <table><caption>Documented provider terms. Read source dates and conditions before deciding.</caption><thead data-compare-head></thead><tbody data-compare-body></tbody></table>
+  </div>
+  <noscript><p>Comparison requires JavaScript. Each provider profile includes program financial terms and source links.</p></noscript>
+  <script type="application/json" data-comparison-records set:html={JSON.stringify({ records, fields: COMPARISON_FIELDS }).replaceAll("<", "\\u003c")} />
+</section>
+<script>
+  import { normalizeComparisonSelection } from "../lib/comparisonSelection";
+  type ComparisonRecord = { slug: string; name: string; href: string; fields: string[][] };
+  const payload = document.querySelector("[data-comparison-records]");
+  if (payload) {
+    const { records, fields }: { records: ComparisonRecord[]; fields: string[] } = JSON.parse(payload.textContent ?? "{}");
+    const available = records.map((record) => record.slug);
+    const controls = Array.from(document.querySelectorAll<HTMLInputElement>("[data-compare-slug]"));
+    const status = document.querySelector<HTMLElement>("[data-compare-status]")!;
+    const view = document.querySelector<HTMLElement>("[data-compare-view]")!;
+    let stored: string[] = [];
+    try { stored = JSON.parse(sessionStorage.getItem("fdn_compare") ?? "[]"); } catch { /* URL remains usable when storage is unavailable. */ }
+    const params = new URLSearchParams(location.search);
+    let selected = normalizeComparisonSelection(params.has("compare") ? params.getAll("compare") : Array.isArray(stored) ? stored : [], available);
+    const render = () => {
+      controls.forEach((control) => { control.checked = selected.includes(control.dataset.compareSlug!); control.disabled = selected.length === 4 && !control.checked; });
+      const tray = document.querySelector<HTMLElement>("[data-compare-controls]")!;
+      tray.hidden = false;
+      tray.classList.toggle("has-selection", selected.length > 0);
+      status.textContent = `${selected.length} of 4 selected${selected.length ? ". Ready to compare." : ". Choose providers from the cards below."}`;
+      document.querySelector<HTMLButtonElement>("[data-compare-open]")!.disabled = selected.length === 0;
+      const url = new URL(location.href); url.searchParams.delete("compare"); selected.forEach((slug) => url.searchParams.append("compare", slug));
+      history.replaceState({}, "", url);
+      url.hash = "comparison-title";
+      document.querySelector<HTMLAnchorElement>("[data-compare-share]")!.href = url.href;
+      try { sessionStorage.setItem("fdn_compare", JSON.stringify(selected)); } catch { /* Selection still works on this page. */ }
+      const chosen = selected.map((slug) => records.find((record) => record.slug === slug)!);
+      const head = document.querySelector("[data-compare-head]")!; head.replaceChildren();
+      const header = document.createElement("tr"); const first = document.createElement("th"); first.scope = "col"; first.textContent = "Field"; header.append(first);
+      chosen.forEach((record) => { const th = document.createElement("th"); th.scope = "col"; const a = document.createElement("a"); a.href = record.href; a.textContent = record.name; th.append(a); header.append(th); }); head.append(header);
+      const body = document.querySelector("[data-compare-body]")!; body.replaceChildren();
+      fields.forEach((field: string, index: number) => { const tr = document.createElement("tr"); const th = document.createElement("th"); th.scope = "row"; th.textContent = field; tr.append(th); chosen.forEach((record) => { const td = document.createElement("td"); record.fields[index].forEach((text: string) => { const p = document.createElement("p"); p.textContent = text; td.append(p); }); tr.append(td); }); body.append(tr); });
+      if (!chosen.length) view.hidden = true;
+    };
+    controls.forEach((control) => control.addEventListener("change", () => { selected = normalizeComparisonSelection(control.checked ? [...selected, control.dataset.compareSlug!] : selected.filter((slug) => slug !== control.dataset.compareSlug), available); render(); }));
+    document.querySelector("[data-compare-open]")?.addEventListener("click", () => { view.hidden = false; view.focus(); view.scrollIntoView({ block: "start", behavior: "instant" }); });
+    document.querySelector("[data-compare-clear]")?.addEventListener("click", () => { selected = []; render(); });
+    render();
+  }
+</script>
+<style lang="scss">
+  .comparison { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--surface-elevated); min-width: 0; }
+  h2 { margin: 0 0 0.75rem; color: var(--ink); }
+  p { line-height: 1.6; }
+  .compare-controls { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+  .compare-controls[hidden], .compare-table-wrap[hidden] { display: none; }
+  .compare-controls p { flex-basis: 100%; }
+  .compare-controls.has-selection { position: fixed; z-index: 95; bottom: .75rem; left: 50%; transform: translateX(-50%); width: min(60rem, calc(100% - 1.5rem)); padding: .75rem; border: 1px solid var(--border); border-radius: .75rem; background: var(--surface-elevated); box-shadow: 0 .5rem 2rem rgba(7,30,48,.2); }
+  .compare-controls.has-selection p { flex: 1; min-width: 9rem; margin: .25rem; }
+  .compare-controls a { min-height: 2.75rem; display: inline-flex; align-items: center; }
+  .compare-table-wrap { max-width: 100%; overflow: auto; scroll-margin-top: 7rem; margin-top: 1rem; }
+  table { border-collapse: collapse; width: 100%; min-width: 38rem; }
+  .compare-table-wrap :global(th), .compare-table-wrap :global(td) { min-width: 13rem; max-width: 25rem; vertical-align: top; text-align: left; border: 1px solid var(--border); padding: 0.75rem; overflow-wrap: anywhere; }
+  .compare-table-wrap :global(th) { background: var(--surface-alternate); }
+  .compare-table-wrap :global(tr > th:first-child) { position: sticky; left: 0; z-index: 1; min-width: 8rem; max-width: 10rem; }
+  caption { text-align: left; padding: 0.75rem 0; }
+</style>

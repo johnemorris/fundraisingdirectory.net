@@ -52,7 +52,7 @@ test("bottom provider CTA uses canonical official destinations for every active 
 
 test("analytics source excludes raw provider queries, Finder answers, and commercial data", async () => {
   const [directory, finder, analytics] = await Promise.all([
-    readFile("src/pages/providers/index.astro", "utf8"),
+    readFile("src/components/directory/ProviderDirectory.astro", "utf8"),
     readFile("src/components/finder/FinderExperience.astro", "utf8"),
     readFile("src/lib/analytics.ts", "utf8"),
   ]);
@@ -65,7 +65,7 @@ test("analytics source excludes raw provider queries, Finder answers, and commer
 });
 
 test("directory compact mode reuses the live search control and synchronized result count", async () => {
-  const directory = await readFile("src/pages/providers/index.astro", "utf8");
+  const directory = await readFile("src/components/directory/ProviderDirectory.astro", "utf8");
 
   assert.equal(directory.match(/<ProviderSearch \/>/g)?.length, 1);
   assert.match(directory, /data-directory-results-panel/);

@@ -55,7 +55,7 @@ test("the footer exposes build identity as plain text without advertising /statu
   const footer = await readFile(new URL("../src/components/SiteFooter.astro", import.meta.url), "utf8");
   const sitemap = await readFile(new URL("../src/pages/sitemap.xml.ts", import.meta.url), "utf8");
 
-  assert.match(footer, /<span class="footer-build">v\{__BUILD_METADATA__\.packageVersion\} · \{__BUILD_METADATA__\.version\}<\/span>/);
+  assert.match(footer, /<span class="footer-build">\{__BUILD_METADATA__\.packageVersion\}\.\{__BUILD_METADATA__\.version\}<\/span>/);
   assert.doesNotMatch(footer, /href=["']\/status(?:["'/?#])/);
   assert.doesNotMatch(sitemap, /\/status/);
 });
