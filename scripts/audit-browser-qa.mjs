@@ -42,6 +42,9 @@ try {
   await page.getByRole('button', { name: 'Find Fundraisers' }).click();
   await page.waitForURL('**/finder/?**');
   assert.ok(await page.locator('[data-finder-review]').isVisible());
+  assert.equal(await page.locator('.finder-result-section').first().getAttribute('aria-labelledby'), 'provider-results-title');
+  await page.waitForTimeout(100);
+  assert.ok(await page.locator('[data-provider-results] h4').first().evaluate((element) => element.getBoundingClientRect().top < innerHeight), 'First provider is visible after homepage entry');
   assert.equal(await page.locator('[data-provider-results] > li').count(), 5);
   assert.match(await page.locator('[data-provider-results]').innerText(), /Product Sales/);
   assert.doesNotMatch(await page.locator('[data-provider-results]').innerText(), /Us Nationwide|A flexible place/);

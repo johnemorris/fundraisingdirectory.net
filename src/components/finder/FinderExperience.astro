@@ -205,14 +205,6 @@ const providerJson = JSON.stringify(providers).replaceAll("<", "\\u003c");
         <p data-results-summary aria-live="polite"></p>
       </div>
 
-      <section class="finder-result-section" aria-labelledby="method-results-title">
-        <div>
-          <p class="finder-result-kicker">Start with an approach</p>
-          <h3 id="method-results-title">Best-fit methods</h3>
-        </div>
-        <ol class="finder-method-results" data-method-results></ol>
-      </section>
-
       <section class="finder-result-section" aria-labelledby="provider-results-title">
         <div>
           <p class="finder-result-kicker">Compare documented programs</p>
@@ -220,6 +212,14 @@ const providerJson = JSON.stringify(providers).replaceAll("<", "\\u003c");
         </div>
         <div class="finder-data-note" data-provider-empty></div>
         <ol class="finder-provider-results" data-provider-results></ol>
+      </section>
+
+      <section class="finder-result-section" aria-labelledby="method-results-title">
+        <div>
+          <p class="finder-result-kicker">Start with an approach</p>
+          <h3 id="method-results-title">Best-fit methods</h3>
+        </div>
+        <ol class="finder-method-results" data-method-results></ol>
       </section>
     </section>
   </div>
@@ -519,6 +519,12 @@ const providerJson = JSON.stringify(providers).replaceAll("<", "\\u003c");
   };
 
   render();
+  if (answeredSteps.has(0) && answeredSteps.has(1)) {
+    window.requestAnimationFrame(() => {
+      resultsHeading?.focus({ preventScroll: true });
+      resultsHeading?.scrollIntoView({ behavior: "instant", block: "start" });
+    });
+  }
   form?.addEventListener("submit", (event) => {
     event.preventDefault();
     if (touchedSteps.has(currentStep)) answeredSteps.add(currentStep);
