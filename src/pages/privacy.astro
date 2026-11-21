@@ -1,79 +1,159 @@
 ---
 import InformationPage from "../components/InformationPage.astro";
 import SiteLayout from "../layouts/SiteLayout.astro";
+import { SITE_CONTACT_EMAIL, SITE_ROUTES } from "../data/site";
 import "../styles/information.css";
+
+const contactHref = `mailto:${SITE_CONTACT_EMAIL}`;
 ---
 
 <SiteLayout
   title="Privacy | FundraisingDirectory.net"
-  description="Current privacy information for the minimum FundraisingDirectory.net launch site."
+  description="How FundraisingDirectory.net handles information: the Get Listed form, email, optional analytics, and your choices."
 >
   <InformationPage
     eyebrow="Privacy"
     breadcrumbLabel="Privacy"
-    title="Privacy information for the current site."
-    intro="This page describes the site's current data-handling behavior as of October 15, 2026."
+    title="How this site handles your information."
+    intro="Effective November 19, 2026. This page describes what FundraisingDirectory.net collects, why, and the choices you have."
   >
     <section>
-      <h2>Current site features</h2>
-      <p>
-        The current site does not include user accounts, a contact form, payment
-        processing, or advertising technology. The Fundraiser Finder processes
-        your choices in your browser; it does not create an account or save a
-        user profile.
-      </p>
+      <h2>What this site does not do</h2>
+      <div>
+        <p>
+          The site has no user accounts, payment processing, newsletters, or
+          advertising technology, and we do not sell or rent personal information.
+          The Fundraiser Finder runs in your browser. Your answers are not saved to
+          a profile or sent to us.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Get Listed form for fundraising providers</h2>
+      <div>
+        <p>
+          The <a href={SITE_ROUTES.forProviders}>For Providers</a> form asks for
+          your organization or provider name and website, your fundraising
+          programs and the groups they serve, anything else you choose to share,
+          your contact name and work email, and, optionally, your role or title
+          and phone number.
+        </p>
+        <p>
+          The form does not send anything to our servers. When you choose{" "}
+          <strong>Submit for Review</strong>, it opens your own email app with
+          your answers in a message addressed to {SITE_CONTACT_EMAIL}. Nothing is
+          sent until you send that email yourself.
+        </p>
+        <p>
+          We use what you send only to review your listing request, contact you
+          about it, and keep your listing accurate. Submitting does not create or
+          publish a listing automatically. Organization details may appear on a
+          public listing if one is published; your contact name, email, role, and
+          phone are never published.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Email</h2>
+      <div>
+        <p>
+          If you email <a href={contactHref}>{SITE_CONTACT_EMAIL}</a>, we use your
+          message and address only to reply and handle your request.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>How long we keep it</h2>
+      <div>
+        <p>
+          We keep listing requests and other email for up to 24 months after our
+          last contact with you, or for as long as your listing is active,
+          whichever is longer, and then delete them. You can ask us to delete your
+          information sooner at any time.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Your choices</h2>
+      <div>
+        <p>
+          To see, correct, or delete information you sent us, email{" "}
+          <a href={contactHref}>{SITE_CONTACT_EMAIL}</a>. We respond within 30
+          days.
+        </p>
+      </div>
     </section>
 
     <section>
       <h2>Optional audience measurement</h2>
-      <p>
-        The site includes a consent-gated Google Analytics 4 integration that is
-        inactive unless you choose <strong>Accept analytics</strong>. Before that
-        choice, the site does not request the Google Analytics script or send
-        analytics events. If enabled with consent, the site may
-        measure page use and general interactions such as provider searches,
-        directory filters, Finder completion, and outbound provider-link clicks.
-      </p>
-      <p>
-        Analytics events do not include the words entered into provider search,
-        Finder answers, form text, or provider ranking and commercial-affiliation
-        data. Google and hosting infrastructure may still process technical data
-        such as IP address, browser information, page URL, and request time under
-        their respective terms. Where consent is required, analytics should remain
-        disabled unless and until that consent is provided. Your choice is stored
-        in your browser so it persists across visits. You can use <strong>Cookie
-        preferences</strong> in the footer at any time to change it. Withdrawing
-        consent disables future analytics events and removes accessible first-party
-        Google Analytics cookies set by this site.
-      </p>
+      <div>
+        <p>
+          The site includes a consent-gated Google Analytics 4 integration that is
+          inactive unless you choose <strong>Accept analytics</strong>. Before that
+          choice, the site does not request the Google Analytics script or send
+          analytics events. If enabled with consent, the site may
+          measure page use and general interactions such as provider searches,
+          directory filters, Finder completion, and outbound provider-link clicks.
+        </p>
+        <p>
+          Analytics events do not include the words entered into provider search,
+          Finder answers, form text, or provider ranking and commercial-affiliation
+          data. Google and hosting infrastructure may still process technical data
+          such as IP address, browser information, page URL, and request time under
+          their respective terms. Your choice is stored in your browser so it
+          persists across visits. You can use <strong>Cookie preferences</strong>{" "}
+          in the footer at any time to change it. Withdrawing consent disables
+          future analytics events and removes accessible first-party Google
+          Analytics cookies set by this site.
+        </p>
+      </div>
     </section>
 
     <section>
       <h2>Technical request data</h2>
-      <p>
-        As with most websites, hosting and security infrastructure may process
-        technical request information needed to deliver and protect the site,
-        such as an IP address, browser details, requested URL, and request time.
-      </p>
+      <div>
+        <p>
+          As with most websites, hosting and security infrastructure may process
+          technical request information needed to deliver and protect the site,
+          such as an IP address, browser details, requested URL, and request time.
+        </p>
+      </div>
     </section>
 
     <section>
       <h2>Links to provider websites</h2>
-      <p>
-        Provider pages link to independent third-party websites. Their privacy
-        practices and transactions are governed by their own policies, not this
-        page. Review a provider's terms before submitting information or making a
-        payment.
-      </p>
+      <div>
+        <p>
+          Provider pages link to independent third-party websites. Their privacy
+          practices and transactions are governed by their own policies, not this
+          page. Review a provider's terms before submitting information or making a
+          payment.
+        </p>
+      </div>
     </section>
 
     <section>
-      <h2>Future changes</h2>
-      <p>
-        If contact forms, advertising, accounts, additional analytics uses, or
-        other data-handling features are added, this notice should be updated
-        before those features are enabled.
-      </p>
+      <h2>Children</h2>
+      <div>
+        <p>
+          This site is meant for adults organizing fundraisers. We do not knowingly
+          collect personal information from children under 13.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Changes</h2>
+      <div>
+        <p>
+          We update this page, and its effective date, before adding any feature
+          that collects new information.
+        </p>
+      </div>
     </section>
   </InformationPage>
 </SiteLayout>
