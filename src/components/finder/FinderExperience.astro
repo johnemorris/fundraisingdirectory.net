@@ -365,7 +365,10 @@ const providerJson = JSON.stringify(providers).replaceAll("<", "\\u003c");
     const currentIsAnswered = answeredSteps.has(currentStep);
     if (nextButton) nextButton.hidden = !currentIsAnswered && (steps[currentStep].hasAttribute("data-auto-advance") || steps[currentStep].hasAttribute("data-auto-advance-all"));
     renderAnswerSummary();
-    if (moveFocus) steps[currentStep].querySelector<HTMLElement>("legend")?.focus({ preventScroll: true });
+    if (moveFocus) {
+      steps[currentStep].querySelector<HTMLElement>("legend")?.focus({ preventScroll: true });
+      steps[currentStep].closest(".finder-stage")?.scrollIntoView({ behavior: "instant", block: "start" });
+    }
   }
 
   const showReview = (moveFocus = false) => {

@@ -16,7 +16,8 @@ import { PROVIDER_AUDIENCE_OPTIONS, PROVIDER_METHOD_OPTIONS } from "../lib/provi
     ))}
   </ol>
 
-  <form class="provider-wizard" data-provider-wizard data-contact-email={SITE_CONTACT_EMAIL} novalidate>
+  <noscript><p>JavaScript is needed for the step-by-step form. You can email <a href={`mailto:${SITE_CONTACT_EMAIL}`}>{SITE_CONTACT_EMAIL}</a> to request a listing.</p></noscript>
+  <form class="provider-wizard" data-provider-wizard data-contact-email={SITE_CONTACT_EMAIL} novalidate hidden>
     <div class="wizard-progress">
       <span data-step-status aria-live="polite">Step 1 of 5</span>
       <progress value="1" max="5" aria-label="Listing request progress"></progress>
@@ -82,7 +83,6 @@ import { PROVIDER_AUDIENCE_OPTIONS, PROVIDER_METHOD_OPTIONS } from "../lib/provi
       <button class="button button-primary" type="submit" data-wizard-submit hidden>Submit for Review</button>
     </div>
     <p class="submission-status" data-submission-status role="status" aria-live="polite"></p>
-    <noscript><p>JavaScript is needed for the step-by-step form. You can also email <a href={`mailto:${SITE_CONTACT_EMAIL}`}>{SITE_CONTACT_EMAIL}</a>.</p></noscript>
   </form>
 </main>
 
@@ -152,9 +152,11 @@ import { PROVIDER_AUDIENCE_OPTIONS, PROVIDER_METHOD_OPTIONS } from "../lib/provi
   });
 
   showStep(0, false);
+  form.hidden = false;
 </script>
 
 <style lang="scss">
+  .provider-wizard[hidden] { display: none; }
   .provider-wizard-shell { width: min(64rem, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 5rem; }
   .provider-wizard-intro { position: relative; padding: clamp(2rem, 6vw, 4.5rem); overflow: hidden; border-radius: 2rem 1rem 3.5rem 1.25rem; background: linear-gradient(130deg, var(--ink-deep), var(--ink) 62%, var(--ink-teal)); box-shadow: var(--shadow-lg); color: #fff;
     &::after { content: ""; position: absolute; inset: 54% -8% -38% 50%; background: linear-gradient(125deg, rgba(105, 68, 173, .38), rgba(34, 111, 193, .08)); clip-path: polygon(0 24%, 100% 0, 84% 100%, 12% 78%); pointer-events: none; }

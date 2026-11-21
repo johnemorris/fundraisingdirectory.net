@@ -59,6 +59,7 @@ try {
   assert.ok(new URL(page.url()).searchParams.getAll('method').includes('product-sales'));
   await page.locator('[data-resume-questions]').click();
   assert.match(await page.locator('[data-question-progress]').innerText(), /Optional refinement 1 of 8/i);
+  assert.ok(await page.locator('[data-finder-step]:visible legend').evaluate((element) => { const top = element.getBoundingClientRect().top; return top >= 0 && top < innerHeight; }), 'Refinement question is visible after leaving results');
   for (let index = 0; index < 8; index++) {
     assert.ok(await page.getByRole('button', { name: 'See shortlist', exact: true }).isVisible());
     await page.locator('[data-skip-question]').click();
@@ -127,6 +128,9 @@ try {
   assert.match(await fallback.locator('[data-dated-terms]').innerText(), /Dated offer.*stated dates/s);
   await fallback.goto(base + '/providers/schools/');
   assert.equal(await fallback.locator('.provider-card').count(), 44);
+  await fallback.goto(base + '/for-providers/');
+  assert.ok(await fallback.locator('[data-provider-wizard]').isHidden());
+  assert.ok(await fallback.locator('noscript a[href^="mailto:"]').isVisible());
   await nojs.close();
   await page.setViewportSize({ width: 1440, height: 1000 });
   for (const path of ['/', '/providers/', '/providers/schools/', '/providers/givebutter/', '/Fundraising-Articles.html']) {

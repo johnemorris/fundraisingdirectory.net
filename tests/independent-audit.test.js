@@ -111,5 +111,7 @@ test("Privacy matches mailto form and excludes owner-rejected fixed promises", a
   assert.match(privacy, /not established a fixed retention period/);
   assert.doesNotMatch(privacy, /24 months|within 30|never published|do not sell or rent|does not include.*contact form/s);
   assert.match(wizard, /mailto:/);
+  assert.match(wizard, /data-contact-email=\{SITE_CONTACT_EMAIL\} novalidate hidden/);
+  assert.match(wizard, /form\.hidden = false/);
   assert.doesNotMatch(wizard, /fetch\(|localStorage/);
 });
