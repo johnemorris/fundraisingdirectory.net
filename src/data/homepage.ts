@@ -1,19 +1,20 @@
 import { SITE_ROUTES } from "./site";
+import { formatProviderLabel } from "./providerLabels";
 
 export type PlacementType = "organic" | "featured" | "sponsored";
 
 export const finderGroups = [
-  { label: "School / PTO", value: "schools" },
-  { label: "Sports Team", value: "sports-athletics" },
-  { label: "Church", value: "churches-faith" },
-  { label: "Nonprofit", value: "nonprofits-charities" },
-  { label: "Club / Community", value: "clubs-community" },
+  { label: formatProviderLabel("schools"), value: "schools" },
+  { label: formatProviderLabel("sports-athletics"), value: "sports-athletics" },
+  { label: formatProviderLabel("churches-faith"), value: "churches-faith" },
+  { label: formatProviderLabel("nonprofits-charities"), value: "nonprofits-charities" },
+  { label: formatProviderLabel("clubs-community"), value: "clubs-community" },
   { label: "Other", value: "other" },
 ] as const;
 
 export const finderInterests = [
   { label: "Sell Products", value: "product-sales", icon: "box" },
-  { label: "Online", value: "crowdfunding", icon: "cursor" },
+  { label: formatProviderLabel("crowdfunding"), value: "crowdfunding", icon: "cursor" },
   { label: "Events", value: "events-activities", icon: "flag" },
   { label: "Donations", value: "direct-donations", icon: "heart" },
   { label: "Sponsorships", value: "sponsorships", icon: "star" },
@@ -43,7 +44,7 @@ export const popularMethods = [
   },
   { title: "Candy & Chocolate", href: SITE_ROUTES.candy, size: "compact" },
   { title: "Restaurant Nights", href: "/providers/?method=restaurant-business-partnerships", size: "compact" },
-  { title: "Online Fundraising", href: SITE_ROUTES.onlineFundraising, size: "compact" },
+  { title: "Crowdfunding", href: SITE_ROUTES.onlineFundraising, size: "compact" },
   { title: "Auctions", href: "/providers/?method=auctions", size: "compact" },
   { title: "Discount Cards", href: SITE_ROUTES.discountCards, size: "compact" },
   { title: "Sponsorships", href: "/providers/?method=sponsorships", size: "compact" },
