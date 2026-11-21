@@ -1,6 +1,6 @@
 ---
 legacyPath: Candy
-updated: '2026-10-28'
+updated: '2026-11-20'
 providers:
   - provider: worlds-finest-chocolate
     relationship: direct

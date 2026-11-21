@@ -6,6 +6,9 @@ import { SITE_ROUTES } from "../data/site";
 import { topicPath } from "../data/topics";
 import TopicLinkList from "./TopicLinkList.astro";
 import RelatedTopics from "./RelatedTopics.astro";
+import StructuredData from "./StructuredData.astro";
+import ProfitCalculator from "./ProfitCalculator.astro";
+import GuideProviderTerms from "./GuideProviderTerms.astro";
 
 interface Props { topic: CollectionEntry<"topics"> }
 const { topic } = Astro.props;
@@ -22,8 +25,12 @@ const groups = [
 const related = topic.data.related.map((path) => legacyRoutes.find((route) => route.path === path)!);
 ---
 <article class="topic-guide">
+  <StructuredData value={{ "@context": "https://schema.org", "@type": "Article", headline: legacyRoutes.find((route) => route.path === topic.data.legacyPath)!.title, dateModified: topic.data.updated, mainEntityOfPage: new URL(topicPath(topic.data.legacyPath), SITE_ROUTES.origin).href }} />
   <p class="topic-updated">Updated <time datetime={topic.data.updated}>{new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(topic.data.updated))}</time></p>
   <div class="topic-copy" data-topic-copy><Content /></div>
+  {topic.data.legacyPath === "Candy" && <ProfitCalculator />}
+  {["Candy", "Elementary-School-Fundraising"].includes(topic.data.legacyPath) && <GuideProviderTerms providers={recommendations.map(({ provider }) => provider)} />}
+  <p><a href="/how-we-research/">How we research providers and describe missing information</a></p>
   {groups.map((group) => (
     <section class="provider-options" data-provider-relationship={group.relationship} aria-label={group.title}>
       <h2>{group.title}</h2><p>{group.intro}</p>
