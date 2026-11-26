@@ -206,9 +206,10 @@ const providerJson = JSON.stringify(providers).replaceAll("<", "\\u003c");
       </div>
 
       <section class="finder-result-section" aria-labelledby="provider-results-title">
-        <div>
+        <div class="finder-result-section-head">
           <p class="finder-result-kicker">Compare documented programs</p>
           <h3 id="provider-results-title">Matching providers</h3>
+          <a class="finder-compare-cta" href="/providers/#comparison-title" data-finder-compare-link hidden></a>
         </div>
         <div class="finder-data-note" data-provider-empty></div>
         <ol class="finder-provider-results" data-provider-results></ol>
@@ -237,6 +238,7 @@ const providerJson = JSON.stringify(providers).replaceAll("<", "\\u003c");
   const methodList = document.querySelector<HTMLOListElement>("[data-method-results]");
   const providerList = document.querySelector<HTMLOListElement>("[data-provider-results]");
   const providerEmpty = document.querySelector<HTMLElement>("[data-provider-empty]");
+  const finderCompareLink = document.querySelector<HTMLAnchorElement>("[data-finder-compare-link]");
   const resultsSummary = document.querySelector<HTMLElement>("[data-results-summary]");
   const resultsHeading = document.querySelector<HTMLElement>("#finder-results-title");
   const answerSummary = document.querySelector<HTMLUListElement>("[data-answer-summary]");
@@ -472,6 +474,18 @@ const providerJson = JSON.stringify(providers).replaceAll("<", "\\u003c");
 
     const fitLabel = (score: number) => score >= 60 ? "Strong fit" : score >= 35 ? "Good fit" : "Possible fit";
     const showFitLabels = matches.some((match) => fitLabel(match.score) !== "Strong fit");
+    const compareSlugs = [...new Set(matches.map((match) => match.providerSlug))].slice(0, 4);
+    if (finderCompareLink) {
+      if (compareSlugs.length >= 2) {
+        const compareParams = new URLSearchParams();
+        compareSlugs.forEach((slug) => compareParams.append("compare", slug));
+        finderCompareLink.href = `/providers/?${compareParams.toString()}#comparison-title`;
+        finderCompareLink.textContent = `Compare top ${compareSlugs.length} side by side →`;
+        finderCompareLink.hidden = false;
+      } else {
+        finderCompareLink.hidden = true;
+      }
+    }
 
     matches.forEach((match) => {
       const item = element("li", "finder-provider-result");
@@ -557,3 +571,42 @@ const providerJson = JSON.stringify(providers).replaceAll("<", "\\u003c");
     render();
   }));
 </script>
+
+<style lang="scss">
+  .finder-result-section-head {
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+  }
+
+  .finder-compare-cta {
+    display: inline-flex;
+    min-height: 2.75rem;
+    width: fit-content;
+    align-items: center;
+    padding: 0.5rem 0.875rem;
+    border: 1px solid rgba(140, 224, 208, 0.45);
+    border-radius: 0.625rem;
+    background: rgba(8, 127, 120, 0.22);
+    color: var(--teal-bright);
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.3;
+    text-decoration: none;
+
+    &[hidden] {
+      display: none;
+    }
+
+    &:hover {
+      border-color: var(--teal-bright);
+      background: rgba(8, 127, 120, 0.36);
+      color: #fff;
+    }
+
+    &:focus-visible {
+      outline: 0.1875rem solid var(--focus);
+      outline-offset: 0.125rem;
+    }
+  }
+</style>

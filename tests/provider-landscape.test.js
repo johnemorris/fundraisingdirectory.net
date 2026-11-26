@@ -73,7 +73,10 @@ test("Fundraise Up distinguishes generally available, early-access, and announce
 
   assert.equal(online?.availability_state, "generally-available");
   assert.ok(online?.feature_availability?.some(({ feature, status, notes }) =>
-    feature.includes("Gift Cart") && status === "generally-available" && notes?.includes("custom field values") && notes?.includes("FAQ")
+    feature.includes("Gift Cart") && status === "generally-available" && notes?.includes("custom field values") && notes?.includes("daily-gift end dates") && notes?.includes("FAQ")
+  ));
+  assert.ok(online?.feature_availability?.some(({ feature, status, notes }) =>
+    feature.includes("Ramadan Giving") && status === "generally-available" && notes?.includes("November 23, 2026")
   ));
   assert.ok(online?.feature_availability?.some(({ feature, status, notes }) =>
     feature.includes("cookie banner") && status === "generally-available" && notes?.includes("400 days")
@@ -108,13 +111,15 @@ test("Givebutter preserves existing pricing and eligibility while adding multi-p
   const provider = await loadProvider("givebutter");
   const program = provider.programs.find(({ slug }) => slug === "online-fundraising-platform");
 
-  assert.equal(program?.economics?.arrangements.length, 6);
+  assert.equal(program?.economics?.arrangements.length, 7);
   assert.equal(program?.economics?.arrangements[0].value.percent, 0);
   assert.equal(program?.economics?.arrangements[1].value.percent, 3);
   assert.equal(program?.economics?.arrangements[2].value.percent, 2.9);
   assert.equal(program?.economics?.arrangements[3].value.amount, 0.3);
   assert.equal(program?.economics?.arrangements[4].value.percent, 1.9);
   assert.equal(program?.economics?.arrangements[5].value.percent, 1.75);
+  assert.equal(program?.economics?.arrangements[6].value.percent, 1);
+  assert.deepEqual(program?.economics?.arrangements[6].effective_window, { start_date: "2026-12-01", end_date: "2026-12-02" });
 
   assert.ok(program?.requirements.participation_requirements.some((req) => req.includes("Stripe Connect")));
   assert.ok(program?.requirements.other_restrictions.some((res) => res.includes("registration fundraising with event tickets")));
@@ -124,6 +129,7 @@ test("Givebutter preserves existing pricing and eligibility while adding multi-p
   assert.equal(statuses.get("Givebutter Portal multi-page fundraiser management"), "generally-available");
   assert.equal(statuses.get("Ticket-linked fundraiser page assignment and release transfers"), "generally-available");
   assert.equal(statuses.get("Administrator AI Connector controls (Settings > AI)"), "generally-available");
+  assert.equal(statuses.get("Givebutter Gives Back 1% Giving Tuesday Match (December 1–2, 2026)"), "generally-available");
 });
 
 test("Panera Bread separates standard 20%–25% give-back from the December 1–21, 2026 30% promotion and expires the promotion after December 21", async () => {

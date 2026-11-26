@@ -46,6 +46,8 @@ try {
   await page.waitForTimeout(100);
   assert.ok(await page.locator('[data-provider-results] h4').first().evaluate((element) => element.getBoundingClientRect().top < innerHeight), 'First provider is visible after homepage entry');
   assert.equal(await page.locator('[data-provider-results] > li').count(), 5);
+  assert.ok(await page.locator('[data-finder-compare-link]').isVisible());
+  assert.match(await page.locator('[data-finder-compare-link]').getAttribute('href'), /\/providers\/\?compare=/);
   assert.match(await page.locator('[data-provider-results]').innerText(), /Product Sales/);
   assert.doesNotMatch(await page.locator('[data-provider-results]').innerText(), /Us Nationwide|A flexible place/);
   await page.screenshot({ path: `${output}/mobile-finder-shortlist.png`, fullPage: true });
@@ -78,6 +80,7 @@ try {
   await page.screenshot({ path: `${output}/mobile-comparison.png` });
   await page.reload();
   assert.equal(await page.locator('[data-compare-slug]:checked').count(), 4);
+  assert.ok(await page.locator('[data-compare-view]').isVisible(), 'Comparison table auto-opens from ?compare= URL');
   await page.locator('[data-compare-clear]').click();
   assert.equal(await page.locator('[data-compare-slug]:checked').count(), 0);
   const mobileFilter = page.locator('[data-filter-panel]');
@@ -114,13 +117,17 @@ try {
   await noOverflow('Get Listed final step');
   await page.screenshot({ path: `${output}/mobile-get-listed-final.png` });
   // Exercise built dated HTML at UTC boundaries without another build.
-  for (const [date, expected] of [['2026-11-30T12:00:00Z', /Upcoming/], ['2026-12-01T12:00:00Z', /Within stated dates/], ['2026-12-21T12:00:00Z', /Within stated dates/], ['2026-12-22T12:00:00Z', /Offer ended/]]) {
+  for (const [date, expected, expectedStatus] of [['2026-11-30T12:00:00Z', /Upcoming/, 'upcoming'], ['2026-12-01T12:00:00Z', /Within stated dates/, 'active'], ['2026-12-21T12:00:00Z', /Within stated dates/, 'active'], ['2026-12-22T12:00:00Z', /Offer ended/, 'expired']]) {
     const dated = await browser.newContext({ viewport: { width: 390, height: 844 } });
     const p = await dated.newPage(); await p.clock.install({ time: new Date(date) });
     await p.goto(base + '/providers/panera-bread-fundraising/');
     assert.match(await p.locator('[data-date-status]').innerText(), expected);
+    assert.equal(await p.locator('[data-dated-terms]').getAttribute('data-dated-status'), expectedStatus);
     assert.match(await p.locator('[data-dated-terms]').innerText(), /30%/);
-    observations.push({ paneraDate: date, status: await p.locator('[data-date-status]').innerText() });
+    await p.goto(base + '/ideas/');
+    assert.match(await p.locator('[data-dated-terms] [data-date-status]').innerText(), expected);
+    assert.equal(await p.locator('[data-dated-terms]').getAttribute('data-dated-status'), expectedStatus);
+    observations.push({ paneraDate: date, status: await p.locator('[data-dated-terms] [data-date-status]').innerText() });
     await dated.close();
   }
   const nojs = await browser.newContext({ javaScriptEnabled: false });

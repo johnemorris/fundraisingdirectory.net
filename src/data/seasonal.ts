@@ -12,6 +12,10 @@ export interface SeasonalProgramRef {
   providerSlug: string;
   seasonality: "seasonal" | "year-round";
   note: string;
+  promotionWindow?: {
+    start_date: string;
+    end_date: string;
+  };
 }
 
 export interface SeasonalPlan {
@@ -224,7 +228,11 @@ export const SEASONAL_PLANS: readonly SeasonalPlan[] = [
       {
         providerSlug: "panera-bread-fundraising",
         seasonality: "year-round",
-        note: "Year-round 501(c)(3) bakery-cafe fundraiser nights, with a dated December 1–21, 2026 30% promotion at participating U.S. cafes.",
+        note: "Year-round 501(c)(3) bakery-cafe fundraiser nights (20%–25% standard), plus a dated December 1–21, 2026 30% promotion at participating U.S. cafes.",
+        promotionWindow: {
+          start_date: "2026-12-01",
+          end_date: "2026-12-21",
+        },
       },
       {
         providerSlug: "giving-bean",

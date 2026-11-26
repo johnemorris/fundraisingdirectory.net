@@ -120,7 +120,10 @@ programs:
     feature_availability:
       - feature: "Gift Cart multi-program catalog (up to 50 items per checkout)"
         status: "generally-available"
-        notes: "Generally available; November 2026 updates added per-gift custom field values (via Dashboard or CSV), embedded translatable FAQ blocks, and dedicated full-page Dashboard gift and sponsorship editing."
+        notes: "Generally available; November 2026 updates added per-gift custom field values (via Dashboard or CSV), optional daily-gift end dates, embedded translatable FAQ blocks, and dedicated full-page Dashboard gift and sponsorship editing."
+      - feature: "Ramadan Giving scheduled multi-night donation calendar element"
+        status: "generally-available"
+        notes: "Added November 23, 2026; lets supporters schedule separate nightly Ramadan donations across all 30 nights, the last 10 nights, odd nights, or Laylat al-Qadr in one checkout, charged in the supporter's local time zone. Available on request via the organization's Customer Success Manager."
       - feature: "Donor Portal and Campaign Page integrated cookie banner"
         status: "generally-available"
         notes: "Automatically displays in jurisdictions requiring cookie consent (such as the EU, UK, Switzerland, California, and Quebec), restricting Donor Portal to strictly necessary cookies until answered and remembering choices for 400 days."
@@ -157,6 +160,8 @@ programs:
       notes:
         - "Gift Cart embeds a searchable, filterable catalog directly on the nonprofit's website where supporters can add up to 50 gifts with separate amounts, frequencies, and dedications in one checkout, or use Give now for single-gift checkout."
         - "Each gift in Gift Cart can carry its own custom field values (such as appeal or fund codes) via Dashboard or CSV upload, falling back to catalog-level values when unset, and catalogs can include a translatable FAQ block below the gifts."
+        - "Gift Cart supports optional daily-gift end dates (suggested by the organization or chosen by the supporter, with Donor Portal editing) so 30-day challenges or Ramadan daily gifts stop automatically without manual cancellation."
+        - "The Ramadan Giving website Element opens a multi-night Ramadan calendar where supporters schedule nightly donations in one checkout (with optional multipliers on the last 10 nights, odd nights, or Laylat al-Qadr), charged separately each night in the supporter's local time zone."
         - "Tribute giving supports In Honor and In Memory dedications with separate customizable e-cards or organization-fulfilled postal mail notifications, plus Donor Portal self-service."
         - "Checkout supports general or channel-specific marketing consent (including location-detected UK and France checkout opt-out flows) and integrated cookie-consent banners on Campaign Pages and Donor Portal."
     outcomes:
@@ -238,7 +243,7 @@ programs:
       status: "known"
       notes:
         - "In campaigns that allow tributes, donations on In Memory and In Honor P2P pages automatically prefill the dedication and honoree name at checkout and record as tributes in Dashboard exports and CRM integrations."
-        - "AI Coach lives on individual P2P pages to help fundraisers draft stories, titles, outreach messages, and next steps; fundraisers can turn AI Coach off in page settings or pause proactive prompts for 7 days."
+        - "AI Coach lives as an interactive chat on individual P2P pages to help fundraisers draft stories, titles, goals, end dates, outreach messages, social posts, and thank-you replies; every page change or message requires fundraiser approval, organization teams can read coach conversations, and fundraisers can turn AI Coach off in page settings or pause proactive prompts for 7 days."
         - "P2P sign-up supports optional fundraiser marketing-consent checkboxes (globally or restricted to regions requiring explicit consent), optional or required fundraiser mailing addresses, and fundraising on behalf of a named company, school, church, or club."
         - "Administrators can lock campaign-wide goals and target dates, allow fundraisers to select their display currency before the first donation, and hand a team page over to another team member as admin from the Dashboard."
     outcomes:
@@ -704,6 +709,51 @@ verification:
           status: "current"
           notes: null
       notes: "Published November 11, 2026; verifies built-in Donor Portal cookie consent banner in applicable jurisdictions and 400-day preference retention."
+    - id: "src_000202"
+      type: "platform-documentation"
+      url: "https://fundraiseup.com/docs/changelog/ramadan-giving/"
+      title: "Ramadan Giving: schedule donations for the nights of Ramadan | Fundraise Up"
+      checked_at: "2026-11-26"
+      status: "current"
+      supports:
+        - path: "programs.online-giving-and-gift-cart.feature_availability"
+          status: "current"
+          notes: null
+        - path: "programs.online-giving-and-gift-cart.logistics"
+          status: "current"
+          notes: null
+      notes: "Published November 23, 2026; verifies the Ramadan Giving website Element for scheduling multi-night Ramadan donations in one checkout with local-timezone nightly billing and Customer Success Manager enablement."
+    - id: "src_000203"
+      type: "platform-documentation"
+      url: "https://fundraiseup.com/docs/changelog/daily-gift-end-dates-in-gift-cart/"
+      title: "Daily gifts in Gift Cart can now have an end date | Fundraise Up"
+      checked_at: "2026-11-26"
+      status: "current"
+      supports:
+        - path: "programs.online-giving-and-gift-cart.feature_availability"
+          status: "current"
+          notes: null
+        - path: "programs.online-giving-and-gift-cart.logistics"
+          status: "current"
+          notes: null
+      notes: "Published November 23, 2026; verifies optional suggested or supporter-selected end dates for daily gifts in Gift Cart and Donor Portal end-date management."
+    - id: "src_000204"
+      type: "platform-documentation"
+      url: "https://fundraiseup.com/docs/changelog/ai-coach-for-p2p-fundraisers/"
+      title: "AI Coach for P2P fundraisers | Fundraise Up"
+      checked_at: "2026-11-26"
+      status: "current"
+      supports:
+        - path: "programs.diy-peer-to-peer-fundraising.feature_availability"
+          status: "current"
+          notes: null
+        - path: "programs.diy-peer-to-peer-fundraising.requirements"
+          status: "current"
+          notes: null
+        - path: "programs.diy-peer-to-peer-fundraising.logistics"
+          status: "current"
+          notes: null
+      notes: "Published November 23, 2026; verifies AI Coach on-page chat capabilities (stories, goals, end dates, outreach, social posts, thank-you replies), mandatory fundraiser approval, and organization visibility into coach conversations."
 provenance:
   discovered_via:
     - "editorial-research"

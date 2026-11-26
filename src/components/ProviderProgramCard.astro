@@ -45,6 +45,7 @@ const timingFacts = [
 ].filter((fact): fact is { label: string; value: string } => Boolean(fact.value));
 
 const operationalFacts = [
+  program.availability_state && { label: "Program availability", value: formatProviderLabel(program.availability_state) },
   program.inventory_model !== "unknown" && { label: "Inventory", value: formatProviderLabel(program.inventory_model) },
   program.upfront_cost !== "unknown" && { label: "Upfront commitment", value: formatProviderLabel(program.upfront_cost) },
   programFulfillment.length > 0 && { label: "Fulfillment", value: formatList(programFulfillment.map(formatProviderLabel)) },
@@ -118,6 +119,23 @@ const operationalFacts = [
     <section class="program-decision-section" aria-labelledby={`${program.id}-operations-title`}>
       <h4 id={`${program.id}-operations-title`}>Operations &amp; logistics</h4>
       {operationalFacts.length > 0 && <dl class="fact-list">{operationalFacts.map((fact) => <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>}
+      {program.geographic_restriction?.notes && <p class="section-note"><b>Geographic availability:</b> {program.geographic_restriction.notes}</p>}
+      {program.feature_availability && program.feature_availability.length > 0 && (
+        <div class="detail-list feature-availability-list">
+          <strong>Feature availability</strong>
+          <ul>
+            {program.feature_availability.map((item) => (
+              <li>
+                <div class="feature-availability-head">
+                  <b>{item.feature}</b>
+                  <span class={`feature-status-badge status-${item.status}`}>{formatProviderLabel(item.status)}</span>
+                </div>
+                {item.notes && <p class="feature-availability-note">{item.notes}</p>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       {program.logistics.status === "known" ? program.logistics.notes.map((note) => <p class="section-note">{note}</p>) : <p class="missing-state">{presentation.logisticsMissing}</p>}
     </section>
   </div>
@@ -134,4 +152,23 @@ const operationalFacts = [
 
 <style lang="scss">
   .dated-offer { padding: 0.625rem; border-left: 0.2rem solid var(--teal); font-weight: 650; }
+  .financial-item[data-dated-status="expired"] .dated-offer { border-left-color: var(--border-strong); color: var(--text-muted); }
+  .feature-availability-list ul { display: grid; gap: 0.625rem; }
+  .feature-availability-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+  .feature-status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.5rem;
+    border-radius: 999rem;
+    background: var(--surface-teal);
+    color: var(--teal-dark);
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+  .feature-status-badge.status-early-access,
+  .feature-status-badge.status-announced {
+    background: var(--surface-alternate);
+    color: var(--purple-dark);
+  }
+  .feature-availability-note { margin: 0.25rem 0 0; color: var(--text-muted); font-size: 0.84rem; line-height: 1.5; }
 </style>

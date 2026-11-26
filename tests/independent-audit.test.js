@@ -5,7 +5,7 @@ import { load } from "js-yaml";
 import { providerSchema } from "../src/data/providerSchema.ts";
 import { isFeaturedEligible, selectFeaturedProvider } from "../src/data/featuredProviders.ts";
 import { comparisonRecord, normalizeComparisonSelection } from "../src/data/providerComparison.ts";
-import { dateWindowState } from "../src/lib/dateWindow.ts";
+import { dateWindowState, dateWindowStatus } from "../src/lib/dateWindow.ts";
 import { inventoryFundraiserResult } from "../src/lib/fundraisingMath.ts";
 import { searchSite } from "../src/lib/siteSearch.ts";
 import { rankProviderMatches } from "../src/lib/finderScoring.js";
@@ -69,12 +69,27 @@ test("comparison selection deduplicates, validates and caps shared URL state at 
   assert.deepEqual(normalizeComparisonSelection(["a", "a", "unknown", "b", "c", "d", "e"], ["a", "b", "c", "d", "e"]), ["a", "b", "c", "d"]);
 });
 
-test("Panera date status is inclusive and distinguishes upcoming, current and expired without rebuilds", () => {
+test("Panera and Givebutter date status is inclusive and distinguishes upcoming, current and expired without rebuilds", () => {
   const window = { start_date: "2026-12-01", end_date: "2026-12-21" };
-  for (const date of ["2026-11-20", "2026-11-30"]) assert.match(dateWindowState(window, date), /Upcoming/);
-  for (const date of ["2026-12-01", "2026-12-15", "2026-12-21"]) assert.match(dateWindowState(window, date), /Within stated dates/);
-  for (const date of ["2026-12-22", "2027-01-01"]) assert.match(dateWindowState(window, date), /Offer ended/);
+  for (const date of ["2026-11-20", "2026-11-30"]) {
+    assert.match(dateWindowState(window, date), /Upcoming/);
+    assert.equal(dateWindowStatus(window, date), "upcoming");
+  }
+  for (const date of ["2026-12-01", "2026-12-15", "2026-12-21"]) {
+    assert.match(dateWindowState(window, date), /Within stated dates/);
+    assert.equal(dateWindowStatus(window, date), "active");
+  }
+  for (const date of ["2026-12-22", "2027-01-01"]) {
+    assert.match(dateWindowState(window, date), /Offer ended/);
+    assert.equal(dateWindowStatus(window, date), "expired");
+  }
+  const givingTuesdayWindow = { start_date: "2026-12-01", end_date: "2026-12-02" };
+  assert.equal(dateWindowStatus(givingTuesdayWindow, "2026-11-30"), "upcoming");
+  assert.equal(dateWindowStatus(givingTuesdayWindow, "2026-12-01"), "active");
+  assert.equal(dateWindowStatus(givingTuesdayWindow, "2026-12-02"), "active");
+  assert.equal(dateWindowStatus(givingTuesdayWindow, "2026-12-03"), "expired");
   assert.equal(dateWindowState(null, "2026-12-01"), null);
+  assert.equal(dateWindowStatus(null, "2026-12-01"), null);
 });
 
 test("inventory calculator charges for unsold inventory and handles loss, zero and invalid scenarios", () => {

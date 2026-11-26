@@ -32,7 +32,8 @@ const records = Astro.props.providers.map(({ data }) => comparisonRecord(data));
     let stored: string[] = [];
     try { stored = JSON.parse(sessionStorage.getItem("fdn_compare") ?? "[]"); } catch { /* URL remains usable when storage is unavailable. */ }
     const params = new URLSearchParams(location.search);
-    let selected = normalizeComparisonSelection(params.has("compare") ? params.getAll("compare") : Array.isArray(stored) ? stored : [], available);
+    const hasCompareQuery = params.has("compare");
+    let selected = normalizeComparisonSelection(hasCompareQuery ? params.getAll("compare") : Array.isArray(stored) ? stored : [], available);
     const render = () => {
       controls.forEach((control) => { control.checked = selected.includes(control.dataset.compareSlug!); control.disabled = selected.length === 4 && !control.checked; });
       const tray = document.querySelector<HTMLElement>("[data-compare-controls]")!;
@@ -57,6 +58,9 @@ const records = Astro.props.providers.map(({ data }) => comparisonRecord(data));
     document.querySelector("[data-compare-open]")?.addEventListener("click", () => { view.hidden = false; view.focus(); view.scrollIntoView({ block: "start", behavior: "instant" }); });
     document.querySelector("[data-compare-clear]")?.addEventListener("click", () => { selected = []; render(); });
     render();
+    if (hasCompareQuery && selected.length > 0) {
+      view.hidden = false;
+    }
   }
 </script>
 <style lang="scss">

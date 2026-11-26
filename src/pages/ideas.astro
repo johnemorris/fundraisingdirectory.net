@@ -42,6 +42,7 @@ const seasonalSections = SEASONAL_PLANS.map((plan) => {
       href: providerProfilePath(provider.data.identity.slug),
       label: entry.seasonality === "seasonal" ? "Seasonal window" : "Year-round fit",
       description: entry.note,
+      datedWindow: entry.promotionWindow,
     };
   });
   return { ...plan, guideLinks, providerLinks };
@@ -107,6 +108,14 @@ const seasonalSections = SEASONAL_PLANS.map((plan) => {
       <a href={SITE_ROUTES.resources}>Explore fundraising resources <span aria-hidden="true">→</span></a>
     </section>
   </main>
+
+  <script>
+    import { initializeDatedTerms } from "../lib/dateWindow";
+    initializeDatedTerms();
+    window.addEventListener("pageshow", () => initializeDatedTerms());
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) initializeDatedTerms(); });
+    window.setInterval(() => initializeDatedTerms(), 60_000);
+  </script>
 </SiteLayout>
 
 <style lang="scss">
