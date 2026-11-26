@@ -228,7 +228,7 @@ export const SEASONAL_PLANS: readonly SeasonalPlan[] = [
       {
         providerSlug: "panera-bread-fundraising",
         seasonality: "year-round",
-        note: "Year-round 501(c)(3) bakery-cafe fundraiser nights (20%–25% standard), plus a dated December 1–21, 2026 30% promotion at participating U.S. cafes.",
+        note: "Year-round 501(c)(3) bakery-cafe fundraiser nights (20%–25% standard), plus a dated 30% promotion for qualifying events held December 1–21, 2026 at participating U.S. cafes (requires booking at least 10 days in advance).",
         promotionWindow: {
           start_date: "2026-12-01",
           end_date: "2026-12-21",

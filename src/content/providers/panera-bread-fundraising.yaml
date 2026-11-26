@@ -64,7 +64,7 @@ programs:
     inventory_model: "not-applicable"
     upfront_cost: "none"
     ease_to_raise: null
-    summary: "Approved tax-exempt 501(c)(3) organizations schedule a fundraising event at a participating U.S. Panera Bread bakery-cafe, where qualifying in-cafe and promo-coded online orders generate a standard 20%–25% give-back (or 30% during the December 1–21, 2026 promotional window at participating cafes) once the cafe's $100–$150 minimum sales threshold is met."
+    summary: "Approved tax-exempt 501(c)(3) organizations schedule a fundraising event at a participating U.S. Panera Bread bakery-cafe, where qualifying in-cafe and promo-coded online orders generate a standard 20%–25% give-back (or 30% for qualifying events held December 1–21, 2026 at participating cafes when booked at least 10 days before the event date) once the cafe's $100–$150 minimum sales threshold is met."
     availability_state: "generally-available"
     geographic_restriction:
       countries:
@@ -81,7 +81,7 @@ programs:
         status: "generally-available"
         countries:
           - "US"
-        notes: "Dated promotional offer available December 1–21, 2026 at participating U.S. bakery-cafes with a $150 minimum net sales requirement and 10-day booking cutoff; expires automatically after December 21, 2026."
+        notes: "Dated promotional offer for qualifying events held December 1–21, 2026 at participating U.S. bakery-cafes; events must be booked at least 10 days before the event date (10-day advance booking requirement) and meet a $150 minimum net sales threshold; expires automatically after December 21, 2026."
     economics_mode: "program-specific"
     economics:
       status: "known"
@@ -117,14 +117,14 @@ programs:
           value:
             kind: "percentage"
             percent: 30
-          basis: "Total net food and beverage sales from qualifying supporter orders during an approved December 1–21, 2026 promotional event"
+          basis: "Total net food and beverage sales from qualifying supporter orders during an approved promotional event held December 1–21, 2026"
           conditions:
-            - "The event is scheduled at a participating U.S. bakery-cafe offering the December 1–21, 2026 30% special offer"
+            - "The event is held December 1–21, 2026 at a participating U.S. bakery-cafe offering the December 30% special offer and booked at least 10 days before the event date"
             - "The event generates at least $150 in qualifying net sales"
             - "Supporters show the event flyer in cafe or apply the event promo code on eligible online/app orders"
           caveats:
             - "Limited-time promotional rate valid only for events held December 1–21, 2026 at participating bakery-cafes; standard 20%–25% location rates apply outside this window or at locations not offering the promotion"
-            - "Requires booking at least 10 days in advance on participating location schedules; gift cards, catering, retail items, and third-party delivery orders are excluded"
+            - "Requires booking at least 10 days before the event date on participating location schedules (December 1–21, 2026 is the qualifying event window, not the booking window); gift cards, catering, retail items, and third-party delivery orders are excluded"
           effective_window:
             start_date: "2026-12-01"
             end_date: "2026-12-21"
@@ -217,7 +217,7 @@ geography:
   regions: []
   notes: "Available only at participating U.S. Panera Bread bakery-cafes (1,922 participating locations listed across 48 states and D.C. at verification). Participation, available dates, standard give-back percentage (20% or 25%), minimum sales threshold ($100–$150), and participation in the December 1–21, 2026 30% promotion vary by individual bakery-cafe and must be verified per location."
 content:
-  summary: "Panera Bread Fundraising lets approved 501(c)(3) organizations host local bakery-cafe fundraising nights that return 20%–25% of qualifying net sales (or 30% during the December 1–21, 2026 promotional window at participating cafes) once a $100–$150 minimum sales threshold is met."
+  summary: "Panera Bread Fundraising lets approved 501(c)(3) organizations host local bakery-cafe fundraising nights that return 20%–25% of qualifying net sales (or 30% for qualifying events held December 1–21, 2026 at participating cafes when booked at least 10 days in advance) once a $100–$150 minimum sales threshold is met."
   how_it_works: "An eligible tax-exempt organization selects a participating U.S. Panera Bread bakery-cafe, submits a request and W-9, promotes the provided flyer and online promo code to supporters, and receives a mailed check after qualifying in-cafe and online orders meet the cafe's minimum sales threshold."
   best_for:
     - "Tax-exempt 501(c)(3) schools, PTOs/PTAs, sports teams, youth groups, faith groups, and local nonprofits near a participating U.S. Panera Bread bakery-cafe."
