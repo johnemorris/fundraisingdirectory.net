@@ -28,7 +28,7 @@ const renderedMeasurementId = home.match(/<meta name="fdn-ga-measurement-id" con
 if (renderedMeasurementId !== analyticsConfig.measurementId) {
   throw new Error("Generated analytics metadata does not match PUBLIC_GA_MEASUREMENT_ID");
 }
-if (!home.includes(`v${packageMetadata.version} · ${status.version}`)) {
+if (!home.includes(`${packageMetadata.version}.${status.version}`)) {
   throw new Error("Footer build identifier does not match the status endpoint");
 }
 if (!home.includes('<span class="footer-build">')) {

@@ -1,4 +1,12 @@
 const LABEL_OVERRIDES: Record<string, string> = {
+  "candy-chocolate": "Candy & chocolate",
+  "gifts-seasonal": "Gifts & seasonal products",
+  "cookie-dough-cookies": "Cookie dough & cookies",
+  "coffee-beverages": "Coffee & beverages",
+  "grant-seeking": "Grant seeking",
+  "everyday-passive-fundraising": "Everyday / passive fundraising",
+  "collection-reuse-fundraising": "Collection & reuse drives",
+  "in-kind-resource-fundraising": "In-kind resources",
   "pto-pta": "PTO/PTA",
   "sports-athletics": "Sports Teams",
   "churches-faith": "Churches / Faith",

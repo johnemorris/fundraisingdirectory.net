@@ -11,6 +11,7 @@ import { fundraisingIdeas } from "../data/homepage";
 import { SITE_ROUTES } from "../data/site";
 import SiteLayout from "../layouts/SiteLayout.astro";
 import "../styles/index.css";
+import { selectFeaturedProvider } from "../data/featuredProviders";
 
 const providers = (await getCollection("providers"))
   .filter(
@@ -19,9 +20,7 @@ const providers = (await getCollection("providers"))
   )
   .sort((a, b) => a.data.identity.name.localeCompare(b.data.identity.name));
 
-const featuredProvider =
-  providers.find((provider) => provider.data.identity.slug === "fundraising-com") ??
-  providers[0];
+const featuredProvider = selectFeaturedProvider(providers);
 const pageTitle =
   "FundraisingDirectory.net | Find Fundraising Ideas & Providers";
 const pageDescription =

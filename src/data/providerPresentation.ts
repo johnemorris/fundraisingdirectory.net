@@ -119,6 +119,7 @@ export const formatEconomicArrangement = (arrangement: EconomicArrangement) => {
     basis: arrangement.basis,
     conditions: arrangement.conditions,
     caveats: arrangement.caveats,
+    effectiveWindow: arrangement.effective_window,
   };
 };
 

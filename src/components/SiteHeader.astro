@@ -12,7 +12,7 @@ import {
 const currentPath = Astro.url.pathname.replace(/\.html\/$/, ".html");
 const currentGroup = Astro.url.searchParams.get("group");
 const currentMethods = Astro.url.searchParams.getAll("method");
-const currentOrganization = PROVIDER_ORGANIZATION_NAVIGATION.find((item) => item.group === currentGroup);
+const currentOrganization = PROVIDER_ORGANIZATION_NAVIGATION.find((item) => item.href === currentPath || item.group === currentGroup);
 const currentMethod = PROVIDER_METHOD_NAVIGATION.find((item) => currentMethods.includes(item.method));
 const legacyRoute = legacyRoutes.find((route) => `/${route.path}.html` === currentPath);
 const currentProviderChildKey = currentOrganization?.key ?? (!currentGroup ? currentMethod?.key : undefined);
@@ -22,6 +22,8 @@ const currentTopKey = isProviderSection
   ? "providers"
   : exactPrimary?.key
     ? exactPrimary.key
+  : currentPath === SITE_ROUTES.guides
+    ? "resources"
   : legacyRoute
     ? "ideas"
     : undefined;
@@ -59,7 +61,6 @@ const primaryCurrent = (key: string, href: string) => key !== currentTopKey ? un
               ))}
             </div>
           </div>
-          <a class="provider-menu-all-link" href={SITE_ROUTES.directory}>View all fundraising providers <span aria-hidden="true">→</span></a>
         </div>
       </div>
 
@@ -68,6 +69,7 @@ const primaryCurrent = (key: string, href: string) => key !== currentTopKey ? un
       ))}
     </nav>
 
+    <a class="site-search-link" href="/search/" aria-label="Search providers and guides"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="10" r="6" /><path d="m15 15 6 6" /></svg><span>Search</span></a>
     <details class="mobile-menu" data-mobile-menu>
       <summary aria-label="Navigation menu"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></summary>
       <div class="mobile-menu-panel">
@@ -215,3 +217,14 @@ const primaryCurrent = (key: string, href: string) => key !== currentTopKey ? un
   updateScrolledHeader();
   window.addEventListener("scroll", requestHeaderUpdate, { passive: true });
 </script>
+
+<style lang="scss">
+  .site-search-link { display: inline-flex; flex-shrink: 0; min-height: 2.75rem; min-width: 2.75rem; justify-content: center; align-items: center; gap: .375rem; padding: .5rem; color: white; font-weight: 650; text-underline-offset: .25rem; }
+  @media (max-width: 70rem) {
+    .site-header-main { gap: .5rem; }
+    .site-search-link { margin-left: auto; }
+    .site-search-link span { display: none; }
+    .mobile-menu { margin-left: 0; }
+    .site-header.is-scrolled .site-header-main { padding-inline: .5rem; }
+  }
+</style>

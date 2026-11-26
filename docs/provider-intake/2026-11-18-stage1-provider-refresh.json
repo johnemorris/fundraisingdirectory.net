@@ -141,7 +141,12 @@
           {
             "feature": "Gift Cart multi-program catalog (up to 50 items per checkout)",
             "status": "generally-available",
-            "notes": "Generally available; November 2026 updates added per-gift custom field values (via Dashboard or CSV), embedded translatable FAQ blocks, and dedicated full-page Dashboard gift and sponsorship editing."
+            "notes": "Generally available; November 2026 updates added per-gift custom field values (via Dashboard or CSV), optional daily-gift end dates, embedded translatable FAQ blocks, and dedicated full-page Dashboard gift and sponsorship editing."
+          },
+          {
+            "feature": "Ramadan Giving scheduled multi-night donation calendar element",
+            "status": "generally-available",
+            "notes": "Added November 23, 2026; lets supporters schedule separate nightly Ramadan donations across all 30 nights, the last 10 nights, odd nights, or Laylat al-Qadr in one checkout, charged in the supporter's local time zone. Available on request via the organization's Customer Success Manager."
           },
           {
             "feature": "Donor Portal and Campaign Page integrated cookie banner",
@@ -188,6 +193,8 @@
           "notes": [
             "Gift Cart embeds a searchable, filterable catalog directly on the nonprofit's website where supporters can add up to 50 gifts with separate amounts, frequencies, and dedications in one checkout, or use Give now for single-gift checkout.",
             "Each gift in Gift Cart can carry its own custom field values (such as appeal or fund codes) via Dashboard or CSV upload, falling back to catalog-level values when unset, and catalogs can include a translatable FAQ block below the gifts.",
+            "Gift Cart supports optional daily-gift end dates (suggested by the organization or chosen by the supporter, with Donor Portal editing) so 30-day challenges or Ramadan daily gifts stop automatically without manual cancellation.",
+            "The Ramadan Giving website Element opens a multi-night Ramadan calendar where supporters schedule nightly donations in one checkout (with optional multipliers on the last 10 nights, odd nights, or Laylat al-Qadr), charged separately each night in the supporter's local time zone.",
             "Tribute giving supports In Honor and In Memory dedications with separate customizable e-cards or organization-fulfilled postal mail notifications, plus Donor Portal self-service.",
             "Checkout supports general or channel-specific marketing consent (including location-detected UK and France checkout opt-out flows) and integrated cookie-consent banners on Campaign Pages and Donor Portal."
           ]
@@ -295,7 +302,7 @@
           "status": "known",
           "notes": [
             "In campaigns that allow tributes, donations on In Memory and In Honor P2P pages automatically prefill the dedication and honoree name at checkout and record as tributes in Dashboard exports and CRM integrations.",
-            "AI Coach lives on individual P2P pages to help fundraisers draft stories, titles, outreach messages, and next steps; fundraisers can turn AI Coach off in page settings or pause proactive prompts for 7 days.",
+            "AI Coach lives as an interactive chat on individual P2P pages to help fundraisers draft stories, titles, goals, end dates, outreach messages, social posts, and thank-you replies; every page change or message requires fundraiser approval, organization teams can read coach conversations, and fundraisers can turn AI Coach off in page settings or pause proactive prompts for 7 days.",
             "P2P sign-up supports optional fundraiser marketing-consent checkboxes (globally or restricted to regions requiring explicit consent), optional or required fundraiser mailing addresses, and fundraising on behalf of a named company, school, church, or club.",
             "Administrators can lock campaign-wide goals and target dates, allow fundraisers to select their display currency before the first donation, and hand a team page over to another team member as admin from the Dashboard."
           ]
@@ -707,6 +714,43 @@
         "checked_at": "2026-11-18",
         "status": "current",
         "notes": "Published November 11, 2026; verifies built-in Donor Portal cookie consent banner in applicable jurisdictions and 400-day preference retention."
+      },
+      {
+        "url": "https://fundraiseup.com/docs/changelog/ramadan-giving/",
+        "source_type": "platform-documentation",
+        "title": "Ramadan Giving: schedule donations for the nights of Ramadan | Fundraise Up",
+        "supports": [
+          "programs.online-giving-and-gift-cart.feature_availability",
+          "programs.online-giving-and-gift-cart.logistics"
+        ],
+        "checked_at": "2026-11-26",
+        "status": "current",
+        "notes": "Published November 23, 2026; verifies the Ramadan Giving website Element for scheduling multi-night Ramadan donations in one checkout with local-timezone nightly billing and Customer Success Manager enablement."
+      },
+      {
+        "url": "https://fundraiseup.com/docs/changelog/daily-gift-end-dates-in-gift-cart/",
+        "source_type": "platform-documentation",
+        "title": "Daily gifts in Gift Cart can now have an end date | Fundraise Up",
+        "supports": [
+          "programs.online-giving-and-gift-cart.feature_availability",
+          "programs.online-giving-and-gift-cart.logistics"
+        ],
+        "checked_at": "2026-11-26",
+        "status": "current",
+        "notes": "Published November 23, 2026; verifies optional suggested or supporter-selected end dates for daily gifts in Gift Cart and Donor Portal end-date management."
+      },
+      {
+        "url": "https://fundraiseup.com/docs/changelog/ai-coach-for-p2p-fundraisers/",
+        "source_type": "platform-documentation",
+        "title": "AI Coach for P2P fundraisers | Fundraise Up",
+        "supports": [
+          "programs.diy-peer-to-peer-fundraising.feature_availability",
+          "programs.diy-peer-to-peer-fundraising.requirements",
+          "programs.diy-peer-to-peer-fundraising.logistics"
+        ],
+        "checked_at": "2026-11-26",
+        "status": "current",
+        "notes": "Published November 23, 2026; verifies AI Coach on-page chat capabilities (stories, goals, end dates, outreach, social posts, thank-you replies), mandatory fundraiser approval, and organization visibility into coach conversations."
       }
     ],
     "verification": {
@@ -761,8 +805,125 @@
             "feature": "Administrator AI Connector controls (Settings > AI)",
             "status": "generally-available",
             "notes": "Account admins can globally disable OAuth/MCP AI Connectors across the account, inspect active user connections and last-active timestamps, disconnect individual or per-user connectors, and toggle AI contact summaries."
+          },
+          {
+            "feature": "Givebutter Gives Back 1% Giving Tuesday Match (December 1–2, 2026)",
+            "status": "generally-available",
+            "countries": [
+              "US"
+            ],
+            "notes": "Dated promotional offer matching 1% of eligible online donations submitted between December 1, 2026 (12:00 a.m. ET) and December 2, 2026 (5:59 a.m. ET) for verified nonprofits using Givebutter Wallet as their primary payout method (or transferring eligible funds into Wallet by December 10, 2026 under the Second Chance Match)."
           }
         ],
+        "economics_mode": "program-specific",
+        "economics": {
+          "status": "known",
+          "arrangements": [
+            {
+              "type": "platform-fee",
+              "value": {
+                "kind": "percentage",
+                "percent": 0
+              },
+              "basis": "Online transactions on campaigns with optional donor tips enabled",
+              "conditions": [
+                "Optional donor tips remain enabled"
+              ],
+              "caveats": [
+                "The Givebutter Guarantee has stated exclusions, including payment methods that do not support tips and some imported or legacy recurring plans"
+              ]
+            },
+            {
+              "type": "platform-fee",
+              "value": {
+                "kind": "percentage",
+                "percent": 3
+              },
+              "basis": "Online transactions when optional donor tips are disabled",
+              "conditions": [
+                "Optional donor tips are disabled"
+              ],
+              "caveats": [
+                "The organization chooses whether donors are asked or required to cover fees or whether the organization absorbs them"
+              ]
+            },
+            {
+              "type": "processing-fee",
+              "value": {
+                "kind": "percentage",
+                "percent": 2.9
+              },
+              "basis": "Card and digital-wallet online transactions",
+              "conditions": [],
+              "caveats": [
+                "A $0.30 per-transaction charge also applies; Givebutter absorbs uncovered processing fees when eligible tips-enabled transactions qualify for the Guarantee"
+              ]
+            },
+            {
+              "type": "transaction-fee",
+              "value": {
+                "kind": "amount",
+                "amount": 0.3,
+                "currency": "USD"
+              },
+              "basis": "Per card, digital-wallet, or ACH online transaction",
+              "conditions": [],
+              "caveats": [
+                "Givebutter absorbs uncovered processing fees when eligible tips-enabled transactions qualify for the Guarantee"
+              ]
+            },
+            {
+              "type": "processing-fee",
+              "value": {
+                "kind": "percentage",
+                "percent": 1.9
+              },
+              "basis": "ACH online transactions for verified nonprofits",
+              "conditions": [
+                "The account is a verified nonprofit"
+              ],
+              "caveats": [
+                "A $0.30 per-transaction charge also applies"
+              ]
+            },
+            {
+              "type": "other",
+              "value": {
+                "kind": "percentage",
+                "percent": 1.75
+              },
+              "basis": "Optional instant-payout fee",
+              "conditions": [
+                "The account is eligible and selects an instant payout"
+              ],
+              "caveats": [
+                "Standard payouts are free"
+              ]
+            },
+            {
+              "type": "other",
+              "value": {
+                "kind": "percentage",
+                "percent": 1
+              },
+              "basis": "Givebutter Gives Back 1% Giving Tuesday promotional match on eligible online donations",
+              "conditions": [
+                "The organization is a verified nonprofit with Givebutter Wallet set as its primary payout method until the match is deposited (or moves eligible Match Window funds into Wallet by December 10, 2026 under the Second Chance Match)",
+                "Online donations are submitted between December 1, 2026 at 12:00 a.m. ET and December 2, 2026 at 5:59 a.m. ET"
+              ],
+              "caveats": [
+                "Offline gifts, cash, checks (including mobile check deposits), external transfers into Wallet, and refunded or disputed transactions are excluded; match rewards begin depositing into Givebutter Wallet on December 11, 2026"
+              ],
+              "effective_window": {
+                "start_date": "2026-12-01",
+                "end_date": "2026-12-02"
+              }
+            }
+          ],
+          "notes": [
+            "Auction payment settings can alter whether the tips-enabled waiver is available; auto-charged auction payments incur the published platform and processing fees."
+          ]
+        },
         "requirements": {
           "status": "known",
           "legal_status": [],
@@ -862,6 +1023,18 @@
         "checked_at": "2026-11-18",
         "status": "current",
         "notes": "Verifies read-only OAuth/MCP AI Connectors and administrator controls under Settings > AI to disable connectors account-wide, inspect active connections, disconnect users, and toggle AI contact summaries."
+      },
+      {
+        "url": "https://help.givebutter.com/en/articles/8421352-givebutter-gives-back-giving-tuesday",
+        "source_type": "platform-documentation",
+        "title": "Givebutter Gives Back: Giving Tuesday",
+        "supports": [
+          "programs.online-fundraising-platform.feature_availability",
+          "programs.online-fundraising-platform.economics"
+        ],
+        "checked_at": "2026-11-26",
+        "status": "current",
+        "notes": "Updated November 24, 2026; verifies the dated December 1–2, 2026 Giving Tuesday 1% promotional match for verified nonprofits with Givebutter Wallet set as primary payout method, the December 10 Second Chance Match deadline, excluded offline/check/transfer funds, and December 11 match deposits."
       }
     ],
     "verification": {
@@ -948,7 +1121,7 @@
         "inventory_model": "not-applicable",
         "upfront_cost": "none",
         "ease_to_raise": null,
-        "summary": "Approved tax-exempt 501(c)(3) organizations schedule a fundraising event at a participating U.S. Panera Bread bakery-cafe, where qualifying in-cafe and promo-coded online orders generate a standard 20%–25% give-back (or 30% during the December 1–21, 2026 promotional window at participating cafes) once the cafe's $100–$150 minimum sales threshold is met.",
+        "summary": "Approved tax-exempt 501(c)(3) organizations schedule a fundraising event at a participating U.S. Panera Bread bakery-cafe, where qualifying in-cafe and promo-coded online orders generate a standard 20%–25% give-back (or 30% for qualifying events held December 1–21, 2026 at participating cafes when booked at least 10 days before the event date) once the cafe's $100–$150 minimum sales threshold is met.",
         "availability_state": "generally-available",
         "geographic_restriction": {
           "countries": [
@@ -972,7 +1145,7 @@
             "countries": [
               "US"
             ],
-            "notes": "Dated promotional offer available December 1–21, 2026 at participating U.S. bakery-cafes with a $150 minimum net sales requirement and 10-day booking cutoff; expires automatically after December 21, 2026."
+            "notes": "Dated promotional offer for qualifying events held December 1–21, 2026 at participating U.S. bakery-cafes; events must be booked at least 10 days before the event date (10-day advance booking requirement) and meet a $150 minimum net sales threshold; expires automatically after December 21, 2026."
           }
         ],
         "economics_mode": "program-specific",
@@ -1024,15 +1197,15 @@
                 "kind": "percentage",
                 "percent": 30
               },
-              "basis": "Total net food and beverage sales from qualifying supporter orders during an approved December 1–21, 2026 promotional event",
+              "basis": "Total net food and beverage sales from qualifying supporter orders during an approved promotional event held December 1–21, 2026",
               "conditions": [
-                "The event is scheduled at a participating U.S. bakery-cafe offering the December 1–21, 2026 30% special offer",
+                "The event is held December 1–21, 2026 at a participating U.S. bakery-cafe offering the December 30% special offer and booked at least 10 days before the event date",
                 "The event generates at least $150 in qualifying net sales",
                 "Supporters show the event flyer in cafe or apply the event promo code on eligible online/app orders"
               ],
               "caveats": [
                 "Limited-time promotional rate valid only for events held December 1–21, 2026 at participating bakery-cafes; standard 20%–25% location rates apply outside this window or at locations not offering the promotion",
-                "Requires booking at least 10 days in advance on participating location schedules; gift cards, catering, retail items, and third-party delivery orders are excluded"
+                "Requires booking at least 10 days before the event date on participating location schedules (December 1–21, 2026 is the qualifying event window, not the booking window); gift cards, catering, retail items, and third-party delivery orders are excluded"
               ],
               "effective_window": {
                 "start_date": "2026-12-01",
@@ -1162,7 +1335,7 @@
       "notes": "Available only at participating U.S. Panera Bread bakery-cafes (1,922 participating locations listed across 48 states and D.C. at verification). Participation, available dates, standard give-back percentage (20% or 25%), minimum sales threshold ($100–$150), and participation in the December 1–21, 2026 30% promotion vary by individual bakery-cafe and must be verified per location."
     },
     "content": {
-      "summary": "Panera Bread Fundraising lets approved 501(c)(3) organizations host local bakery-cafe fundraising nights that return 20%–25% of qualifying net sales (or 30% during the December 1–21, 2026 promotional window at participating cafes) once a $100–$150 minimum sales threshold is met.",
+      "summary": "Panera Bread Fundraising lets approved 501(c)(3) organizations host local bakery-cafe fundraising nights that return 20%–25% of qualifying net sales (or 30% for qualifying events held December 1–21, 2026 at participating cafes when booked at least 10 days in advance) once a $100–$150 minimum sales threshold is met.",
       "how_it_works": "An eligible tax-exempt organization selects a participating U.S. Panera Bread bakery-cafe, submits a request and W-9, promotes the provided flyer and online promo code to supporters, and receives a mailed check after qualifying in-cafe and online orders meet the cafe's minimum sales threshold.",
       "best_for": [
         "Tax-exempt 501(c)(3) schools, PTOs/PTAs, sports teams, youth groups, faith groups, and local nonprofits near a participating U.S. Panera Bread bakery-cafe."

@@ -15,6 +15,7 @@ export function serializeFinderProvider(data: CanonicalProvider) {
     classification: data.classification,
     programs: data.programs.map((program) => ({
       name: program.name,
+      summary: program.summary,
       method: program.method,
       products_services: program.products_services,
       channels: program.channels,

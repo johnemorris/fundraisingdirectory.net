@@ -37,7 +37,6 @@ export const FUNDRAISING_VISUALS: Record<string, FundraisingVisual> = {
 
 const PROVIDER_VISUAL_KEYS: Record<string, keyof typeof FUNDRAISING_VISUALS> = {
   booster: "community-fun-run",
-  "fundraising-com": "spirit-wear-sale",
 };
 
 export function getProviderVisual(slug: string) {

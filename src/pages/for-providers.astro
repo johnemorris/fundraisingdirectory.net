@@ -1,6 +1,7 @@
 ---
 import ProviderListingWizard from "../components/ProviderListingWizard.astro";
 import SiteLayout from "../layouts/SiteLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 ---
 
 <SiteLayout
@@ -8,5 +9,6 @@ import SiteLayout from "../layouts/SiteLayout.astro";
   description="Tell FundraisingDirectory.net about your organization and fundraising opportunities for editorial review."
   bodyClass="for-providers-page"
 >
+  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Get Listed" }]} />
   <ProviderListingWizard />
 </SiteLayout>

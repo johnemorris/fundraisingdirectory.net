@@ -1,0 +1,119 @@
+{
+  "observations": [
+    {
+      "page": "/",
+      "width": 390,
+      "scroll": 390
+    },
+    {
+      "page": "/finder/",
+      "width": 390,
+      "scroll": 390
+    },
+    {
+      "page": "/providers/",
+      "width": 390,
+      "scroll": 390
+    },
+    {
+      "page": "/ideas/",
+      "width": 390,
+      "scroll": 390
+    },
+    {
+      "page": "/providers/givebutter/",
+      "width": 390,
+      "scroll": 390
+    },
+    {
+      "page": "/Candy.html",
+      "width": 390,
+      "scroll": 390
+    },
+    {
+      "page": "/for-providers/",
+      "width": 390,
+      "scroll": 390
+    },
+    {
+      "page": "/contact/",
+      "width": 390,
+      "scroll": 390
+    },
+    {
+      "page": "/providers/schools/",
+      "width": 390,
+      "scroll": 390
+    },
+    {
+      "page": "/privacy/",
+      "width": 390,
+      "scroll": 390
+    },
+    {
+      "page": "/search/?q=candy",
+      "width": 390,
+      "scroll": 390
+    },
+    {
+      "page": "comparison, four providers",
+      "width": 390,
+      "scroll": 390
+    },
+    {
+      "page": "mobile method filters",
+      "width": 390,
+      "scroll": 390
+    },
+    {
+      "page": "Get Listed final step",
+      "width": 390,
+      "scroll": 390
+    },
+    {
+      "paneraDate": "2026-11-30T12:00:00Z",
+      "status": "Upcoming dated offer — verify availability"
+    },
+    {
+      "paneraDate": "2026-12-01T12:00:00Z",
+      "status": "Within stated dates — verify availability"
+    },
+    {
+      "paneraDate": "2026-12-21T12:00:00Z",
+      "status": "Within stated dates — verify availability"
+    },
+    {
+      "paneraDate": "2026-12-22T12:00:00Z",
+      "status": "Offer ended — verify current terms"
+    },
+    {
+      "page": "desktop /",
+      "width": 1440,
+      "scroll": 1440
+    },
+    {
+      "page": "desktop /providers/",
+      "width": 1440,
+      "scroll": 1440
+    },
+    {
+      "page": "desktop /providers/schools/",
+      "width": 1440,
+      "scroll": 1440
+    },
+    {
+      "page": "desktop /providers/givebutter/",
+      "width": 1440,
+      "scroll": 1440
+    },
+    {
+      "page": "desktop /Fundraising-Articles.html",
+      "width": 1440,
+      "scroll": 1440
+    }
+  ],
+  "errors": [],
+  "googleRequestsBeforeConsent": 0,
+  "formSubmission": "intercepted locally; no email sent",
+  "result": "PASS"
+}

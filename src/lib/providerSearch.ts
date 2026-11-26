@@ -1,4 +1,7 @@
+import { formatProviderLabel } from "../data/providerLabels.ts";
+
 interface SearchableProvider {
+  classification?: { products_services: string[]; methods: string[]; organizations: string[] };
   identity: { name: string; aliases: string[] };
   content: {
     summary: string;
@@ -19,6 +22,7 @@ export const normalizeProviderSearch = (value: string) => value
 export const buildProviderSearchText = (provider: SearchableProvider) => [
   provider.identity.name,
   ...provider.identity.aliases,
+  ...[...(provider.classification?.products_services ?? []), ...(provider.classification?.methods ?? []), ...(provider.classification?.organizations ?? [])].map(formatProviderLabel),
   provider.content.summary,
   provider.content.how_it_works,
   ...provider.content.best_for,

@@ -20,7 +20,7 @@ const columns = [
       ["Fundraising Resources", SITE_ROUTES.resources],
       ["Fundraising Guides", SITE_ROUTES.guides],
       ["Product Sales", SITE_ROUTES.productSales],
-      ["Online Fundraising", SITE_ROUTES.onlineFundraising],
+      ["Crowdfunding", SITE_ROUTES.onlineFundraising],
     ],
   },
   {
@@ -33,6 +33,7 @@ const columns = [
     title: "About",
     links: [
       ["About", SITE_ROUTES.about],
+      ["How we research", "/how-we-research/"],
       ["Contact", SITE_ROUTES.contact],
       ["Privacy", SITE_ROUTES.privacy],
       ["Disclaimer", SITE_ROUTES.disclaimer],
@@ -74,7 +75,7 @@ const columns = [
     <div class="footer-bottom">
       <span>
         © {new Date().getFullYear()} FundraisingDirectory.net
-        <span class="footer-build">v{__BUILD_METADATA__.packageVersion} · {__BUILD_METADATA__.version}</span>
+        {" "}<span class="footer-build">{__BUILD_METADATA__.packageVersion}.{__BUILD_METADATA__.version}</span>
         <button class="footer-preferences" type="button" data-analytics-preferences hidden>Cookie preferences</button>
       </span>
       <span>Independent fundraising discovery and information.</span>

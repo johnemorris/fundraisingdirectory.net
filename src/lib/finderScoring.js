@@ -1,4 +1,5 @@
 import { FUNDRAISING_OUTCOMES } from "../data/taxonomies/fundraising-dimensions.ts";
+import { formatProviderLabel } from "../data/providerLabels.ts";
 
 const FOOD_PRODUCTS = new Set([
   "candy-chocolate",
@@ -275,14 +276,14 @@ export function evaluateProviderProgram(provider, program, rawAnswers = {}) {
   if (answers.group && answers.group !== "other") {
     if (provider.classification.organizations.includes(answers.group)) {
       score += weights.groupMatch;
-      reasons.push("Serves your type of organization");
+      reasons.push(`${program.name} lists ${formatProviderLabel(answers.group)} among its supported organizers`);
     } else score += weights.groupMismatch;
   }
 
   if (answers.methods.length) {
     if (answers.methods.includes(program.method)) {
       score += weights.methodMatch;
-      reasons.push("Matches a fundraising method you selected");
+      reasons.push(`${formatProviderLabel(program.method)} matches your selected approach`);
     } else score += weights.methodMismatch;
   }
 
@@ -410,6 +411,7 @@ export function evaluateProviderProgram(provider, program, rawAnswers = {}) {
     channels: program.channels,
     effort: program.ease_to_raise,
     upfrontCost: program.upfront_cost,
+    summary: program.summary,
     geography: provider.geography,
     score,
     confidence: Math.max(30, confidence),

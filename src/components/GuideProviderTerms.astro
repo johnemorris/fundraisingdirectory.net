@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { formatEconomicArrangement } from "../data/providerPresentation";
+import { resolveProgramEconomics } from "../data/providerSchema";
+interface Props { providers: CollectionEntry<"providers">[] }
+const { providers } = Astro.props;
+---
+<section class="guide-terms" aria-labelledby="guide-terms-title">
+  <h2 id="guide-terms-title">Compare the documented programs</h2>
+  <p>These are different models, not a ranking or a prediction of typical returns. Read each linked profile for source dates, detailed conditions and eligibility. Missing prices are unknown, not zero.</p>
+  <div role="region" aria-label="Program decision overview, scroll horizontally" tabindex="0">
+    <table><caption>Provider research for the options discussed in this guide</caption><thead><tr><th scope="col">Provider / program</th><th scope="col">Financial model</th><th scope="col">Organizer responsibilities</th></tr></thead><tbody>
+      {providers.map(({ data }) => data.programs.map((program) => {
+        const economics = resolveProgramEconomics(data, program);
+        const terms = economics?.status === "known" ? economics.arrangements.filter((term) => ["product-sale-profit", "product-sale-margin", "proceeds", "platform-fee"].includes(term.type)).map(formatEconomicArrangement) : [];
+        return <tr><th scope="row"><a href={`/providers/${data.identity.slug}/`}>{data.identity.name}</a><p>{program.name}</p><small>Verified {data.status.last_verified_at}</small></th><td>{terms.length ? terms.map((row) => <p>{row.label}: {row.value}. {row.basis} {row.conditions.join("; ")} {row.caveats.join("; ")}</p>) : <p>Terms not established here; request a current quote.</p>}</td><td>{program.summary}</td></tr>;
+      }))}
+    </tbody></table>
+  </div>
+  <p><a href="/providers/">Select providers for a fuller comparison</a> · <a href="/finder/">Build your own shortlist</a></p>
+</section>
+<style lang="scss">
+  .guide-terms { padding-block: 1.5rem; }
+  p { line-height: 1.7; }
+  .guide-terms > div { overflow: auto; max-width: 100%; }
+  table { min-width: 40rem; width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; vertical-align: top; padding: .875rem; border: 1px solid var(--border); max-width: 32rem; }
+  th { min-width: 11rem; background: var(--surface-alternate); }
+</style>

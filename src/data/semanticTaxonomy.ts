@@ -1,6 +1,6 @@
-import { formatProviderLabel } from "./providerLabels";
-import { DISCOVERY_METHODS, type DiscoveryMethod } from "./taxonomies/methods";
-import { ORGANIZATION_TYPES, type OrganizationType } from "./taxonomies/organizations";
+import { formatProviderLabel } from "./providerLabels.ts";
+import { DISCOVERY_METHODS, FUNDRAISING_METHODS, type DiscoveryMethod } from "./taxonomies/methods.ts";
+import { ORGANIZATION_TYPES, type OrganizationType } from "./taxonomies/organizations.ts";
 
 export type SemanticKind = "method" | "group";
 export type SemanticTone = "teal" | "blue" | "purple" | "navy" | "warm";
@@ -42,6 +42,13 @@ export const GROUP_OPTIONS = ORGANIZATION_TYPES.map((value) => ({
   value,
   label: formatProviderLabel(value),
   tone: GROUP_TONES[value],
+}));
+
+// Directory chips must always lead to a usable filter. Finder retains its
+// deliberately narrower set of guided choices.
+export const DIRECTORY_METHOD_OPTIONS = FUNDRAISING_METHODS.map((value) => ({
+  value, label: formatProviderLabel(value),
+  tone: METHOD_TONES[value as DiscoveryMethod] ?? "teal",
 }));
 
 export function semanticClass(kind: SemanticKind, value: string) {

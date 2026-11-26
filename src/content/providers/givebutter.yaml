@@ -95,6 +95,11 @@ programs:
       - feature: "Administrator AI Connector controls (Settings > AI)"
         status: "generally-available"
         notes: "Account admins can globally disable OAuth/MCP AI Connectors across the account, inspect active user connections and last-active timestamps, disconnect individual or per-user connectors, and toggle AI contact summaries."
+      - feature: "Givebutter Gives Back 1% Giving Tuesday Match (December 1–2, 2026)"
+        status: "generally-available"
+        countries:
+          - "US"
+        notes: "Dated promotional offer matching 1% of eligible online donations submitted between December 1, 2026 (12:00 a.m. ET) and December 2, 2026 (5:59 a.m. ET) for verified nonprofits using Givebutter Wallet as their primary payout method (or transferring eligible funds into Wallet by December 10, 2026 under the Second Chance Match)."
     economics_mode: "program-specific"
     economics:
       status: "known"
@@ -152,6 +157,19 @@ programs:
             - "The account is eligible and selects an instant payout"
           caveats:
             - "Standard payouts are free"
+        - type: "other"
+          value:
+            kind: "percentage"
+            percent: 1
+          basis: "Givebutter Gives Back 1% Giving Tuesday promotional match on eligible online donations"
+          conditions:
+            - "The organization is a verified nonprofit with Givebutter Wallet set as its primary payout method until the match is deposited (or moves eligible Match Window funds into Wallet by December 10, 2026 under the Second Chance Match)"
+            - "Online donations are submitted between December 1, 2026 at 12:00 a.m. ET and December 2, 2026 at 5:59 a.m. ET"
+          caveats:
+            - "Offline gifts, cash, checks (including mobile check deposits), external transfers into Wallet, and refunded or disputed transactions are excluded; match rewards begin depositing into Givebutter Wallet on December 11, 2026"
+          effective_window:
+            start_date: "2026-12-01"
+            end_date: "2026-12-02"
       notes:
         - "Auction payment settings can alter whether the tips-enabled waiver is available; auto-charged auction payments incur the published platform and processing fees."
     requirements:
@@ -436,6 +454,20 @@ verification:
           status: "current"
           notes: null
       notes: "Verifies read-only OAuth/MCP AI Connectors and administrator controls under Settings > AI to disable connectors account-wide, inspect active connections, disconnect users, and toggle AI contact summaries."
+    - id: "src_000205"
+      type: "platform-documentation"
+      url: "https://help.givebutter.com/en/articles/8421352-givebutter-gives-back-giving-tuesday"
+      title: "Givebutter Gives Back: Giving Tuesday"
+      checked_at: "2026-11-26"
+      status: "current"
+      supports:
+        - path: "programs.online-fundraising-platform.feature_availability"
+          status: "current"
+          notes: null
+        - path: "programs.online-fundraising-platform.economics"
+          status: "current"
+          notes: null
+      notes: "Updated November 24, 2026; verifies the dated December 1–2, 2026 Giving Tuesday 1% promotional match for verified nonprofits with Givebutter Wallet set as primary payout method, the December 10 Second Chance Match deadline, excluded offline/check/transfer funds, and December 11 match deposits."
 provenance:
   discovered_via:
     - "web-research"

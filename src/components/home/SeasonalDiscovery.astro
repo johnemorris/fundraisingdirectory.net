@@ -104,7 +104,11 @@ const seasonCards = seasons.map((season) => {
   import { applyActiveSeason } from "../../lib/seasonalRuntime";
 
   const root = document.querySelector<HTMLElement>("[data-seasonal-discovery]");
-  if (root) applyActiveSeason(root, new Date());
+  const refreshSeason = () => { if (root) applyActiveSeason(root, new Date()); };
+  refreshSeason();
+  window.addEventListener("pageshow", refreshSeason);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshSeason(); });
+  window.setInterval(refreshSeason, 60_000);
 </script>
 
 <style lang="scss">

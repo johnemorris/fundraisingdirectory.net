@@ -1,6 +1,6 @@
 ---
 legacyPath: Elementary-School-Fundraising
-updated: '2026-11-18'
+updated: '2026-11-20'
 providers:
   - provider: booster
     relationship: direct

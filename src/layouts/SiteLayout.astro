@@ -3,6 +3,7 @@ import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import Analytics from "../components/Analytics.astro";
 import AnalyticsConsent from "../components/AnalyticsConsent.astro";
+import StructuredData from "../components/StructuredData.astro";
 import { SITE_ROUTES } from "../data/site";
 import "../styles/global.css";
 
@@ -66,6 +67,7 @@ const {
     <meta name="twitter:description" content={description} />
     {socialImage && <meta name="twitter:image" content={socialImage} />}
     <Analytics />
+    {Astro.url.pathname === "/" && <StructuredData value={{ "@context": "https://schema.org", "@type": "WebSite", name: "FundraisingDirectory.net", url: SITE_ROUTES.origin, potentialAction: { "@type": "SearchAction", target: { "@type": "EntryPoint", urlTemplate: `${SITE_ROUTES.origin}/search/?q={search_term_string}` }, "query-input": "required name=search_term_string" } }} />}
   </head>
 
   <body class={bodyClass}>
